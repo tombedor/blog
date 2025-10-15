@@ -8,26 +8,26 @@ type Props = WrapperProps<typeof FooterType>;
 
 export default function FooterWrapper(props: Props): JSX.Element {
   const {metadata} = useBlogPost();
-  const {permalink} = metadata;
-
-  // Extract the slug from the permalink (e.g., /blog/ai-is-a-floor-raiser -> ai-is-a-floor-raiser)
-  const slug = permalink.replace(/^\/blog\//, '');
+  const {frontMatter} = metadata;
+  const canonicalUrl = frontMatter.canonical_url as string | undefined;
 
   return (
     <>
       <Footer {...props} />
-      <div style={{
-        marginTop: '2rem',
-        paddingTop: '1rem',
-        borderTop: '1px solid var(--ifm-color-emphasis-300)',
-        fontSize: '0.9rem',
-        fontStyle: 'italic',
-        color: 'var(--ifm-color-emphasis-700)'
-      }}>
-        Also published at <a href={`https://elroy.bot/blog/${slug}`} target="_blank" rel="noopener noreferrer">
-          https://elroy.bot/blog/{slug}
-        </a>
-      </div>
+      {canonicalUrl && (
+        <div style={{
+          marginTop: '2rem',
+          paddingTop: '1rem',
+          borderTop: '1px solid var(--ifm-color-emphasis-300)',
+          fontSize: '0.9rem',
+          fontStyle: 'italic',
+          color: 'var(--ifm-color-emphasis-700)'
+        }}>
+          Also published at <a href={canonicalUrl} target="_blank" rel="noopener noreferrer">
+            {canonicalUrl}
+          </a>
+        </div>
+      )}
     </>
   );
 }

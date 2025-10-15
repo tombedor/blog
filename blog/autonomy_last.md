@@ -1,6 +1,7 @@
 ---
 title: Add Autonomy Last
 date: 2025-07-07
+canonical_url: https://elroy.bot/blog/2025/07/07/add-autonomy-last.html
 ---
 
 # Add Autonomy Last

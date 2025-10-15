@@ -1,6 +1,7 @@
 ---
 title: AI is a Floor Raiser, not a Ceiling Raiser
 date: 2025-07-29
+canonical_url: https://elroy.bot/blog/2025/07/29/ai-is-a-floor-raiser-not-a-ceiling-raiser.html
 ---
 
 # AI is a Floor Raiser, not a Ceiling Raiser

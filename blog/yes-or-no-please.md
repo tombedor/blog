@@ -1,6 +1,7 @@
 ---
 title: "Yes or No, Please: Building Reliable Tests for Unreliable LLMs"
 date: 2025-03-04
+canonical_url: https://elroy.bot/blog/2025/03/04/yes-or-no-please-building-reliable-tests-for-unreliable-llms.html
 ---
 
 # Yes or No, Please: Building Reliable Tests for Unreliable LLMs
