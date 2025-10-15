@@ -7,7 +7,7 @@ date: 2025-07-29
 
 ## A reshaped learning curve
 
-<!-- truncate -->
+
 
 Before AI, learners faced a matching problem: learning resources have to be created with a target audience in mind. This means as a consumer, learning resources were suboptimal fits for you:
 
@@ -18,6 +18,8 @@ Before AI, learners faced a matching problem: learning resources have to be crea
 Roughly, acquiring mastery in a skill over time looks like this:
 
 ![Traditional learning curve](/diagrams/floor-raiser/skills.png)
+
+<!-- truncate -->
 
 What makes learning with AI groundbreaking is that it can *meet you at your skill level*. Now an AI can directly address questions at your level of understanding, and even do rote work for you. This changes the learning curve:
 
