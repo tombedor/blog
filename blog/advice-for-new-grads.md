@@ -16,7 +16,7 @@ Other engineers with similar levels of experience as mine will disagree with som
 # The software jobs market
 The intention of this post is to be evergreen. The tech[^1] jobs market is more volitile than the rest of the economy, with higher highs and lower lows.
 
-If the market is low, I have confidence it will come back. The tech industry remains an excellent one to build an interesting and lucrative career, despite {looming, much discussed threat}
+If the market is low, I have confidence it will come back. The tech industry remains an excellent one to build an interesting and lucrative career, despite \{looming, much discussed threat\}
 
 If the market is currently hot, be aware that it will come back to earth. Things that don't make sense will make a *lot* of money, but many of them will fall apart.
 
