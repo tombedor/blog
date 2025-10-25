@@ -43,6 +43,7 @@ const config: Config = {
         blog: {
           routeBasePath: '/', // Serve the blog at the site's root
           showReadingTime: true,
+          postsPerPage: 'ALL', // Show all blog posts on the main page
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
