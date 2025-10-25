@@ -1,6 +1,7 @@
 ---
 title: Optimizing repos for AI
 date: 2025-10-25
+draft: true
 ---
 
 
@@ -38,6 +39,10 @@ There's much angst around humans being replaced or left behind by focusing on op
 Ie, rather than code review instructions in AGENTS.md, I make a `docs/CODE_REVIEW.md` file, and reference it in the various agent-specific files. For newer projects I've usually also included a `PRD.md`, a `ROADMAP.md`, and a `CAPTAINS_LOG.md`.
 
 Frameworks have begun to emerge that handle some of this for you. I've tried [spec-kit](https://github.com/github/spec-kit) and found it to be a little heavy handed. In general I favor a more documentation-heavy approach when building with AI, but the need for different docs comes with iteration, and I think generating the full compliment of docs a bit overkill right off the bat.
+
+# Tools
+
+just >>> MCP or tools or whatever
 
 
 
