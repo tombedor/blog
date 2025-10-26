@@ -10,4 +10,4 @@ serve:
 
 # Deploys the site to GitHub Pages
 deploy:
-	npm run deploy
+	GIT_USER=tombedor npm run deploy
