@@ -9,17 +9,31 @@ A word about whether this is a good goal at all: I'm a believer to agent based c
 
 Why optimize for AI? These bots are supposed to be pretty smart right?
 
-The fundamental goal is to increase _iterative speed_ and avoid repeated context gathering, and decrease poor tendencies of the AI tools.
+- **Increase _iterative speed_**: Avoid repeated context gathering, enable the AI to quickly self correct its mistakes.
+- **Improve adherence to evergreen instructions**: Over time, repeated AI mistakes emerge. Context within the repo helps the AI avoid these and adopt a more consistent workflow
+- **Help the most [agentic agents of them all](https://en.wikipedia.org/wiki/Human)**: Humans and agents scan docs and code in very similar ways, so organizing information so it's easily understood by humans is a good rule of thumb for helping the agents anyways!
 
-My strategy for increasing iterative speed is to push detection of quality issues to compile time or static checking. It's a lot faster for a compile to pick up on problems than to catch them at runtime:
+## Strategies
+
+### Increased static analysis
+
+Pushing detection of quality issues to compile time creates a virtuous cycle where the AI can quickly spot and correct mistakes.
 
 ![runtime-oops](/diagrams/runtime-oops.png)
 
-This implies strong, opinionated linters, and strong type checks for dynamically typed language.
+This implies strong, opinionated linters, and strong type checks for dynamically typed language[^1].
 
-But should you use a dynamically typed language at all? A compelling alternative to e.g. Python is Rust, where "if it compiles, it works"
+### justfile for repeated agent commands
 
-I've personally traded Python for Rust, a language I have very little familiarity with, for this reason. The speed of development that comes with Python's structure is less valuable to me.
+There's fragmentation in how to make commands available to agents - there's MCP, the newly released [Claude Skills](https://www.anthropic.com/news/skills), or embedding information in `CLAUDE.md` / `AGENTS.md`.
+
+
+
+
+
+
+
+
 
 
 # Agent instructions
@@ -39,6 +53,11 @@ There's much angst around humans being replaced or left behind by focusing on op
 Ie, rather than code review instructions in AGENTS.md, I make a `docs/CODE_REVIEW.md` file, and reference it in the various agent-specific files. For newer projects I've usually also included a `PRD.md`, a `ROADMAP.md`, and a `CAPTAINS_LOG.md`.
 
 Frameworks have begun to emerge that handle some of this for you. I've tried [spec-kit](https://github.com/github/spec-kit) and found it to be a little heavy handed. In general I favor a more documentation-heavy approach when building with AI, but the need for different docs comes with iteration, and I think generating the full compliment of docs a bit overkill right off the bat.
+
+
+
+[^1]: Should you use a dynamically typed language at all? For my projects, I've traded Python for Rust, where "if it compiles, it works".
+
 
 # Tools
 
