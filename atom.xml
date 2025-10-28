@@ -6,7 +6,7 @@
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tombedor.dev/"/>
     <subtitle>Tom Bedor's Blog Blog</subtitle>
-    <icon>https://tombedor.dev/img/favicon.ico</icon>
+    <icon>https://tombedor.dev/img/logo.svg</icon>
     <entry>
         <title type="html"><![CDATA[AI is a Floor Raiser, not a Ceiling Raiser]]></title>
         <id>https://tombedor.dev/ai-is-a-floor-raiser/</id>
