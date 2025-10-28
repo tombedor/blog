@@ -43,6 +43,9 @@ Putting these in a `docs/` folder and referencing them in agent instructions hel
 
 Frameworks have begun to emerge that handle some of this for you. I've tried [spec-kit](https://github.com/github/spec-kit) and found it to be a little heavy handed. In general I favor a more documentation-heavy approach when building with AI, but the need for different docs comes with iteration, and I think generating the full compliment of docs a bit overkill right off the bat.
 
+## No experts, no standards
+
+These strategies work for me, but this field is too new for dogma. The most important strategy is to experiment, and share what you learn.
 
 [^1]: Whether optimizing for coding agents is a good idea is a subject for a differernt discussion, but: I'm a believer to agent based coding. I no longer _ever_ write code without one assistant or another open. So we'll proceed on the assumption that AI coding bots are _really good_, and not especially existentially risky (I am, for the moment, the one giving the directions).
 
