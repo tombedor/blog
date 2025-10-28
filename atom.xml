@@ -2,11 +2,55 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://tombedor.dev/</id>
     <title>Tom Bedor's Blog Blog</title>
-    <updated>2025-07-29T00:00:00.000Z</updated>
+    <updated>2025-10-28T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tombedor.dev/"/>
     <subtitle>Tom Bedor's Blog Blog</subtitle>
     <icon>https://tombedor.dev/img/logo.svg</icon>
+    <entry>
+        <title type="html"><![CDATA[Optimizing repos for AI]]></title>
+        <id>https://tombedor.dev/optimizing-repos-for-ai/</id>
+        <link href="https://tombedor.dev/optimizing-repos-for-ai/"/>
+        <updated>2025-10-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A colleague recently complained to me about the hassle of organizing information in AGENTS.md / CLAUDE.md. This is the mark of a real adopter - she has gone through the progression from being impressed by coding agents to being annoyed at the next bottleneck.]]></summary>
+        <content type="html"><![CDATA[<p>A colleague recently complained to me about the hassle of organizing information in <code>AGENTS.md</code> / <code>CLAUDE.md</code>. This is the mark of a real adopter - she has gone through the progression from being impressed by coding agents to being annoyed at the next bottleneck.</p>
+<p>When I'm thinking about optimizing repos for agents, I'm looking to accomplish three main goals<sup><a href="https://tombedor.dev/optimizing-repos-for-ai/#user-content-fn-1-70439b" id="user-content-fnref-1-70439b" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">1</a></sup>:</p>
+<ul>
+<li><strong>Increase <em>iterative speed</em></strong>: Avoid repeated context gathering, enable the agent to quickly self-correct its mistakes.</li>
+<li><strong>Improve adherence to evergreen instructions</strong>: Over time, repeated agent mistakes emerge. Context within the repo helps the agent avoid these and adopt a more consistent workflow.</li>
+<li><strong>Help the most <a href="https://en.wikipedia.org/wiki/Human" target="_blank" rel="noopener noreferrer">agentic agents of them all</a></strong>: Humans and agents scan docs and code in very similar ways, so organizing information so it's easily understood by humans is a good rule of thumb for helping the agents anyways!</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="strategies">Strategies<sup><a href="https://tombedor.dev/optimizing-repos-for-ai/#user-content-fn-2-70439b" id="user-content-fnref-2-70439b" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">2</a></sup><a href="https://tombedor.dev/optimizing-repos-for-ai/#strategies" class="hash-link" aria-label="Direct link to strategies" title="Direct link to strategies" translate="no">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="increased-static-analysis">Increased static analysis<a href="https://tombedor.dev/optimizing-repos-for-ai/#increased-static-analysis" class="hash-link" aria-label="Direct link to Increased static analysis" title="Direct link to Increased static analysis" translate="no">​</a></h3>
+<p>Pushing detection of quality issues to compile time creates a virtuous cycle where the agent can quickly spot and correct mistakes:</p>
+<p><img decoding="async" loading="lazy" alt="runtime-oops" src="https://tombedor.dev/assets/images/runtime-oops-071591f28edddde4615bf52aced65bf1.png" width="1388" height="942" class="img_ev3q"></p>
+<p>This implies strong, opinionated linters, and strong type checks for dynamically typed languages<sup><a href="https://tombedor.dev/optimizing-repos-for-ai/#user-content-fn-3-70439b" id="user-content-fnref-3-70439b" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">3</a></sup>.</p>
+<p>The tradeoff here is cumbersome nitpicks for humans to deal with, but agents can quickly correct any mistakes that cannot be automatically fixed by the linter.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="just-for-repeated-agent-commands"><a href="https://github.com/casey/just" target="_blank" rel="noopener noreferrer">just</a> for repeated agent commands<a href="https://tombedor.dev/optimizing-repos-for-ai/#just-for-repeated-agent-commands" class="hash-link" aria-label="Direct link to just-for-repeated-agent-commands" title="Direct link to just-for-repeated-agent-commands" translate="no">​</a></h3>
+<p>There's fragmentation in how to make commands available to agents - there's MCP, the newly released <a href="https://www.anthropic.com/news/skills" target="_blank" rel="noopener noreferrer">Claude Skills</a>, or embedding information in <code>CLAUDE.md</code> / <code>AGENTS.md</code>.</p>
+<p>A <code>justfile</code> is the most interoperable way to share commands between different agents and humans, and is a straightforward place to iterate.</p>
+<p>One additional refinement is to make these commands <em>economical in their output volume</em>. For example, I take care to direct build logs to dedicated files - healthy build logs can eat up a lot of tokens if outputted directly to the agent.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="organize-docs-in-docs">Organize docs in <code>docs/</code><a href="https://tombedor.dev/optimizing-repos-for-ai/#organize-docs-in-docs" class="hash-link" aria-label="Direct link to organize-docs-in-docs" title="Direct link to organize-docs-in-docs" translate="no">​</a></h3>
+<p>Simon Willison recently <a href="https://simonwillison.net/2025/Oct/25/coding-agent-tips/" target="_blank" rel="noopener noreferrer">wrote about this topic</a>, and expressed that docs aren't so important. I agree that docs <em>explaining the code</em> aren't all that helpful, but I get a lot of mileage out of having docs like <code>CODE_REVIEW.md</code>, <code>PRD.md</code>, <code>ROADMAP.md</code>, and <code>CAPTAINS_LOG.md</code>. This helps the agent stay on track with the overall intent of the project, adhere to consistent review practices, and counter poor tendencies (the most obnoxious being an overwhelming tendency to fail open).</p>
+<p>Putting these in a <code>docs/</code> folder and referencing them in agent instructions helps reduce context bloat, and provides interoperability between humans and various agents.</p>
+<p>Frameworks have begun to emerge that handle some of this for you. I've tried <a href="https://github.com/github/spec-kit" target="_blank" rel="noopener noreferrer">spec-kit</a> and found it to be a little heavy-handed. In general I favor a more documentation-heavy approach when building with agents, but the need for different docs comes with iteration, and I think generating the full complement of docs is a bit overkill right off the bat.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="no-experts-no-standards">No experts, no standards<a href="https://tombedor.dev/optimizing-repos-for-ai/#no-experts-no-standards" class="hash-link" aria-label="Direct link to No experts, no standards" title="Direct link to No experts, no standards" translate="no">​</a></h2>
+<p>These strategies work for me, but this field is too new for dogma. The most important strategy is to experiment and share what you learn.</p>
+<!-- -->
+<section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="https://tombedor.dev/optimizing-repos-for-ai/#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes" translate="no">​</a></h2>
+<ol>
+<li id="user-content-fn-1-70439b">
+<p>Whether optimizing for coding agents is a good idea is a subject for a different discussion, but: I'm a believer in agent-based coding. I no longer <em>ever</em> write code without one assistant or another open. So we'll proceed on the assumption that coding agents are <em>really good</em>, and not especially existentially risky (I am, for the moment, the one giving the directions). <a href="https://tombedor.dev/optimizing-repos-for-ai/#user-content-fnref-1-70439b" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-2-70439b">
+<p>Offered with no supporting evidence or benchmarks whatsoever, based entirely on <em>vibes</em> <a href="https://tombedor.dev/optimizing-repos-for-ai/#user-content-fnref-2-70439b" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-3-70439b">
+<p>Should you use a dynamically typed language at all? For my projects, I've traded Python for Rust, where "if it compiles, it works". <a href="https://tombedor.dev/optimizing-repos-for-ai/#user-content-fnref-3-70439b" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[AI is a Floor Raiser, not a Ceiling Raiser]]></title>
         <id>https://tombedor.dev/ai-is-a-floor-raiser/</id>
