@@ -1,7 +1,6 @@
 ---
 title: Optimizing repos for AI
-date: 2025-10-25
-draft: true
+date: 2025-10-28
 ---
 
 A colleague recently complained to me about the hassle of organizing information in `AGENTS.md` / `CLAUDE.md`. This is the mark of a real adopter - she has gone through the progression from being impressed by coding agents to being annoyed at the next bottleneck.
