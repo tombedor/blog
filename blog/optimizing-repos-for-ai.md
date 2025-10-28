@@ -8,8 +8,8 @@ A colleague recently complained to me about the hassle of organizing information
 
 When I'm thinking about optimizing repos for agents, I'm looking to accomplish three main goals[^1]:
 
-- **Increase _iterative speed_**: Avoid repeated context gathering, enable the AI to quickly self-correct its mistakes.
-- **Improve adherence to evergreen instructions**: Over time, repeated AI mistakes emerge. Context within the repo helps the AI avoid these and adopt a more consistent workflow.
+- **Increase _iterative speed_**: Avoid repeated context gathering, enable the agent to quickly self-correct its mistakes.
+- **Improve adherence to evergreen instructions**: Over time, repeated agent mistakes emerge. Context within the repo helps the agent avoid these and adopt a more consistent workflow.
 - **Help the most [agentic agents of them all](https://en.wikipedia.org/wiki/Human)**: Humans and agents scan docs and code in very similar ways, so organizing information so it's easily understood by humans is a good rule of thumb for helping the agents anyways!
 
 
@@ -19,7 +19,7 @@ When I'm thinking about optimizing repos for agents, I'm looking to accomplish t
 
 ### Increased static analysis
 
-Pushing detection of quality issues to compile time creates a virtuous cycle where the AI can quickly spot and correct mistakes:
+Pushing detection of quality issues to compile time creates a virtuous cycle where the agent can quickly spot and correct mistakes:
 
 ![runtime-oops](/diagrams/runtime-oops.png)
 
@@ -41,13 +41,13 @@ Simon Willison recently [wrote about this topic](https://simonwillison.net/2025/
 
 Putting these in a `docs/` folder and referencing them in agent instructions helps reduce context bloat, and provides interoperability between humans and various agents.
 
-Frameworks have begun to emerge that handle some of this for you. I've tried [spec-kit](https://github.com/github/spec-kit) and found it to be a little heavy-handed. In general I favor a more documentation-heavy approach when building with AI, but the need for different docs comes with iteration, and I think generating the full complement of docs is a bit overkill right off the bat.
+Frameworks have begun to emerge that handle some of this for you. I've tried [spec-kit](https://github.com/github/spec-kit) and found it to be a little heavy-handed. In general I favor a more documentation-heavy approach when building with agents, but the need for different docs comes with iteration, and I think generating the full complement of docs is a bit overkill right off the bat.
 
 ## No experts, no standards
 
 These strategies work for me, but this field is too new for dogma. The most important strategy is to experiment and share what you learn.
 
-[^1]: Whether optimizing for coding agents is a good idea is a subject for a different discussion, but: I'm a believer in agent-based coding. I no longer _ever_ write code without one assistant or another open. So we'll proceed on the assumption that AI coding bots are _really good_, and not especially existentially risky (I am, for the moment, the one giving the directions).
+[^1]: Whether optimizing for coding agents is a good idea is a subject for a different discussion, but: I'm a believer in agent-based coding. I no longer _ever_ write code without one assistant or another open. So we'll proceed on the assumption that coding agents are _really good_, and not especially existentially risky (I am, for the moment, the one giving the directions).
 
 [^2]: Offered with no supporting evidence or benchmarks whatsoever, based entirely on _vibes_
 
