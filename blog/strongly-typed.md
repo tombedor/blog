@@ -4,10 +4,9 @@ date: 2025-10-25
 draft: true
 ---
 
+A colleague recently complained to me about the hassle of organizing information in `AGENTS.md` / `CLAUDE.md`. This is the mark of a real adopter - she has gone through the progression of being impressed by coding agents to be annoyed at the next bottleneck.
 
-A word about whether this is a good goal at all: I'm a believer to agent based coding. I no longer _ever_ write code without one assistant or another open. So we'll proceed on the assumption that AI coding bots are _really good_, and not especially existentially risky (I am, for the moment, the one giving the directions).
-
-Why optimize for AI? These bots are supposed to be pretty smart right?
+When I'm thinking about optimizing repos for agents, I'm looking to accomplish three main goals[^1]:
 
 - **Increase _iterative speed_**: Avoid repeated context gathering, enable the AI to quickly self correct its mistakes.
 - **Improve adherence to evergreen instructions**: Over time, repeated AI mistakes emerge. Context within the repo helps the AI avoid these and adopt a more consistent workflow
@@ -16,15 +15,17 @@ Why optimize for AI? These bots are supposed to be pretty smart right?
 
 <!-- truncate -->
 
-## Strategies
+## Strategies[^2]
 
 ### Increased static analysis
 
-Pushing detection of quality issues to compile time creates a virtuous cycle where the AI can quickly spot and correct mistakes.
+Pushing detection of quality issues to compile time creates a virtuous cycle where the AI can quickly spot and correct mistakes:
 
 ![runtime-oops](/diagrams/runtime-oops.png)
 
-This implies strong, opinionated linters, and strong type checks for dynamically typed language[^1].
+This implies strong, opinionated linters, and strong type checks for dynamically typed language[^3].
+
+The tradeoff here is cumbersome nitpicks for humans to deal with, but agents can quickly correct any mistakes that cannot be automatically fixed by the linter.
 
 ### [just](https://github.com/casey/just) for repeated agent commands
 
@@ -36,11 +37,15 @@ One additional refinement is to make these commands *economical in their output 
 
 ### Organize docs on code review practices, project plans, etc in `docs/`, and reference them in `AGENTS.md`/`CLAUDE.md`
 
-Simon Willison recently [wrote about this topic](https://simonwillison.net/2025/Oct/25/coding-agent-tips/), and expressed that docs aren't so important. I agree that docs _explaining the code_ aren't all that helpful, but I get a lot of mileage out of having docs like `CODE_REVIEW.md`, `PRD.md`, `ROADMAP.md`, and `CAPTAINS_LOG.md`. This helps the agent stay on track with the overall intent of the project, and adhere to consistent review practices.
+Simon Willison recently [wrote about this topic](https://simonwillison.net/2025/Oct/25/coding-agent-tips/), and expressed that docs aren't so important. I agree that docs _explaining the code_ aren't all that helpful, but I get a lot of mileage out of having docs like `CODE_REVIEW.md`, `PRD.md`, `ROADMAP.md`, and `CAPTAINS_LOG.md`. This helps the agent stay on track with the overall intent of the project, adhere to consistent review practices, and counter poor tendencies (the most obnoxious being an overhwelming tendency to fail open).
 
 Putting these in a `docs/` folder and referencing them in agent instructions helps reduce context bloat, and provides interoperability between humans and various agents.
 
 Frameworks have begun to emerge that handle some of this for you. I've tried [spec-kit](https://github.com/github/spec-kit) and found it to be a little heavy handed. In general I favor a more documentation-heavy approach when building with AI, but the need for different docs comes with iteration, and I think generating the full compliment of docs a bit overkill right off the bat.
 
 
-[^1]: Should you use a dynamically typed language at all? For my projects, I've traded Python for Rust, where "if it compiles, it works".
+[^1]: Whether optimizing for coding agents is a good idea is a subject for a differernt discussion, but: I'm a believer to agent based coding. I no longer _ever_ write code without one assistant or another open. So we'll proceed on the assumption that AI coding bots are _really good_, and not especially existentially risky (I am, for the moment, the one giving the directions).
+
+[^2]: Offered with no supporting evidence or benchmarks whatsoever, based entirely on _vibes_
+
+[^3]: Should you use a dynamically typed language at all? For my projects, I've traded Python for Rust, where "if it compiles, it works".
