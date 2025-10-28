@@ -35,7 +35,7 @@ A `justfile` is the most interoperable place to put commands shared between diff
 
 One additional refinement is to make these commands *economical in their output volume*. For example, I take care to direct build logs to dedicated files - healthy build logs can eat up a lot of tokens if outputted directly to the agent.
 
-### Organize docs on code review practices, project plans, etc in `docs/`, and reference them in `AGENTS.md`/`CLAUDE.md`
+### Organize docs in `docs/`
 
 Simon Willison recently [wrote about this topic](https://simonwillison.net/2025/Oct/25/coding-agent-tips/), and expressed that docs aren't so important. I agree that docs _explaining the code_ aren't all that helpful, but I get a lot of mileage out of having docs like `CODE_REVIEW.md`, `PRD.md`, `ROADMAP.md`, and `CAPTAINS_LOG.md`. This helps the agent stay on track with the overall intent of the project, adhere to consistent review practices, and counter poor tendencies (the most obnoxious being an overhwelming tendency to fail open).
 
