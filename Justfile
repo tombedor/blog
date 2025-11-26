@@ -4,9 +4,9 @@ set shell := ["zsh", "-c"]
 build:
 	npm run build
 
-# Serves the production build locally
+# Starts the development server
 serve:
-	npm run serve
+	pnpm start
 
 # Deploys the site to GitHub Pages
 deploy:
