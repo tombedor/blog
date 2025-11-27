@@ -70,6 +70,10 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    gtag: {
+      trackingID: 'G-RS47GZY25J',
+      anonymizeIP: true,
+    },
     navbar: {
       title: 'Tom Bedor\'s Blog',
       logo: {
