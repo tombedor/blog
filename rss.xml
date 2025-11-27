@@ -4,10 +4,20 @@
         <title>Tom Bedor's Blog Blog</title>
         <link>https://tombedor.dev/</link>
         <description>Tom Bedor's Blog Blog</description>
-        <lastBuildDate>Tue, 28 Oct 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 23 Nov 2025 18:40:03 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[mcp-is-a-fad]]></title>
+            <link>https://tombedor.dev/mcp-is-a-fad/</link>
+            <guid>https://tombedor.dev/mcp-is-a-fad/</guid>
+            <pubDate>Sun, 23 Nov 2025 18:40:03 GMT</pubDate>
+            <description><![CDATA[- go through users]]></description>
+            <content:encoded><![CDATA[<ul>
+<li>go through users</li>
+</ul>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Optimizing repos for AI]]></title>
             <link>https://tombedor.dev/optimizing-repos-for-ai/</link>
@@ -24,7 +34,7 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="strategies">Strategies<sup><a href="https://tombedor.dev/optimizing-repos-for-ai/#user-content-fn-2-70439b" id="user-content-fnref-2-70439b" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">2</a></sup><a href="https://tombedor.dev/optimizing-repos-for-ai/#strategies" class="hash-link" aria-label="Direct link to strategies" title="Direct link to strategies" translate="no">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="increased-static-analysis">Increased static analysis<a href="https://tombedor.dev/optimizing-repos-for-ai/#increased-static-analysis" class="hash-link" aria-label="Direct link to Increased static analysis" title="Direct link to Increased static analysis" translate="no">​</a></h3>
 <p>Pushing detection of quality issues to compile time creates a virtuous cycle where the agent can quickly spot and correct mistakes:</p>
-<p><img decoding="async" loading="lazy" alt="runtime-oops" src="https://tombedor.dev/assets/images/runtime-oops-900b9f1b9c8b816304808e989d52ce0f.png" width="1388" height="942" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="runtime-oops" src="https://tombedor.dev/assets/images/runtime-oops-900b9f1b9c8b816304808e989d52ce0f.png" width="1553" height="927" class="img_ev3q"></p>
 <p>This implies strong, opinionated linters, and strong type checks for dynamically typed languages<sup><a href="https://tombedor.dev/optimizing-repos-for-ai/#user-content-fn-3-70439b" id="user-content-fnref-3-70439b" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">3</a></sup>.</p>
 <p>The tradeoff here is cumbersome nitpicks for humans to deal with, but agents can quickly correct any mistakes that cannot be automatically fixed by the linter.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="just-for-repeated-agent-commands"><a href="https://github.com/casey/just" target="_blank" rel="noopener noreferrer">just</a> for repeated agent commands<a href="https://tombedor.dev/optimizing-repos-for-ai/#just-for-repeated-agent-commands" class="hash-link" aria-label="Direct link to just-for-repeated-agent-commands" title="Direct link to just-for-repeated-agent-commands" translate="no">​</a></h3>
