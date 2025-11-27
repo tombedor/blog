@@ -57,6 +57,10 @@ const config: Config = {
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
         },
+        gtag: {
+          trackingID: 'G-RS47GZY25J',
+          anonymizeIP: true,
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -69,10 +73,6 @@ const config: Config = {
     image: 'img/icon-1024.png',
     colorMode: {
       respectPrefersColorScheme: true,
-    },
-    gtag: {
-      trackingID: 'G-RS47GZY25J',
-      anonymizeIP: true,
     },
     navbar: {
       title: 'Tom Bedor\'s Blog',
