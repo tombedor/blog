@@ -70,10 +70,8 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
-    // Google Analytics configuration
-    // Replace 'G-XXXXXXXXXX' with your actual GA4 measurement ID
     gtag: {
-      trackingID: 'G-XXXXXXXXXX',
+      trackingID: 'G-RS47GZY25J',
       anonymizeIP: true,
     },
     navbar: {
