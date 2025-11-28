@@ -4,20 +4,10 @@
         <title>Tom Bedor's Blog Blog</title>
         <link>https://tombedor.dev/</link>
         <description>Tom Bedor's Blog Blog</description>
-        <lastBuildDate>Sun, 23 Nov 2025 18:40:03 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 28 Oct 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
-        <item>
-            <title><![CDATA[mcp-is-a-fad]]></title>
-            <link>https://tombedor.dev/mcp-is-a-fad/</link>
-            <guid>https://tombedor.dev/mcp-is-a-fad/</guid>
-            <pubDate>Sun, 23 Nov 2025 18:40:03 GMT</pubDate>
-            <description><![CDATA[- go through users]]></description>
-            <content:encoded><![CDATA[<ul>
-<li>go through users</li>
-</ul>]]></content:encoded>
-        </item>
         <item>
             <title><![CDATA[Optimizing repos for AI]]></title>
             <link>https://tombedor.dev/optimizing-repos-for-ai/</link>
