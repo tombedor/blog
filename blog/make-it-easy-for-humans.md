@@ -1,5 +1,5 @@
 ---
-title: "Make It Easy for Humans"
+title: "Make It Easy for Humans First, Then AI"
 date: 2025-11-26
 ---
 
