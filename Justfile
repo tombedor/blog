@@ -11,3 +11,7 @@ serve:
 # Deploys the site to GitHub Pages
 deploy:
 	GIT_USER=tombedor npm run deploy
+
+# Dual publish blog posts to elroy project
+dual-publish:
+	npm run dual-publish
