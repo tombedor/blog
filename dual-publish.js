@@ -35,6 +35,20 @@ function copyFile(source, dest) {
 }
 
 /**
+ * Copy a markdown file and rewrite image paths for MkDocs
+ * Transforms /diagrams/ to /blog/diagrams/ for compatibility with MkDocs blog
+ */
+function copyAndRewriteMarkdown(source, dest) {
+  let content = fs.readFileSync(source, 'utf8');
+
+  // Rewrite image paths from /diagrams/ to /blog/diagrams/
+  content = content.replace(/!\[(.*?)\]\(\/diagrams\//g, '![$1](/blog/diagrams/');
+
+  fs.writeFileSync(dest, content, 'utf8');
+  console.log(`✅ Copied and rewritten: ${path.basename(source)}`);
+}
+
+/**
  * Get all markdown files from a directory
  */
 function getMarkdownFiles(dir) {
@@ -99,7 +113,7 @@ function dualPublish() {
     for (const postPath of blogPosts) {
       const fileName = path.basename(postPath);
       const destPath = path.join(TARGET_BLOG_DIR, fileName);
-      copyFile(postPath, destPath);
+      copyAndRewriteMarkdown(postPath, destPath);
     }
   }
 

@@ -6,6 +6,7 @@ This blog is configured to dual-publish content to the Elroy project blog at `..
 
 The `dual-publish.js` script syncs:
 - **Blog posts**: From `./blog/` to `../elroy/docs/blog/posts/`
+  - Automatically rewrites image paths from `/diagrams/` to `/blog/diagrams/` for MkDocs compatibility
 - **Diagrams**: From `./static/diagrams/` to `../elroy/docs/blog/diagrams/`
 
 Both blogs use Markdown with YAML frontmatter, so no format conversion is needed.
@@ -40,5 +41,8 @@ The script will overwrite files in the Elroy blog, so any changes made there wil
 ## Notes
 
 - The script assumes the Elroy project is located at `../elroy/` (sibling directory)
-- Image references using `/diagrams/...` paths will work correctly in both blogs
+- Image paths are automatically transformed during publishing:
+  - In this blog (Docusaurus): Use `/diagrams/...` paths
+  - In Elroy blog (MkDocs): Paths are automatically rewritten to `/blog/diagrams/...`
 - The script creates target directories if they don't exist
+- This is a one-way sync - changes made directly to the Elroy blog will be overwritten
