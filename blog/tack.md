@@ -1,0 +1,14 @@
+---
+title: Tack - Reminders powered by local AI
+date: 2025-12-04
+---
+
+I'm working on an app called Tack. I have a terrible time remembering things, and have resorted to a patchwork of emails to myself and disorganized notes. I find reminder apps frustrating, the pre-AI ones aren't smart enough, and the AI ones treat every input like an invitation to have a conversation. Tack shoots for a middle ground:
+
+![tack](/diagrams/tack/tack.png)
+
+I get the _ick_ from divulging personal details to LLM providers, so Tack uses local AI models.
+
+I'm looking for test users, if you're interested in trying it out, please fill out the form below!
+
+# TODO: embed this google form: https://docs.google.com/forms/d/e/1FAIpQLScqT440AcNKri-OGFMACMyogU7AP_IqVQ0mkBD_0C8fCqD7Rw/viewform?usp=dialog
