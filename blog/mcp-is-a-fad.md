@@ -15,8 +15,28 @@ draft: true
 - breakdown of function calling with or without mcp
     - with mcp
         - ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.excalidraw)
+        - mechanics:
+            - LLM receives user query + list of available functions
+            - LLM returns tool call JSON (function name + arguments)
+            - MCP layer parses the JSON and routes to appropriate function handler
+            - MCP invokes the function (separate process/server)
+            - Function result flows back through MCP to application logic
+            - Application logic handles the agent loop (deciding whether to call LLM again, return to user, etc.)
+        - key point: MCP acts as a router/marshaller between LLM output and function execution
+            - translation layer that sits between application and tools
+            - tools run in separate processes/servers
     - without mcp
         - ![function_calling_no_mcp](../static/diagrams/mcp/function_calling_no_mcp.excalidraw)
+        - mechanics:
+            - LLM receives user query + list of available functions
+            - LLM returns either text response OR tool calls
+            - Application logic directly parses LLM response
+            - If tool calls: application directly invokes functions (same process)
+            - If text response: application returns to user
+            - Application handles the agent loop
+        - key point: no intermediary layer - application logic directly manages function invocation
+            - fewer moving parts
+            - tools are just functions in your application code
 
 ## the convenience gained is minimal
 - actual logic of tool calling is trivial to write with AI
