@@ -7,6 +7,7 @@ draft: true
 - the purported value add
     - solving the one to many
     - handles triaging many tools
+    - misconception: it's _needed_ for function calling
 
 
 - not technically necessary, thus value add is a convenience
@@ -14,6 +15,7 @@ draft: true
 - who are the users?
     - devs looking to customize their own workflow
     - devs looking to enable others to customize their tools
+        - support problem
     - production
     - devs looking to share their work
 - why it took off

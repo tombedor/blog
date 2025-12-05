@@ -78,7 +78,7 @@ Demonstrate:
 - Ability to dive into technical details in discussion
 - Openness to considering different approaches
 
-# Once you get your first job
+## Once you get your first job
 **Talk to people**. Schedule 1x1's with IC's, managers, anyone who you might work with or has a role you'd like to learn about. Most people will be happy to chat with you, especially about themselves.
 
 Ask for help when needed, but demonstrate attempts to solve problems independently.
@@ -89,14 +89,14 @@ Be humble. You don't know anything yet. Figure out how to track both large items
 
 Reassess the job market ~1 per year or more, especially if you are at a startup. If you are at a bigger company, this might mean evaluating internal transfer opportunities.
 
-# Things to think about when searching for jobs
+## Things to think about when searching for jobs
 
-## Willingness to relocate
+### Willingness to relocate
 Remote work is a new world. Geographic location perhaps matters less, but it might still matter. What is certainly still true is that you will get a better insight into how engineers think if you have an opportunity to work with them in person, at least some of the time. The catch-22 is that the experienced engineers you want to work alongside will be older and have families, and not want or need to come to the office very much. Ask questions about how companies think about this.
 
 I moved to the bay area when I was getting started, and I can confidently say I would have nowhere near as dynamic, interesting, and lucrative a career I've had thus far without having done that. I think the bay's dominance over tech is less than it was, but in my opinion alternative tech hubs are overrated.
 
-## Working at a startup vs established (ie public) company
+### Working at a startup vs established (ie public) company
 Startup:
   - Pro
     - More dynamic
@@ -121,12 +121,12 @@ Public company:
     - More narrow exposure in terms of types of people you work with. Likely just engineers and PM's.
     - More legacy systems to deal with.
 
-## Pay
+### Pay
 Advice differs here, but I would not care too much about pay so long as you can pay your expenses. In the long run, finding a role that you are good at and enjoy will maximize your earnings, and enjoyment. That said:
 
 **The expected value of stock grants from startups[^3] is zero.** Recruiters etc will try to convince you otherwise. This doesn't mean you shouldn't work for startups, but the potential of cash-in from startup stock should not be a factor[^4].
 
-# Things to read
+## Things to read
 [HackerNews](https://news.ycombinator.com) is the biggest forum of software engineers. Discussions can be dogmatic but are often pretty good. There are job postings once a month as well. As with any forum, there are plenty of posters who are loudly and confidently wrong.
 
 [Joel on Software](https://www.joelonsoftware.com/) isn't very active but has good tips on software careers.
