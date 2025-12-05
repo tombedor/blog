@@ -344,17 +344,17 @@ Add: LinkedIn, which should be up to date and mirror content in your resume.</p>
 <li>Ability to dive into technical details in discussion</li>
 <li>Openness to considering different approaches</li>
 </ul>
-<h1>Once you get your first job</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="once-you-get-your-first-job">Once you get your first job<a href="https://tombedor.dev/advice-for-new-grads/#once-you-get-your-first-job" class="hash-link" aria-label="Direct link to Once you get your first job" title="Direct link to Once you get your first job" translate="no">​</a></h2>
 <p><strong>Talk to people</strong>. Schedule 1x1's with IC's, managers, anyone who you might work with or has a role you'd like to learn about. Most people will be happy to chat with you, especially about themselves.</p>
 <p>Ask for help when needed, but demonstrate attempts to solve problems independently.</p>
 <p>Volunteer for grunt work, e.g. taking notes in meetings.</p>
 <p>Be humble. You don't know anything yet. Figure out how to track both large items and small (emails, doc comments, etc) such that you don't need to be reminded to do things.</p>
 <p>Reassess the job market ~1 per year or more, especially if you are at a startup. If you are at a bigger company, this might mean evaluating internal transfer opportunities.</p>
-<h1>Things to think about when searching for jobs</h1>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="willingness-to-relocate">Willingness to relocate<a href="https://tombedor.dev/advice-for-new-grads/#willingness-to-relocate" class="hash-link" aria-label="Direct link to Willingness to relocate" title="Direct link to Willingness to relocate" translate="no">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="things-to-think-about-when-searching-for-jobs">Things to think about when searching for jobs<a href="https://tombedor.dev/advice-for-new-grads/#things-to-think-about-when-searching-for-jobs" class="hash-link" aria-label="Direct link to Things to think about when searching for jobs" title="Direct link to Things to think about when searching for jobs" translate="no">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="willingness-to-relocate">Willingness to relocate<a href="https://tombedor.dev/advice-for-new-grads/#willingness-to-relocate" class="hash-link" aria-label="Direct link to Willingness to relocate" title="Direct link to Willingness to relocate" translate="no">​</a></h3>
 <p>Remote work is a new world. Geographic location perhaps matters less, but it might still matter. What is certainly still true is that you will get a better insight into how engineers think if you have an opportunity to work with them in person, at least some of the time. The catch-22 is that the experienced engineers you want to work alongside will be older and have families, and not want or need to come to the office very much. Ask questions about how companies think about this.</p>
 <p>I moved to the bay area when I was getting started, and I can confidently say I would have nowhere near as dynamic, interesting, and lucrative a career I've had thus far without having done that. I think the bay's dominance over tech is less than it was, but in my opinion alternative tech hubs are overrated.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="working-at-a-startup-vs-established-ie-public-company">Working at a startup vs established (ie public) company<a href="https://tombedor.dev/advice-for-new-grads/#working-at-a-startup-vs-established-ie-public-company" class="hash-link" aria-label="Direct link to Working at a startup vs established (ie public) company" title="Direct link to Working at a startup vs established (ie public) company" translate="no">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="working-at-a-startup-vs-established-ie-public-company">Working at a startup vs established (ie public) company<a href="https://tombedor.dev/advice-for-new-grads/#working-at-a-startup-vs-established-ie-public-company" class="hash-link" aria-label="Direct link to Working at a startup vs established (ie public) company" title="Direct link to Working at a startup vs established (ie public) company" translate="no">​</a></h3>
 <p>Startup:</p>
 <ul>
 <li>Pro<!-- -->
@@ -393,10 +393,10 @@ Add: LinkedIn, which should be up to date and mirror content in your resume.</p>
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="pay">Pay<a href="https://tombedor.dev/advice-for-new-grads/#pay" class="hash-link" aria-label="Direct link to Pay" title="Direct link to Pay" translate="no">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pay">Pay<a href="https://tombedor.dev/advice-for-new-grads/#pay" class="hash-link" aria-label="Direct link to Pay" title="Direct link to Pay" translate="no">​</a></h3>
 <p>Advice differs here, but I would not care too much about pay so long as you can pay your expenses. In the long run, finding a role that you are good at and enjoy will maximize your earnings, and enjoyment. That said:</p>
 <p><strong>The expected value of stock grants from startups<sup><a href="https://tombedor.dev/advice-for-new-grads/#user-content-fn-3-4b187b" id="user-content-fnref-3-4b187b" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">3</a></sup> is zero.</strong> Recruiters etc will try to convince you otherwise. This doesn't mean you shouldn't work for startups, but the potential of cash-in from startup stock should not be a factor<sup><a href="https://tombedor.dev/advice-for-new-grads/#user-content-fn-4-4b187b" id="user-content-fnref-4-4b187b" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">4</a></sup>.</p>
-<h1>Things to read</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="things-to-read">Things to read<a href="https://tombedor.dev/advice-for-new-grads/#things-to-read" class="hash-link" aria-label="Direct link to Things to read" title="Direct link to Things to read" translate="no">​</a></h2>
 <p><a href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer">HackerNews</a> is the biggest forum of software engineers. Discussions can be dogmatic but are often pretty good. There are job postings once a month as well. As with any forum, there are plenty of posters who are loudly and confidently wrong.</p>
 <p><a href="https://www.joelonsoftware.com/" target="_blank" rel="noopener noreferrer">Joel on Software</a> isn't very active but has good tips on software careers.</p>
 <p><a href="https://twitter.com/patio11" target="_blank" rel="noopener noreferrer">Patio11</a> is a good follow on Twitter and HackerNews. He goes into the weeds on fintech, but also has good content on software careers.</p>
