@@ -35,17 +35,71 @@ function copyFile(source, dest) {
 }
 
 /**
+ * Parse frontmatter from markdown content
+ */
+function parseFrontmatter(content) {
+  const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---/;
+  const match = content.match(frontmatterRegex);
+
+  if (!match) {
+    return {};
+  }
+
+  const frontmatter = {};
+  const lines = match[1].split('\n');
+
+  for (const line of lines) {
+    const colonIndex = line.indexOf(':');
+    if (colonIndex === -1) continue;
+
+    const key = line.slice(0, colonIndex).trim();
+    const value = line.slice(colonIndex + 1).trim();
+
+    // Parse boolean values
+    if (value === 'true') {
+      frontmatter[key] = true;
+    } else if (value === 'false') {
+      frontmatter[key] = false;
+    } else {
+      frontmatter[key] = value;
+    }
+  }
+
+  return frontmatter;
+}
+
+/**
  * Copy a markdown file and rewrite image paths for MkDocs
- * Transforms /diagrams/ to /blog/diagrams/ for compatibility with MkDocs blog
+ * Transforms /diagrams/ and /blog/diagrams/ to relative ../diagrams/ for compatibility with MkDocs blog
+ * Returns false if the file should be skipped (draft or dualPublish: false)
  */
 function copyAndRewriteMarkdown(source, dest) {
   let content = fs.readFileSync(source, 'utf8');
 
-  // Rewrite image paths from /diagrams/ to /blog/diagrams/
-  content = content.replace(/!\[(.*?)\]\(\/diagrams\//g, '![$1](/blog/diagrams/');
+  // Parse frontmatter to check for draft status and dualPublish setting
+  const frontmatter = parseFrontmatter(content);
+
+  // Skip drafts
+  if (frontmatter.draft === true) {
+    console.log(`⏭️  Skipped (draft): ${path.basename(source)}`);
+    return false;
+  }
+
+  // Skip posts with dualPublish: false
+  if (frontmatter.dualPublish === false) {
+    console.log(`⏭️  Skipped (dualPublish: false): ${path.basename(source)}`);
+    return false;
+  }
+
+  // Rewrite image paths from absolute to relative
+  // Transform /blog/diagrams/ to ../diagrams/
+  content = content.replace(/!\[(.*?)\]\(\/blog\/diagrams\//g, '![$1](../diagrams/');
+  // Transform /diagrams/ to ../diagrams/
+  content = content.replace(/!\[(.*?)\]\(\/diagrams\//g, '![$1](../diagrams/');
 
   fs.writeFileSync(dest, content, 'utf8');
   console.log(`✅ Copied and rewritten: ${path.basename(source)}`);
+  return true;
 }
 
 /**
@@ -110,11 +164,16 @@ function dualPublish() {
   if (blogPosts.length === 0) {
     console.log('⚠️  No blog posts found to publish');
   } else {
+    let publishedCount = 0;
     for (const postPath of blogPosts) {
       const fileName = path.basename(postPath);
       const destPath = path.join(TARGET_BLOG_DIR, fileName);
-      copyAndRewriteMarkdown(postPath, destPath);
+      const wasPublished = copyAndRewriteMarkdown(postPath, destPath);
+      if (wasPublished) {
+        publishedCount++;
+      }
     }
+    console.log(`\n📊 Published ${publishedCount} of ${blogPosts.length} posts`);
   }
 
   // Copy diagrams
