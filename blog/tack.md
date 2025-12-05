@@ -7,8 +7,10 @@ I'm working on an app called Tack. I have a terrible time remembering things, an
 
 ![tack](/diagrams/tack/tack.png)
 
+<!-- truncate -->
+
 I get the _ick_ from divulging personal details to LLM providers, so Tack uses local AI models.
 
 I'm looking for test users, if you're interested in trying it out, please fill out the form below!
 
-# TODO: embed this google form: https://docs.google.com/forms/d/e/1FAIpQLScqT440AcNKri-OGFMACMyogU7AP_IqVQ0mkBD_0C8fCqD7Rw/viewform?usp=dialog
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScqT440AcNKri-OGFMACMyogU7AP_IqVQ0mkBD_0C8fCqD7Rw/viewform?embedded=true" width="100%" height="800" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
