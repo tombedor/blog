@@ -4,10 +4,22 @@
         <title>Tom Bedor's Blog Blog</title>
         <link>https://tombedor.dev/</link>
         <description>Tom Bedor's Blog Blog</description>
-        <lastBuildDate>Wed, 26 Nov 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 04 Dec 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Tack - Reminders powered by local AI]]></title>
+            <link>https://tombedor.dev/tack/</link>
+            <guid>https://tombedor.dev/tack/</guid>
+            <pubDate>Thu, 04 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[I'm working on an iPhone app called Tack. I have a terrible time remembering things, and have resorted to a patchwork of emails to myself and disorganized notes. I find reminder apps frustrating, the pre-AI ones aren't smart enough, and the AI ones treat every input like an invitation to have a conversation. Tack shoots for a middle ground:]]></description>
+            <content:encoded><![CDATA[<p>I'm working on an iPhone app called Tack. I have a terrible time remembering things, and have resorted to a patchwork of emails to myself and disorganized notes. I find reminder apps frustrating, the pre-AI ones aren't smart enough, and the AI ones treat every input like an invitation to have a conversation. Tack shoots for a middle ground:</p>
+<p><img decoding="async" loading="lazy" alt="tack" src="https://tombedor.dev/assets/images/tack-7364a0ff71fe589f2825742b98f5b87f.png" width="1781" height="2327" class="img_ev3q"></p>
+<p>I get the <em>ick</em> from divulging personal details to LLM providers, so Tack uses local AI models (using Apple's on device Apple Intelligence).</p>
+<p>The project is ready for test users! If you're interested in trying it out, please fill out the form below!</p>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScqT440AcNKri-OGFMACMyogU7AP_IqVQ0mkBD_0C8fCqD7Rw/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Make It Easy for Humans First, Then AI]]></title>
             <link>https://tombedor.dev/make-it-easy-for-humans/</link>
