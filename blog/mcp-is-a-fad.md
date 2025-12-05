@@ -44,6 +44,9 @@ draft: true
 ## major architectural drawback
 - separating logic of tools from other application logic is bad
 - the trick is figuring out how tools fit together, not having a single omnipotent agent
+- arbitrary runtimes of tool calls add complexity
+- security complexities
+    - the security model with llms should not really change! it's just a service to service call!
 
 ## who are the users?
     - devs looking to customize their own workflow
