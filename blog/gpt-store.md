@@ -1,6 +1,7 @@
 ---
 title: "The Questionable Value of the OpenAI GPT Store"
 date: 2024-01-13
+dualPublish: false
 ---
 
 # The Questionable Value of the OpenAI GPT Store
