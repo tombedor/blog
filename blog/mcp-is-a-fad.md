@@ -6,9 +6,15 @@ draft: true
 
 ## Overview
 
+MCP took off as a standardized platform for AI projects - it's difficult to justify _not_ supporting it. However, this popularity will be short lived (if it's not already fading).
+
+Some of the popularity has been driven by misconception about what MCP actually uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
+
 There are misconceptions about what MCP actually accomplishes, aspirations that have been unmet, and major architectural problems.
 
 ## What is MCP?
+
+MCP is meant to solve the "NxM problem" - with many toolsets, wthout 
 
 ### the purported value add
     - tool calling
@@ -16,6 +22,7 @@ There are misconceptions about what MCP actually accomplishes, aspirations that 
         - handles triaging many tools
             - counterpoint: you don't actually want to have a large library of tooling. i don't want my coding agent to be able to order a pizza
         - misconception: it's _needed_ for function calling
+    - NxM problem
     - the other stuff
         - there in theory, but almost zero adoption (github search of tool vs other types of annotations)
 
@@ -23,7 +30,7 @@ There are misconceptions about what MCP actually accomplishes, aspirations that 
 - breakdown of function calling with or without mcp
 
     - without mcp
-        - ![function_calling_no_mcp](../static/diagrams/mcp/function_calling_no_mcp.excalidraw)
+        - ![function_calling_no_mcp](../static/diagrams/mcp/function_calling_no_mcp.png)
         - mechanics:
             - LLM receives user query + list of available functions
             - LLM returns either text response OR tool calls
@@ -38,7 +45,7 @@ There are misconceptions about what MCP actually accomplishes, aspirations that 
             - **Python**: [LangChain](https://python.langchain.com/docs/how_to/function_calling/) provides the `@tool` decorator and `bind_tools()` method to define and bind tools to models. [CrewAI](https://www.analyticsvidhya.com/blog/2025/03/agent-sdk-vs-crewai-vs-langchain/) offers role-based agent collaboration with native tool support.
             - **Node.js/TypeScript**: [Vercel AI SDK](https://ai-sdk.dev/docs/introduction) uses Zod schemas for tool definitions with a unified API across LLM providers. [LangChain.js](https://medium.com/himit-pens/building-ai-agent-workflows-with-python-typescript-d798c3435ec1) provides similar capabilities to its Python counterpart for Node.js environments.
     - with mcp ([MCP](https://modelcontextprotocol.io/) is an [open standard](https://www.anthropic.com/news/model-context-protocol) by Anthropic that provides "a standardized way to connect AI applications to external systems" including tools, data sources, and workflows)
-        - ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.excalidraw)
+        - ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.png)
         - mechanics:
             - LLM receives user query + list of available functions
             - LLM returns tool call JSON (function name + arguments)
@@ -66,6 +73,11 @@ There are misconceptions about what MCP actually accomplishes, aspirations that 
 - security complexities
     - the security model with llms should not really change! it's just a service to service call!
     - arbitrary runtimes means a much bigger vulnerability area
+
+## Value adds redux (diagram?)
+- NxM problem: already solved by language specific frameworks
+- Ease of tool calling
+-
 
 
 ### Exposing a large library of tools to an agent is an antipattern
