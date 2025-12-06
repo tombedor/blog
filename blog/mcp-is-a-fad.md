@@ -34,8 +34,10 @@ There are misconceptions about what MCP actually accomplishes, aspirations that 
         - key point: no intermediary layer - application logic directly manages function invocation
             - fewer moving parts
             - tools are just functions in your application code
-        - This is quite generic but agent libraries come with functionality for parsing this. (CLAUDE TODO: Update with examples from major libraries in python and node)
-    - with mcp (CLAUDE TODO: Update with citations from official MCP documentation)
+        - This is quite generic but agent libraries come with functionality for parsing this. For example:
+            - **Python**: [LangChain](https://python.langchain.com/docs/how_to/function_calling/) provides the `@tool` decorator and `bind_tools()` method to define and bind tools to models. [CrewAI](https://www.analyticsvidhya.com/blog/2025/03/agent-sdk-vs-crewai-vs-langchain/) offers role-based agent collaboration with native tool support.
+            - **Node.js/TypeScript**: [Vercel AI SDK](https://ai-sdk.dev/docs/introduction) uses Zod schemas for tool definitions with a unified API across LLM providers. [LangChain.js](https://medium.com/himit-pens/building-ai-agent-workflows-with-python-typescript-d798c3435ec1) provides similar capabilities to its Python counterpart for Node.js environments.
+    - with mcp ([MCP](https://modelcontextprotocol.io/) is an [open standard](https://www.anthropic.com/news/model-context-protocol) by Anthropic that provides "a standardized way to connect AI applications to external systems" including tools, data sources, and workflows)
         - ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.excalidraw)
         - mechanics:
             - LLM receives user query + list of available functions
