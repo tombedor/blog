@@ -34,7 +34,8 @@ There are misconceptions about what MCP actually accomplishes, aspirations that 
         - key point: no intermediary layer - application logic directly manages function invocation
             - fewer moving parts
             - tools are just functions in your application code
-    - with mcp
+        - This is quite generic but agent libraries come with functionality for parsing this. (CLAUDE TODO: Update with examples from major libraries in python and node)
+    - with mcp (CLAUDE TODO: Update with citations from official MCP documentation)
         - ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.excalidraw)
         - mechanics:
             - LLM receives user query + list of available functions
