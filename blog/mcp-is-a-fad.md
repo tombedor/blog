@@ -18,38 +18,24 @@ MCP is meant to solve the "NxM problem" - with many toolsets and many agents, th
 
 <!-- diagram: Connecting many toolsets to an agent, with hint: are you sure you want a big library? -->
 
-MCP is not _just_ about tool calls - it also has primitives for prompt libraries and _resources_. But adoption of these other primitives is verys light:
+MCP is not _just_ about tool calls - it also has primitives for prompt libraries and _resources_. But adoption of these other primitives is is much lower than tools [^1]:
 
-<!-- diagram demonstrating low adoption of non-tool parts of MCP -->
+![code_references](../static/diagrams/mcp/code_references.png)
+
     - tool calling
         - solving the one to many
         - handles triaging many tools
             - counterpoint: you don't actually want to have a large library of tooling. i don't want my coding agent to be able to order a pizza
-        - misconception: it's _needed_ for function calling
+
     - NxM problem
     - the other stuff
         - there in theory, but almost zero adoption (github search of tool vs other types of annotations)
 
 Given the disproporitionate focus of users on tool calling, it's worth digging deeper into what tool calling looks like with or without MCP.
 
-### Tool calling with MCP
-- breakdown of function calling with or without mcp
-    - without mcp
-        - ![function_calling_no_mcp](../static/diagrams/mcp/function_calling_no_mcp.png)
-        - mechanics:
-            - LLM receives user query + list of available functions
-            - LLM returns either text response OR tool calls
-            - Application logic directly parses LLM response
-            - If tool calls: application directly invokes functions (same process)
-            - If text response: application returns to user
-            - Application handles the agent loop
-        - key point: no intermediary layer - application logic directly manages function invocation
-            - fewer moving parts
-            - tools are just functions in your application code
-        - This is quite generic but agent libraries come with functionality for parsing this. For example:
-            - **Python**: [LangChain](https://python.langchain.com/docs/how_to/function_calling/) provides the `@tool` decorator and `bind_tools()` method to define and bind tools to models. [CrewAI](https://www.analyticsvidhya.com/blog/2025/03/agent-sdk-vs-crewai-vs-langchain/) offers role-based agent collaboration with native tool support.
-            - **Node.js/TypeScript**: [Vercel AI SDK](https://ai-sdk.dev/docs/introduction) uses Zod schemas for tool definitions with a unified API across LLM providers. [LangChain.js](https://medium.com/himit-pens/building-ai-agent-workflows-with-python-typescript-d798c3435ec1) provides similar capabilities to its Python counterpart for Node.js environments.
+
 ### Tool Calling with MCP
+
     - with mcp ([MCP](https://modelcontextprotocol.io/) is an [open standard](https://www.anthropic.com/news/model-context-protocol) by Anthropic that provides "a standardized way to connect AI applications to external systems" including tools, data sources, and workflows)
         - ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.png)
         - mechanics:
@@ -65,6 +51,25 @@ Given the disproporitionate focus of users on tool calling, it's worth digging d
         - this abstracts several major concerns away:
             - the _runtime_ of the tools being invoked is abstracted away
             - the logic and instructions for each individual tool is abstracted away.
+
+### Tool calling without MCP
+It's a misconception that MCP is _necessary_ for function call support.
+
+    - without mcp
+        - ![function_calling_no_mcp](../static/diagrams/mcp/function_calling_no_mcp.png)
+        - mechanics:
+            - LLM receives user query + list of available functions
+            - LLM returns either text response OR tool calls
+            - Application logic directly parses LLM response
+            - If tool calls: application directly invokes functions (same process)
+            - If text response: application returns to user
+            - Application handles the agent loop
+        - key point: no intermediary layer - application logic directly manages function invocation
+            - fewer moving parts
+            - tools are just functions in your application code
+        - This is quite generic but agent libraries come with functionality for parsing this. For example:
+            - **Python**: [LangChain](https://python.langchain.com/docs/how_to/function_calling/) provides the `@tool` decorator and `bind_tools()` method to define and bind tools to models. [CrewAI](https://www.analyticsvidhya.com/blog/2025/03/agent-sdk-vs-crewai-vs-langchain/) offers role-based agent collaboration with native tool support.
+            - **Node.js/TypeScript**: [Vercel AI SDK](https://ai-sdk.dev/docs/introduction) uses Zod schemas for tool definitions with a unified API across LLM providers. [LangChain.js](https://medium.com/himit-pens/building-ai-agent-workflows-with-python-typescript-d798c3435ec1) provides similar capabilities to its Python counterpart for Node.js environments.
 
 ## Problems
 
@@ -100,3 +105,9 @@ Given the disproporitionate focus of users on tool calling, it's worth digging d
         -
 ## why it took off
     - very easy to publish
+
+
+
+
+
+[^1]: Source: Github searches for [@mcp.tool](https://github.com/search?q=%40mcp.tool&type=code) (58.1K results), [@mcp.resource](https://github.com/search?q=%40mcp.resource&type=code) (9.1K), and [@mcp.prompt](https://github.com/search?q=%40mcp.prompt&type=code) (6.1K)
