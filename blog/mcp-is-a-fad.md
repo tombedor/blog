@@ -14,9 +14,13 @@ There are misconceptions about what MCP actually accomplishes, aspirations that 
 
 ## What is MCP?
 
-MCP is meant to solve the "NxM problem" - with many toolsets, wthout 
+MCP is meant to solve the "NxM problem" - with many toolsets and many agents, there's a potential for lots of bespoke connector implementations to arise:
 
-### the purported value add
+<!-- diagram: Connecting many toolsets to an agent, with hint: are you sure you want a big library? -->
+
+MCP is not _just_ about tool calls - it also has primitives for prompt libraries and _resources_. But adoption of these other primitives is verys light:
+
+<!-- diagram demonstrating low adoption of non-tool parts of MCP -->
     - tool calling
         - solving the one to many
         - handles triaging many tools
@@ -26,9 +30,10 @@ MCP is meant to solve the "NxM problem" - with many toolsets, wthout
     - the other stuff
         - there in theory, but almost zero adoption (github search of tool vs other types of annotations)
 
-### Tool calling with MCP vs without
-- breakdown of function calling with or without mcp
+Given the disproporitionate focus of users on tool calling, it's worth digging deeper into what tool calling looks like with or without MCP.
 
+### Tool calling with MCP
+- breakdown of function calling with or without mcp
     - without mcp
         - ![function_calling_no_mcp](../static/diagrams/mcp/function_calling_no_mcp.png)
         - mechanics:
@@ -44,6 +49,7 @@ MCP is meant to solve the "NxM problem" - with many toolsets, wthout
         - This is quite generic but agent libraries come with functionality for parsing this. For example:
             - **Python**: [LangChain](https://python.langchain.com/docs/how_to/function_calling/) provides the `@tool` decorator and `bind_tools()` method to define and bind tools to models. [CrewAI](https://www.analyticsvidhya.com/blog/2025/03/agent-sdk-vs-crewai-vs-langchain/) offers role-based agent collaboration with native tool support.
             - **Node.js/TypeScript**: [Vercel AI SDK](https://ai-sdk.dev/docs/introduction) uses Zod schemas for tool definitions with a unified API across LLM providers. [LangChain.js](https://medium.com/himit-pens/building-ai-agent-workflows-with-python-typescript-d798c3435ec1) provides similar capabilities to its Python counterpart for Node.js environments.
+### Tool Calling with MCP
     - with mcp ([MCP](https://modelcontextprotocol.io/) is an [open standard](https://www.anthropic.com/news/model-context-protocol) by Anthropic that provides "a standardized way to connect AI applications to external systems" including tools, data sources, and workflows)
         - ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.png)
         - mechanics:
@@ -63,12 +69,13 @@ MCP is meant to solve the "NxM problem" - with many toolsets, wthout
 ## Problems
 
 ### the convenience gained is minimal
-- comparing the two models, it's remarkable how little MCP is actually handling. Ther are
+- comparing the two models, it's remarkable how little MCP is actually handling. MCP is, more or less, handling serializing function call schemas and responses. To
 
 ### major architectural drawback
 - separating logic of tools from other application logic is bad
     - this is a major concession. the appropriateness of a tool does not exist in a vacuum. I want to pull a nail, are pliers the best tool to use? it depends on what else is in my toolbox - it might be, but if i have a hammer, probably not.
     - the trick is figuring out how tools fit together, not having a single omnipotent agent
+    - MCP inhibits the pattern of embedding references to other tools within tool descriptions
 - arbitrary runtimes of tool calls add complexity
 - security complexities
     - the security model with llms should not really change! it's just a service to service call!
