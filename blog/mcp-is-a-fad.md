@@ -109,12 +109,36 @@ There are a few different possible users who interact with MCP:
 
 - _Technical end users_ want to create tools and share them between different agents they might want to use.
 
-- _Non-technical end users_ want to use different tools while using agents. Note that this user group for MCP is, at present, largely theoretical. Exposing toolsets to MCP involves editing JSON, meaning 
+- _Non-technical end users_ want to use different tools while using agents. Note that this user group for MCP is, at present, largely theoretical. Exposing toolsets to MCP involves editing JSON, making it out of reach for non-technical users.
 
+- _Internal app devs_ run production AI applications.
 
+- _Agent devs_ create agents for external users. They wish to enable their end users to swap in whatever toolsets they like.
+
+- _Tool authors_ create toolsets they wish to expose to users. MCP provides a way to easily share their work to users of differrent agents.
 
 
 ## Problems
+
+The conveninece of MCP comes with a price, stemming from two architectural attributes of an MCP driven application:
+
+![issues](../static/diagrams/mcp/issues.png)
+
+Since tools are drawn from arbitrary sources, they are not aware of what other tools are available to the agent. Therefore their instructions can't take logic from other sources into account in their own instructions.
+
+The second stems from different toolsets having their own runtimes. This introduces a variety of issues I'll discuss below.
+
+### Incoherent toolbox
+
+Tool selection depends not just on the job at hand, but also what tools are available. Are pliers the right tool to pull out a nail? It depends on the nail, how deeply the nail is driven into a surface. But it also depends on _what other tools are available_. If a hammer is available, it might be better, but if you don't have a hammer you should user pliers. In isolation, you cannot provide good instructions on when a tool can be useful.
+
+A good handyman has a well organized toolbox, tailored to the types of jobs they might do. Is a hammer the right tool for a job?
+
+Agents tend to be less effective at tool use as the number of tools grow.
+
+This is not all that different than humans. Is a hammer the right tool for a job?
+
+### Arbitrary runtime
 
 ### Expsensive abstraction
 
