@@ -32,47 +32,80 @@ It's a misconception that MCP is _necessary_ for function call support. With "to
 
 Actually providing the list of available tools and their schemas, parsing out tool call parameters, and executing tool calls are left to the application.
 
-        - mechanics:
-            - LLM receives user query + list of available functions
-            - LLM returns either text response OR tool calls
-            - Application logic directly parses LLM response
-            - If tool calls: application directly invokes functions (same process)
-            - If text response: application returns to user
-            - Application handles the agent loop
-        - key point: no intermediary layer - application logic directly manages function invocation
-            - fewer moving parts
-            - tools are just functions in your application code
-        - This is quite generic but agent libraries come with functionality for parsing this. For example:
-            - **Python**: [LangChain](https://python.langchain.com/docs/how_to/function_calling/) provides the `@tool` decorator and `bind_tools()` method to define and bind tools to models. [CrewAI](https://www.analyticsvidhya.com/blog/2025/03/agent-sdk-vs-crewai-vs-langchain/) offers role-based agent collaboration with native tool support.
-            - **Node.js/TypeScript**: [Vercel AI SDK](https://ai-sdk.dev/docs/introduction) uses Zod schemas for tool definitions with a unified API across LLM providers. [LangChain.js](https://medium.com/himit-pens/building-ai-agent-workflows-with-python-typescript-d798c3435ec1) provides similar capabilities to its Python counterpart for Node.js environments.
+#### The NxM problem
 
+A user who wishes to reuse a toolset with different agents has an annoying problem: configuring tool access is slightly different across different agents.
+
+For example, tools are exposed to [Gemini's API](https://ai.google.dev/gemini-api/docs/function-calling?example=meeting#rest_2) via a `functionDeclarations` parameter with a `tool` parameter:
+
+
+```bash
+curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent" \
+  -H "x-goog-api-key: $GEMINI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -X POST \
+  -d '{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Schedule a meeting with Bob and Alice for 03/27/2025 at 10:00 AM about the Q3 planning."
+          }
+        ]
+      }
+    ],
+    "tools": [
+      {
+        "functionDeclarations": [
+          {
+...
+```
+
+In OpenAI's API, tool schemas are provided via a `tools` parameter:
+
+```bash
+curl -X POST https://api.openai.com/v1/responses \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-5",
+    "input": [
+      {"role": "user", "content": "What is the weather like in Paris today?"}
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "name": "get_weather",
+        "description": "Get current temperature for a given location.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "location": {
+...
+```
+
+Ths is the "NxM" problem - where in theory, the number of connectors a user must build is N (the number of agents) x M (the number of toolsets).
+
+Note, however, the logic here is largely the same. Schemas are generated in JSON, there's just slightly different API's for exposing the tool to the agent.
+
+There are many frameworks for standardizing this. In Python, [LangChain](https://python.langchain.com/docs/how_to/function_calling/), [LiteLLM](https://docs.litellm.ai/docs/completion/function_call), [SmolAgents](https://huggingface.co/learn/cookbook/en/agents), and others all provide interfaces for exposing tools to different models. In contrast to MCP, all of these options _execute tool calls in the same runtime as the agent_.
 
 ### Tool Calling with MCP
 
+MCP handles exposing and invoking tools for you:
+
 ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.png)
 
-    - with mcp ([MCP](https://modelcontextprotocol.io/) is an [open standard](https://www.anthropic.com/news/model-context-protocol) by Anthropic that provides "a standardized way to connect AI applications to external systems" including tools, data sources, and workflows)
-        - ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.png)
-        - mechanics:
-            - LLM receives user query + list of available functions
-            - LLM returns tool call JSON (function name + arguments)
-            - MCP layer parses the JSON and routes to appropriate function handler
-            - MCP invokes the function (separate process/server)
-            - Function result flows back through MCP to application logic
-            - Application logic handles the agent loop (deciding whether to call LLM again, return to user, etc.)
-            - key point: MCP acts as a router/marshaller between LLM output and function execution
-                - translation layer that sits between application and tools
-                - tools run in separate processes/servers
-        - this abstracts several major concerns away:
-            - the _runtime_ of the tools being invoked is abstracted away
-            - the logic and instructions for each individual tool is abstracted away.
+Here, the function invocations are handled by a separate process altogether. Orchestrating the agnet loop and providing results to the end user remain the application's responsibility.
+
+This abstracts several major concerns away. Since functions are invoked in a separate process, resource management is opaque to the application. The logic and instructions for each tool is also not controlled by the application.
 
 ## Problems
 
-### the convenience gained is minimal
-- comparing the two models, it's remarkable how little MCP is actually handling. MCP is, more or less, handling serializing function call schemas and responses. To
+### Expsensive abstraction
 
-### major architectural drawback
+
 - separating logic of tools from other application logic is bad
     - this is a major concession. the appropriateness of a tool does not exist in a vacuum. I want to pull a nail, are pliers the best tool to use? it depends on what else is in my toolbox - it might be, but if i have a hammer, probably not.
     - the trick is figuring out how tools fit together, not having a single omnipotent agent
@@ -81,6 +114,11 @@ Actually providing the list of available tools and their schemas, parsing out to
 - security complexities
     - the security model with llms should not really change! it's just a service to service call!
     - arbitrary runtimes means a much bigger vulnerability area
+
+
+### the convenience gained is minimal
+- comparing the two models, it's remarkable how little MCP is actually handling. MCP is, more or less, handling serializing function call schemas and responses. To
+
 
 ## Value adds redux (diagram?)
 - NxM problem: already solved by language specific frameworks
