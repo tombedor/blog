@@ -108,6 +108,11 @@ It's a misconception that MCP is _necessary_ for function call support.
 
 
 
+## Alternatives
+- local scripts
+- 1st party tools
+
+
 
 
 [^1]: Source: Github searches for [@mcp.tool](https://github.com/search?q=%40mcp.tool&type=code) (58.1K results), [@mcp.resource](https://github.com/search?q=%40mcp.resource&type=code) (9.1K), and [@mcp.prompt](https://github.com/search?q=%40mcp.prompt&type=code) (6.1K)
