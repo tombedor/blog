@@ -97,9 +97,18 @@ MCP handles exposing and invoking tools for you:
 
 ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.png)
 
-Here, the function invocations are handled by a separate process altogether. Orchestrating the agnet loop and providing results to the end user remain the application's responsibility.
+Here, the function invocations are handled by a separate process altogether. Orchestrating the agnet loop and providing results to the end user remain the application's responsibility. A JSON configuration controls which functions are  functions to expose are
 
 This abstracts several major concerns away. Since functions are invoked in a separate process, resource management is opaque to the application. The logic and instructions for each tool is also not controlled by the application.
+
+### Who are the users?
+
+There are a few different possible users who interact with MCP:
+
+![users](../static/diagrams/mcp/users.png)
+
+
+
 
 ## Problems
 
