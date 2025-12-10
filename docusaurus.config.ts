@@ -82,6 +82,11 @@ const config: Config = {
       },
       items: [
         {
+          to: '/contact',
+          label: 'Contact',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/tombedor',
           label: 'GitHub',
           position: 'right',
@@ -90,17 +95,6 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: 'Connect',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/tombedor',
-            },
-          ],
-        },
-      ],
       copyright: `Copyright © ${new Date().getFullYear()} Tom Bedor. Built with Docusaurus.`,
     },
     prism: {
