@@ -107,6 +107,10 @@ There are a few different possible users who interact with MCP:
 
 ![users](../static/diagrams/mcp/users.png)
 
+- _Technical end users_ want to create tools and share them between different agents they might want to use.
+
+- _Non-technical end users_ want to use different tools while using agents. Note that this user group for MCP is, at present, largely theoretical. Exposing toolsets to MCP involves editing JSON, meaning 
+
 
 
 
