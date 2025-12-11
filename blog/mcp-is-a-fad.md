@@ -16,8 +16,6 @@ There are misconceptions about what MCP actually accomplishes, aspirations that 
 
 MCP is meant to solve the "NxM problem" - with many toolsets and many agents, there's a potential for lots of bespoke connector implementations to arise:
 
-<!-- diagram: Connecting many toolsets to an agent, with hint: are you sure you want a big library? -->
-
 MCP is not _just_ about tool calls - it also has primitives for prompt libraries and _resources_. But adoption of these other primitives is is much lower than tools [^1]:
 
 ![code_references](../static/diagrams/mcp/code_references.png)
@@ -152,23 +150,25 @@ Or, users complaining of how many tokens are burned by tool instructions:
 
 Best of all is to limit what tools are exposed to the agent only to those that make sense.
 
-### Arbitrary runtime
+### Arbitrary runtime (TODO)
 
 - detail of how processes are orchestrated
 - security vulnerabilities
 - inefficient resource
 
 
-### the convenience gained is minimal
+### the convenience gained is minimal (TODO)
 - comparing the two models, it's remarkable how little MCP is actually handling. MCP is, more or less, handling serializing function call schemas and responses. To
 
 
-## why it took off
+## why it took off (TODO)
     - very easy to publish
+    - enterprise / AI mutual hype
+        - anthropic: gained enterprise credibility
+        - enterprise: gained LLM credibility
 
 
-
-## Alternatives
+## Alternatives (TODO)
 - local scripts
     -
 - 1st party tools
