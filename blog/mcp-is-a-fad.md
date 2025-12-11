@@ -16,11 +16,11 @@ There are misconceptions about what MCP actually accomplishes, aspirations that 
 
 MCP is meant to solve the "NxM problem" - with many toolsets and many agents, there's a potential for lots of bespoke connector implementations to arise:
 
-MCP is not _just_ about tool calls - it also has primitives for prompt libraries and _resources_. But adoption of these other primitives is is much lower than tools [^1]:
+MCP is not _just_ about tool calls - it also has primitives for prompt libraries and _resources_. But adoption of these other primitives is much lower than tools [^1]:
 
 ![code_references](../static/diagrams/mcp/code_references.png)
 
-Given the disproporitionate focus of users on tool calling, it's worth digging deeper into what tool calling looks like with or without MCP.
+Given the disproportionate focus of users on tool calling, it's worth digging deeper into what tool calling looks like with or without MCP.
 
 
 ### Tool calling without MCP
@@ -83,7 +83,7 @@ curl -X POST https://api.openai.com/v1/responses \
 ...
 ```
 
-Ths is the "NxM" problem - where in theory, the number of connectors a user must build is N (the number of agents) x M (the number of toolsets).
+This is the "NxM" problem - where in theory, the number of connectors a user must build is N (the number of agents) x M (the number of toolsets).
 
 Note, however, the logic here is largely the same. Schemas are generated in JSON, there's just slightly different API's for exposing the tool to the agent.
 
@@ -95,7 +95,7 @@ MCP handles exposing and invoking tools for you:
 
 ![function_calling_mcp](../static/diagrams/mcp/function_calling_mcp.png)
 
-Here, the function invocations are handled by a separate process altogether. Orchestrating the agnet loop and providing results to the end user remain the application's responsibility. A JSON configuration controls which functions are  functions to expose are
+Here, the function invocations are handled by a separate process altogether. Orchestrating the agent loop and providing results to the end user remain the application's responsibility. A JSON configuration controls which functions to expose.
 
 This abstracts several major concerns away. Since functions are invoked in a separate process, resource management is opaque to the application. The logic and instructions for each tool is also not controlled by the application.
 
@@ -113,12 +113,12 @@ There are a few different possible users who interact with MCP:
 
 - _Agent devs_ create agents for external users. They wish to enable their end users to swap in whatever toolsets they like.
 
-- _Tool authors_ create toolsets they wish to expose to users. MCP provides a way to easily share their work to users of differrent agents.
+- _Tool authors_ create toolsets they wish to expose to users. MCP provides a way to easily share their work to users of different agents.
 
 
 ## Problems
 
-The conveninece of MCP comes with a price, stemming from two architectural attributes of an MCP driven application:
+The convenience of MCP comes with a price, stemming from two architectural attributes of an MCP driven application:
 
 ![issues](../static/diagrams/mcp/issues.png)
 
@@ -128,7 +128,7 @@ The second stems from different toolsets having their own runtimes. This introdu
 
 ### Incoherent toolbox
 
-Tool selection depends not just on the job at hand, but also what tools are available. Are pliers the right tool to pull out a nail? It depends on the nail, how deeply the nail is driven into a surface. But it also depends on _what other tools are available_. If a hammer is available, it might be better, but if you don't have a hammer you should user pliers. In isolation, you cannot provide good instructions on when a tool can be useful.
+Tool selection depends not just on the job at hand, but also what tools are available. Are pliers the right tool to pull out a nail? It depends on the nail, how deeply the nail is driven into a surface. But it also depends on _what other tools are available_. If a hammer is available, it might be better, but if you don't have a hammer you should use pliers. In isolation, you cannot provide good instructions on when a tool can be useful.
 
 A good handyman has a well organized toolbox, tailored to the types of jobs they might do. Is a hammer the right tool for a job?
 
@@ -138,9 +138,9 @@ Agents tend to be less effective at tool use as the number of tools grow. With w
 
 With a reused toolset, we're obliged to deal with this situation with prompting outside of the toolset.
 
-If the toolset is controlled by the same authors as the application, they can add prompting to the toolsets to disambuate when to use which tool. If not, the problem must be solved by _more prompting_.
+If the toolset is controlled by the same authors as the application, they can add prompting to the toolsets to disambiguate when to use which tool. If not, the problem must be solved by _more prompting_.
 
-If one looks through Discords of open source coding agents, for example, they'll invariably find Looking through #mcp channels of open source tools, you'll invariably find users who struggle to get the agent to use the tools in the way they want:
+Looking through #mcp channels of open source coding agents, you'll invariably find users who struggle to get the agent to use the tools in the way they want:
 
 ![trouble](../static/diagrams/mcp/trouble.png)
 
