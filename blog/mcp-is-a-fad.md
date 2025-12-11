@@ -157,15 +157,116 @@ Or, users complaining of how many tokens are burned by tool instructions:
 Best of all is to limit what tools are exposed to the agent only to those that make sense.
 <!-- feedback: Nice anecdotes/diagrams; consider tightening the analogies and end with a concrete mitigation (curate toolsets per task, avoid mixing overlapping tools) to give readers an action, not just a warning. -->
 
-### Arbitrary runtime (TODO)
+### Arbitrary, separate runtimes (TODO)
 
-- detail of how processes are orchestrated
-- security vulnerabilities
-- inefficient resource
+Each MCP server [starts a separate process](https://modelcontextprotocol.io/specification/2025-03-26/basic/lifecycle) that survives for the length of the agent session.
+
+Even in the healthy state, this introduces a collection of processes that remain mostly idle, aside from serving occassional requests from an agent. In an error state, we get all the usual headaches: dangling subprocesses, memory leaks, resource contention.
+
+Users have these issues, if they are able to get the servers running at all: in support channels, the most common complaint is difficulty getting the servers to run:
+
+![connection_problems](../static/diagrams/mcp/connection_problem.png)
+
+MCP does not provide any way to provide the host with runtime requirements. Some servers solve this by cramming install into the server instantiation command, e.g. `uv run some_tool mcp`. This works great, if for example, the user has `uv` installed.
+
+Even if the relevant package is there, the MCP server might not start it successfully. MCP servers only inherit [a subset of parent ENV variables](https://modelcontextprotocol.io/legacy/tools/debugging#environment-variables) (`USER`, `HOME`, and `PATH`). This is particularly problematic for `nvm` or users leveraging virtual environments.
+
+
+
+I'm personally comfortable debugging Python env issues (although MCP's subprocess orchestration makes this more difficult), but much less comfortable debugging Node. MCP seems to assert that I as the user should not really care which runtime I'm using.
+
+Even if all of my MCP runtimes are Python, MCP potentially spins up many instances of it, obviating any cache, connection pooling, etc.
+
+### Security
+
+Agent executing code is a scary proposition. MCP makes this worse, by potentially pulling in arbitrary code, driven by a manipulable agent.
+
+The risk isn't theoretical: MCP has already been associated with several serious breaches:
+
+TODO: List of incidents, with links
+
+<!-- RESEARCH NOTES: Process Orchestration
+
+Architecture:
+- Each MCP server runs as a separate process with its own runtime/dependencies/lifecycle
+- Stdio transport: Client launches server as subprocess, communicates via stdin/stdout (newline-delimited JSON-RPC)
+- HTTP transport: Server runs as independent HTTP service, supports multiple clients, uses POST + optional SSE
+- Process lifecycle: Initialize → Operation → Shutdown (SIGTERM → SIGKILL on stdio)
+
+Process Management Issues:
+- Environment isolation: Servers inherit only USER, HOME, PATH; macOS apps don't inherit shell PATH mods (causes nvm/rbenv issues)
+- Working directory may be undefined (like / on macOS) - requires absolute paths everywhere
+- Opaque resource management: Each server has separate runtime, no shared connection pooling/caching
+- Cold start penalties for on-demand servers
+- Silent failures: Claude Desktop doesn't show config validation errors, invalid JSON silently fails
+- Common errors: "BrokenPipeError" from timing issues, "Server transport closed unexpectedly"
+- Debugging complexity: Errors cross process boundaries, stack traces fragmented, logs scattered
+- No automatic retry/health checking - application must monitor all server processes
+
+Security Vulnerabilities (2025):
+- CVE-2025-6514 (CVSS 9.6): Remote Code Execution in mcp-remote
+- CVE-2025-53109/53110 (CVSS 8.4/7.3): Sandbox Escape vulnerabilities
+- CVE-2025-52882 (CVSS 8.8): Authentication Bypass
+- Protocol mandates session IDs in URLs (violates security best practices)
+- No authentication requirement in spec - 492 servers found publicly exposed without auth
+- Real incidents: Supabase cursor agent leaked tokens via SQL injection (mid-2025), Asana customer data breach (June 2025)
+- Attack vectors: Prompt injection, tool poisoning, command injection, plaintext credentials in config files
+
+Resource Inefficiency:
+- Each server maintains separate runtime, dependencies, memory footprint
+- Multiple Python/Node interpreters running simultaneously
+- No shared caching or connection pooling across servers
+- Process startup overhead + IPC serialization/deserialization overhead
+
+Sources:
+- https://modelcontextprotocol.io/docs/learn/architecture
+- https://modelcontextprotocol.io/specification/2025-06-18/basic/transports
+- https://modelcontextprotocol.io/specification/2025-03-26/basic/lifecycle
+- https://modelcontextprotocol.io/legacy/tools/debugging
+- https://noailabs.medium.com/mcp-security-issues-emerging-threats-in-2025-7460a8164030
+- https://equixly.com/blog/2025/03/29/mcp-server-new-security-nightmare/
+- https://www.practical-devsecops.com/mcp-security-vulnerabilities/
+- https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667
+- https://nishtahir.com/notes-on-setting-up-claude-desktop-mcp-servers/
+-->
 
 
 ### the convenience gained is minimal (TODO)
 - comparing the two models, it's remarkable how little MCP is actually handling. MCP is, more or less, handling serializing function call schemas and responses. To
+
+<!-- RESEARCH NOTES: Minimal Convenience
+
+What MCP Actually Does:
+- Serializes function schemas to JSON-RPC format
+- Routes tool calls to correct process
+- Marshalls responses back
+- That's essentially it - the "value add" is tiny
+
+What Application Still Must Do:
+- Orchestrate the agent loop
+- Handle tool selection logic (which tools to expose when)
+- Parse and present results to users
+- Manage conversation state
+- Error recovery and retry logic
+- Monitor server health
+- Manage server lifecycle (start/stop/restart)
+
+The Overhead Added:
+- Application → JSON-RPC → Subprocess → Tool Execution (MCP)
+- vs Application → Function Call → Tool Execution (direct)
+- MCP adds: Process startup, IPC serialization, process monitoring, complex debugging, security boundaries
+- MCP removes: Adapter code for different LLM APIs (but LangChain/LiteLLM already solve this in-process)
+
+Simpler Alternatives Exist:
+- SDK libraries (LangChain, LiteLLM, SmolAgents) solve API divergence without process boundaries
+- Most apps use 1-3 servers - at that scale, direct integration is simpler and more maintainable
+- The "interoperability" is illusory - still need custom code to integrate each toolset meaningfully
+
+Sources:
+- https://modelcontextprotocol.io/docs/learn/architecture
+- https://python.langchain.com/docs/how_to/function_calling/
+- https://docs.litellm.ai/docs/completion/function_call
+-->
 
 
 ## why it took off (TODO)
@@ -173,6 +274,35 @@ Best of all is to limit what tools are exposed to the agent only to those that m
     - enterprise / AI mutual hype
         - anthropic: gained enterprise credibility
         - enterprise: gained LLM credibility
+
+<!-- RESEARCH NOTES: Why It Took Off
+
+Easy to Publish:
+- Template/boilerplate makes "hello world" MCP server trivial
+- Low barrier → flood of servers (58.1K @mcp.tool references on GitHub)
+- Appears like ecosystem momentum
+- GitHub star farming - easy way to get attention for existing projects
+- "Add MCP support" became a marketing checkbox
+
+Enterprise/AI Mutual Credibility Hype:
+- Anthropic: Gained enterprise credibility by appearing "platform-like"
+- Enterprises: Gained AI credibility by adding MCP to existing tools (Jira, Linear, Asana, etc.)
+- "App store" narrative sounds appealing to business stakeholders
+- Timing: Launched during peak AI tooling hype cycle (late 2024)
+- December 2025: Anthropic donated MCP to Agentic AI Foundation (Linux Foundation) - co-founded by Anthropic, Block, OpenAI, with Google, Microsoft, AWS, Cloudflare, Bloomberg
+- Microsoft Build 2025: Windows 11 announced early preview embracing MCP as "foundational layer"
+
+Misconceptions Amplified Adoption:
+- Many believe MCP is *required* for tool calling (it's not - tool calling is native LLM capability)
+- "Standardization" sounds like a must-have, even when unnecessary
+- Network effects: Once Claude supported it, other agents felt pressure to add support
+- Confusion between "MCP enables tool calling" vs "MCP standardizes tool calling across agents"
+
+Sources:
+- https://blog.modelcontextprotocol.io/posts/2025-11-25-first-mcp-anniversary/
+- https://www.anthropic.com/news/model-context-protocol
+- https://blogs.windows.com/windowsexperience/2025/05/19/securing-the-model-context-protocol-building-a-safer-agentic-future-on-windows/
+-->
 
 
 ## Alternatives (TODO)
@@ -182,6 +312,63 @@ Best of all is to limit what tools are exposed to the agent only to those that m
     - dynamically exposed based on situation
 - generic wrapped handling transport (API)
     - the heavy lifting of interoperability is done by API
+
+<!-- RESEARCH NOTES: Alternatives to MCP
+
+Local Scripts:
+- Simple bash/Python/Node scripts exposed via shell tool
+- Agents already have shell execution capability
+- No protocol overhead, trivial to debug
+- Example: `weather.sh --city Paris` vs MCP weather server
+- No process management complexity
+- Direct control over execution environment
+
+1st Party Tools (Application-Controlled):
+- Tools defined in same codebase as agent
+- Dynamically exposed based on context (only show relevant tools per task)
+- Coherent instruction sets - tools know about each other
+- Full control over resource management, logging, auth
+- No IPC overhead - direct function calls
+- Example: Cursor's built-in file operations vs generic filesystem MCP server
+- Easier debugging - single process, unified stack traces
+- Examples in practice: Cursor, Aider, Continue.dev all use primarily 1st-party tools
+
+Generic API Wrappers (OpenAPI/REST):
+- Heavy lifting already done by HTTP/REST standards
+- Agent can call APIs directly via HTTP tool (agents already have this)
+- OpenAPI specs are already LLM-readable (self-describing)
+- No new protocol needed - decades of tooling/security/monitoring
+- Example: GitHub REST API vs GitHub MCP server
+- Better auth story - OAuth, API keys, standard practices
+- Example: Agents can already use Jira API, Linear API, etc. without MCP
+
+SDK/Library Approach (LangChain, LiteLLM, SmolAgents):
+- Handles API divergence in-process (Gemini vs OpenAI vs Claude tool format)
+- Share tool definitions across models without process boundaries
+- Mature ecosystem, good debugging, type safety
+- Lower latency than IPC
+- No separate process management
+- Examples: LangChain Tools, LiteLLM function calling, HuggingFace SmolAgents
+
+When MCP Might Make Sense:
+- True multi-tenant scenarios where isolation is critical (untrusted 3rd party tools)
+- Tool authors who want widest distribution with zero integration work
+- Non-technical users installing pre-built servers (if tooling improves beyond JSON editing)
+- Remote tool execution on different hardware (GPU clusters, specialized environments)
+
+Key Insight from Research:
+- MCP is not an agent framework - it's an integration layer
+- Complements frameworks like LangChain/LlamaIndex, doesn't replace them
+- Most apps still need orchestration framework PLUS MCP if using it
+- At 1-3 tools, direct integration is simpler than MCP + orchestration framework
+
+Sources:
+- https://python.langchain.com/docs/how_to/function_calling/
+- https://docs.litellm.ai/docs/completion/function_call
+- https://huggingface.co/learn/cookbook/en/agents
+- https://modelcontextprotocol.io/docs/learn/architecture
+- https://www.keywordsai.co/blog/introduction-to-mcp
+-->
 
 
 
