@@ -140,46 +140,29 @@ Agents tend to be less effective at tool use as the number of tools grow. With w
 
 With a reused toolset, we're obliged to deal with this situation with prompting outside of the toolset.
 
-If the toolset is controlled by the same authors as the application, they can add prompting to the toolsets to disambuate when to use which tool.
+If the toolset is controlled by the same authors as the application, they can add prompting to the toolsets to disambuate when to use which tool. If not, the problem must be solved by _more prompting_.
+
+If one looks through Discords of open source coding agents, for example, they'll invariably find Looking through #mcp channels of open source tools, you'll invariably find users who struggle to get the agent to use the tools in the way they want:
+
+![trouble](../static/diagrams/mcp/trouble.png)
+
+Or, users complaining of how many tokens are burned by tool instructions:
+
+![inefficient](../static/diagrams/mcp/inefficient.png)
 
 Best of all is to limit what tools are exposed to the agent only to those that make sense.
 
 ### Arbitrary runtime
 
-### Expsensive abstraction
-
-
-- separating logic of tools from other application logic is bad
-    - this is a major concession. the appropriateness of a tool does not exist in a vacuum. I want to pull a nail, are pliers the best tool to use? it depends on what else is in my toolbox - it might be, but if i have a hammer, probably not.
-    - the trick is figuring out how tools fit together, not having a single omnipotent agent
-    - MCP inhibits the pattern of embedding references to other tools within tool descriptions
-- arbitrary runtimes of tool calls add complexity
-- security complexities
-    - the security model with llms should not really change! it's just a service to service call!
-    - arbitrary runtimes means a much bigger vulnerability area
+- detail of how processes are orchestrated
+- security vulnerabilities
+- inefficient resource
 
 
 ### the convenience gained is minimal
 - comparing the two models, it's remarkable how little MCP is actually handling. MCP is, more or less, handling serializing function call schemas and responses. To
 
 
-## Value adds redux (diagram?)
-- NxM problem: already solved by language specific frameworks
-- Ease of tool calling
--
-
-
-### Exposing a large library of tools to an agent is an antipattern
-- why do i want my coding agent to maybe order a pizza?
-
-### who are the users?
-    - devs looking to customize their own workflow (roo code users) / roo code maintainers
-        - arbitrary runtime support problem
-    - production
-        - no savings! you control the code, why delegate?
-            - alternative pattern: functions that call API's
-    - devs looking to share their work
-        -
 ## why it took off
     - very easy to publish
 
@@ -187,7 +170,11 @@ Best of all is to limit what tools are exposed to the agent only to those that m
 
 ## Alternatives
 - local scripts
+    -
 - 1st party tools
+    - dynamically exposed based on situation
+- generic wrapped handling transport (API)
+    - the heavy lifting of interoperability is done by API
 
 
 
