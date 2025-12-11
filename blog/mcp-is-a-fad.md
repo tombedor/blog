@@ -134,9 +134,15 @@ Tool selection depends not just on the job at hand, but also what tools are avai
 
 A good handyman has a well organized toolbox, tailored to the types of jobs they might do. Is a hammer the right tool for a job?
 
-Agents tend to be less effective at tool use as the number of tools grow.
+Agents tend to be less effective at tool use as the number of tools grow. With well organized, coherent toolset, agents do well. With a larger, disorganized toolset, they struggle. For example, consider a workflow in which an agent should send a notification after doing work:
 
-This is not all that different than humans. Is a hammer the right tool for a job?
+![confusion](../static/diagrams/mcp/confusion.png)
+
+With a reused toolset, we're obliged to deal with this situation with prompting outside of the toolset.
+
+If the toolset is controlled by the same authors as the application, they can add prompting to the toolsets to disambuate when to use which tool.
+
+Best of all is to limit what tools are exposed to the agent only to those that make sense.
 
 ### Arbitrary runtime
 
