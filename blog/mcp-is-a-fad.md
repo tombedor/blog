@@ -11,6 +11,7 @@ MCP took off as a standardized platform for AI projects - it's difficult to just
 Some of the popularity has been driven by misconception about what MCP actually uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
 
 There are misconceptions about what MCP actually accomplishes, aspirations that have been unmet, and major architectural problems.
+<!-- feedback: Strong hook and thesis; consider tightening this to a single paragraph that previews the three pillars (misconceptions, unmet aspirations, architectural costs) to set a clearer roadmap for the reader. -->
 
 ## What is MCP?
 
@@ -21,6 +22,7 @@ MCP is not _just_ about tool calls - it also has primitives for prompt libraries
 ![code_references](../static/diagrams/mcp/code_references.png)
 
 Given the disproportionate focus of users on tool calling, it's worth digging deeper into what tool calling looks like with or without MCP.
+<!-- feedback: Good framing; add one sentence that explicitly names the three primitives (tools, resources, prompts) and says you’ll focus on tools because adoption skews there, so readers know why the rest of the piece zooms in. -->
 
 
 ### Tool calling without MCP
@@ -88,6 +90,7 @@ This is the "NxM" problem - where in theory, the number of connectors a user mus
 Note, however, the logic here is largely the same. Schemas are generated in JSON, there's just slightly different API's for exposing the tool to the agent.
 
 There are many frameworks for standardizing this. In Python, [LangChain](https://python.langchain.com/docs/how_to/function_calling/), [LiteLLM](https://docs.litellm.ai/docs/completion/function_call), [SmolAgents](https://huggingface.co/learn/cookbook/en/agents), and others all provide interfaces for exposing tools to different models. In contrast to MCP, all of these options _execute tool calls in the same runtime as the agent_.
+<!-- feedback: Clear explanation; consider trimming the long API excerpts and instead summarize the differences (parameter names, JSON shape) to keep the section snappy, since the point is “minor API divergence, same semantics.” -->
 
 ### Tool Calling with MCP
 
@@ -98,6 +101,7 @@ MCP handles exposing and invoking tools for you:
 Here, the function invocations are handled by a separate process altogether. Orchestrating the agent loop and providing results to the end user remain the application's responsibility. A JSON configuration controls which functions to expose.
 
 This abstracts several major concerns away. Since functions are invoked in a separate process, resource management is opaque to the application. The logic and instructions for each tool is also not controlled by the application.
+<!-- feedback: Spell out the deltas vs “without MCP” (who owns schema generation, transport, invocation, logging/auth). Also note the cost (extra hop/process boundary) so the reader sees both trade-offs before the Problems section. -->
 
 ### Who are the users?
 
@@ -114,6 +118,7 @@ There are a few different possible users who interact with MCP:
 - _Agent devs_ create agents for external users. They wish to enable their end users to swap in whatever toolsets they like.
 
 - _Tool authors_ create toolsets they wish to expose to users. MCP provides a way to easily share their work to users of different agents.
+<!-- feedback: Helpful segmentation; add a one-liner tying this back to the thesis (e.g., most beneficiaries are technical, so the touted “non-technical” audience is still underserved). -->
 
 
 ## Problems
@@ -125,6 +130,7 @@ The convenience of MCP comes with a price, stemming from two architectural attri
 Since tools are drawn from arbitrary sources, they are not aware of what other tools are available to the agent. Therefore their instructions can't take logic from other sources into account in their own instructions.
 
 The second stems from different toolsets having their own runtimes. This introduces a variety of issues I'll discuss below.
+<!-- feedback: Good setup; explicitly preview the two problem buckets (toolbox coherence and arbitrary runtimes) and the consequences (worse tool selection, ops/security overhead) to guide the reader. -->
 
 ### Incoherent toolbox
 
@@ -149,6 +155,7 @@ Or, users complaining of how many tokens are burned by tool instructions:
 ![inefficient](../static/diagrams/mcp/inefficient.png)
 
 Best of all is to limit what tools are exposed to the agent only to those that make sense.
+<!-- feedback: Nice anecdotes/diagrams; consider tightening the analogies and end with a concrete mitigation (curate toolsets per task, avoid mixing overlapping tools) to give readers an action, not just a warning. -->
 
 ### Arbitrary runtime (TODO)
 
@@ -180,3 +187,15 @@ Best of all is to limit what tools are exposed to the agent only to those that m
 
 
 [^1]: Source: Github searches for [@mcp.tool](https://github.com/search?q=%40mcp.tool&type=code) (58.1K results), [@mcp.resource](https://github.com/search?q=%40mcp.resource&type=code) (9.1K), and [@mcp.prompt](https://github.com/search?q=%40mcp.prompt&type=code) (6.1K)
+
+
+
+notes from HN:
+
+• You’ve covered the core structure and tooling sections in your inline comments. The HN thread surfaces a few angles not yet addressed:
+
+  - Pro-MCP end-user value: “app store”/consumer use case (Jira/Linear, Alibaba servers) and discoverability vs hand-wired REST/OpenAPI; clarify if/why that’s still overkill or when it’s legit.
+  - Security/auth isolation: “socket without handing over tokens” as a claimed benefit; decide whether to rebut or scope it.
+  - API spec comparison: why “just OpenAPI/text files/CLI” isn’t equivalent (or is); note the “self-describing enough for agents” bar.
+  - Ops/reliability: comments about verbosity helping models, and reliability math for multi-agent chains; address determinism/retries vs non-determinism.
+  - “Why replace it?”: if you argue “don’t use it,” offer the counter-pattern (SDKs, codegen/skills, CLI) explicitly.
