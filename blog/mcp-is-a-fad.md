@@ -231,8 +231,13 @@ Sources:
 -->
 
 
-### the convenience gained is minimal (TODO)
-- comparing the two models, it's remarkable how little MCP is actually handling. MCP is, more or less, handling serializing function call schemas and responses. To
+### The convenience gained is minimal
+
+These problems could be worth the cost, if we were to gain significantly. But comparing tool calling with MCP to that without, it's remarkable how little MCP is actually handling. MCP is, more or less, handling serializing function call schemas and responses.
+
+The tools developers are saving themselves from having to write are, overwhelmingly, [relatively thin wrappers around API clients](https://mcp.alphavantage.co/?utm_source=mcp.so&utm_medium=referral&utm_campaign=202508&utm_id=000001&utm_term=web_project&utm_content=v2), or [utility scripts](https://mcp.so/server/time/modelcontextprotocol). These in the former case, the user must still obtain API keys, billing accounts, etc.
+
+This code _was_ a hassle to write, prior to the advent of coding agents. But these small utility scripts are the precise thing that coding agents excel most at! A technical user of MCP tools will be hard pressed to find a tool an agent could not one-shot in the programming language they are most comfortable in.
 
 <!-- RESEARCH NOTES: Minimal Convenience
 
@@ -268,12 +273,30 @@ Sources:
 - https://docs.litellm.ai/docs/completion/function_call
 -->
 
+## Why it took off (TODO)
 
-## why it took off (TODO)
-    - very easy to publish
-    - enterprise / AI mutual hype
-        - anthropic: gained enterprise credibility
-        - enterprise: gained LLM credibility
+With these issues, it's fair to wonder why MCP has gained the poopularity it has. It has had lots of support from Anthropic, and no trouble gaining traction with toolset publishers, agent providers, and enterprises. Why? It helps narratives.
+
+### Tool authors: A low overhead marketing channel
+
+It's quite easy to publish an MCP server. The lack of startup requirements means you don't even need to publish to `npm` or `pip`: you can simply add an annotation, and publish a json blob.
+
+This provides a nice narrative to gain attention to AI projects: A user can, in theory, easily add some MCP tools from a project, gain value, and follow interest in learning more about the project. Support overhead will, in the main, fall to agent maintainers.
+
+Once publishers starting appearing, it became difficult to justify _not_ supporting MCP. Your project could be perceived as being against open standards.
+
+### Enterprise: AI credibility
+
+Over the last few years, any SF billboard watcher witnessed a rebranding of enterprise tools towards AI. MCP support provided an easy way to make your e.g. project management tool be AI. The branding of MCP as an "open standard" increased pressue to adopt - lack of MCP support could signal a lack of willingness to adopt open standards.
+
+### Anthropic: Open source credibility
+
+MCP's status as _the_ open standard for AI and the adoption of enterprise greatly benefited Anthropic. The big fear of investors is taht enterprise adoption doesn't persist - adoption of Anthropic's open standard helped this.
+
+
+## Alternatives
+
+
 
 <!-- RESEARCH NOTES: Why It Took Off
 
