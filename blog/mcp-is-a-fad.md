@@ -277,6 +277,8 @@ Sources:
 
 With these issues, it's fair to wonder why MCP has gained the poopularity it has. It has had lots of support from Anthropic, and no trouble gaining traction with toolset publishers, agent providers, and enterprises. Why? It helps narratives.
 
+MCP is often described as an "app store". But it's not an app store. It's not even a package manager. It's an overengineered orchestration protocol.
+
 ### Tool authors: A low overhead marketing channel
 
 It's quite easy to publish an MCP server. The lack of startup requirements means you don't even need to publish to `npm` or `pip`: you can simply add an annotation, and publish a json blob.
@@ -297,6 +299,11 @@ MCP's status as _the_ open standard for AI and the adoption of enterprise greatl
 ## Alternatives
 
 
+
+
+- Local tools: justfiles
+- Remote API's: thin API wrappers
+-
 
 <!-- RESEARCH NOTES: Why It Took Off
 
@@ -329,6 +336,35 @@ Sources:
 
 
 ## Alternatives (TODO)
+
+### Local scripts
+
+For a technical user, letting an agent invoke scripts directly is very difficult to beat. Useful 50-100 line scripts are _extremely_ easy to write with AI coding agents. Care needs to be taken to filter output - raw build scripts can stream verbose logs into agent context, eating up tokens.
+
+Robust security against agent actions going haywire can be achieved via command runners like `just` or `make`. Agents allow you to specify what command prefixes can be invoked without approval - put your agent commands in a `justfile`, and only auto-allow shell commands prefixed with `just`.
+
+This approach also exposes tools to humans, and is a nice approach for improving dev environments for humans and AI agents at the same time (TODO: link to make-it-easy-for-humans post)
+
+### 1st Party Tools
+
+For a self contained application, there is little reason to separate tool codebases from the codebase for the rest of the application. Tools can be dynamically exposed to the agent based on application context.
+
+### Generic API Wrappers: OpenAPI / REST
+
+Generic API wrappers like OpenAPI and REST offer all of the self-describing capabilities offered by MCP, with decades of battle testing.
+
+Similar to scripts, some glue is necessary between a raw API and an agent, to manage output verbosity and add context. But tools need descriptions and ideas for how they should be used in relation with each other.
+
+Security is already accounted for. Tokens, service identitiess already work very well. OAuth already enables automated actions taken on behalf of a user, service identities, etc.
+
+### SDK's / Libraries
+
+Language specific SDK's provide robust options for bridging the annoying differences in the API's of different model providers.
+
+
+
+
+
 - local scripts
     -
 - 1st party tools
@@ -373,11 +409,6 @@ SDK/Library Approach (LangChain, LiteLLM, SmolAgents):
 - No separate process management
 - Examples: LangChain Tools, LiteLLM function calling, HuggingFace SmolAgents
 
-When MCP Might Make Sense:
-- True multi-tenant scenarios where isolation is critical (untrusted 3rd party tools)
-- Tool authors who want widest distribution with zero integration work
-- Non-technical users installing pre-built servers (if tooling improves beyond JSON editing)
-- Remote tool execution on different hardware (GPU clusters, specialized environments)
 
 Key Insight from Research:
 - MCP is not an agent framework - it's an integration layer
