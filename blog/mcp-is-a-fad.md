@@ -210,7 +210,15 @@ MCP's status as _the_ open standard for AI and the enterprise adoption greatly b
 
 ## Alternatives
 
-<!-- table with users mentioned earlier, with better alternatives? -->
+For each user type, there's a simpler approach that avoids MCP's overhead:
+
+| User Type | MCP Promise | Better Alternative | Why |
+|-----------|-------------|-------------------|-----|
+| **Technical end users** | Share tools between agents | Local scripts + command runner | AI can one-shot these scripts; works with any agent via shell; exposes tools to humans too |
+| **Non-technical end users** | Easy tool installation | *(MCP doesn't deliver)* | MCP requires JSON editing—this group remains underserved regardless |
+| **Internal app devs** | Standard tool interface | 1st party tools | Same codebase, existing auth/logging/tracing, no process overhead, coherent toolbox |
+| **Agent devs** | Let users swap toolsets | SDK abstraction (LangChain, LiteLLM) | Handles model API differences without separate processes |
+| **Tool authors** | Distribute to all agents | OpenAPI specs or libraries | Existing distribution (npm, pip), decades of tooling, no new protocol |
 
 ### Local scripts with command runner
 
