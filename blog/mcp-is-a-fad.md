@@ -6,9 +6,9 @@ draft: true
 
 ## Overview
 
-MCP took off as a standardized platform for AI projects - it's difficult to justify _not_ supporting it. However, this popularity will be short lived (if it's not already fading).
+MCP has taken off as the standardized platform for AI integrations—it's difficult to justify _not_ supporting it. However, this popularity will be short lived (if it's not already fading).
 
-Some of the popularity has been driven by misconception about what MCP actually uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
+Some of this popularity stems from misconceptions about what MCP uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
 
 There are misconceptions about what MCP actually accomplishes, aspirations that have been unmet, and major architectural problems.
 <!-- feedback: Strong hook and thesis; consider tightening this to a single paragraph that previews the three pillars (misconceptions, unmet aspirations, architectural costs) to set a clearer roadmap for the reader. -->
@@ -26,7 +26,7 @@ Given the disproportionate focus of users on tool calling, it's worth digging de
 
 
 ### Tool calling without MCP
-It's a misconception that MCP is _necessary_ for function call support. With tool calling models, a list of available tools is provided to the LLM with the chat completion request. If the LLM wants to call a tool, it returns JSON formatted tool parameters, alongside response intended to be user visible:
+A common misconception is that MCP is _required_ for function calling. With tool calling models, a list of available tools is provided to the LLM with the chat completion request. If the LLM wants to call a tool, it returns JSON formatted tool parameters, alongside response intended to be user visible:
 
 ![function_calling_no_mcp](/diagrams/mcp/function_calling_no_mcp.png)
 
@@ -77,7 +77,7 @@ curl -X POST https://api.openai.com/v1/responses \
 
 This is the "NxM" problem - where in theory, the number of connectors a user must build is N (the number of agents) x M (the number of toolsets).
 
-Note, however, the logic here is largely the same. Schemas are generated in JSON, there's just slightly different API's for exposing the tool to the agent.
+The underlying logic, however, is largely the same. Schemas are generated in JSON, there's just slightly different API's for exposing the tool to the agent.
 
 There are many frameworks for standardizing this. In Python, [LangChain](https://python.langchain.com/docs/how_to/function_calling/), [LiteLLM](https://docs.litellm.ai/docs/completion/function_call), [SmolAgents](https://huggingface.co/learn/cookbook/en/agents), and others all provide interfaces for exposing tools to different models. In contrast to MCP, all of these options _execute tool calls in the same runtime as the agent_.
 <!-- feedback: Clear explanation; consider trimming the long API excerpts and instead summarize the differences (parameter names, JSON shape) to keep the section snappy, since the point is “minor API divergence, same semantics.” -->
@@ -88,9 +88,9 @@ MCP handles exposing and invoking tools for you:
 
 ![function_calling_mcp](/diagrams/mcp/function_calling_mcp.png)
 
-Here, the function invocations are handled by a separate process altogether. Orchestrating the agent loop and providing results to the end user remain the application's responsibility. A JSON configuration controls which functions to expose.
+Here, the function invocations are handled by a separate process altogether. Orchestrating the agent loop and providing results to the end user remains the application's responsibility. A JSON configuration controls which functions to expose.
 
-This abstracts several major concerns away. Since functions are invoked in a separate process, resource management is opaque to the application. The logic and instructions for each tool is also not controlled by the application.
+This abstracts away several major concerns. Since functions are invoked in a separate process, resource management is opaque to the application. The logic and instructions for each tool is also not controlled by the application.
 <!-- feedback: Spell out the deltas vs “without MCP” (who owns schema generation, transport, invocation, logging/auth). Also note the cost (extra hop/process boundary) so the reader sees both trade-offs before the Problems section. -->
 
 ### Who are the users?
@@ -143,7 +143,7 @@ Or, users complaining of how many tokens are burned by tool instructions:
 
 Each MCP server [starts a separate process](https://modelcontextprotocol.io/specification/2025-03-26/basic/lifecycle) that survives for the length of the agent session.
 
-Even in the healthy state, this introduces a collection of processes that remain mostly idle, aside from serving occassional requests from an agent. In an error state, we get all the usual headaches: dangling subprocesses, memory leaks, resource contention.
+Even in the healthy state, this introduces a collection of processes that remain mostly idle, aside from serving occasional requests from an agent. In an error state, we get all the usual headaches: dangling subprocesses, memory leaks, resource contention.
 
 Users have these issues, if they are able to get the servers running at all: in support channels, the most common complaint is difficulty getting the servers to run:
 
@@ -176,9 +176,9 @@ The risk isn't theoretical: MCP has already been associated with several serious
 
 ## The convenience gained is minimal
 
-These problems could be worth the cost, if we were to gain significantly. But comparing tool calling with MCP to that without, it's remarkable how little MCP is actually handling. MCP is, more or less, handling serializing function call schemas and responses.
+These problems could be worth the cost, if we were to gain significantly. But comparing tool calling with MCP to tool calling without it, MCP handles remarkably little. MCP is, more or less, handling serializing function call schemas and responses.
 
-The tools developers are saving themselves from having to write are, overwhelmingly, [relatively thin wrappers around API clients](https://mcp.alphavantage.co/?utm_source=mcp.so&utm_medium=referral&utm_campaign=202508&utm_id=000001&utm_term=web_project&utm_content=v2), or [utility scripts](https://mcp.so/server/time/modelcontextprotocol). These in the former case, the user must still obtain API keys, billing accounts, etc.
+The tools developers are saving themselves from having to write are, overwhelmingly, [relatively thin wrappers around API clients](https://mcp.alphavantage.co/?utm_source=mcp.so&utm_medium=referral&utm_campaign=202508&utm_id=000001&utm_term=web_project&utm_content=v2), or [utility scripts](https://mcp.so/server/time/modelcontextprotocol). In the former case, users must still obtain API keys, billing accounts, and so on.
 
 This code _was_ a hassle to write, prior to the advent of coding agents. But these small utility scripts are the precise thing that coding agents excel most at! A technical user of MCP tools will be hard pressed to find a tool an agent could not one-shot in the programming language they are most comfortable in.
 
@@ -194,15 +194,15 @@ It's quite easy to publish an MCP server. The lack of startup requirements means
 
 This provides a nice narrative to gain attention to AI projects: A user can, in theory, easily add some MCP tools from a project, gain value, and follow interest in learning more about the project. Support overhead will, in the main, fall to agent maintainers.
 
-Once publishers starting appearing, it became difficult to justify _not_ supporting MCP. Your project could be perceived as being against open standards.
+Once publishers started appearing, it became difficult to justify _not_ supporting MCP. Your project could be perceived as being against open standards.
 
 ### Enterprise: AI credibility
 
-Over the last few years, any SF billboard watcher witnessed a rebranding of enterprise tools towards AI. MCP support provided an easy way to make your e.g. project management tool be AI. The branding of MCP as an "open standard" increased pressure to adopt - lack of MCP support could signal a lack of willingness to adopt open standards.
+Over the last few years, anyone watching San Francisco billboards has witnessed enterprise tools rebranding toward AI. MCP support provided an easy way to make your e.g. project management tool be AI. The branding of MCP as an "open standard" increased pressure to adopt - lack of MCP support could signal a lack of willingness to adopt open standards.
 
 ### Anthropic: Open source credibility
 
-MCP's status as _the_ open standard for AI and the adoption of enterprise greatly benefited Anthropic. The big fear of investors is that enterprise adoption doesn't persist - adoption of Anthropic's open standard helped this.
+MCP's status as _the_ open standard for AI and the enterprise adoption greatly benefited Anthropic. The big fear of investors is that enterprise adoption doesn't persist - adoption of Anthropic's open standard helped this.
 
 
 ## Alternatives
