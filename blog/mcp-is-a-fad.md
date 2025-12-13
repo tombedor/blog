@@ -125,11 +125,13 @@ MCP pushes users to install servers from npm, pip, or GitHub. This inherits the 
 
 MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), leaving security decisions to individual server authors. The result: [one scan found 492 MCP servers](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) running without any client authentication or traffic encryption. Even Anthropic's own Filesystem MCP Server had a sandbox escape via directory traversal ([CVE-2025-53110](https://strobes.co/blog/mcp-model-context-protocol-and-its-critical-vulnerabilities/)).
 
-(TODO: convert to a table)
-- **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** (CVSS 9.6): RCE in mcp-remote; 437,000+ downloads
-- **[CVE-2025-49596](https://thehackernews.com/2025/07/critical-vulnerability-in-anthropics.html)** (CVSS 9.4): RCE in Anthropic's MCP Inspector
-- **[CVE-2025-53967](https://www.imperva.com/blog/another-critical-rce-discovered-in-a-popular-mcp-server/)**: RCE in Figma MCP Server; 600,000+ downloads
-- **[Asana data exposure](https://www.bleepingcomputer.com/news/security/asana-warns-mcp-ai-feature-exposed-customer-data-to-other-orgs/)**: Tenant isolation flaw exposed ~1,000 customers' data
+#### MCP-related security incidents
+| Issue | CVSS / Impact |
+| --- | --- |
+| **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** | 9.6 (RCE in mcp-remote; 437,000+ downloads) |
+| **[CVE-2025-49596](https://thehackernews.com/2025/07/critical-vulnerability-in-anthropics.html)** | 9.4 (RCE in Anthropic's MCP Inspector) |
+| **[CVE-2025-53967](https://www.imperva.com/blog/another-critical-rce-discovered-in-a-popular-mcp-server/)** | RCE in Figma MCP Server; 600,000+ downloads |
+| **[Asana data exposure](https://www.bleepingcomputer.com/news/security/asana-warns-mcp-ai-feature-exposed-customer-data-to-other-orgs/)** | Tenant isolation flaw exposed ~1,000 customers' data |
 
 
 Unlike a human carefully clicking through an API, agents can be manipulated via prompt injection to call tools in unintended ways. The [Supabase MCP leak](https://www.generalanalysis.com/blog/supabase-mcp-blog) demonstrated this "lethal trifecta": prompt injection → tool call → data exfiltration, extracting entire SQL databases including OAuth tokens. Again, this risk isn't unique to MCP. But the best mitigations are existing security infrastructure: scoped OAuth tokens, service identities with minimal permissions, and audit logging. MCP sidesteps this infrastructure rather than building on it.
