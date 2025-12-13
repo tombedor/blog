@@ -10,8 +10,6 @@ MCP has taken off as the standardized platform for AI integrations—it's diffic
 
 Some of this popularity stems from misconceptions about what MCP uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
 
-There are misconceptions about what MCP actually accomplishes, aspirations that have been unmet, and major architectural problems.
-
 ## What is MCP?
 
 MCP claims to solve the "NxM problem"—with N agents and M toolsets, users would otherwise need many bespoke connectors.
@@ -115,8 +113,6 @@ MCP does not provide any way to provide the host with runtime requirements. Some
 
 Even if the relevant package is there, the MCP server might not start it successfully. MCP servers only inherit [a subset of parent ENV variables](https://modelcontextprotocol.io/legacy/tools/debugging#environment-variables) (`USER`, `HOME`, and `PATH`). This is particularly problematic for `nvm` or users leveraging virtual environments.
 
-
-
 Python or Node developers might be comfortable debugging environment issues, (although MCP's subprocess orchestration makes this more difficult), but are likely less comfortable debugging Node issues _and_ Python _and_ other runtimes. MCP seems to assert that I as the user should not really care which of these are used, or how many.
 
 Even if toolsets are in one given runtime, MCP potentially spins up many instances of it, obviating efficiencies from caching, connection pooling, and shared in-memory state. MCP's HTTP transport mode doesn't help—it's just another HTTP API, but with MCP's protocol overhead instead of battle-tested REST/OpenAPI patterns.
@@ -215,7 +211,7 @@ This approach also exposes tools to humans, and is a nice approach for improving
 
 For a self contained application, there is little reason to separate tool codebases from the codebase for the rest of the application. Tools can be dynamically exposed to the agent based on application context.
 
-In a first party context, any code that devs wish to reuse can be exposed as libraries, just like any other code they wish to share. An AI tool is really nothing more than a function that they are being invoked by AI does not warrant special handling.
+In a first party context, any code that devs wish to reuse can be exposed as libraries, just like any other code they wish to share. An AI tool is really nothing more than a function—the fact that it's invoked by AI does not warrant special handling.
 
 An enterprise context should have robust infrastructure for authenticating, authorizing, provisioning service identities, and tracing call chains for service to service calls. That some of these calls are now _AI_ service to service calls does not warrant a rebuilt security posture.
 
@@ -226,7 +222,7 @@ OpenAPI specs are already self-describing enough for agents—they include opera
 [^1]: Source: Github searches for [@mcp.tool](https://github.com/search?q=%40mcp.tool&type=code) (58.1K results), [@mcp.resource](https://github.com/search?q=%40mcp.resource&type=code) (9.1K), and [@mcp.prompt](https://github.com/search?q=%40mcp.prompt&type=code) (6.1K), searched 2025-12-08.
 [^2]: Support request snippets are pulled from Discord.
 
-# A prediction
+## A prediction
 
 MCP's popularity will be relatively short lived. The cost benefit does not add up, and there are readily available alternatives. The introduction of [Claude Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) and [OpenAI's quick adoption](https://simonwillison.net/2025/Dec/12/openai-skills/) signal that even model providers agree.
 
