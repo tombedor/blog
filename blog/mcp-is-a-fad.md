@@ -298,13 +298,6 @@ MCP's status as _the_ open standard for AI and the adoption of enterprise greatl
 
 ## Alternatives
 
-
-
-
-- Local tools: justfiles
-- Remote API's: thin API wrappers
--
-
 <!-- RESEARCH NOTES: Why It Took Off
 
 Easy to Publish:
