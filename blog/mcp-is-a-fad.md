@@ -87,7 +87,7 @@ The second stems from different toolsets having their own runtimes. This introdu
 
 ![confusion](/diagrams/mcp/confusion.png)
 
-Tool selection depends not just on the job at hand, but also what tools are available. Are pliers the right tool to pull out a nail? It depends on the nail, how deeply the nail is driven into a surface. But it also depends on _what other tools are available_. If a hammer is available, it might be better, but if you don't have a hammer you should use pliers. In isolation, you cannot provide good instructions on when a tool can be useful.
+Tool selection depends not just on the job at hand, but also on what else is in the box. Pliers can pull a nail, but if a hammer is available it's the better choice. When tools ship in isolation, their instructions can't say "use me only when you don't have a hammer," so agents get conflicting guidance.
 
 If the toolset is controlled by the same authors as the application, they can add prompting to the toolsets to disambiguate when to use which tool. If not, the problem must be solved by _more prompting_.
 
@@ -109,7 +109,7 @@ Users have these issues, if they are able to get the servers running at all: in 
 
 ![connection_problems](/diagrams/mcp/connection_problem.png)
 
-MCP does not provide any way to provide the host with runtime requirements. Some servers solve this by cramming install into the server instantiation command, e.g. `uv run some_tool mcp`. This works great, if for example, the user has `uv` installed.
+MCP offers no way for servers to declare their runtime/dependency needs. Some authors work around it by baking installation into the launch command (e.g., uv run some_tool mcp), which only succeeds if the user already has the right tooling installed.
 
 Even if the relevant package is there, the MCP server might not start it successfully. MCP servers only inherit [a subset of parent ENV variables](https://modelcontextprotocol.io/legacy/tools/debugging#environment-variables) (`USER`, `HOME`, and `PATH`). This is particularly problematic for `nvm` or users leveraging virtual environments.
 
@@ -119,13 +119,11 @@ Even if toolsets are in one given runtime, MCP potentially spins up many instanc
 
 ### Security
 
-MCP's architecture multiplies attack surface in three ways:
-
-MCP encourages installing servers from npm, pip, or GitHub, often written quickly by authors chasing the hype. Unlike libraries you import and can audit, MCP servers are opaque processes. The postmark-mcp supply chain attack showed this risk is actively exploited: a malicious server masquerading as a legitimate package silently BCC'd all emails to the attacker for weeks before detection.
+MCP encourages installing servers from npm, pip, or GitHub, and has security problems common with package managers. There's a tradeoff between development speed and security: third party packages save devs from rewriting code, but bad actors can sneak malicious code in. MCP, however, worsens the issue, with it's lack of a central publisher. Pip and NPM can be a security liability, but they at least have code signing / identity (TODO: clean this up)
 
 MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), leaving security decisions to individual server authors. The result: [one scan found 492 MCP servers](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) running without any client authentication or traffic encryption. Even Anthropic's own Filesystem MCP Server had a sandbox escape via directory traversal ([CVE-2025-53110](https://strobes.co/blog/mcp-model-context-protocol-and-its-critical-vulnerabilities/)).
 
-Unlike a human carefully clicking through an API, agents can be manipulated via prompt injection to call tools in unintended ways. The [Supabase MCP leak](https://www.generalanalysis.com/blog/supabase-mcp-blog) demonstrated this "lethal trifecta": prompt injection → tool call → data exfiltration, extracting entire SQL databases including OAuth tokens. This risk isn't unique to MCP—prompt injection affects all agent systems. But the best mitigations are existing security infrastructure: scoped OAuth tokens, service identities with minimal permissions, and audit logging. MCP sidesteps this infrastructure rather than building on it.
+Unlike a human carefully clicking through an API, agents can be manipulated via prompt injection to call tools in unintended ways. The [Supabase MCP leak](https://www.generalanalysis.com/blog/supabase-mcp-blog) demonstrated this "lethal trifecta": prompt injection → tool call → data exfiltration, extracting entire SQL databases including OAuth tokens. Again, this risk isn't unique to MCP. But the best mitigations are existing security infrastructure: scoped OAuth tokens, service identities with minimal permissions, and audit logging. MCP sidesteps this infrastructure rather than building on it.
 
 - **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** (CVSS 9.6): RCE in mcp-remote; 437,000+ downloads
 - **[CVE-2025-49596](https://thehackernews.com/2025/07/critical-vulnerability-in-anthropics.html)** (CVSS 9.4): RCE in Anthropic's MCP Inspector
