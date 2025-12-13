@@ -119,9 +119,7 @@ Even if the relevant package is there, the MCP server might not start it success
 
 Python or Node developers might be comfortable debugging environment issues, (although MCP's subprocess orchestration makes this more difficult), but are likely less comfortable debugging Node issues _and_ Python _and_ other runtimes. MCP seems to assert that I as the user should not really care which of these are used, or how many.
 
-Even if toolsets are in one given runtime, MCP potentially spins up many instances of it, obviating efficiencies from caching, connection pooling, (TODO: third example).
-
-(TODO: Address HTTP runtime of MCP, it is not a significant value add over thin wrappers around API's, reference section below)
+Even if toolsets are in one given runtime, MCP potentially spins up many instances of it, obviating efficiencies from caching, connection pooling, and shared in-memory state. MCP's HTTP transport mode doesn't help—it's just another HTTP API, but with MCP's protocol overhead instead of battle-tested REST/OpenAPI patterns.
 
 ### Security
 
