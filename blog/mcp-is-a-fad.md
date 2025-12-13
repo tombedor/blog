@@ -119,7 +119,7 @@ Even if toolsets are in one given runtime, MCP potentially spins up many instanc
 
 ### Security
 
-MCP encourages installing servers from npm, pip, or GitHub, and has security problems common with package managers. There's a tradeoff between development speed and security: third party packages save devs from rewriting code, but bad actors can sneak malicious code in. MCP, however, worsens the issue, with it's lack of a central publisher. Pip and NPM can be a security liability, but they at least have code signing / identity (TODO: clean this up)
+MCP pushes users to install servers from npm, pip, or GitHub, inheriting the usual supply-chain risk but without even the minimal guardrails those ecosystems provide. There's no central publisher or signing; anyone can ship a daemon that runs on your machine and MCP offers no provenance check.
 
 MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), leaving security decisions to individual server authors. The result: [one scan found 492 MCP servers](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) running without any client authentication or traffic encryption. Even Anthropic's own Filesystem MCP Server had a sandbox escape via directory traversal ([CVE-2025-53110](https://strobes.co/blog/mcp-model-context-protocol-and-its-critical-vulnerabilities/)).
 
