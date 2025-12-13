@@ -11,7 +11,6 @@ MCP has taken off as the standardized platform for AI integrations—it's diffic
 Some of this popularity stems from misconceptions about what MCP uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
 
 There are misconceptions about what MCP actually accomplishes, aspirations that have been unmet, and major architectural problems.
-<!-- feedback: Strong hook and thesis; consider tightening this to a single paragraph that previews the three pillars (misconceptions, unmet aspirations, architectural costs) to set a clearer roadmap for the reader. -->
 
 ## What is MCP?
 
@@ -126,21 +125,22 @@ Even if toolsets are in one given runtime, MCP potentially spins up many instanc
 
 ### Security
 
-Agent executing code is a scary proposition. MCP makes this worse, by potentially pulling in arbitrary code, driven by a manipulable agent. MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), which has left [hundreds of servers completely exposed](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) online—one scan found 492 MCP servers running without any client authentication or traffic encryption.
+MCP's architecture multiplies attack surface in three ways:
 
+**Third-party code at scale.** MCP encourages installing servers from npm, pip, or GitHub—often written quickly by authors chasing the hype. Unlike libraries you import and can audit, MCP servers are opaque processes. The postmark-mcp supply chain attack showed this risk is actively exploited: a malicious server masquerading as a legitimate package silently BCC'd all emails to the attacker for weeks before detection.
 
-<!-- TODO: is this just a list of incidents? is it supporting my point at all? -->
-The risk isn't theoretical: MCP has already been associated with several serious breaches:
+**Protocol gaps by design.** MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), leaving security decisions to individual server authors. The result: [one scan found 492 MCP servers](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) running without any client authentication or traffic encryption. Even Anthropic's own Filesystem MCP Server had a sandbox escape via directory traversal ([CVE-2025-53110](https://strobes.co/blog/mcp-model-context-protocol-and-its-critical-vulnerabilities/)).
 
-- **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** (CVSS 9.6): Critical RCE in mcp-remote allowed arbitrary command execution when connecting to untrusted servers; 437,000+ downloads affected.
-- **[CVE-2025-49596](https://thehackernews.com/2025/07/critical-vulnerability-in-anthropics.html)** (CVSS 9.4): RCE in Anthropic's MCP Inspector via browser-based CSRF attack chain.
-- **[CVE-2025-53967](https://www.imperva.com/blog/another-critical-rce-discovered-in-a-popular-mcp-server/)**: Critical RCE in Framelink Figma MCP Server; 600,000+ downloads, 10,000+ GitHub stars.
-- **[CVE-2025-53110](https://strobes.co/blog/mcp-model-context-protocol-and-its-critical-vulnerabilities/)** (CVSS 7.3): Sandbox escape in Anthropic's Filesystem MCP Server via directory traversal.
-- **[Asana data exposure](https://www.bleepingcomputer.com/news/security/asana-warns-mcp-ai-feature-exposed-customer-data-to-other-orgs/)** (June 2025): Logic flaw in tenant isolation exposed ~1,000 customers' project data across organizations for over a month.
-- **[Supabase MCP database leak](https://www.generalanalysis.com/blog/supabase-mcp-blog)**: Prompt injection attack could exfiltrate entire SQL databases including OAuth tokens via the "lethal trifecta" pattern.
-- **[postmark-mcp supply chain attack](https://wiiwrite.medium.com/model-context-protocol-security-october25-update-69b7ef8b537d)** (September 2025): First confirmed malicious MCP server; masqueraded as legitimate package and BCC'd all emails to attacker; 1,643 downloads before detection.
+**Agent-driven execution amplifies risk.** Unlike a human carefully clicking through an API, agents can be manipulated via prompt injection to call tools in unintended ways. The [Supabase MCP leak](https://www.generalanalysis.com/blog/supabase-mcp-blog) demonstrated this "lethal trifecta": prompt injection → tool call → data exfiltration, extracting entire SQL databases including OAuth tokens. This risk isn't unique to MCP—prompt injection affects all agent systems. But the best mitigations are existing security infrastructure: scoped OAuth tokens, service identities with minimal permissions, and audit logging. MCP sidesteps this infrastructure rather than building on it.
 
-A common defense of MCP is that it isolates credentials—the agent talks to a socket, never seeing your API tokens. But this threat model is narrow: an agent that can invoke `mcp.github.delete_repo()` doesn't need your token to cause damage. The same isolation is trivially achieved with a proxy script or scoped OAuth tokens. And in practice, MCP configs frequently contain plaintext credentials anyway. You're not eliminating trust; you're redirecting it to third-party MCP server code—code that, as the CVEs above demonstrate, is often unaudited and vulnerable.
+The incident list speaks for itself:
+
+- **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** (CVSS 9.6): RCE in mcp-remote; 437,000+ downloads
+- **[CVE-2025-49596](https://thehackernews.com/2025/07/critical-vulnerability-in-anthropics.html)** (CVSS 9.4): RCE in Anthropic's MCP Inspector
+- **[CVE-2025-53967](https://www.imperva.com/blog/another-critical-rce-discovered-in-a-popular-mcp-server/)**: RCE in Figma MCP Server; 600,000+ downloads
+- **[Asana data exposure](https://www.bleepingcomputer.com/news/security/asana-warns-mcp-ai-feature-exposed-customer-data-to-other-orgs/)**: Tenant isolation flaw exposed ~1,000 customers' data
+
+A common defense is that MCP isolates credentials—the agent talks to a socket, never seeing your API tokens. But this threat model is narrow: an agent that can invoke `mcp.github.delete_repo()` doesn't need your token to cause damage. You're not eliminating trust; you're redirecting it to third-party code that, as the CVEs demonstrate, is often unaudited and vulnerable.
 
 ### The cost-benefit doesn't add up
 
@@ -225,9 +225,11 @@ An enterprise context should have robust infrastructure for authenticating, auth
 
 OpenAPI specs are already self-describing enough for agents—they include operation descriptions, parameter schemas, examples, and enums. LLMs understand them well; GPT Actions are literally OpenAPI specs. The glue needed between an OpenAPI endpoint and an agent (output filtering, context, auth) is the same glue MCP requires. MCP doesn't provide meaningfully better tool descriptions—it just reinvents a schema format that already exists, without the decades of tooling, validation, and battle-testing.
 
-### SDK's / Libraries
-
-Language specific SDK's provide robust options for bridging the annoying differences in the API's of different model providers.
-
 [^1]: Source: Github searches for [@mcp.tool](https://github.com/search?q=%40mcp.tool&type=code) (58.1K results), [@mcp.resource](https://github.com/search?q=%40mcp.resource&type=code) (9.1K), and [@mcp.prompt](https://github.com/search?q=%40mcp.prompt&type=code) (6.1K), searched 2025-12-08.
 [^2]: Support request snippets are pulled from Discord.
+
+# A prediction
+
+MCP's popularity will be relatively short lived. The cost benefit does not add up, and there are readily available alternatives. The introduction of [Claude Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) and [OpenAI's quick adoption](https://simonwillison.net/2025/Dec/12/openai-skills/) signal that even model providers agree.
+
+Claude Skills is an incremental improvement over MCP, but is similarly overengineered. Longstanding tools and techniques for collaboration amongst human devs remain compelling, and these options will chip away at more AI-centric techniques which reinvent the wheel.
