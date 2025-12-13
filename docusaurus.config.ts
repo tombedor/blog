@@ -91,6 +91,11 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          href: '/rss.xml',
+          label: 'RSS',
+          position: 'right',
+        },
       ],
     },
     footer: {
