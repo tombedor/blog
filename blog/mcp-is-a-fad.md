@@ -209,13 +209,13 @@ MCP's status as _the_ open standard for AI and the enterprise adoption greatly b
 
 ### Local scripts with command runner
 
-<!-- TODO: diagram with agents sharing with human -->
-
 For a technical user, letting an agent invoke scripts directly is very difficult to beat. Useful 50-100 line scripts are _extremely_ easy to write with AI coding agents. Care needs to be taken to filter output - raw build scripts can stream verbose logs into agent context, eating up tokens.
+
+![just](/diagrams/mcp/just.png)
 
 Robust security against agent actions going haywire can be achieved via command runners like `just` or `make`. Agents allow you to specify what command prefixes can be invoked without approval - put your agent commands in a `justfile`, and only auto-allow shell commands prefixed with `just`.
 
-This approach also exposes tools to humans, and is a nice approach for improving dev environments for humans and AI agents at the same time (TODO: link to make-it-easy-for-humans post)
+This approach also exposes tools to humans, and is a nice approach for improving dev environments for humans and AI agents at the same time. (TODO: link to make-it-easy-for-humans)
 
 ### 1st Party Tools
 
