@@ -74,24 +74,6 @@ MCP also defines primitives for prompts and resources, but adoption of these is 
 
 Given this, the rest of this post focuses on tool calling—MCP's primary use case in practice.
 
-### Who are the users?
-
-There are a few different possible users who interact with MCP:
-
-![users](/diagrams/mcp/users.png)
-
-- _Technical end users_ want to create tools and share them between different agents they might want to use.
-
-- _Non-technical end users_ want to use different tools while using agents. Note that this user group for MCP is, at present, largely theoretical. Exposing toolsets to MCP involves editing JSON, making it out of reach for non-technical users.
-
-- _Internal app devs_ run production AI applications.
-
-- _Agent devs_ create agents for external users. They wish to enable their end users to swap in whatever toolsets they like.
-
-- _Tool authors_ create toolsets they wish to expose to users. MCP provides a way to easily share their work to users of different agents.
-<!-- feedback: Helpful segmentation; add a one-liner tying this back to the thesis (e.g., most beneficiaries are technical, so the touted “non-technical” audience is still underserved). -->
-
-
 ## Problems
 
 The convenience of MCP comes with a price, stemming from two architectural attributes of an MCP driven application:
@@ -192,6 +174,24 @@ MCP's status as _the_ open standard for AI and the enterprise adoption greatly b
 
 
 ## Alternatives
+
+### Who benefits from MCP?
+
+There are a few different possible users who interact with MCP:
+
+![users](/diagrams/mcp/users.png)
+
+- _Technical end users_ want to create tools and share them between different agents they might want to use.
+
+- _Non-technical end users_ want to use different tools while using agents. Note that this user group for MCP is, at present, largely theoretical. Exposing toolsets to MCP involves editing JSON, making it out of reach for non-technical users.
+
+- _Internal app devs_ run production AI applications.
+
+- _Agent devs_ create agents for external users. They wish to enable their end users to swap in whatever toolsets they like.
+
+- _Tool authors_ create toolsets they wish to expose to users. MCP provides a way to easily share their work to users of different agents.
+
+Notice that the supposed beneficiaries are overwhelmingly technical. The "app store for AI" vision that would serve non-technical users remains unfulfilled.
 
 For each user type, there's a simpler approach that avoids MCP's overhead:
 
