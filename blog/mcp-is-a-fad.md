@@ -142,7 +142,7 @@ The risk isn't theoretical: MCP has already been associated with several serious
 
 A common defense of MCP is that it isolates credentials—the agent talks to a socket, never seeing your API tokens. But this threat model is narrow: an agent that can invoke `mcp.github.delete_repo()` doesn't need your token to cause damage. The same isolation is trivially achieved with a proxy script or scoped OAuth tokens. And in practice, MCP configs frequently contain plaintext credentials anyway. You're not eliminating trust; you're redirecting it to third-party MCP server code—code that, as the CVEs above demonstrate, is often unaudited and vulnerable.
 
-## The convenience gained is minimal
+### The cost-benefit doesn't add up
 
 These problems could be worth the cost, if we were to gain significantly. But comparing tool calling with MCP to tool calling without it, MCP handles remarkably little. MCP is, more or less, handling serializing function call schemas and responses.
 
