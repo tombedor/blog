@@ -6,7 +6,7 @@ draft: true
 
 ## Overview
 
-MCP has taken off as the standardized platform for AI integrations, and it's difficult to justify _not_ supporting it. However, this popularity will be short lived (if it's not already fading).
+MCP has taken off as the standardized platform for AI integrations, and it's difficult to justify _not_ supporting it. However, this popularity will be short lived.
 
 Some of this popularity stems from misconceptions about what MCP uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
 
@@ -55,17 +55,17 @@ This is the "NxM" problem. In theory, users must build N × M connectors. In pra
 
 ### How MCP addresses it
 
-MCP handles exposing and invoking tools via a separate process:
+MCP handles exposing and invoking tools via separate processes:
 
 ![function_calling_mcp](/diagrams/mcp/function_calling_mcp.png)
 
-A JSON configuration controls which MCP servers to start. Each server runs in its own process, handling tool invocations independently. The application still orchestrates the agent loop and presents results to users.
+A JSON configuration controls which MCP servers to start. Each server runs in its own long-lived process, handling tool invocations independently. The application still orchestrates the agent loop and presents results to users.
 
 This abstracts away schema generation and invocation, but at a cost. Tool logic runs in a separate process, making resource management opaque. The application loses control over tool instructions, logging, and error handling. And every tool call crosses a process boundary.
 
 ### Scope: tools dominate
 
-MCP also defines primitives for prompts and resources, but adoption of these is negligible [^1]:
+MCP also defines primitives for prompts and resources, but adoption of these is much smaller than tools[^1]:
 
 ![code_references](/diagrams/mcp/code_references.png)
 
@@ -79,17 +79,19 @@ The convenience of MCP comes with a price, stemming from two architectural attri
 
 Since tools are drawn from arbitrary sources, they are not aware of what other tools are available to the agent. Therefore their instructions can't take logic from other toolsets into account in their own instructions.
 
-The second stems from different toolsets having their own runtimes. This introduces a variety of issues I'll discuss below.
+The second issue stems from different toolsets having their own runtimes. This introduces a variety of problems I'll discuss below.
 
 ### Incoherent toolbox
 
-[Agents tend to be less effective at tool use as the number of tools grow](https://www.microsoft.com/en-us/research/video/tool-space-interference-an-emerging-problem-for-llm-agents/). With a well organized, coherent toolset, agents do well. With a larger, disorganized toolset, they struggle. [OpenAI recommends keeping tools well below 20](https://platform.openai.com/docs/guides/function-calling), yet many MCP servers exceed this threshold. For example, consider a workflow in which an agent should send a notification after doing work:
+[Agents tend to be less effective at tool use as the number of tools grow](https://www.microsoft.com/en-us/research/video/tool-space-interference-an-emerging-problem-for-llm-agents/). With a well organized, coherent toolset, agents do well. With a larger, disorganized toolset, they struggle. [OpenAI recommends keeping tools well below 20](https://platform.openai.com/docs/guides/function-calling), yet many MCP servers exceed this threshold.
+
+Why does this happen? Consider a workflow in which an agent should send a notification after doing work:
 
 ![confusion](/diagrams/mcp/confusion.png)
 
-Tool selection depends not just on the job at hand, but also on what else is in the box. Pliers can pull a nail, but if a hammer is available it's the better choice. When tools ship in isolation, their instructions can't say "use me only when you don't have a hammer," so agents get conflicting guidance.
+A tool's fit for a task depends not just on the job at hand, but also on what else is in the toolbox. Pliers can pull a nail, but if a hammer is available it's probably the better choice. When tools ship in isolation, their instructions can't say "use me only when you don't have a hammer," so agents don't get cohensive guidance.
 
-If the toolset is controlled by the same authors as the application, they can add prompting to the toolsets to disambiguate when to use which tool. If not, the problem must be solved by _more prompting_.
+If the toolset is controlled by the same authors as the application, they can add prompting to the toolsets to disambiguate when to use which tool. If not, the problem must be solved by system prompts or user guidance.
 
 Looking through #mcp channels of open source coding agents, you'll invariably find users who struggle to get the agent to use the tools in the way they want[^2]:
 
@@ -119,16 +121,19 @@ Even if toolsets are in one given runtime, MCP potentially spins up many instanc
 
 ### Security
 
-MCP pushes users to install servers from npm, pip, or GitHub, inheriting the usual supply-chain risk but without even the minimal guardrails those ecosystems provide. There's no central publisher or signing; anyone can ship a daemon that runs on your machine and MCP offers no provenance check.
+MCP pushes users to install servers from npm, pip, or GitHub. This inherits the usual supply-chain risk, but without even the minimal guardrails those ecosystems provide. There's no central publisher or signing; anyone can ship a daemon that runs on your machine and MCP offers no provenance check.
 
 MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), leaving security decisions to individual server authors. The result: [one scan found 492 MCP servers](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) running without any client authentication or traffic encryption. Even Anthropic's own Filesystem MCP Server had a sandbox escape via directory traversal ([CVE-2025-53110](https://strobes.co/blog/mcp-model-context-protocol-and-its-critical-vulnerabilities/)).
 
-Unlike a human carefully clicking through an API, agents can be manipulated via prompt injection to call tools in unintended ways. The [Supabase MCP leak](https://www.generalanalysis.com/blog/supabase-mcp-blog) demonstrated this "lethal trifecta": prompt injection → tool call → data exfiltration, extracting entire SQL databases including OAuth tokens. Again, this risk isn't unique to MCP. But the best mitigations are existing security infrastructure: scoped OAuth tokens, service identities with minimal permissions, and audit logging. MCP sidesteps this infrastructure rather than building on it.
-
+(TODO: convert to a table)
 - **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** (CVSS 9.6): RCE in mcp-remote; 437,000+ downloads
 - **[CVE-2025-49596](https://thehackernews.com/2025/07/critical-vulnerability-in-anthropics.html)** (CVSS 9.4): RCE in Anthropic's MCP Inspector
 - **[CVE-2025-53967](https://www.imperva.com/blog/another-critical-rce-discovered-in-a-popular-mcp-server/)**: RCE in Figma MCP Server; 600,000+ downloads
 - **[Asana data exposure](https://www.bleepingcomputer.com/news/security/asana-warns-mcp-ai-feature-exposed-customer-data-to-other-orgs/)**: Tenant isolation flaw exposed ~1,000 customers' data
+
+
+Unlike a human carefully clicking through an API, agents can be manipulated via prompt injection to call tools in unintended ways. The [Supabase MCP leak](https://www.generalanalysis.com/blog/supabase-mcp-blog) demonstrated this "lethal trifecta": prompt injection → tool call → data exfiltration, extracting entire SQL databases including OAuth tokens. Again, this risk isn't unique to MCP. But the best mitigations are existing security infrastructure: scoped OAuth tokens, service identities with minimal permissions, and audit logging. MCP sidesteps this infrastructure rather than building on it.
+
 
 A common defense is that MCP isolates credentials—the agent talks to a socket, never seeing your API tokens. But this threat model is narrow: an agent that can invoke `mcp.github.delete_repo()` doesn't need your token to cause damage. You're not eliminating trust; you're redirecting it to third-party code that, as the CVEs demonstrate, is often unaudited and vulnerable.
 
