@@ -6,9 +6,11 @@ draft: true
 
 ## Overview
 
-MCP has taken off as the standardized platform for AI integrations, and it's difficult to justify _not_ supporting it. However, this popularity will be short lived.
+MCP has taken off as the standardized platform for AI integrations, and it's difficult to justify _not_ supporting it. However, this popularity will be short-lived.
 
 Some of this popularity stems from misconceptions about what MCP uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
+
+<!-- truncate -->
 
 ## What is MCP?
 
@@ -73,23 +75,23 @@ Given this, the rest of this post focuses on tool calling, which is MCP's primar
 
 ## Problems
 
-The convenience of MCP comes with a price, stemming from two architectural attributes of an MCP driven application:
+The convenience of MCP comes with a price, stemming from two architectural attributes of an MCP-driven application:
 
 ![issues](/diagrams/mcp/issues.png)
 
-Since tools are drawn from arbitrary sources, they are not aware of what other tools are available to the agent. Therefore their instructions can't take logic from other toolsets into account in their own instructions.
+Since tools are drawn from arbitrary sources, they are not aware of what other tools are available to the agent. Their instructions can't account for the rest of the toolbox.
 
 The second issue stems from different toolsets having their own runtimes. This introduces a variety of problems I'll discuss below.
 
 ### Incoherent toolbox
 
-[Agents tend to be less effective at tool use as the number of tools grow](https://www.microsoft.com/en-us/research/video/tool-space-interference-an-emerging-problem-for-llm-agents/). With a well organized, coherent toolset, agents do well. With a larger, disorganized toolset, they struggle. [OpenAI recommends keeping tools well below 20](https://platform.openai.com/docs/guides/function-calling), yet many MCP servers exceed this threshold.
+[Agents tend to be less effective at tool use as the number of tools grows](https://www.microsoft.com/en-us/research/video/tool-space-interference-an-emerging-problem-for-llm-agents/). With a well-organized, coherent toolset, agents do well. With a larger, disorganized toolset, they struggle. [OpenAI recommends keeping tools well below 20](https://platform.openai.com/docs/guides/function-calling), yet many MCP servers exceed this threshold.
 
 Why does this happen? Consider a workflow in which an agent should send a notification after doing work:
 
 ![confusion](/diagrams/mcp/confusion.png)
 
-A tool's fit for a task depends not just on the job at hand, but also on what else is in the toolbox. Pliers can pull a nail, but if a hammer is available it's probably the better choice. When tools ship in isolation, their instructions can't say "use me only when you don't have a hammer," so agents don't get cohensive guidance.
+A tool's fit for a task depends not just on the job at hand, but also on what else is in the toolbox. Pliers can pull a nail, but if a hammer is available it's probably the better choice. When tools ship in isolation, their instructions can't say "use me only when you don't have a hammer," so agents don't get cohesive guidance.
 
 If the toolset is controlled by the same authors as the application, they can add prompting to the toolsets to disambiguate when to use which tool. If not, the problem must be solved by system prompts or user guidance.
 
@@ -126,6 +128,7 @@ MCP pushes users to install servers from npm, pip, or GitHub. This inherits the 
 MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), leaving security decisions to individual server authors. The result: [one scan found 492 MCP servers](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) running without any client authentication or traffic encryption. Even Anthropic's own Filesystem MCP Server had a sandbox escape via directory traversal ([CVE-2025-53110](https://strobes.co/blog/mcp-model-context-protocol-and-its-critical-vulnerabilities/)).
 
 #### MCP-related security incidents
+
 | Issue | CVSS / Impact |
 | --- | --- |
 | **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** | 9.6 (RCE in mcp-remote; 437,000+ downloads) |
@@ -145,7 +148,7 @@ These problems could be worth the cost, if we were to gain significantly. But co
 
 The tools developers are saving themselves from having to write are, overwhelmingly, [relatively thin wrappers around API clients](https://mcp.alphavantage.co/?utm_source=mcp.so&utm_medium=referral&utm_campaign=202508&utm_id=000001&utm_term=web_project&utm_content=v2), or [utility scripts](https://mcp.so/server/time/modelcontextprotocol). In the former case, users must still obtain API keys, billing accounts, and so on.
 
-This code _was_ a hassle to write, prior to the advent of coding agents. But these small utility scripts are the precise thing that coding agents excel most at! A technical user of MCP tools will be hard pressed to find a tool an agent could not one-shot in the programming language they are most comfortable in.
+This code _was_ a hassle to write, prior to the advent of coding agents. But these small utility scripts are the precise thing that coding agents excel most at! A technical user of MCP tools will be hard-pressed to find a tool an agent could not one-shot in the programming language they are most comfortable in.
 
 ## Why it took off
 
@@ -225,6 +228,6 @@ OpenAPI specs are already self-describing enough for agents—they include opera
 
 ## A prediction
 
-MCP's popularity will be relatively short lived. The cost benefit does not add up, and there are readily available alternatives. The introduction of [Claude Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) and [OpenAI's quick adoption](https://simonwillison.net/2025/Dec/12/openai-skills/) signal that even model providers agree.
+MCP's popularity will be relatively short-lived. The cost benefit does not add up, and there are readily available alternatives. The introduction of [Claude Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) and [OpenAI's quick adoption](https://simonwillison.net/2025/Dec/12/openai-skills/) signal that even model providers agree.
 
 Claude Skills is an incremental improvement over MCP, but is similarly overengineered. Longstanding tools and techniques for collaboration amongst human devs remain compelling, and these options will chip away at more AI-centric techniques which reinvent the wheel.
