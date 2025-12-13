@@ -175,6 +175,7 @@ The risk isn't theoretical: MCP has already been associated with several serious
 - **[Supabase MCP database leak](https://www.generalanalysis.com/blog/supabase-mcp-blog)**: Prompt injection attack could exfiltrate entire SQL databases including OAuth tokens via the "lethal trifecta" pattern.
 - **[postmark-mcp supply chain attack](https://wiiwrite.medium.com/model-context-protocol-security-october25-update-69b7ef8b537d)** (September 2025): First confirmed malicious MCP server; masqueraded as legitimate package and BCC'd all emails to attacker; 1,643 downloads before detection.
 
+A common defense of MCP is that it isolates credentials—the agent talks to a socket, never seeing your API tokens. But this threat model is narrow: an agent that can invoke `mcp.github.delete_repo()` doesn't need your token to cause damage. The same isolation is trivially achieved with a proxy script or scoped OAuth tokens. And in practice, MCP configs frequently contain plaintext credentials anyway. You're not eliminating trust; you're redirecting it to third-party MCP server code—code that, as the CVEs above demonstrate, is often unaudited and vulnerable.
 
 ## The convenience gained is minimal
 
@@ -217,6 +218,8 @@ For a technical user, letting an agent invoke scripts directly is very difficult
 
 ![just](/diagrams/mcp/just.png)
 
+<!-- should add some content on what just is, not everyone will be familiar -->
+
 Robust security against agent actions going haywire can be achieved via command runners like `just` or `make`. Agents allow you to specify what command prefixes can be invoked without approval - put your agent commands in a `justfile`, and only auto-allow shell commands prefixed with `just`.
 
 This approach also exposes tools to humans, and is a nice approach for improving dev environments for humans and AI agents at the same time. (TODO: link to make-it-easy-for-humans)
@@ -229,13 +232,9 @@ In a first party context, any code that devs wish to reuse can be exposed as lib
 
 An enterprise context should have robust infrastructure for authenticating, authorizing, provisioning service identities, and tracing call chains for service to service calls. That some of these calls are now _AI_ service to service calls does not warrant a rebuilt security posture.
 
-### Generic API Wrappers: OpenAPI / REST
+### OpenAPI / REST
 
-Generic API wrappers like OpenAPI and REST offer all of the self-describing capabilities offered by MCP, with decades of battle testing.
-
-The straw man against this approach is that the verboisty of e.g. OpenAPI spec is too much for an LLM, or that an LLM cannot effectively navigate the full spectrum of an OpenAPI API. But that presumes that _all available endpoints_ are exposed to the LLM, which is not necessary.
-
-Similar to scripts, some glue is necessary between a raw API and an agent, to manage output verbosity and add context. But tools need descriptions and ideas for how they should be used in relation with each other.
+OpenAPI specs are already self-describing enough for agents—they include operation descriptions, parameter schemas, examples, and enums. LLMs understand them well; GPT Actions are literally OpenAPI specs. The glue needed between an OpenAPI endpoint and an agent (output filtering, context, auth) is the same glue MCP requires. MCP doesn't provide meaningfully better tool descriptions—it just reinvents a schema format that already exists, without the decades of tooling, validation, and battle-testing.
 
 ### SDK's / Libraries
 
