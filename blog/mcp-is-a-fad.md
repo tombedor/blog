@@ -165,7 +165,13 @@ Agent executing code is a scary proposition. MCP makes this worse, by potentiall
 
 The risk isn't theoretical: MCP has already been associated with several serious breaches:
 
-TODO: List of incidents, with links
+- **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** (CVSS 9.6): Critical RCE in mcp-remote allowed arbitrary command execution when connecting to untrusted servers; 437,000+ downloads affected.
+- **[CVE-2025-49596](https://thehackernews.com/2025/07/critical-vulnerability-in-anthropics.html)** (CVSS 9.4): RCE in Anthropic's MCP Inspector via browser-based CSRF attack chain.
+- **[CVE-2025-53967](https://www.imperva.com/blog/another-critical-rce-discovered-in-a-popular-mcp-server/)**: Critical RCE in Framelink Figma MCP Server; 600,000+ downloads, 10,000+ GitHub stars.
+- **[CVE-2025-53110](https://strobes.co/blog/mcp-model-context-protocol-and-its-critical-vulnerabilities/)** (CVSS 7.3): Sandbox escape in Anthropic's Filesystem MCP Server via directory traversal.
+- **[Asana data exposure](https://www.bleepingcomputer.com/news/security/asana-warns-mcp-ai-feature-exposed-customer-data-to-other-orgs/)** (June 2025): Logic flaw in tenant isolation exposed ~1,000 customers' project data across organizations for over a month.
+- **[Supabase MCP database leak](https://www.generalanalysis.com/blog/supabase-mcp-blog)**: Prompt injection attack could exfiltrate entire SQL databases including OAuth tokens via the "lethal trifecta" pattern.
+- **[postmark-mcp supply chain attack](https://wiiwrite.medium.com/model-context-protocol-security-october25-update-69b7ef8b537d)** (September 2025): First confirmed malicious MCP server; masqueraded as legitimate package and BCC'd all emails to attacker; 1,643 downloads before detection.
 
 <!-- RESEARCH NOTES: Process Orchestration
 
