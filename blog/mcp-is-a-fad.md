@@ -1,7 +1,6 @@
 ---
 title: "MCP is a fad"
 date: 2025-12-12
-draft: true
 ---
 
 ## Overview
