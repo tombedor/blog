@@ -208,7 +208,7 @@ For a technical user, letting an agent invoke scripts directly is very difficult
 
 Robust security against agent actions going haywire can be achieved via command runners like [just](https://github.com/casey/just) or [make](https://en.wikipedia.org/wiki/Make_(software)). These tools provide everything that MCP does - command specifications, descriptions, arguments. Agents allow you to specify what command prefixes can be invoked without approval - put your agent commands in a `justfile`, and only auto-allow shell commands prefixed with `just`.
 
-This approach also exposes tools to humans, and is a nice approach for improving dev environments for humans and AI agents at the same time. (See [Make It Easy for Humans First, Then AI](/2025/11/26/make-it-easy-for-humans/) for more on this).
+This approach also exposes tools to humans, and is a nice approach for improving dev environments for humans and AI agents at the same time. (See [Make It Easy for Humans First, Then AI](./make-it-easy-for-humans.md) for more on this).
 
 ### 1st party tools
 
