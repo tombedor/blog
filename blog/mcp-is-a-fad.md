@@ -6,13 +6,13 @@ draft: true
 
 ## Overview
 
-MCP has taken off as the standardized platform for AI integrations—it's difficult to justify _not_ supporting it. However, this popularity will be short lived (if it's not already fading).
+MCP has taken off as the standardized platform for AI integrations, and it's difficult to justify _not_ supporting it. However, this popularity will be short lived (if it's not already fading).
 
 Some of this popularity stems from misconceptions about what MCP uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
 
 ## What is MCP?
 
-MCP claims to solve the "NxM problem"—with N agents and M toolsets, users would otherwise need many bespoke connectors.
+MCP claims to solve the "NxM problem": with N agents and M toolsets, users would otherwise need many bespoke connectors.
 
 ### The NxM problem
 
@@ -20,7 +20,7 @@ A common misconception is that MCP is _required_ for function calling. It's not.
 
 ![function_calling_no_mcp](/diagrams/mcp/function_calling_no_mcp.png)
 
-The application is responsible for providing tool schemas, parsing parameters, and executing calls. The problem arises when users want to reuse toolsets across different agents—each has slightly different APIs.
+The application is responsible for providing tool schemas, parsing parameters, and executing calls. The problem arises when users want to reuse toolsets across different agents, since each has slightly different APIs.
 
 For example, tools are exposed to [Gemini's API](https://ai.google.dev/gemini-api/docs/function-calling?example=meeting#rest_2) via `functionDeclarations` nested inside a `tools` array:
 
@@ -51,7 +51,7 @@ curl -X POST https://api.openai.com/v1/responses \
 ...
 ```
 
-This is the "NxM" problem—in theory, users must build N × M connectors. In practice, the differences are minor (same semantics, slightly different JSON shape), and frameworks like [LangChain](https://python.langchain.com/docs/how_to/function_calling/), [LiteLLM](https://docs.litellm.ai/docs/completion/function_call), and [SmolAgents](https://huggingface.co/learn/cookbook/en/agents) already abstract them away. Crucially, these options _execute tool calls in the same runtime as the agent_.
+This is the "NxM" problem. In theory, users must build N × M connectors. In practice, the differences are minor (same semantics, slightly different JSON shape), and frameworks like [LangChain](https://python.langchain.com/docs/how_to/function_calling/), [LiteLLM](https://docs.litellm.ai/docs/completion/function_call), and [SmolAgents](https://huggingface.co/learn/cookbook/en/agents) already abstract them away. Crucially, these options _execute tool calls in the same runtime as the agent_.
 
 ### How MCP addresses it
 
@@ -61,7 +61,7 @@ MCP handles exposing and invoking tools via a separate process:
 
 A JSON configuration controls which MCP servers to start. Each server runs in its own process, handling tool invocations independently. The application still orchestrates the agent loop and presents results to users.
 
-This abstracts away schema generation and invocation—but at a cost. Tool logic runs in a separate process, making resource management opaque. The application loses control over tool instructions, logging, and error handling. And every tool call crosses a process boundary.
+This abstracts away schema generation and invocation, but at a cost. Tool logic runs in a separate process, making resource management opaque. The application loses control over tool instructions, logging, and error handling. And every tool call crosses a process boundary.
 
 ### Scope: tools dominate
 
@@ -69,7 +69,7 @@ MCP also defines primitives for prompts and resources, but adoption of these is 
 
 ![code_references](/diagrams/mcp/code_references.png)
 
-Given this, the rest of this post focuses on tool calling—MCP's primary use case in practice.
+Given this, the rest of this post focuses on tool calling, which is MCP's primary use case in practice.
 
 ## Problems
 
@@ -83,7 +83,7 @@ The second stems from different toolsets having their own runtimes. This introdu
 
 ### Incoherent toolbox
 
-[Agents tend to be less effective at tool use as the number of tools grow](https://www.microsoft.com/en-us/research/video/tool-space-interference-an-emerging-problem-for-llm-agents/). With a well organized, coherent toolset, agents do well. With a larger, disorganized toolset, they struggle—[OpenAI recommends keeping tools well below 20](https://platform.openai.com/docs/guides/function-calling), yet many MCP servers exceed this threshold. For example, consider a workflow in which an agent should send a notification after doing work:
+[Agents tend to be less effective at tool use as the number of tools grow](https://www.microsoft.com/en-us/research/video/tool-space-interference-an-emerging-problem-for-llm-agents/). With a well organized, coherent toolset, agents do well. With a larger, disorganized toolset, they struggle. [OpenAI recommends keeping tools well below 20](https://platform.openai.com/docs/guides/function-calling), yet many MCP servers exceed this threshold. For example, consider a workflow in which an agent should send a notification after doing work:
 
 ![confusion](/diagrams/mcp/confusion.png)
 
@@ -115,19 +115,17 @@ Even if the relevant package is there, the MCP server might not start it success
 
 Python or Node developers might be comfortable debugging environment issues, (although MCP's subprocess orchestration makes this more difficult), but are likely less comfortable debugging Node issues _and_ Python _and_ other runtimes. MCP seems to assert that I as the user should not really care which of these are used, or how many.
 
-Even if toolsets are in one given runtime, MCP potentially spins up many instances of it, obviating efficiencies from caching, connection pooling, and shared in-memory state. MCP's HTTP transport mode doesn't help—it's just another HTTP API, but with MCP's protocol overhead instead of battle-tested REST/OpenAPI patterns.
+Even if toolsets are in one given runtime, MCP potentially spins up many instances of it, obviating efficiencies from caching, connection pooling, and shared in-memory state. MCP's HTTP transport mode doesn't help; it's just another HTTP API, but with MCP's protocol overhead instead of battle-tested REST/OpenAPI patterns.
 
 ### Security
 
 MCP's architecture multiplies attack surface in three ways:
 
-**Third-party code at scale.** MCP encourages installing servers from npm, pip, or GitHub—often written quickly by authors chasing the hype. Unlike libraries you import and can audit, MCP servers are opaque processes. The postmark-mcp supply chain attack showed this risk is actively exploited: a malicious server masquerading as a legitimate package silently BCC'd all emails to the attacker for weeks before detection.
+MCP encourages installing servers from npm, pip, or GitHub, often written quickly by authors chasing the hype. Unlike libraries you import and can audit, MCP servers are opaque processes. The postmark-mcp supply chain attack showed this risk is actively exploited: a malicious server masquerading as a legitimate package silently BCC'd all emails to the attacker for weeks before detection.
 
-**Protocol gaps by design.** MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), leaving security decisions to individual server authors. The result: [one scan found 492 MCP servers](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) running without any client authentication or traffic encryption. Even Anthropic's own Filesystem MCP Server had a sandbox escape via directory traversal ([CVE-2025-53110](https://strobes.co/blog/mcp-model-context-protocol-and-its-critical-vulnerabilities/)).
+MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), leaving security decisions to individual server authors. The result: [one scan found 492 MCP servers](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) running without any client authentication or traffic encryption. Even Anthropic's own Filesystem MCP Server had a sandbox escape via directory traversal ([CVE-2025-53110](https://strobes.co/blog/mcp-model-context-protocol-and-its-critical-vulnerabilities/)).
 
-**Agent-driven execution amplifies risk.** Unlike a human carefully clicking through an API, agents can be manipulated via prompt injection to call tools in unintended ways. The [Supabase MCP leak](https://www.generalanalysis.com/blog/supabase-mcp-blog) demonstrated this "lethal trifecta": prompt injection → tool call → data exfiltration, extracting entire SQL databases including OAuth tokens. This risk isn't unique to MCP—prompt injection affects all agent systems. But the best mitigations are existing security infrastructure: scoped OAuth tokens, service identities with minimal permissions, and audit logging. MCP sidesteps this infrastructure rather than building on it.
-
-The incident list speaks for itself:
+Unlike a human carefully clicking through an API, agents can be manipulated via prompt injection to call tools in unintended ways. The [Supabase MCP leak](https://www.generalanalysis.com/blog/supabase-mcp-blog) demonstrated this "lethal trifecta": prompt injection → tool call → data exfiltration, extracting entire SQL databases including OAuth tokens. This risk isn't unique to MCP—prompt injection affects all agent systems. But the best mitigations are existing security infrastructure: scoped OAuth tokens, service identities with minimal permissions, and audit logging. MCP sidesteps this infrastructure rather than building on it.
 
 - **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** (CVSS 9.6): RCE in mcp-remote; 437,000+ downloads
 - **[CVE-2025-49596](https://thehackernews.com/2025/07/critical-vulnerability-in-anthropics.html)** (CVSS 9.4): RCE in Anthropic's MCP Inspector
@@ -207,17 +205,17 @@ Robust security against agent actions going haywire can be achieved via command 
 
 This approach also exposes tools to humans, and is a nice approach for improving dev environments for humans and AI agents at the same time. (See [Make It Easy for Humans First, Then AI](/2025/11/26/make-it-easy-for-humans/) for more on this).
 
-### 1st Party Tools
+### 1st party tools
 
 For a self contained application, there is little reason to separate tool codebases from the codebase for the rest of the application. Tools can be dynamically exposed to the agent based on application context.
 
-In a first party context, any code that devs wish to reuse can be exposed as libraries, just like any other code they wish to share. An AI tool is really nothing more than a function—the fact that it's invoked by AI does not warrant special handling.
+In a first party context, any code that devs wish to reuse can be exposed as libraries, just like any other code they wish to share. An AI tool is really nothing more than a function, and the fact that it's invoked by AI does not warrant special handling.
 
 An enterprise context should have robust infrastructure for authenticating, authorizing, provisioning service identities, and tracing call chains for service to service calls. That some of these calls are now _AI_ service to service calls does not warrant a rebuilt security posture.
 
 ### OpenAPI / REST
 
-OpenAPI specs are already self-describing enough for agents—they include operation descriptions, parameter schemas, examples, and enums. LLMs understand them well; GPT Actions are literally OpenAPI specs. The glue needed between an OpenAPI endpoint and an agent (output filtering, context, auth) is the same glue MCP requires. MCP doesn't provide meaningfully better tool descriptions—it just reinvents a schema format that already exists, without the decades of tooling, validation, and battle-testing.
+OpenAPI specs are already self-describing enough for agents—they include operation descriptions, parameter schemas, examples, and enums. LLMs understand them well; GPT Actions are literally OpenAPI specs. The glue needed between an OpenAPI endpoint and an agent (output filtering, context, auth) is the same glue MCP requires. MCP doesn't provide meaningfully better tool descriptions; it just reinvents a schema format that already exists, without the decades of tooling, validation, and battle-testing.
 
 [^1]: Source: Github searches for [@mcp.tool](https://github.com/search?q=%40mcp.tool&type=code) (58.1K results), [@mcp.resource](https://github.com/search?q=%40mcp.resource&type=code) (9.1K), and [@mcp.prompt](https://github.com/search?q=%40mcp.prompt&type=code) (6.1K), searched 2025-12-08.
 [^2]: Support request snippets are pulled from Discord.
