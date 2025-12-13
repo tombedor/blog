@@ -64,7 +64,7 @@ In [OpenAI's API](https://platform.openai.com/docs/guides/text?lang=curl), tool 
 ```bash
 curl -X POST https://api.openai.com/v1/responses \
   -d '{
-    "model": "gpt-5",
+    "model": "gpt-4o",
     "input": [
       {"role": "user", "content": "What is the weather like in Paris today?"}
     ],
@@ -123,7 +123,7 @@ The second stems from different toolsets having their own runtimes. This introdu
 
 ### Incoherent toolbox
 
-Agents tend to be less effective at tool use as the number of tools grow. With well organized, coherent toolset, agents do well. With a larger, disorganized toolset, they struggle. For example, consider a workflow in which an agent should send a notification after doing work:
+[Agents tend to be less effective at tool use as the number of tools grow](https://www.microsoft.com/en-us/research/video/tool-space-interference-an-emerging-problem-for-llm-agents/). With a well organized, coherent toolset, agents do well. With a larger, disorganized toolset, they struggle—[OpenAI recommends keeping tools well below 20](https://platform.openai.com/docs/guides/function-calling), yet many MCP servers exceed this threshold. For example, consider a workflow in which an agent should send a notification after doing work:
 
 ![confusion](/diagrams/mcp/confusion.png)
 
@@ -161,7 +161,7 @@ Even if all of my MCP runtimes are Python, MCP potentially spins up many instanc
 
 ### Security
 
-Agent executing code is a scary proposition. MCP makes this worse, by potentially pulling in arbitrary code, driven by a manipulable agent.
+Agent executing code is a scary proposition. MCP makes this worse, by potentially pulling in arbitrary code, driven by a manipulable agent. MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), which has left [hundreds of servers completely exposed](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) online—one scan found 492 MCP servers running without any client authentication or traffic encryption.
 
 The risk isn't theoretical: MCP has already been associated with several serious breaches:
 
@@ -172,51 +172,6 @@ The risk isn't theoretical: MCP has already been associated with several serious
 - **[Asana data exposure](https://www.bleepingcomputer.com/news/security/asana-warns-mcp-ai-feature-exposed-customer-data-to-other-orgs/)** (June 2025): Logic flaw in tenant isolation exposed ~1,000 customers' project data across organizations for over a month.
 - **[Supabase MCP database leak](https://www.generalanalysis.com/blog/supabase-mcp-blog)**: Prompt injection attack could exfiltrate entire SQL databases including OAuth tokens via the "lethal trifecta" pattern.
 - **[postmark-mcp supply chain attack](https://wiiwrite.medium.com/model-context-protocol-security-october25-update-69b7ef8b537d)** (September 2025): First confirmed malicious MCP server; masqueraded as legitimate package and BCC'd all emails to attacker; 1,643 downloads before detection.
-
-<!-- RESEARCH NOTES: Process Orchestration
-
-Architecture:
-- Each MCP server runs as a separate process with its own runtime/dependencies/lifecycle
-- Stdio transport: Client launches server as subprocess, communicates via stdin/stdout (newline-delimited JSON-RPC)
-- HTTP transport: Server runs as independent HTTP service, supports multiple clients, uses POST + optional SSE
-- Process lifecycle: Initialize → Operation → Shutdown (SIGTERM → SIGKILL on stdio)
-
-Process Management Issues:
-- Environment isolation: Servers inherit only USER, HOME, PATH; macOS apps don't inherit shell PATH mods (causes nvm/rbenv issues)
-- Working directory may be undefined (like / on macOS) - requires absolute paths everywhere
-- Opaque resource management: Each server has separate runtime, no shared connection pooling/caching
-- Cold start penalties for on-demand servers
-- Silent failures: Claude Desktop doesn't show config validation errors, invalid JSON silently fails
-- Common errors: "BrokenPipeError" from timing issues, "Server transport closed unexpectedly"
-- Debugging complexity: Errors cross process boundaries, stack traces fragmented, logs scattered
-- No automatic retry/health checking - application must monitor all server processes
-
-Security Vulnerabilities (2025):
-- CVE-2025-6514 (CVSS 9.6): Remote Code Execution in mcp-remote
-- CVE-2025-53109/53110 (CVSS 8.4/7.3): Sandbox Escape vulnerabilities
-- CVE-2025-52882 (CVSS 8.8): Authentication Bypass
-- Protocol mandates session IDs in URLs (violates security best practices)
-- No authentication requirement in spec - 492 servers found publicly exposed without auth
-- Real incidents: Supabase cursor agent leaked tokens via SQL injection (mid-2025), Asana customer data breach (June 2025)
-- Attack vectors: Prompt injection, tool poisoning, command injection, plaintext credentials in config files
-
-Resource Inefficiency:
-- Each server maintains separate runtime, dependencies, memory footprint
-- Multiple Python/Node interpreters running simultaneously
-- No shared caching or connection pooling across servers
-- Process startup overhead + IPC serialization/deserialization overhead
-
-Sources:
-- https://modelcontextprotocol.io/docs/learn/architecture
-- https://modelcontextprotocol.io/specification/2025-06-18/basic/transports
-- https://modelcontextprotocol.io/specification/2025-03-26/basic/lifecycle
-- https://modelcontextprotocol.io/legacy/tools/debugging
-- https://noailabs.medium.com/mcp-security-issues-emerging-threats-in-2025-7460a8164030
-- https://equixly.com/blog/2025/03/29/mcp-server-new-security-nightmare/
-- https://www.practical-devsecops.com/mcp-security-vulnerabilities/
-- https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667
-- https://nishtahir.com/notes-on-setting-up-claude-desktop-mcp-servers/
--->
 
 
 ## The convenience gained is minimal
@@ -229,9 +184,9 @@ This code _was_ a hassle to write, prior to the advent of coding agents. But the
 
 ## Why it took off
 
-With these issues, it's fair to wonder why MCP has gained the poopularity it has. It has had lots of support from Anthropic, and no trouble gaining traction with toolset publishers, agent providers, and enterprises. Why? It helps narratives.
+With these issues, it's fair to wonder why MCP has gained the popularity it has. It has had lots of support from Anthropic, and no trouble gaining traction with toolset publishers, agent providers, and enterprises. Why? It helps narratives.
 
-MCP is often described as an "app store". But it's not an app store. It's not even a package manager. It's an overengineered orchestration protocol.
+MCP is often described as an ["app store"](https://medium.com/@t.sankar85/the-mcp-registry-an-app-store-for-ai-tools-4c5b9ab3e657). But it's not an app store. It's not even a package manager. It's an overengineered orchestration protocol.
 
 ### Tool authors: A low overhead marketing channel
 
@@ -243,11 +198,11 @@ Once publishers starting appearing, it became difficult to justify _not_ support
 
 ### Enterprise: AI credibility
 
-Over the last few years, any SF billboard watcher witnessed a rebranding of enterprise tools towards AI. MCP support provided an easy way to make your e.g. project management tool be AI. The branding of MCP as an "open standard" increased pressue to adopt - lack of MCP support could signal a lack of willingness to adopt open standards.
+Over the last few years, any SF billboard watcher witnessed a rebranding of enterprise tools towards AI. MCP support provided an easy way to make your e.g. project management tool be AI. The branding of MCP as an "open standard" increased pressure to adopt - lack of MCP support could signal a lack of willingness to adopt open standards.
 
 ### Anthropic: Open source credibility
 
-MCP's status as _the_ open standard for AI and the adoption of enterprise greatly benefited Anthropic. The big fear of investors is taht enterprise adoption doesn't persist - adoption of Anthropic's open standard helped this.
+MCP's status as _the_ open standard for AI and the adoption of enterprise greatly benefited Anthropic. The big fear of investors is that enterprise adoption doesn't persist - adoption of Anthropic's open standard helped this.
 
 
 ## Alternatives
@@ -272,7 +227,7 @@ Generic API wrappers like OpenAPI and REST offer all of the self-describing capa
 
 Similar to scripts, some glue is necessary between a raw API and an agent, to manage output verbosity and add context. But tools need descriptions and ideas for how they should be used in relation with each other.
 
-Security is already accounted for. Tokens, service identitiess already work very well. OAuth already enables automated actions taken on behalf of a user, service identities, etc.
+Security is already accounted for. Tokens, service identities already work very well. OAuth already enables automated actions taken on behalf of a user, service identities, etc.
 
 ### SDK's / Libraries
 
