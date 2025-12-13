@@ -163,6 +163,8 @@ Even if all of my MCP runtimes are Python, MCP potentially spins up many instanc
 
 Agent executing code is a scary proposition. MCP makes this worse, by potentially pulling in arbitrary code, driven by a manipulable agent. MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), which has left [hundreds of servers completely exposed](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) online—one scan found 492 MCP servers running without any client authentication or traffic encryption.
 
+
+<!-- is this just a list of incidents? is it supporting my point at all? -->
 The risk isn't theoretical: MCP has already been associated with several serious breaches:
 
 - **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** (CVSS 9.6): Critical RCE in mcp-remote allowed arbitrary command execution when connecting to untrusted servers; 437,000+ downloads affected.
@@ -207,6 +209,8 @@ MCP's status as _the_ open standard for AI and the enterprise adoption greatly b
 
 ## Alternatives
 
+<!-- table with users mentioned earlier, with better alternatives? -->
+
 ### Local scripts with command runner
 
 For a technical user, letting an agent invoke scripts directly is very difficult to beat. Useful 50-100 line scripts are _extremely_ easy to write with AI coding agents. Care needs to be taken to filter output - raw build scripts can stream verbose logs into agent context, eating up tokens.
@@ -221,13 +225,17 @@ This approach also exposes tools to humans, and is a nice approach for improving
 
 For a self contained application, there is little reason to separate tool codebases from the codebase for the rest of the application. Tools can be dynamically exposed to the agent based on application context.
 
+In a first party context, any code that devs wish to reuse can be exposed as libraries, just like any other code they wish to share. An AI tool is really nothing more than a function that they are being invoked by AI does not warrant special handling.
+
+An enterprise context should have robust infrastructure for authenticating, authorizing, provisioning service identities, and tracing call chains for service to service calls. That some of these calls are now _AI_ service to service calls does not warrant a rebuilt security posture.
+
 ### Generic API Wrappers: OpenAPI / REST
 
 Generic API wrappers like OpenAPI and REST offer all of the self-describing capabilities offered by MCP, with decades of battle testing.
 
-Similar to scripts, some glue is necessary between a raw API and an agent, to manage output verbosity and add context. But tools need descriptions and ideas for how they should be used in relation with each other.
+The straw man against this approach is that the verboisty of e.g. OpenAPI spec is too much for an LLM, or that an LLM cannot effectively navigate the full spectrum of an OpenAPI API. But that presumes that _all available endpoints_ are exposed to the LLM, which is not necessary.
 
-Security is already accounted for. Tokens, service identities already work very well. OAuth already enables automated actions taken on behalf of a user, service identities, etc.
+Similar to scripts, some glue is necessary between a raw API and an agent, to manage output verbosity and add context. But tools need descriptions and ideas for how they should be used in relation with each other.
 
 ### SDK's / Libraries
 
