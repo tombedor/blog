@@ -109,7 +109,7 @@ Users have these issues, if they are able to get the servers running at all: in 
 
 ![connection_problems](/diagrams/mcp/connection_problem.png)
 
-MCP offers no way for servers to declare their runtime/dependency needs. Some authors work around it by baking installation into the launch command (e.g., uv run some_tool mcp), which only succeeds if the user already has the right tooling installed.
+MCP offers no way for servers to declare their runtime/dependency needs. Some authors work around it by baking installation into the launch command (e.g., `uv run some_tool mcp`), which only succeeds if the user already has the right tooling installed.
 
 Even if the relevant package is there, the MCP server might not start it successfully. MCP servers only inherit [a subset of parent ENV variables](https://modelcontextprotocol.io/legacy/tools/debugging#environment-variables) (`USER`, `HOME`, and `PATH`). This is particularly problematic for `nvm` or users leveraging virtual environments.
 
@@ -146,7 +146,7 @@ With these issues, it's fair to wonder why MCP has gained the popularity it has.
 
 ### Tool authors: A low overhead marketing channel
 
-It's quite easy to publish an MCP server. The lack of startup requirements means you don't even need to publish to `npm` or `pip`: you can simply add an annotation, and publish a json blob.
+It's quite easy to publish an MCP server. The lack of startup requirements means you don't even need to publish to `npm` or `pip`: you can drop an `@mcp.server` annotation in your repo and host a small manifest JSON that points to your entry command (e.g., `node server.js`) and lists the tools.
 
 This provides a nice narrative to gain attention to AI projects: A user can, in theory, easily add some MCP tools from a project, gain value, and follow interest in learning more about the project. Support overhead will, in the main, fall to agent maintainers.
 
