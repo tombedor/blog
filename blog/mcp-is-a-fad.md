@@ -155,9 +155,11 @@ Even if the relevant package is there, the MCP server might not start it success
 
 
 
-I'm personally comfortable debugging Python env issues (although MCP's subprocess orchestration makes this more difficult), but much less comfortable debugging Node. MCP seems to assert that I as the user should not really care which runtime I'm using.
+Python or Node developers might be comfortable debugging environment issues, (although MCP's subprocess orchestration makes this more difficult), but are likely less comfortable debugging Node issues _and_ Python _and_ other runtimes. MCP seems to assert that I as the user should not really care which of these are used, or how many.
 
-Even if all of my MCP runtimes are Python, MCP potentially spins up many instances of it, obviating any cache, connection pooling, etc.
+Even if toolsets are in one given runtime, MCP potentially spins up many instances of it, obviating efficiencies from caching, connection pooling, (TODO: third example).
+
+(TODO: Address HTTP runtime of MCP, it is not a significant value add over thin wrappers around API's, reference section below)
 
 ### Security
 
@@ -226,11 +228,9 @@ For a technical user, letting an agent invoke scripts directly is very difficult
 
 ![just](/diagrams/mcp/just.png)
 
-<!-- should add some content on what just is, not everyone will be familiar -->
+Robust security against agent actions going haywire can be achieved via command runners like [just](https://github.com/casey/just) or [make](https://en.wikipedia.org/wiki/Make_(software)). These tools provide everything that MCP does - command specifications, descriptions, arguments. Agents allow you to specify what command prefixes can be invoked without approval - put your agent commands in a `justfile`, and only auto-allow shell commands prefixed with `just`.
 
-Robust security against agent actions going haywire can be achieved via command runners like `just` or `make`. Agents allow you to specify what command prefixes can be invoked without approval - put your agent commands in a `justfile`, and only auto-allow shell commands prefixed with `just`.
-
-This approach also exposes tools to humans, and is a nice approach for improving dev environments for humans and AI agents at the same time. (TODO: link to make-it-easy-for-humans)
+This approach also exposes tools to humans, and is a nice approach for improving dev environments for humans and AI agents at the same time. (See [Make It Easy for Humans First, Then AI](/2025/11/26/make-it-easy-for-humans/) for more on this).
 
 ### 1st Party Tools
 
