@@ -15,59 +15,38 @@ There are misconceptions about what MCP actually accomplishes, aspirations that 
 
 ## What is MCP?
 
-MCP is meant to solve the "NxM problem" - with many toolsets and many agents, there's a potential for lots of bespoke connector implementations to arise:
+MCP claims to solve the "NxM problem"—with N agents and M toolsets, users would otherwise need many bespoke connectors.
 
-MCP is not _just_ about tool calls - it also has primitives for prompt libraries and _resources_. But adoption of these other primitives is much lower than tools [^1]:
+### The NxM problem
 
-![code_references](/diagrams/mcp/code_references.png)
-
-Given the disproportionate focus of users on tool calling, it's worth digging deeper into what tool calling looks like with or without MCP.
-<!-- feedback: Good framing; add one sentence that explicitly names the three primitives (tools, resources, prompts) and says you’ll focus on tools because adoption skews there, so readers know why the rest of the piece zooms in. -->
-
-
-### Tool calling without MCP
-A common misconception is that MCP is _required_ for function calling. With tool calling models, a list of available tools is provided to the LLM with the chat completion request. If the LLM wants to call a tool, it returns JSON formatted tool parameters, alongside response intended to be user visible:
+A common misconception is that MCP is _required_ for function calling. It's not. With tool-calling models, a list of available tools is provided to the LLM with each request. If the LLM wants to call a tool, it returns JSON-formatted parameters:
 
 ![function_calling_no_mcp](/diagrams/mcp/function_calling_no_mcp.png)
 
-Actually providing the list of available tools and their schemas, parsing out tool call parameters, and executing tool calls are left to the application.
+The application is responsible for providing tool schemas, parsing parameters, and executing calls. The problem arises when users want to reuse toolsets across different agents—each has slightly different APIs.
 
-#### The NxM problem
-
-A user who wishes to reuse a toolset with different agents has an annoying problem: configuring tool access is slightly different across different agents.
-
-For example, tools are exposed to [Gemini's API](https://ai.google.dev/gemini-api/docs/function-calling?example=meeting#rest_2) via a `functionDeclarations` parameter with a `tool` parameter:
-
+For example, tools are exposed to [Gemini's API](https://ai.google.dev/gemini-api/docs/function-calling?example=meeting#rest_2) via `functionDeclarations` nested inside a `tools` array:
 
 ```bash
 curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent" \
   -d '{
-    "contents": [
-      {
-        "role": "user",
-        "parts": [
-          {
-            "text": "Schedule a meeting with Bob and Alice for 03/27/2025 at 10:00 AM about the Q3 planning."
-          }
-        ]
-      }
-    ],
+    "contents": [...],
     "tools": [
       {
         "functionDeclarations": [
           {
+            "name": "set_meeting",
+            "description": "...",
 ...
 ```
 
-In [OpenAI's API](https://platform.openai.com/docs/guides/text?lang=curl), tool schemas are provided via a `tools` parameter:
+In [OpenAI's API](https://platform.openai.com/docs/guides/text?lang=curl), tool schemas use a flat `tools` array with `type: "function"`:
 
 ```bash
 curl -X POST https://api.openai.com/v1/responses \
   -d '{
     "model": "gpt-4o",
-    "input": [
-      {"role": "user", "content": "What is the weather like in Paris today?"}
-    ],
+    "input": [...],
     "tools": [
       {
         "type": "function",
@@ -75,23 +54,25 @@ curl -X POST https://api.openai.com/v1/responses \
 ...
 ```
 
-This is the "NxM" problem - where in theory, the number of connectors a user must build is N (the number of agents) x M (the number of toolsets).
+This is the "NxM" problem—in theory, users must build N × M connectors. In practice, the differences are minor (same semantics, slightly different JSON shape), and frameworks like [LangChain](https://python.langchain.com/docs/how_to/function_calling/), [LiteLLM](https://docs.litellm.ai/docs/completion/function_call), and [SmolAgents](https://huggingface.co/learn/cookbook/en/agents) already abstract them away. Crucially, these options _execute tool calls in the same runtime as the agent_.
 
-The underlying logic, however, is largely the same. Schemas are generated in JSON, there's just slightly different API's for exposing the tool to the agent.
+### How MCP addresses it
 
-There are many frameworks for standardizing this. In Python, [LangChain](https://python.langchain.com/docs/how_to/function_calling/), [LiteLLM](https://docs.litellm.ai/docs/completion/function_call), [SmolAgents](https://huggingface.co/learn/cookbook/en/agents), and others all provide interfaces for exposing tools to different models. In contrast to MCP, all of these options _execute tool calls in the same runtime as the agent_.
-<!-- feedback: Clear explanation; consider trimming the long API excerpts and instead summarize the differences (parameter names, JSON shape) to keep the section snappy, since the point is “minor API divergence, same semantics.” -->
-
-### Tool Calling with MCP
-
-MCP handles exposing and invoking tools for you:
+MCP handles exposing and invoking tools via a separate process:
 
 ![function_calling_mcp](/diagrams/mcp/function_calling_mcp.png)
 
-Here, the function invocations are handled by a separate process altogether. Orchestrating the agent loop and providing results to the end user remains the application's responsibility. A JSON configuration controls which functions to expose.
+A JSON configuration controls which MCP servers to start. Each server runs in its own process, handling tool invocations independently. The application still orchestrates the agent loop and presents results to users.
 
-This abstracts away several major concerns. Since functions are invoked in a separate process, resource management is opaque to the application. The logic and instructions for each tool is also not controlled by the application.
-<!-- feedback: Spell out the deltas vs “without MCP” (who owns schema generation, transport, invocation, logging/auth). Also note the cost (extra hop/process boundary) so the reader sees both trade-offs before the Problems section. -->
+This abstracts away schema generation and invocation—but at a cost. Tool logic runs in a separate process, making resource management opaque. The application loses control over tool instructions, logging, and error handling. And every tool call crosses a process boundary.
+
+### Scope: tools dominate
+
+MCP also defines primitives for prompts and resources, but adoption of these is negligible [^1]:
+
+![code_references](/diagrams/mcp/code_references.png)
+
+Given this, the rest of this post focuses on tool calling—MCP's primary use case in practice.
 
 ### Who are the users?
 
@@ -131,7 +112,7 @@ Tool selection depends not just on the job at hand, but also what tools are avai
 
 If the toolset is controlled by the same authors as the application, they can add prompting to the toolsets to disambiguate when to use which tool. If not, the problem must be solved by _more prompting_.
 
-Looking through #mcp channels of open source coding agents, you'll invariably find users who struggle to get the agent to use the tools in the way they want:
+Looking through #mcp channels of open source coding agents, you'll invariably find users who struggle to get the agent to use the tools in the way they want[^2]:
 
 ![trouble](/diagrams/mcp/trouble.png)
 
@@ -166,7 +147,7 @@ Even if toolsets are in one given runtime, MCP potentially spins up many instanc
 Agent executing code is a scary proposition. MCP makes this worse, by potentially pulling in arbitrary code, driven by a manipulable agent. MCP's specification [doesn't mandate authentication](https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/mcp-security-network-exposed-servers-are-backdoors-to-your-private-data), which has left [hundreds of servers completely exposed](https://www.darkreading.com/vulnerabilities-threats/2000-mcp-servers-security) online—one scan found 492 MCP servers running without any client authentication or traffic encryption.
 
 
-<!-- is this just a list of incidents? is it supporting my point at all? -->
+<!-- TODO: is this just a list of incidents? is it supporting my point at all? -->
 The risk isn't theoretical: MCP has already been associated with several serious breaches:
 
 - **[CVE-2025-6514](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** (CVSS 9.6): Critical RCE in mcp-remote allowed arbitrary command execution when connecting to untrusted servers; 437,000+ downloads affected.
@@ -249,16 +230,4 @@ OpenAPI specs are already self-describing enough for agents—they include opera
 Language specific SDK's provide robust options for bridging the annoying differences in the API's of different model providers.
 
 [^1]: Source: Github searches for [@mcp.tool](https://github.com/search?q=%40mcp.tool&type=code) (58.1K results), [@mcp.resource](https://github.com/search?q=%40mcp.resource&type=code) (9.1K), and [@mcp.prompt](https://github.com/search?q=%40mcp.prompt&type=code) (6.1K), searched 2025-12-08.
-
-
-<!--
-notes from HN:
-
-• You’ve covered the core structure and tooling sections in your inline comments. The HN thread surfaces a few angles not yet addressed:
-
-  - Pro-MCP end-user value: “app store”/consumer use case (Jira/Linear, Alibaba servers) and discoverability vs hand-wired REST/OpenAPI; clarify if/why that’s still overkill or when it’s legit.
-  - Security/auth isolation: “socket without handing over tokens” as a claimed benefit; decide whether to rebut or scope it.
-  - API spec comparison: why “just OpenAPI/text files/CLI” isn’t equivalent (or is); note the “self-describing enough for agents” bar.
-  - Ops/reliability: comments about verbosity helping models, and reliability math for multi-agent chains; address determinism/retries vs non-determinism.
-  - “Why replace it?”: if you argue “don’t use it,” offer the counter-pattern (SDKs, codegen/skills, CLI) explicitly.
--->
+[^2]: Support request snippets are pulled from Discord.
