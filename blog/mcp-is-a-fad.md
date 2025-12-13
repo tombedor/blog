@@ -142,9 +142,7 @@ This code _was_ a hassle to write, prior to the advent of coding agents. But the
 
 ## Why it took off
 
-With these issues, it's fair to wonder why MCP has gained the popularity it has. It has had lots of support from Anthropic, and no trouble gaining traction with toolset publishers, agent providers, and enterprises. Why? It helps narratives.
-
-MCP is often described as an ["app store"](https://medium.com/@t.sankar85/the-mcp-registry-an-app-store-for-ai-tools-4c5b9ab3e657). But it's not an app store. It's not even a package manager. It's an overengineered orchestration protocol.
+With these issues, it's fair to wonder why MCP has gained the popularity it has. It has had lots of support from Anthropic, and no trouble gaining traction with toolset publishers, agent providers, and enterprises. Why? It helps narratives:
 
 ### Tool authors: A low overhead marketing channel
 
