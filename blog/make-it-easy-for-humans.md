@@ -1,5 +1,5 @@
 ---
-title: "Make It Easy for Humans First, Then AI"
+title: "Don't Write Docs Twice"
 date: 2025-11-26
 ---
 
