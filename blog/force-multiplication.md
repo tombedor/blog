@@ -6,9 +6,12 @@ draft: true
 
 ## Define platform
 
+For our purposes, a platform is a piece of software for which the users are internal to your company.
+
 
 ## Why build software?
 
+Before digging into the question of how to build a good platform, why do we build software at all?
 
 > "Managing complexity is the most important technical topic in software development. In my view, it's so important that Software's Primary Technical Imperative has to be managing complexity. Complexity is not a new feature of software development.”
 ― Steve McConnell, Code Complete
@@ -38,17 +41,20 @@ What is a platform’s value?
 - you can standardize on the wrong thing, locking out other approaches.
 - a platformed approach effectively _increases_ the cost of non-platformed approaches
 
-### Bad north star #2: Centralize
-Indirect customer impact means that you are less customized
+but sometimes, standardizing can increase complexity by forcing users to fit their square peg use case into the round hole of a centralized interface.
 
-sometimes customization is good!
+### Bad north star #2: Centralize
+Indirect customer impact means that you are less customized, and less nimble.
+
+if users _must_ go through your platform, it's possible that there is more effort in using your platform than if they were to do it themselves.
+
 
 ### Good north star: Force Multiply
 
 It force multiplies its users, by doing a repetitive task more efficiently than they can do themselves.
 Productivity gains should be exponential. As the platform handles more work, proportionally less work should be required of maintainers
 
-<!-- ![exponential](/static/diagrams/force-multiplication/exponential.png) -->
+![exponential](../static/diagrams/force-multiplication/exponential.png)
 
 Good platforms force multiply by:
 - decreasing the time spent to do a repetitive task
@@ -65,15 +71,15 @@ database team:
 To keep morale high, we introduce sq-ice-cream!
 User types sq ice-cream,and someone from the Oakland office flies to wherever they are and gives them ice cream!
 
-sq-ice-cream looks pretty good!
+![ice_cream_cone](../static/diagrams/force-multiplication/ice_cream_cone.png)
+
+By metrics often used to measure platforms, the Enterprise Ice Cream Cone Platform looks pretty good:
 - It standardizes: Now when employees want ice cream, they don’t have to think about how to go about it!
 - It centralizes: Now we’re not paying engineers to implement their own ways of getting ice cream thousands of times!
 - It has high adoption: Everyone’s using it!
 
-sq-ice-cream lacks force multiplication
-Far more resources are spent solving the problem overall
-It’s redundant with grocery stores
-
+Why would investing in such a platform be ridiculous? It lacks _force multiplication:
+- The task it centralizes is very simple - a simple stipend to allow employees to buy their own ice cream.
 
 ## How to force multiply?
 
@@ -81,14 +87,26 @@ It’s redundant with grocery stores
 Self service is a reliable route for force multiplication
 Computers do the work of supporting customers
 It makes prioritization easier
-- Square Support wants onboarding support
-- Cash Lending wants onboarding support
+- Support wants onboarding support
+- Lending wants onboarding support
 We only have staffing to do 1
 Self service lets the platform avoid this question!
 
 A key sign of a suboptimal platform is direct prioritization of specicic customers
 - delivery is slower, product team roadmap changes more often
 - often times deliver project, then need evaporates
+
+
+## Antipatterns
+
+### use one feature, use them all
+
+this _forces_ users to adopt the platform, suboptimal for users,
+
+### code changes as onboarding
+
+code changes scale linearly with number of users
+
 
 
 ### Meta-platform: internal representation of company
@@ -117,3 +135,8 @@ good measurments:
 - performance
 - alignment
 - SLO's / SLA's
+
+
+## Signs of a good vs bad platform:
+- platform maintainers are barely aware of new use cases / platform maintainers need to build extensive new features to support new use cases
+- platform feature requests are applicable to many customers / platform feature requests are unique to each use case
