@@ -1,5 +1,5 @@
 ---
-title: "A Platform's Purpose is Force Multiplication"
+title: "Your Platform Must Force Multiply"
 date: 2025-12-23
 draft: true
 ---
