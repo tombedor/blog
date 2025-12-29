@@ -26,9 +26,9 @@ What I like about this, is that if I’m unsure about a change, I can ask, “do
 
 Platform builders have some big disadvantages!
 - Impact on the end customer is indirect
-    - my first job was data infrasturcure, i used to say i might as well work at a balloon factory
-    - this means business leaders have less context
-- They have high upfront cost
+    - My first job was data infrastructure. I used to joke that I might as well work at a balloon factory - the connection between my work and actual customer value was so distant and abstract
+    - This means business leaders have less context and it's harder to justify platform investments
+- They have high upfront cost: platforms represent _long term bets_. The payback period can be long
 - It introduces abstractions all users need to understand
 - The need to support many use cases tends to make platform software less agile
 - platforms increase the cost of alternative approaches
@@ -61,9 +61,36 @@ Good platforms force multiply by:
 - decreasing the cognitive overhead of doing a task
 - increasing performance of a task
 
-database team:
-- specialized in keeping databases going
--
+# A good platform: Application Database Team
+
+In a microservices architecture, one of the first things that warrants a platform team is managing application databases.
+
+Why does this force multiply?
+- **Specialized knowledge**: Database operations require expertise in backups, replication, scaling, monitoring, security, and disaster recovery
+- **Repetitive at scale**: In a microservices architecture, you might have dozens or hundreds of services, each needing a database
+- **High cost of mistakes**: Data loss, security breaches, or performance issues have serious consequences
+- **Enables self-service**: Once the platform is built, developers can provision and manage databases without waiting for the platform team
+
+What developers would do without the platform:
+- Research how to set up, secure, and operate a production database
+- Implement backup and disaster recovery procedures
+- Set up monitoring and alerting
+- Handle scaling as their service grows
+- Debug performance issues
+- Ensure compliance and security best practices
+
+What the database platform provides:
+- Automated provisioning with sensible defaults
+- Built-in backups and disaster recovery
+- Monitoring and alerting out of the box
+- Scaling strategies (read replicas, sharding)
+- Security and compliance by default
+- Self-service tools for common operations
+
+Force multiplication calculation:
+- Without platform: Each team spends weeks learning database operations, ongoing maintenance burden
+- With platform: Developers provision a database in minutes, platform team maintains infrastructure for all teams
+- The more teams using the platform, the better the ROI - one platform team can support hundreds of development teams
 
 # A bad platform: Ice Cream Cone Delivery Platform
 
@@ -99,44 +126,80 @@ A key sign of a suboptimal platform is direct prioritization of specicic custome
 
 ## Antipatterns
 
-### use one feature, use them all
+### Use one feature, use them all
 
-this _forces_ users to adopt the platform, suboptimal for users,
+Requiring teams to adopt the entire platform just to use one feature removes their agency and often forces them into complexity they don't need. This artificially inflates adoption metrics while reducing actual value delivered.
 
-### code changes as onboarding
+Example: Requiring teams to use your deployment platform, monitoring platform, AND service mesh just to get automated database backups.
 
-code changes scale linearly with number of users
+Why this fails force multiplication: Teams spend more time learning and maintaining your platform than they would solving the original problem themselves.
 
+### Code changes as onboarding
 
+If every new team or use case requires the platform team to write custom code, the platform doesn't scale. Code changes scale linearly with number of users - the opposite of force multiplication.
 
-### Meta-platform: internal representation of company
-- concept of ownership needs to survive reorgs, changed priorities
+Example: Each new service requires a platform engineer to write a custom Terraform module, integration tests, and deployment configuration.
 
-
-### Long term bet
-Platform specific metrics can:
-- Demonstrate alignment
-- Demonstrate performance
-- Demonstrate progress
-Drawbacks of platform specific metrics:
-- Business leaders probably lack context
+Why this fails force multiplication: The platform team becomes a bottleneck, and the work required grows linearly instead of trending toward zero.
 
 
-### Make platform team responsible for a problem, not a service
-- don't build a greenfield thing that does not take into account the messy specifics of actual use cases
-https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/
+### Solve a real problem, not an abstract one
 
-### Measuring platforms is hard
-- adoption: are we adopting the right thing?
-- surveys: hard to get people to do, are users aware of alternatives?
+Platform teams often fail when they build greenfield solutions that don't account for messy existing use cases. Make platform teams responsible for solving a specific problem, not for "building a service."
 
-good measurments:
-- progress
-- performance
-- alignment
-- SLO's / SLA's
+Example: Instead of "build an authentication platform," frame it as "reduce the time it takes teams to add secure authentication from 2 weeks to 1 day."
+
+Why this matters:
+- Forces focus on actual user problems and force multiplication
+- Prevents the "rewrite everything" trap (see [Joel on Software](https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/))
+- Makes success measurable
+
+### Design for organizational change
+
+Platform abstractions need to survive reorgs and changing priorities. If your platform encodes current team structures or project names, it will become technical debt as the organization evolves.
+
+Example: Avoid modeling resources around team names ("payments-team-db") in favor of stable concepts ("payments-service-db").
+
+## Measuring platforms is hard
+
+Platforms are long-term bets, but you still need to demonstrate value along the way.
+
+What doesn't work well:
+- **Adoption metrics**: High adoption doesn't mean high value - are we even adopting the right thing?
+- **User surveys**: Hard to get responses, and users may not be aware of alternatives to compare against
+- **Feature delivery velocity**: Shipping features doesn't mean solving problems
+
+What works better:
+- **Time saved**: How much faster can teams accomplish X with the platform vs without?
+- **Cognitive load reduction**: Can teams accomplish tasks without needing to understand the underlying complexity?
+- **Performance improvements**: Measurable improvements in speed, reliability, or efficiency
+- **SLOs / SLAs**: Commitments that demonstrate the platform's reliability and value
+- **Self-service ratio**: What percentage of use cases require platform team involvement vs self-service?
+
+Good platform metrics should demonstrate:
+- Progress toward force multiplication
+- Performance improvements for users
+- Alignment with company goals
 
 
-## Signs of a good vs bad platform:
-- platform maintainers are barely aware of new use cases / platform maintainers need to build extensive new features to support new use cases
-- platform feature requests are applicable to many customers / platform feature requests are unique to each use case
+## How to recognize force multiplication in practice
+
+Here are concrete indicators of whether a platform is achieving force multiplication:
+
+**Good signs:**
+- Platform maintainers are barely aware of new use cases - the platform just works for them
+- Feature requests are applicable to many customers, not unique to each use case
+- New teams can onboard themselves without platform team involvement
+- The platform team's workload stays flat or decreases as usage grows
+- Users report spending significantly less time on tasks the platform handles
+- Most platform usage happens through self-service tools, not tickets or custom code
+
+**Warning signs:**
+- Platform maintainers need to build extensive new features to support each new use case
+- Feature requests are highly specific and only benefit one team
+- Every new user requires custom onboarding or configuration by the platform team
+- The platform team's backlog grows faster than they can clear it
+- Users report the platform is "hard to use" or "not flexible enough"
+- Most interactions with the platform require opening a ticket or asking for help
+
+The ultimate test: If the platform disappeared tomorrow, would teams spend more time solving the problem themselves, or less time avoiding the platform's complexity?
