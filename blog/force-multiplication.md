@@ -8,20 +8,6 @@ draft: true
 
 For our purposes, a platform is a piece of software for which the users are internal to your company.
 
-
-## Why build software?
-
-Before digging into the question of how to build a good platform, why do we build software at all?
-
-> "Managing complexity is the most important technical topic in software development. In my view, it's so important that Software's Primary Technical Imperative has to be managing complexity. Complexity is not a new feature of software development.”
-― Steve McConnell, Code Complete
-
-> “Reduce complexity. The single most important reason to create a routine is to reduce a program's complexity. Create a routine to hide information so that you won't need to think about it.”
-― Steve McConnell, Code Complete
-
-What I like about this, is that if I’m unsure about a change, I can ask, “does this reduce complexity”. If the answer is yes, then we’re probably on the right track
-
-
 ## Why build a platform?
 
 Platform builders have some big disadvantages!
@@ -31,12 +17,17 @@ Platform builders have some big disadvantages!
 - They have high upfront cost: platforms represent _long term bets_. The payback period can be long
 - It introduces abstractions all users need to understand
 - The need to support many use cases tends to make platform software less agile
-- platforms increase the cost of alternative approaches
+- Platforms increase the cost of alternative approaches
 - Platforms are a shared resource for very different use cases, so improvement requests are difficult to prioritize
 
-What is a platform’s value?
+What is a platform’s value? There's a lot of bad definitions that are commonly used:
+
+
+### Bad north star #1: Optimizing the architecture diagram
 
 ### Bad north star #1: Standardize
+
+
 
 - you can standardize on the wrong thing, locking out other approaches.
 - a platformed approach effectively _increases_ the cost of non-platformed approaches
@@ -47,6 +38,9 @@ but sometimes, standardizing can increase complexity by forcing users to fit the
 Indirect customer impact means that you are less customized, and less nimble.
 
 if users _must_ go through your platform, it's possible that there is more effort in using your platform than if they were to do it themselves.
+
+### Bad north star #3: Optimizing the architecture diagram
+
 
 
 ### Good north star: Force Multiply
@@ -203,3 +197,24 @@ Here are concrete indicators of whether a platform is achieving force multiplica
 - Most interactions with the platform require opening a ticket or asking for help
 
 The ultimate test: If the platform disappeared tomorrow, would teams spend more time solving the problem themselves, or less time avoiding the platform's complexity?
+
+
+
+
+
+
+# (To cut)
+
+
+## Why build software?
+
+Before digging into the question of how to build a good platform, why do we build software at all?
+
+> "Managing complexity is the most important technical topic in software development. In my view, it's so important that Software's Primary Technical Imperative has to be managing complexity. Complexity is not a new feature of software development.”
+― Steve McConnell, Code Complete
+
+> “Reduce complexity. The single most important reason to create a routine is to reduce a program's complexity. Create a routine to hide information so that you won't need to think about it.”
+― Steve McConnell, Code Complete
+
+What I like about this, is that if I’m unsure about a change, I can ask, “does this reduce complexity”. If the answer is yes, then we’re probably on the right track
+
