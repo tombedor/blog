@@ -18,13 +18,13 @@ Before AI, learners faced a matching problem: learning resources have to be crea
 
 Roughly, acquiring mastery in a skill over time looks like this:
 
-![Traditional learning curve](/diagrams/floor-raiser/skills.png)
+![Traditional learning curve](/diagrams/ai-is-a-floor-raiser/skills.png)
 
 <!-- truncate -->
 
 What makes learning with AI groundbreaking is that it can *meet you at your skill level*. Now an AI can directly address questions at your level of understanding, and even do rote work for you. This changes the learning curve:
 
-![AI-enhanced learning curve](/diagrams/floor-raiser/ai_skills.png)
+![AI-enhanced learning curve](/diagrams/ai-is-a-floor-raiser/ai_skills.png)
 
 ## Mastery: still hard!
 
@@ -38,7 +38,7 @@ This intuitively makes sense, when considering the data that AI is trained on. I
 
 The introduction of [OpenAI Study Mode](https://openai.com/index/chatgpt-study-mode/) hints at a problem: Instead of having an AI teach you, you can just ask it for the answer. This means cheaters will plateau at whatever level the AI can provide:
 
-![Cheating with AI plateau](/diagrams/floor-raiser/cheating_with_ai.png)
+![Cheating with AI plateau](/diagrams/ai-is-a-floor-raiser/cheating_with_ai.png)
 
 Cheaters, in the long run, won't prosper here!
 
@@ -52,12 +52,12 @@ When trying to code something, engineering managers often run into a problem: Th
 
 With AI, they are able to quickly learn the basics, and get simple apps running. They can then use their existing knowledge to [refine it into a workable product](https://techcrunch.com/2025/07/29/jack-dorseys-bluetooth-messaging-app-bitchat-now-on-app-store/). AI is the difference between their product existing or not existing!
 
-![Engineering managers and software development](/diagrams/floor-raiser/em_software_development.png)
+![Engineering managers and software development](/diagrams/ai-is-a-floor-raiser/em_software_development.png)
 
 
 For devs working on large, complex code bases, the enthusiasm is more muted. AI doesn't have context on the highly specific requirements and existing implementations to contend with, and is less helpful:
 
-![AI limitations with large codebases](/diagrams/floor-raiser/large_code_bases.png)
+![AI limitations with large codebases](/diagrams/ai-is-a-floor-raiser/large_code_bases.png)
 
 
 ### Creative works: not coming to a theater near you
@@ -66,7 +66,7 @@ There is considerable angst about AI amongst creatives: will we all soon be read
 
 This is unlikely because creative fields are _extremely competitive_, and beating competition for attention requires _novelty_. While AI has made it easier to generate images, audio, and text, it has (with [some exceptions](https://www.infosecurity-magazine.com/news/man-charged-ai-fake-music-scheme/)) not increased production of ears and eyeballs, so the bar to make a competitive product is too high:
 
-![Creative works competition curve](/diagrams/floor-raiser/creative_works.png)
+![Creative works competition curve](/diagrams/ai-is-a-floor-raiser/creative_works.png)
 
 _Novelty_ is a hard requirement for successful creative work, because humans are extremely good at detecting when something they are viewing or reading is derivative of something they've seen before. This is why, while Studio Ghibli style avatars briefly took over the internet, they have not dented the cultural position of Howl's Moving Castle.
 
@@ -74,7 +74,7 @@ _Novelty_ is a hard requirement for successful creative work, because humans are
 
 One area that has _not_ seen much impact is in tasks that already have specialized apps. I'll focus on two examples with abundant MCP implementations: email and food ordering. AI Doordash agents and AI movie producers face the same challenge: the bar for a new product to make an impact is already very high:
 
-![Email and food ordering AI impact](/diagrams/floor-raiser/email_food_ordering.png)
+![Email and food ordering AI impact](/diagrams/ai-is-a-floor-raiser/email_food_ordering.png)
 
 Email would seem like a ripe area for disruption by AI. But modern email apps already have a wide variety of filtering and organizing tools that tech savvy users can use to create complex, personalized systems for efficiently consuming and organizing their inbox.
 
