@@ -20,7 +20,7 @@ When I'm thinking about optimizing repos for agents, I'm looking to accomplish t
 
 Pushing detection of quality issues to compile time creates a virtuous cycle where the agent can quickly spot and correct mistakes:
 
-![runtime-oops](/diagrams/runtime-oops.png)
+![runtime-oops](/diagrams/optimizing-repos-for-ai/runtime-oops.png)
 
 This implies strong, opinionated linters, and strong type checks for dynamically typed languages[^3].
 
