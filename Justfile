@@ -15,3 +15,7 @@ deploy:
 # Dual publish blog posts to elroy project
 dual-publish:
 	npm run dual-publish
+
+# Export all excalidraw diagrams to PNG
+export-diagrams:
+	./scripts/excalidraw-export.sh -r static/diagrams
