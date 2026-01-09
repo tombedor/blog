@@ -51,6 +51,10 @@ const config: Config = {
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
+            title: 'Tom Bedor\'s Blog',
+            copyright: `Copyright © ${new Date().getFullYear()} Tom Bedor`,
+            description: 'Thoughts on software, AI, and building things',
+            language: 'en',
           },
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
