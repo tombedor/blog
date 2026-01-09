@@ -48,7 +48,7 @@ if users _must_ go through your platform, it's possible that there is more effor
 It force multiplies its users, by doing a repetitive task more efficiently than they can do themselves.
 Productivity gains should be exponential. As the platform handles more work, proportionally less work should be required of maintainers
 
-![exponential](../static/diagrams/force-multiplication/exponential.png)
+![exponential](/diagrams/force-multiplication/exponential.png)
 
 Good platforms force multiply by:
 - decreasing the time spent to do a repetitive task
@@ -59,7 +59,7 @@ Good platforms force multiply by:
 
 In a microservices architecture, one of the first things that warrants a platform team is managing application databases.
 
-![database_platform](../static/diagrams/force-multiplication/database_platform.png)
+<!-- ![database_platform](/diagrams/force-multiplication/database_platform.png) -->
 
 Why does this force multiply?
 - **Specialized knowledge**: Database operations require expertise in backups, replication, scaling, monitoring, security, and disaster recovery
@@ -94,7 +94,7 @@ Force multiplication calculation:
 To keep morale high, we introduce sq-ice-cream!
 User types sq ice-cream,and someone from the Oakland office flies to wherever they are and gives them ice cream!
 
-![ice_cream_cone](../static/diagrams/force-multiplication/ice_cream_cone.png)
+![ice_cream_cone](/diagrams/force-multiplication/ice_cream_cone.png)
 
 By metrics often used to measure platforms, the Enterprise Ice Cream Cone Platform looks pretty good:
 - It standardizes: Now when employees want ice cream, they don’t have to think about how to go about it!
