@@ -97,6 +97,11 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          href: 'https://tombedor.dev/rss.xml',
+          label: 'RSS',
+          position: 'right',
+        },
       ],
     },
     footer: {
