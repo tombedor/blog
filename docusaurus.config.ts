@@ -72,7 +72,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/icon-1024.png',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'light',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: 'Tom Bedor\'s Blog',

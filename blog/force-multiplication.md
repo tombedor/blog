@@ -59,6 +59,8 @@ Good platforms force multiply by:
 
 In a microservices architecture, one of the first things that warrants a platform team is managing application databases.
 
+![database_platform](../static/diagrams/force-multiplication/database_platform.png)
+
 Why does this force multiply?
 - **Specialized knowledge**: Database operations require expertise in backups, replication, scaling, monitoring, security, and disaster recovery
 - **Repetitive at scale**: In a microservices architecture, you might have dozens or hundreds of services, each needing a database
