@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Tom Bedor's Blog Blog</title>
+        <title>Tom Bedor's Blog</title>
         <link>https://tombedor.dev/</link>
-        <description>Tom Bedor's Blog Blog</description>
+        <description>Thoughts on software, AI, and building things</description>
         <lastBuildDate>Fri, 12 Dec 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <copyright>Copyright © 2026 Tom Bedor</copyright>
         <item>
             <title><![CDATA[MCP is a fad]]></title>
             <link>https://tombedor.dev/mcp-is-a-fad/</link>

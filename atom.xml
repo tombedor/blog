@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://tombedor.dev/</id>
-    <title>Tom Bedor's Blog Blog</title>
+    <title>Tom Bedor's Blog</title>
     <updated>2025-12-12T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tombedor.dev/"/>
-    <subtitle>Tom Bedor's Blog Blog</subtitle>
+    <subtitle>Thoughts on software, AI, and building things</subtitle>
     <icon>https://tombedor.dev/img/logo.svg</icon>
+    <rights>Copyright © 2026 Tom Bedor</rights>
     <entry>
         <title type="html"><![CDATA[MCP is a fad]]></title>
         <id>https://tombedor.dev/mcp-is-a-fad/</id>
