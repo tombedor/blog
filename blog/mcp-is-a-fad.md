@@ -231,4 +231,7 @@ OpenAPI specs are already self-describing enough for agents—they include opera
 
 MCP's popularity will be relatively short-lived. The cost benefit does not add up, and there are readily available alternatives. The introduction of [Claude Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) and [OpenAI's quick adoption](https://simonwillison.net/2025/Dec/12/openai-skills/) signal that even model providers agree.
 
-Claude Skills is an incremental improvement over MCP, but is similarly overengineered. Longstanding tools and techniques for collaboration amongst human devs remain compelling, and these options will chip away at more AI-centric techniques which reinvent the wheel.
+Claude Skills is an improvement over MCP - rather than spawning long lived processes, it simply calls commands to be documented in specific markdown files. However, this is still a suboptimal place for useful documentation and commands. Better is to optimize organization of documentation for humans, and point agents there - have the agent conform to humans, rather than the other way around. More on this in [Don't Write Docs Twice](/make-it-easy-for-humans.md).
+
+
+Longstanding tools and techniques for collaboration amongst human devs remain compelling, and these options will chip away at more AI-centric techniques which reinvent the wheel.
