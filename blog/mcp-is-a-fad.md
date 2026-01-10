@@ -5,7 +5,7 @@ date: 2025-12-12
 
 ## Overview
 
-MCP has taken off as the standardized platform for AI integrations, and it's difficult to justify _not_ supporting it. However, this popularity will be short-lived.
+[Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro) (MCP) has taken off as the standardized platform for AI integrations, and it's difficult to justify _not_ supporting it. However, this popularity will be short-lived.
 
 Some of this popularity stems from misconceptions about what MCP uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
 
@@ -231,7 +231,7 @@ OpenAPI specs are already self-describing enough for agents—they include opera
 
 MCP's popularity will be relatively short-lived. The cost benefit does not add up, and there are readily available alternatives. The introduction of [Claude Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) and [OpenAI's quick adoption](https://simonwillison.net/2025/Dec/12/openai-skills/) signal that even model providers agree.
 
-Claude Skills is an improvement over MCP - rather than spawning long lived processes, it simply calls commands to be documented in specific markdown files. However, this is still a suboptimal place for useful documentation and commands. Better is to optimize organization of documentation for humans, and point agents there - have the agent conform to humans, rather than the other way around. More on this in [Don't Write Docs Twice](/make-it-easy-for-humans.md).
+Claude Skills are an improvement over MCP - rather than spawning long lived processes, it simply organizes commands within Markdown files in an agent-specific directory. However, this is still a suboptimal place for useful documentation and commands. Better is to optimize organization of documentation for humans, and point agents there - have the agent conform to humans, rather than the other way around. More on this in [Don't Write Docs Twice](/make-it-easy-for-humans.md).
 
 
 Longstanding tools and techniques for collaboration amongst human devs remain compelling, and these options will chip away at more AI-centric techniques which reinvent the wheel.
