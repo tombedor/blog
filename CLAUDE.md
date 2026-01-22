@@ -34,6 +34,10 @@ scripts/
 - **Styling**: Custom CSS in `src/css/custom.css`, uses Prism themes for syntax highlighting
 - **GitHub Pages**: Configured with `trailingSlash: true` for proper routing
 
+## Content Editing Policy
+
+When asked for feedback on blog post structure or content, Claude should provide suggestions and feedback only. Do NOT make direct edits to blog posts unless explicitly approved. The content should come from the author - Claude can propose specific edits, but must wait for approval before making changes to blog content.
+
 ## Dual Publishing
 
 This blog is configured to dual-publish content to the Elroy project blog at `../elroy/docs/blog/`. Use `just dual-publish` or `npm run dual-publish` to sync blog posts and diagrams to the Elroy project. See `DUAL-PUBLISH.md` for details.
