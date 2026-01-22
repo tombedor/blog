@@ -6,54 +6,89 @@ draft: true
 
 ## Define platform
 
-For our purposes, a platform is a piece of software for which the users are internal to your company.
+<!-- need some setup for what we're talking about -->
+
+When a company first starts out, every engineer works on features that directly serve the end customer. As the company scales, it becomes worthwhile to invest in abstracting certain repetitive and/or complex internal development and maintenance tasks away. Thus _internal platform teams_ are born
 
 ## Why build a platform?
 
-Platform builders have some big disadvantages!
-- Impact on the end customer is indirect
-    - My first job was data infrastructure. I used to joke that I might as well work at a balloon factory - the connection between my work and actual customer value was so distant and abstract
-    - This means business leaders have less context and it's harder to justify platform investments
-- They have high upfront cost: platforms represent _long term bets_. The payback period can be long
-- It introduces abstractions all users need to understand
-- The need to support many use cases tends to make platform software less agile
-- Platforms increase the cost of alternative approaches
-- Platforms are a shared resource for very different use cases, so improvement requests are difficult to prioritize
+Platform engineers have some big disadvantages!
 
-What is a platform’s value? There's a lot of bad definitions that are commonly used:
+- Indirect customer impact: Platform builders help the end customer only via helping teammates, so it becomes more difficult to understand how the work ultimately benefits the customer. [^1] This makes it difficult for business leaders to reason about investment in these teams.
+
+[^1]: My first job was data infrastructure. I used to joke that I might as well work at a balloon factory - the connection between my work and actual customer value was so distant and abstract.
 
 
-### Bad north star #1: Optimizing the architecture diagram
+- High upfront costs: In the long run, saving teammates from repetitive work makes the company more efficient. But there's often quite a bit of upfront work to get there, so the "break even" point can be months or even years in the future
 
-### Bad north star #1: Standardize
+<!-- long term bets framing -->
+
+- Platforms can introduce abstractions that internal customers need to understand. Whereas before teammates can reference external or open source documentation, now they must rely on internally generated documentation.
+- The need to support many use cases tends to make platform software less agile. One platform often supports many different use cases, so platform feature requests can be hard to prioritize.
+<!-- Platforms increase the cost of alternative approaches. maybe we speak to this later -->
+
+Will all these disadvantages, what is a platform’s value? How do you know you're building the right thing?
+
+### Setting a good north star for your platform
+
+#### Database team: the exemplar platform
+
+To motivate our discussion, we'll talk about a database team as our example platform team.
+
+Creating a team to manage databases is often an early platform team, especially in a company employing microservice architecture. Running a production database is technically demanding, and experts are usually better at handling the gotchas and maintenance overhead of running databases better than more product oriented teams.
+
+So what's the north star for our database team? There are a couple bad candidates:
 
 
+<!-- ### Bad north star #1: Optimizing the architecture diagram -->
 
-- you can standardize on the wrong thing, locking out other approaches.
-- a platformed approach effectively _increases_ the cost of non-platformed approaches
+##### Bad north star #1: Standardization: a valid strategy, but a poor north star
 
-but sometimes, standardizing can increase complexity by forcing users to fit their square peg use case into the round hole of a centralized interface.
+Standardization can be a good platform strategy. Left to their own devices, product engineers can use different approaches. These can be marginally better for their specific use case, but the fragmentation imposes a cost.
+
+For our database team, if some product teams are using MySQL and others are using PostgreSQL, different product teams will encounter similar challenges that are just different enough that they cannot share learnings with each other. It also makes it more difficult for product engineers to work on each other's services.
+
+But standardization as a goal in and of itself is not a good goal. You could standardize on the wrong thing, creating a bad outcome overall. For example, let's say our database team standardizes on an internally developed database of their own creation. This is probably not as good as more vanilla alternatives!
+
+Standardization can also increase complexity for internal users by locking out non-platformed approaches, forcing them to fit a square peg use case into a round hole. For example, our database team could mandate that the only approved database is MySQL, and ban key/value alternatives like Redis. This _standardizes_ - we can argue that our platform team is reducing cognitive overhead by having everyone use the same DB. But teams needing a high QPS store for transient data will be poorly served.
+
 
 ### Bad north star #2: Centralize
-Indirect customer impact means that you are less customized, and less nimble.
 
-if users _must_ go through your platform, it's possible that there is more effort in using your platform than if they were to do it themselves.
+_Centralizing work to a central team_ can also be a valid platform strategy. For example, by having one central team handle all repetitive tasks, we can free platform engineers to work on more directly customer-impacting problems.
 
-### Bad north star #3: Optimizing the architecture diagram
+This too can backfire if not correctly applied. The database team could declare that _all queries against database must be run by the database team_. This _centralizes_ - product engineers no longer need to think about running SQL queries. But there's obvious downsides - the database team might have difficulty keeping up with demand, and actually _slow down_ development by becoming a bottleneck for the repetitive work.
+
+### The ice cream cone delivery platform: A bad platform that centralizes and standardizes.
+
+Let's depart from our database team for a moment. Our company is running into a morale problem, and leadership has come to the natural conclusion that the solution is free ice cream, delivered to your door by a teammate.
+
+The _Acme Ice Cream Cone Platform_ provides a button to every employee, which when pushed results in a platform team member being dispatched to wherever the teammate is.
+
+![ice_cream_cone](/diagrams/force-multiplication/ice_cream_cone.png)
+
+By metrics often used to measure platforms, the Enterprise Ice Cream Cone Platform looks pretty good:
+- It standardizes: Now when employees want ice cream, they don’t have to think about how to go about it!
+- It centralizes: Now we’re not paying engineers to implement their own ways of getting ice cream thousands of times!
+- It has high adoption: Everyone’s using it!
+
+Why would investing in such a platform be ridiculous? It lacks our good north star, _force multiplication:
+
+### Good north star: Force Multiplication
+
+A good platform force multiplies its users, by doing a repetitive and/or complex task more efficiently than they can do themselves.
+
+The benefit can come in a few different ways:
+- decreasing the time spent to do a repetitive task
+- decreasing the cognitive overhead of doing a task
+- increasing performance of a task
 
 
-
-### Good north star: Force Multiply
-
-It force multiplies its users, by doing a repetitive task more efficiently than they can do themselves.
 Productivity gains should be exponential. As the platform handles more work, proportionally less work should be required of maintainers
 
 ![exponential](/diagrams/force-multiplication/exponential.png)
 
 Good platforms force multiply by:
-- decreasing the time spent to do a repetitive task
-- decreasing the cognitive overhead of doing a task
-- increasing performance of a task
 
 # A good platform: Application Database Team
 
@@ -91,18 +126,6 @@ Force multiplication calculation:
 # A bad platform: Ice Cream Cone Delivery Platform
 
 
-To keep morale high, we introduce sq-ice-cream!
-User types sq ice-cream,and someone from the Oakland office flies to wherever they are and gives them ice cream!
-
-![ice_cream_cone](/diagrams/force-multiplication/ice_cream_cone.png)
-
-By metrics often used to measure platforms, the Enterprise Ice Cream Cone Platform looks pretty good:
-- It standardizes: Now when employees want ice cream, they don’t have to think about how to go about it!
-- It centralizes: Now we’re not paying engineers to implement their own ways of getting ice cream thousands of times!
-- It has high adoption: Everyone’s using it!
-
-Why would investing in such a platform be ridiculous? It lacks _force multiplication:
-- The task it centralizes is very simple - a simple stipend to allow employees to buy their own ice cream.
 
 ## How to force multiply?
 
