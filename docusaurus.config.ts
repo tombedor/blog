@@ -88,6 +88,11 @@ const config: Config = {
       },
       items: [
         {
+          to: '/projects',
+          label: 'Projects',
+          position: 'right',
+        },
+        {
           to: '/contact',
           label: 'Contact',
           position: 'right',
