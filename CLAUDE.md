@@ -36,7 +36,18 @@ scripts/
 
 ## Content Editing Policy
 
-When asked for feedback on blog post structure or content, Claude should provide suggestions and feedback only. Do NOT make direct edits to blog posts unless explicitly approved. The content should come from the author - Claude can propose specific edits, but must wait for approval before making changes to blog content.
+**The writing must come from the author.** Claude can help with suggestions but should not edit blog post files with content unless explicitly instructed.
+
+When creating new blog posts:
+- Create the file with frontmatter (title, date, draft: true)
+- Leave the body empty or with minimal placeholders (section headers only)
+- Do NOT write any actual content, paragraphs, or prose into the file
+
+When asked for feedback or content suggestions:
+- CAN write suggested content, paragraphs, or prose in the chat response
+- CAN propose specific edits and revisions
+- Do NOT edit the actual blog post file with content unless explicitly told to do so
+- The author will review suggestions and incorporate them manually
 
 ## Dual Publishing
 

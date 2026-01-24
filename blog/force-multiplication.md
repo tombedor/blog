@@ -27,22 +27,40 @@ Platform engineers have some big disadvantages!
 - The need to support many use cases tends to make platform software less agile. One platform often supports many different use cases, so platform feature requests can be hard to prioritize.
 <!-- Platforms increase the cost of alternative approaches. maybe we speak to this later -->
 
-Will all these disadvantages, what is a platform’s value? How do you know you're building the right thing?
+With all these disadvantages, what is a platform's value? How do you know you're building the right thing?
 
 ### Setting a good north star for your platform
 
-#### Database team: the exemplar platform
+When evaluating platform strategies, teams often pursue three different types of goals. Two are valid strategies but insufficient as goals on their own. The third is the actual goal worth pursuing:
 
-To motivate our discussion, we'll talk about a database team as our example platform team.
+#### Bad north star #1: Standardization
 
-Creating a team to manage databases is often an early platform team, especially in a company employing microservice architecture. Running a production database is technically demanding, and experts are usually better at handling the gotchas and maintenance overhead of running databases better than more product oriented teams.
+Standardization can be a valid platform _strategy_, but it is often misused as the _measure of success_
 
-So what's the north star for our database team? There are a couple bad candidates:
+The benefits of standardization depend on how good the standard is - it's very easy pick a bad standard that reduces user efficiency.
 
+#### Bad star #2: Centralization
 
-<!-- ### Bad north star #1: Optimizing the architecture diagram -->
+Centralization is similarly a valid strategy, but a poor goal in and of itself. Centralizing a workflow may or may not increase overall efficiency - the team or system absorbing the work could be slower or worse at the task than federated systems/teams
+<!-- Add 1-2 paragraph definition of centralization as a strategy -->
 
-##### Bad north star #1: Standardization: a valid strategy, but a poor north star
+#### Good star #3: Force Multiplication
+
+Force multiplication is the real ultimate goal of a platform. Framing a platfrom in this way is user centric - the goal is to enable user to accomplish something faster or better than they could without the platform.
+
+<!-- Add 1-2 paragraph definition of force multiplication -->
+
+<!-- maybe add: Productivity gains should be exponential. As the platform handles more work, proportionally less work should be required of maintainers -->
+
+<!-- maybe add exponential diagram here: ![exponential](/diagrams/force-multiplication/exponential.png) -->
+
+### Example: The database platform team
+
+To see what these north stars look like in practice, let's examine a database platform team. Creating a team to manage databases is often an early platform team, especially in a company employing microservice architecture. Running a production database is technically demanding, and experts are usually better at handling the gotchas and maintenance overhead of running databases than more product-oriented teams.
+
+What might this database team optimize for?
+
+#### Bad approach #1: Standardization without force multiplication
 
 Standardization can be a good platform strategy. Left to their own devices, product engineers can use different approaches. These can be marginally better for their specific use case, but the fragmentation imposes a cost.
 
@@ -52,45 +70,13 @@ But standardization as a goal in and of itself is not a good goal. You could sta
 
 Standardization can also increase complexity for internal users by locking out non-platformed approaches, forcing them to fit a square peg use case into a round hole. For example, our database team could mandate that the only approved database is MySQL, and ban key/value alternatives like Redis. This _standardizes_ - we can argue that our platform team is reducing cognitive overhead by having everyone use the same DB. But teams needing a high QPS store for transient data will be poorly served.
 
+#### Bad approach #2: Centralization without force multiplication
 
-### Bad north star #2: Centralize
+_Centralizing work to a central team_ can also be a valid platform strategy. For example, by having one central team handle all repetitive tasks, we can free product engineers to work on more directly customer-impacting problems.
 
-_Centralizing work to a central team_ can also be a valid platform strategy. For example, by having one central team handle all repetitive tasks, we can free platform engineers to work on more directly customer-impacting problems.
+This too can backfire if not correctly applied. The database team could declare that _all queries against the database must be run by the database team_. This _centralizes_ - product engineers no longer need to think about running SQL queries. But there's obvious downsides - the database team might have difficulty keeping up with demand, and actually _slow down_ development by becoming a bottleneck for the repetitive work.
 
-This too can backfire if not correctly applied. The database team could declare that _all queries against database must be run by the database team_. This _centralizes_ - product engineers no longer need to think about running SQL queries. But there's obvious downsides - the database team might have difficulty keeping up with demand, and actually _slow down_ development by becoming a bottleneck for the repetitive work.
-
-### The ice cream cone delivery platform: A bad platform that centralizes and standardizes.
-
-Let's depart from our database team for a moment. Our company is running into a morale problem, and leadership has come to the natural conclusion that the solution is free ice cream, delivered to your door by a teammate.
-
-The _Acme Ice Cream Cone Platform_ provides a button to every employee, which when pushed results in a platform team member being dispatched to wherever the teammate is.
-
-![ice_cream_cone](/diagrams/force-multiplication/ice_cream_cone.png)
-
-By metrics often used to measure platforms, the Enterprise Ice Cream Cone Platform looks pretty good:
-- It standardizes: Now when employees want ice cream, they don’t have to think about how to go about it!
-- It centralizes: Now we’re not paying engineers to implement their own ways of getting ice cream thousands of times!
-- It has high adoption: Everyone’s using it!
-
-Why would investing in such a platform be ridiculous? It lacks our good north star, _force multiplication:
-
-### Good north star: Force Multiplication
-
-A good platform force multiplies its users, by doing a repetitive and/or complex task more efficiently than they can do themselves.
-
-The benefit can come in a few different ways:
-- decreasing the time spent to do a repetitive task
-- decreasing the cognitive overhead of doing a task
-- increasing performance of a task
-
-
-Productivity gains should be exponential. As the platform handles more work, proportionally less work should be required of maintainers
-
-![exponential](/diagrams/force-multiplication/exponential.png)
-
-Good platforms force multiply by:
-
-# A good platform: Application Database Team
+#### Good approach: Force multiplication through self-service
 
 In a microservices architecture, one of the first things that warrants a platform team is managing application databases.
 
@@ -123,9 +109,22 @@ Force multiplication calculation:
 - With platform: Developers provision a database in minutes, platform team maintains infrastructure for all teams
 - The more teams using the platform, the better the ROI - one platform team can support hundreds of development teams
 
-# A bad platform: Ice Cream Cone Delivery Platform
+### Making it obvious: The ice cream cone delivery platform
 
+To see why force multiplication matters, imagine a platform that standardizes and centralizes but doesn't force multiply.
 
+Our company is running into a morale problem, and leadership has come to the natural conclusion that the solution is free ice cream, delivered to your door by a teammate.
+
+The _Acme Ice Cream Cone Platform_ provides a button to every employee, which when pushed results in a platform team member being dispatched to wherever the teammate is.
+
+![ice_cream_cone](/diagrams/force-multiplication/ice_cream_cone.png)
+
+By metrics often used to measure platforms, the Enterprise Ice Cream Cone Platform looks pretty good:
+- It standardizes: Now when employees want ice cream, they don't have to think about how to go about it!
+- It centralizes: Now we're not paying engineers to implement their own ways of getting ice cream thousands of times!
+- It has high adoption: Everyone's using it!
+
+Why would investing in such a platform be ridiculous? It lacks force multiplication - the platform team scales linearly with usage rather than enabling exponential productivity gains.
 
 ## How to force multiply?
 
