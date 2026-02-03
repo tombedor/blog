@@ -11,18 +11,18 @@ draft: true
 [^1]: It [wasn't actually him](https://quoteinvestigator.com/2012/04/28/shorter-letter/) but you get the point
 
 ## Overview
-This describes how to write a short document for your teammates. The documents under discussion are commonly referred to as "one-pagers", and are distinct from eng designs or other more formal engineering docs.
+This describes how to write a short document for your teammates. The documents under discussion are commonly referred to as "one-pagers", and are distinct from engineering design docs or other more formal engineering docs.
 
 A one pager might be written to:
-- Surface an org pain point
-- Propose a project
-- Lay out a roadmap
-- Explain the current state of a system or systems
-- Announce or document a decision
+- surface an org pain point
+- propose a project
+- lay out a roadmap
+- explain the current state of a system or systems
+- announce or document a decision
 
-This is also distinct from user facing documentation. Some but not all of what we're talking about applies to those styles or writing[^2].
+This is also distinct from user-facing documentation. Some but not all of what we're talking about applies to those styles or writing[^2].
 
-[^2]: Namely, while AI is a poor writer of one pagers, their ability to understand code and follow writing structure makes them quite good at writing user facing documentation
+[^2]: Namely, while AI is a poor writer of one pagers, their ability to understand code and follow writing structure makes them quite good at writing user-facing documentation
 
 ### The one-pager is not a new invention
 
