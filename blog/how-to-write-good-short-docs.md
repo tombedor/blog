@@ -7,9 +7,9 @@ draft: true
 
 # How to write good (short) docs
 
-"I would have written a shorter letter, but I did not have the time."
-
-- Mark Twain (it wasn't actually him but you get the point)
+> "I would have written a shorter letter, but I did not have the time."
+>
+> — Mark Twain *(it wasn't actually him but you get the point)*
 
 
 ## Overview
@@ -87,7 +87,7 @@ So, in laying out your doc, consider:
 
 It's very hard to persuade people to care about something that they don't already care about. Much easier is to convince people that something _aligns with the thing they care about_.
 
-Ie, don't write "we should do more of XYZ", write "doing XYZ helps us {thing people already care about}"
+Ie, don't write "we should do more of XYZ", write "doing XYZ helps us `{thing people already care about}`"
 
 If your doc can be summarized by, "everyone should care more about XYZ", it's probably not a very good doc!
 
@@ -103,8 +103,9 @@ If your doc can be summarized by, "everyone should care more about XYZ", it's pr
 
 ### Build consensus offline
 
-"Every doc is approved or rejected before it is written"
-- Sun Tzu
+> "Every doc is approved or rejected before it is written."
+>
+> — Sun Tzu
 
 If the goal of your document is to build consensus around a decision or initiative, the work should begin before you start writing. It is much easier to _document_ consensus than to _build consensus through a document_.
 
@@ -128,8 +129,9 @@ This very easily bleeds into having an AI write the doc for you, and in fact mos
 
 ### Thoughtful, timely sharing
 
-"If a doc is written in a forest, and no one has the link, does it create business value?"
-- George Berkeley
+> "If a doc is written in a forest, and no one has the link, does it create business value?"
+>
+> — George Berkeley
 
 Your doc doesn't do any good if no one reads it. That's why being thoughtful about how, where, and when your share your doc is important.
 
