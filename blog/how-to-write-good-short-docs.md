@@ -30,22 +30,22 @@ The "one-pager" as we now know it is not a new invention. Prior to computers, sh
 
 They often needed to be re-typed and/or printed, so they needed to be cheap!
 
-<!-- Diagram: the-first-office -->
+![prehistory](/diagrams/how-to-write-good-short-docs/prehistory.png)
 
 
 Fast forward to the introduction of Slack and similar tools. Now, writing messages to your teammates no longer costs money. The new constraint is _attention bandwidth_:
 
-<!-- Diagram: post-slack -->
+![slack](/diagrams/how-to-write-good-short-docs/slack.png)
 
 Memo style writing is even more impactful in a remote work environment, where casual face to face interactions are much more scarce:
 
-<!-- Diagram: remote-work -->
+![remote-work](/diagrams/how-to-write-good-short-docs/remote-work.png)
 
 ## Why writing is a worthwhile skill to develop in the age of AI
 
 You have a major advantage against AI in writing for teammtes:
 
-<!-- Diagram: you-vs-bots -->
+![you-vs-bots](/diagrams/how-to-write-good-short-docs/you-vs-bots.png)
 
 You know your teammtes personally, and you have undocumented business context (if what you are writing about is already documented, there probably doesn't need to be a doc!)
 
