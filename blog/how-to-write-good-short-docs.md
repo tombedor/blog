@@ -1,7 +1,7 @@
 ---
 title: "How to Write Good (Short) Docs"
 date: 2026-02-02
-dualPublish: false
+draft: true
 ---
 
 
