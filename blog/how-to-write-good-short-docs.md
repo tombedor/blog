@@ -71,7 +71,7 @@ So, in laying out your doc, consider:
 - What about 5 minutes?
 - If they want to delve into some of the details while ignoring others, can they?
 
-#### Tactics:
+Tactics for this include:
 - Clear, accurate, descriptive titles
 - A concise summary at the top of what the doc covers, and what it *does not* cover
 - Formatting: Headings and subheadings that help the reader navigate
