@@ -43,11 +43,11 @@ Memo style writing is even more impactful in a remote work environment, where ca
 
 ## Why writing is a worthwhile skill to develop in the age of AI
 
-You have a major advantage against AI in writing for teammtes:
+You have a major advantage against AI in writing for teammates:
 
 ![you-vs-bots](/diagrams/how-to-write-good-short-docs/you-vs-bots.png)
 
-You know your teammtes personally, and you have undocumented business context (if what you are writing about is already documented, there probably doesn't need to be a doc!)
+You know your teammates personally, and you have undocumented business context (if what you are writing about is already documented, there probably doesn't need to be a doc!)
 
 This allows you to synthesize and describe with more precision and nuance than AI can.
 
@@ -60,7 +60,7 @@ So, how do we do it?
 
 ### Optimize for short attention spans.
 
-The number one thing to optimize for in writing for teammtes is their limited attention budget.
+The number one thing to optimize for in writing for teammates is their limited attention budget.
 
 Different types of stakeholders will give a different amount of attention to your doc:
 
@@ -69,14 +69,14 @@ Different types of stakeholders will give a different amount of attention to you
 So, in laying out your doc, consider:
 - if someone reads this for 5 seconds, do they get the right 5 seconds of context?
 - what about 5 minutes?
-- if they want to delve into some of the details while ignoring others, can thye?
+- if they want to delve into some of the details while ignoring others, can they?
 
 #### Tactics:
 - Clear, accurate, descriptive titles
 - A concise summary at the top of what the doc covers, and what it *does not* cover
 - Formatting: Headings and subheadings that help the reader navigate
-- Tabs in google docs can be helpful, but are controversional.
-  - Tradeoff: Nice way to prevent doc sprawl (e.g. working group meeting notes as a tab of the working group charter, rather than a sepaarate doc)
+- Tabs in google docs can be helpful, but are controversial.
+  - Tradeoff: Nice way to prevent doc sprawl (e.g. working group meeting notes as a tab of the working group charter, rather than a separate doc)
     - but, be mindful of what link you share, it's confusing if people are introduced to your doc on the wrong tab
 
 ### Diagrams
@@ -118,7 +118,7 @@ Use AI as your editor, not your ghostwriter.
 
 To reiterate a point made above, if an AI could do a good job of writing your document, it's probably not something you need to write (This is _not true_ of internal user documentation, where AI can do quite well).
 
-I don't think I am unique in that I give very little attention to text or imagry that other people have generated. If I'm interested in what AI has to say about something, I can have it generate it myself. This will be more tailored for my understanding, and enable interaction.
+I don't think I am unique in that I give very little attention to text or imagery that other people have generated. If I'm interested in what AI has to say about something, I can have it generate it myself. This will be more tailored for my understanding, and enable interaction.
 
 While AI isn't a good writer, it's an _excellent_ editor. It is very good at evaluating your doc and giving useful feedback on it. Typical prompts I use:
 - "Evaluate the structure of my document, and suggest improvements"
@@ -144,12 +144,12 @@ Timing is also important. Attention to an issue can have a short life. Sometimes
 
 Most antipatterns I observe come from a lack of confidence in the writing or decision. While it's important to solicit feedback, the fact that you are writing a doc on a topic probably means you are well qualified to speak to it.
 
-### Designating a doc as a "Living Doc" or overusuing "WIP"
+### Designating a doc as a "Living Doc" or overusing "WIP"
 
 In the age of Google docs, every doc can be changed at any time, so every doc is a living doc. Similarly, once a doc has been shared, it's time to remove the WIP label.
 
 Adding WIP says to the reader: "You should probably wait to read this". But you can and should improve your doc at any time.
 
-#### Hesitance to express a POV
+### Hesitance to express a POV
 
 Sometimes, in a decision doc, writers will give even treatment to all available options, in order to avoid looking biased. But this doesn't really serve the reader well. It's more helpful to know the decision being favored, and if they disagree they can always comment to that effect.

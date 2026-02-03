@@ -11,6 +11,8 @@ this involves giving doc access to LLM's, and... seeing how it goes.
         - incomplete answers
         - noisey answers
 
+[shut the fuck up donnie!]
+
 - Approaches
     - backtesting
         - pull last 50 responses
