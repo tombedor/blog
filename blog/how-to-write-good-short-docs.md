@@ -154,3 +154,7 @@ Adding WIP says to the reader: "You should probably wait to read this". But you 
 ### Hesitance to express a POV
 
 Sometimes, in a decision doc, writers will give even treatment to all available options, in order to avoid looking biased. But this doesn't really serve the reader well. It's more helpful to know the decision being favored, and if they disagree they can always comment to that effect.
+
+## The hard part
+
+The hardest part of a good (short!) doc isn't the writing. It's knowing what to cut, who you're writing for, and what only you can say. That last one is the part no one else can do for you (not even AI!).
