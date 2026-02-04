@@ -86,7 +86,11 @@ Ie, don't write "we should do more of XYZ", write "doing XYZ helps us `{thing pe
 
 If your doc can be summarized by, "everyone should care more about XYZ", it's probably not a very good doc!
 
-Linking related docs at the top is an easy step that is often missed. This helps in a couple ways:
+### Connect to existing converstaions
+
+A concrete way to align with reader interest is connect the dots between your document and other converstaions and documents at your company.
+
+Linking related docs at the top of your doc is an easy step that is often missed. This helps in a couple ways:
   - It implies alignment with whatever the linked doc is discussing
   - It helps elevate teammates who might be advocating something similar to what you're writing about
   - It makes your doc a useful vehicle for discovery of other docs:
