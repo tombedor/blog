@@ -86,9 +86,9 @@ Ie, don't write "we should do more of XYZ", write "doing XYZ helps us `{thing pe
 
 If your doc can be summarized by, "everyone should care more about XYZ", it's probably not a very good doc!
 
-### Connect to existing converstaions
+### Connect to existing conversations
 
-A concrete way to align with reader interest is connect the dots between your document and other converstaions and documents at your company.
+A concrete way to align with reader interest is connect the dots between your document and other conversations and documents at your company.
 
 Linking related docs at the top of your doc is an easy step that is often missed. This helps in a couple ways:
   - It implies alignment with whatever the linked doc is discussing
@@ -134,11 +134,11 @@ This very easily bleeds into having an AI write the doc for you, and in fact mos
 >
 > — George Berkeley
 
-Your doc doesn't do any good if no one reads it. That's why being thoughtful about how, where, and when your share your doc is important.
+Your doc doesn't do any good if no one reads it. That's why being thoughtful about how, where, and when you share your doc is important.
 
 If you've already talked to stakeholders, you have a great advantage! They already know your doc is coming, and that it's about something they care about. They will be able to tell you what the best channels to share for their teammates (and might even do it for you!).
 
-Timing is also important. Attention to an issue can have a short life. Sometimes it's better to write a less comprehensive doc quickly than a more comprehensive doc that takes longer to write. In these situations, you can acknowlege unknowns, and fill in details later.
+Timing is also important. Attention to an issue can have a short life. Sometimes it's better to write a less comprehensive doc quickly than a more comprehensive doc that takes longer to write. In these situations, you can acknowledge unknowns, and fill in details later.
 
 
 ## Antipatterns
