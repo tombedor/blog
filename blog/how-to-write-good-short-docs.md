@@ -37,13 +37,9 @@ Fast forward to the introduction of Slack and similar tools. Now, writing messag
 
 ![slack](/diagrams/how-to-write-good-short-docs/slack.png)
 
-Memo style writing is even more impactful in a remote work environment, where casual face to face interactions are much more scarce:
-
-![remote-work](/diagrams/how-to-write-good-short-docs/remote-work.png)
-
 ## Why writing is a worthwhile skill to develop in the age of AI
 
-You have a major advantage against AI in writing for teammates:
+With the advent of AI coding agents, coding is somewhat lessened as a differentiating skill. However, you have a major advantage against AI in writing for teammates:
 
 ![you-vs-bots](/diagrams/how-to-write-good-short-docs/you-vs-bots.png)
 
@@ -67,9 +63,9 @@ Different types of stakeholders will give a different amount of attention to you
 ![stakeholders](/diagrams/how-to-write-good-short-docs/stakeholders.png)
 
 So, in laying out your doc, consider:
-- If someone reads this for 5 seconds, do they get the right 5 seconds of context?
+- If someone (e.g., a lead of leads) reads this for 5 seconds, do they get the right 5 seconds of context?
 - What about 5 minutes?
-- If they want to delve into some of the details while ignoring others, can they?
+- If a teammate or stakeholder wants to delve into some of the details while ignoring others, can they?
 
 Tactics for this include:
 - Clear, accurate, descriptive titles
@@ -93,7 +89,7 @@ If your doc can be summarized by, "everyone should care more about XYZ", it's pr
 Linking related docs at the top is an easy step that is often missed. This helps in a couple ways:
   - It implies alignment with whatever the linked doc is discussing
   - It helps elevate teammates who might be advocating something similar to what you're writing about
-  - It makes your doc a useful vehicle for discovery of other docs: 
+  - It makes your doc a useful vehicle for discovery of other docs:
 
 ![doc_graph](/diagrams/how-to-write-good-short-docs/doc_graph.png)
 
