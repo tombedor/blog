@@ -155,6 +155,10 @@ Adding WIP says to the reader: "You should probably wait to read this". But you 
 
 Sometimes, in a decision doc, writers will give even treatment to all available options, in order to avoid looking biased. But this doesn't really serve the reader well. It's more helpful to know the decision being favored, and if they disagree they can always comment to that effect.
 
+### Burying the lede
+
+A common antipattern is for writers to set up their argument or proposal with extensive background information at the beginning of their doc. Getting through the background should not be a prerequisite for knowing what the point of your doc is - some readers will already have the necessary background context, others will only be interested in the decision. Laying out the scope and goals at the top of your doc orients the reader and helps them understand what background context is relevant.
+
 ## The hard part
 
 The hardest part of a good (short!) doc isn't the writing. It's knowing what to cut, who you're writing for, and what only you can say. That last one is the part no one else can do for you (not even AI!).
