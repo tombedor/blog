@@ -19,7 +19,7 @@ A one pager might be written to:
 - explain the current state of a system or systems
 - announce or document a decision
 
-This is also distinct from user-facing documentation. Some but not all of what we're talking about applies to those styles or writing[^2].
+This is also distinct from user-facing documentation. Some but not all of what we're talking about applies to those styles of writing[^2].
 
 [^2]: Namely, while AI is a poor writer of one pagers, their ability to understand code and follow writing structure makes them quite good at writing user-facing documentation
 
@@ -70,7 +70,7 @@ Tactics for this include:
 - Clear, accurate, descriptive titles
 - A concise summary at the top of what the doc covers, and what it *does not* cover
 - Formatting: Headings and subheadings that help the reader navigate
-- Tabs in Google Docs can be helpful, but are controversial. They can prevent doc sprawl (e.g. working group meeting notes as a tab of the working group charter, rather than a separate doc), but often times are shared with direct links to the wrong tab, which can be confusing for readers.
+- Tabs in Google Docs can be helpful, but are controversial. They can prevent doc sprawl (e.g. working group meeting notes as a tab of the working group charter, rather than a separate doc), but oftentimes are shared with direct links to the wrong tab, which can be confusing for readers.
 
 ### Diagrams
 A visual representation is an excellent way to quickly convey context. Here too, optimize for attention spans. For example, in a system diagram, sometimes it's helpful to omit some systems that aren't relevant to the discussion.
@@ -81,15 +81,15 @@ Excalidraw is a really excellent tool for this. It's open source (you can make t
 
 It's very hard to persuade people to care about something that they don't already care about. Much easier is to convince people that something _aligns with the thing they care about_.
 
-Ie, don't write "we should do more of XYZ", write "doing XYZ helps us `{thing people already care about}`"
+I.e., don't write "we should do more of XYZ", write "doing XYZ helps us `{thing people already care about}`"
 
 If your doc can be summarized by, "everyone should care more about XYZ", it's probably not a very good doc!
 
 ### Connect to existing conversations
 
-A concrete way to align with reader interest is connect the dots between your document and other conversations and documents at your company.
+A concrete way to align with reader interest is to connect the dots between your document and other conversations and documents at your company.
 
-Linking related docs at the top of your doc is an easy step that is often missed. This helps in a couple ways:
+Linking related docs at the top of your doc is an easy step that is often missed. This helps in a couple of ways:
   - It implies alignment with whatever the linked doc is discussing
   - It helps elevate teammates who might be advocating something similar to what you're writing about
   - It makes your doc a useful vehicle for discovery of other docs
