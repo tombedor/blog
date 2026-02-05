@@ -19,6 +19,8 @@ A one pager might be written to:
 - explain the current state of a system or systems
 - announce or document a decision
 
+<!-- truncate -->
+
 This is also distinct from user-facing documentation. Some but not all of what we're talking about applies to those styles of writing[^2].
 
 [^2]: Namely, while AI is a poor writer of one pagers, their ability to understand code and follow writing structure makes them quite good at writing user-facing documentation
