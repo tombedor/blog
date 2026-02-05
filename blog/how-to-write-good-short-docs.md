@@ -93,7 +93,7 @@ A concrete way to align with reader interest is connect the dots between your do
 Linking related docs at the top of your doc is an easy step that is often missed. This helps in a couple ways:
   - It implies alignment with whatever the linked doc is discussing
   - It helps elevate teammates who might be advocating something similar to what you're writing about
-  - It makes your doc a useful vehicle for discovery of other docs:
+  - It makes your doc a useful vehicle for discovery of other docs
 
 ![doc_graph](/diagrams/how-to-write-good-short-docs/doc_graph.png)
 
