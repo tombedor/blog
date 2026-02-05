@@ -10,7 +10,7 @@ date: 2026-02-04
 [^1]: It [wasn't actually him](https://quoteinvestigator.com/2012/04/28/shorter-letter/) but you get the point
 
 ## Overview
-This describes how to write a short document for your teammates. The documents under discussion are commonly referred to as "one-pagers", and are distinct from engineering design docs or other more formal engineering docs.
+This post describes how to write a short document for your teammates. The documents under discussion are commonly referred to as "one-pagers", and are distinct from engineering design docs or other more formal engineering docs.
 
 A one pager might be written to:
 - surface an org pain point
