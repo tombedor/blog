@@ -19,7 +19,7 @@
 <p>— Mark Twain<sup><a href="https://tombedor.dev/how-to-write-good-short-docs/#user-content-fn-1-3a821f" id="user-content-fnref-1-3a821f" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">1</a></sup></p>
 </blockquote>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="overview">Overview<a href="https://tombedor.dev/how-to-write-good-short-docs/#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
-<p>This describes how to write a short document for your teammates. The documents under discussion are commonly referred to as "one-pagers", and are distinct from engineering design docs or other more formal engineering docs.</p>
+<p>This post describes how to write a short document for your teammates. The documents under discussion are commonly referred to as "one-pagers", and are distinct from engineering design docs or other more formal engineering docs.</p>
 <p>A one pager might be written to:</p>
 <ul>
 <li>surface an org pain point</li>
