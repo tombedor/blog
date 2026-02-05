@@ -73,9 +73,15 @@ Tactics for this include:
 - Tabs in Google Docs can be helpful, but are controversial. They can prevent doc sprawl (e.g. working group meeting notes as a tab of the working group charter, rather than a separate doc), but oftentimes are shared with direct links to the wrong tab, which can be confusing for readers.
 
 ### Diagrams
-A visual representation is an excellent way to quickly convey context. Here too, optimize for attention spans. For example, in a system diagram, sometimes it's helpful to omit some systems that aren't relevant to the discussion.
+A visual representation is an excellent way to quickly convey context. Here too, optimize for attention spans. For example, in a system diagram, sometimes it's helpful to omit some systems that aren't relevant to the discussion[^3].
+
+ <img src="/diagrams/how-to-write-good-short-docs/diagrams.png" alt="diagrams" style={{width:'60%'}} />
+
+[^3]: It felt wrong to have a diagram section without a diagram.
 
 Excalidraw is a really excellent tool for this. It's open source (you can make them in your code editor), and has just the right amount of knobs and shapes. The hand drawn look means that it's not as distracting when shapes aren't perfectly aligned.
+
+
 
 ### Align with reader interest
 
@@ -113,9 +119,9 @@ Use AI as your editor, not your ghostwriter.
 
 It's worth reiterating: if an AI could do a good job of writing your document, it's probably not something you need to write.
 
-People give very little attention to text or imagery that other people have generated[^3]. If I'm interested in what AI has to say about something, I can have it generate it myself. This will be interactive and more tailored to my understanding.
+People give very little attention to text or imagery that other people have generated[^4]. If I'm interested in what AI has to say about something, I can have it generate it myself. This will be interactive and more tailored to my understanding.
 
-[^3]: Full disclosure: my sources for this claim are _vibes_.
+[^4]: Full disclosure: my sources for this claim are _vibes_.
 
 While AI isn't a good writer, it's an _excellent_ editor. It is very good at evaluating your doc and giving useful feedback on it. Typical prompts I use:
 > _Evaluate the structure of my document, and suggest improvements_
