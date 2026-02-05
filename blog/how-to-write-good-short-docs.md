@@ -1,7 +1,6 @@
 ---
 title: "How to Write Good (Short) Docs"
-date: 2026-02-02
-draft: true
+date: 2026-02-04
 ---
 
 > _"I would have written a shorter letter, but I did not have the time."_
