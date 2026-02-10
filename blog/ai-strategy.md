@@ -11,6 +11,8 @@ draft: true
         - skeptics: good docs!
         - believers: helps AI
 - Documentation heavy
+    - the biggest weakness of AI is undocumented business context
+        - so, document as much as you can!
     - in making a slackbot, the biggest gap was docs
     - AI can write docs well! review code, understand code, write docs
         - how do i know it's good?
