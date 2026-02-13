@@ -157,6 +157,36 @@ save_hash() {
     echo "$current_hash" > "$hash_file"
 }
 
+# Function to update markdown files with image links
+update_markdown_links() {
+    local diagram_file="$1"
+
+    # Extract post slug and diagram name from path
+    # e.g., static/diagrams/ai-threatens-privacy/pick-0.excalidraw
+    # -> post_slug: ai-threatens-privacy, diagram_name: pick-0
+    if [[ "$diagram_file" =~ static/diagrams/([^/]+)/([^/]+)\.excalidraw ]]; then
+        local post_slug="${BASH_REMATCH[1]}"
+        local diagram_name="${BASH_REMATCH[2]}"
+        local blog_file="blog/${post_slug}.md"
+
+        # Check if blog post exists
+        if [ ! -f "$blog_file" ]; then
+            return
+        fi
+
+        # Create the image markdown
+        local image_link="![${diagram_name}](/diagrams/${post_slug}/${diagram_name}.png)"
+        local comment_pattern="<!-- ${diagram_name} -->"
+
+        # Check if comment exists in the file
+        if grep -q "$comment_pattern" "$blog_file"; then
+            # Replace comment with image link
+            sed -i '' "s|${comment_pattern}|${image_link}|g" "$blog_file"
+            echo -e "${GREEN}  ↳ Updated link in $blog_file${NC}"
+        fi
+    fi
+}
+
 # Export each file
 SUCCESS_COUNT=0
 FAIL_COUNT=0
@@ -184,6 +214,7 @@ for INPUT_FILE in "${FILES[@]}"; do
         2>&1 | grep -v "Warning:" | grep -v "deprecated"; then
         echo -e "${GREEN}✓ Exported: $OUTPUT_FILE${NC}"
         save_hash "$INPUT_FILE"
+        update_markdown_links "$INPUT_FILE"
         ((SUCCESS_COUNT++))
     else
         echo -e "${RED}✗ Failed to export: $INPUT_FILE${NC}"
