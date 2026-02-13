@@ -11,7 +11,7 @@ draft: true
 
 [This Twitter thread](https://x.com/callebtc/status/2022046669710491991?s=46) was an interesting read:
 
-<!-- thread -->
+![thread](/diagrams/ai-threatens-privacy/thread.png)
 
 The TLDR of the snafu is:
 1. OpenClaw bot makes [PR to matplotlib](https://github.com/matplotlib/matplotlib/pull/31132)
