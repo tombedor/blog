@@ -88,8 +88,8 @@ const config: Config = {
       },
       items: [
         {
-          to: '/contact',
-          label: 'Contact',
+          to: '/about',
+          label: 'About',
           position: 'right',
         },
         {
