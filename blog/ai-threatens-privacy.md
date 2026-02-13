@@ -1,5 +1,5 @@
 ---
-title: AI Threatens Online Privacy
+title: AI Bots Are Making Anonymity Untenable
 date: 2026-02-13
 draft: true
 ---
