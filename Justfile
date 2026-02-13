@@ -8,9 +8,13 @@ build:
 serve:
 	pnpm start
 
+# Creates a new blog post with frontmatter and diagram directory
+new-post title:
+	./scripts/new-post.sh "{{title}}"
+
 # Deploys the site to GitHub Pages
 deploy:
-	GIT_USER=tombedor npm run deploy
+	./scripts/check-new-posts.sh && GIT_USER=tombedor npm run deploy
 
 # Dual publish blog posts to elroy project
 dual-publish:
