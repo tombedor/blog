@@ -31,11 +31,11 @@ This set off some interesting observations, with feelings being a mix of amuseme
 3) That the bot is difficult to identify in GitHub is a new phenomonon. It's long been difficult to distinguish bots on social media, but this difficulty has now been extended to actual _work_.
 4) The discussion on Twitter is hard to evaluate. It's a mix of self-disclosed bots and accounts that may or may not be bots.
 
-## Anonyminity on the web: even less tenable?
+## Anonymity on the web: even less tenable?
 
-This creatse an obvious usability problem for the web. I'm enthusiastic about what AI allows us to build, but when I'm looking for human conversation on the web I'm not very interested in what an AI wants to say. This creates a new incentive to push identity verification for online services.
+This creates an obvious usability problem for the web. I'm enthusiastic about what AI allows us to build, but when I'm looking for human conversation on the web I'm not very interested in what an AI wants to say. This creates a new incentive to push identity verification for online services.
 
-It feels like an inflection point for online privacy. Perhaps relatedly, [Discord is rumored to be rolling out face scan verification](https://www.theverge.com/tech/875309/discord-age-verification-global-roll-out) soon. Governments across the world seem to be [again pushing to eliminate online anonyminity](https://harvardlawreview.org/print/vol-139/content-neutrality-for-kids-intermediate-scrutiny-for-social-media-age-verification-laws/).
+It feels like an inflection point for online privacy. Perhaps relatedly, [Discord is rumored to be rolling out face scan verification](https://www.theverge.com/tech/875309/discord-age-verification-global-roll-out) soon. Governments across the world seem to be [again pushing to eliminate online anonymity](https://harvardlawreview.org/print/vol-139/content-neutrality-for-kids-intermediate-scrutiny-for-social-media-age-verification-laws/).
 
 At the same time online privacy faces new threats, events in my [home town of Minneapolis](https://www.nbcnews.com/tech/internet/fbi-investigating-minnesota-signal-minneapolis-group-ice-patel-kash-rcna256041) are providing vindication for commentators stubbornly insisting on its importance[^1]. To take one example of many documented abuses, the DHS recently [responded to an innocuous email from a concerned 67 year old citizen with an administrative subpenea on his Google account](https://newrepublic.com/post/206088/homeland-security-67-year-old-us-citizen-criticized-email) and an intimidating visit to his home. Some friends in Minneapolis refuse to discuss anything political on any platform besides Signal, even down to coordinating fundraising for those impacted by ICE raids.
 
@@ -45,4 +45,4 @@ At the same time online privacy faces new threats, events in my [home town of Mi
 
 ## An uncertain future
 
-The driving force against online anonyminity has long been government regulation under the guise of protecting minors. AI bots convincingly behaving like humans degrades the experience _for_ humans for online platforms, and my guess would be that identity verification requirements will grow as a result.
+The driving force against online anonymity has long been government regulation under the guise of protecting minors. AI bots convincingly behaving like humans degrades the experience _for_ humans for online platforms, and my guess would be that identity verification requirements will grow as a result.
