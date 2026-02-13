@@ -30,7 +30,7 @@ This set off some interesting observations, with feelings being a mix of amuseme
 3) That the bot is difficult to identify in GitHub is a new phenomonon. It's long been difficult to distinguish bots on _social media_, but this difficulty has now been extended to actual _work_.
 4) The discussion on Twitter is hard to evaluate. It's a mix of self-disclosed bots and accounts that may or may not be bots.
 
-## Anonymity on the web: even less tenable?
+## Anonymity on the web: even less tenable
 
 This creates an obvious usability problem for the web. I'm enthusiastic about what AI allows us to build, but when I'm looking for human conversation on the web I'm not very interested in what an AI has to say. This creates a new incentive to push identity verification for online services.
 
