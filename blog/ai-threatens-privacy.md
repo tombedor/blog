@@ -32,7 +32,7 @@ This set off some interesting observations, with feelings being a mix of amuseme
 
 ## Anonymity on the web: even less tenable
 
-This creates an obvious usability problem for the web. I'm enthusiastic about what AI allows us to build, but when I'm looking for human conversation on the web I'm not very interested in what an AI has to say. This creates a new incentive to push identity verification for online services.
+This creates an obvious usability problem for the web. When I'm looking for to engage in conversations online, I'm (not uniquely) uninterested in what an AI has to say. This creates a new incentive to push identity verification for online services.
 
 This is a new inflection point for online privacy. Perhaps relatedly, [Discord is rumored to be rolling out face scan verification](https://www.theverge.com/tech/875309/discord-age-verification-global-roll-out) soon. Governments across the world seem to be [again pushing to eliminate online anonymity](https://harvardlawreview.org/print/vol-139/content-neutrality-for-kids-intermediate-scrutiny-for-social-media-age-verification-laws/).
 
