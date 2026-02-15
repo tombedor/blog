@@ -8,6 +8,10 @@
 .docusaurus
 .cache-loader
 
+# TypeScript build artifacts (compiled .js from .ts sources)
+docusaurus.config.js
+src/**/*.js
+
 # Misc
 .DS_Store
 .env.local
