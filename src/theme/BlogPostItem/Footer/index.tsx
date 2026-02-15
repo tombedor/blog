@@ -3,6 +3,7 @@ import Footer from '@theme-original/BlogPostItem/Footer';
 import type FooterType from '@theme/BlogPostItem/Footer';
 import type {WrapperProps} from '@docusaurus/types';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 type Props = WrapperProps<typeof FooterType>;
 
@@ -28,6 +29,12 @@ export default function FooterWrapper(props: Props): JSX.Element {
           </a>
         </div>
       )}
+      <BrowserOnly>
+        {() => {
+          const EmailSignup = require('@site/src/components/EmailSignup').default;
+          return <EmailSignup />;
+        }}
+      </BrowserOnly>
     </>
   );
 }

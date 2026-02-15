@@ -72,6 +72,20 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      './src/plugins/umami-analytics',
+      {
+        // After Umami setup, replace with your Website ID from Umami dashboard
+        // Example: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
+        websiteId: '',
+        // After Umami setup, replace with your Umami instance URL
+        // Example: 'https://analytics.tombedor.dev/script.js'
+        src: '',
+      },
+    ],
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/icon-1024.png',

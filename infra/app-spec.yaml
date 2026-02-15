@@ -1,0 +1,87 @@
+## DigitalOcean App Platform spec for self-hosted analytics (Umami) and email list (Listmonk)
+## Deploy with: doctl apps create --spec infra/app-spec.yaml
+## Update with: doctl apps update <app-id> --spec infra/app-spec.yaml
+
+name: blog-services
+region: nyc
+
+databases:
+  - name: db
+    engine: PG
+    version: "16"
+    size: db-s-dev-database  # $0/month (dev database, shared CPU, 256MB RAM)
+    num_nodes: 1
+
+services:
+  - name: umami
+    image:
+      registry_type: DOCKER_HUB
+      registry: ghcr.io
+      repository: umami-software/umami
+      tag: postgresql-latest
+    instance_size_slug: apps-s-1vcpu-0.5gb  # smallest App Platform container
+    instance_count: 1
+    http_port: 3000
+    routes:
+      - path: /
+    envs:
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        value: ${db.DATABASE_URL}
+      - key: APP_SECRET
+        scope: RUN_TIME
+        type: SECRET
+        value: REPLACE_WITH_RANDOM_SECRET
+      - key: TRACKER_SCRIPT_NAME
+        scope: RUN_TIME
+        value: script  # use /script.js instead of default to avoid adblockers
+    health_check:
+      http_path: /api/heartbeat
+      initial_delay_seconds: 30
+      period_seconds: 15
+
+  - name: listmonk
+    image:
+      registry_type: DOCKER_HUB
+      registry: listmonk
+      repository: listmonk
+      tag: latest
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    instance_count: 1
+    http_port: 9000
+    routes:
+      - path: /
+    envs:
+      - key: LISTMONK_app__address
+        scope: RUN_TIME
+        value: "0.0.0.0:9000"
+      - key: LISTMONK_db__host
+        scope: RUN_TIME
+        value: ${db.HOSTNAME}
+      - key: LISTMONK_db__port
+        scope: RUN_TIME
+        value: ${db.PORT}
+      - key: LISTMONK_db__user
+        scope: RUN_TIME
+        value: ${db.USERNAME}
+      - key: LISTMONK_db__password
+        scope: RUN_TIME
+        value: ${db.PASSWORD}
+      - key: LISTMONK_db__database
+        scope: RUN_TIME
+        value: ${db.DATABASE}
+      - key: LISTMONK_db__ssl_mode
+        scope: RUN_TIME
+        value: require
+      - key: LISTMONK_app__admin_username
+        scope: RUN_TIME
+        type: SECRET
+        value: admin
+      - key: LISTMONK_app__admin_password
+        scope: RUN_TIME
+        type: SECRET
+        value: REPLACE_WITH_ADMIN_PASSWORD
+    health_check:
+      http_path: /api/health
+      initial_delay_seconds: 45
+      period_seconds: 15
