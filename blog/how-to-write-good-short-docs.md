@@ -87,9 +87,9 @@ Excalidraw is a really excellent tool for this. It's open source (you can make t
 
 ### Align with reader interest
 
-It's very hard to persuade people to care about something that they don't already care about. Much easier is to convince people that something _aligns with the thing they care about_.
+It's very hard to persuade people to care about something that they don't already care about. Much easier is to convince people that something _aligns with the thing they care about_, or especially an _outcome they want_.
 
-I.e., don't write "we should do more of XYZ", write "doing XYZ helps us `{thing people already care about}`"
+I.e., don't write "we should do more of XYZ", write "doing XYZ helps us accomplish `{thing people already care about}`".
 
 If your doc can be summarized by, "everyone should care more about XYZ", it's probably not a very good doc!
 
