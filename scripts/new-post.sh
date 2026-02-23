@@ -15,7 +15,7 @@ fi
 TITLE="$1"
 
 # Generate slug from title (lowercase, replace spaces with hyphens, remove special chars)
-SLUG=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9 -]//g' | sed 's/ \+/-/g')
+SLUG=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9 -]//g' | sed -E 's/ +/-/g')
 
 # Get current date in YYYY-MM-DD format
 DATE=$(date +%Y-%m-%d)

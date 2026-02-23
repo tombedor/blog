@@ -1,0 +1,49 @@
+#cloud-config
+
+# Install docker-compose
+package_update: true
+packages:
+  - docker-compose
+
+# Create application directory structure
+runcmd:
+  # Create directories
+  - mkdir -p /opt/analytics/{caddy,data,config}
+  - mkdir -p /opt/analytics/caddy/data
+  - mkdir -p /opt/analytics/caddy/config
+
+  # Write docker-compose.yml
+  - echo "${docker_compose_content}" | base64 -d > /opt/analytics/docker-compose.yml
+
+  # Write Caddyfile
+  - echo "${caddyfile_content}" | base64 -d > /opt/analytics/caddy/Caddyfile
+
+  # Write .env file
+  - echo "${env_content}" | base64 -d > /opt/analytics/.env
+
+  # Set permissions
+  - chmod 600 /opt/analytics/.env
+  - chown -R root:root /opt/analytics
+
+  # Start services
+  - cd /opt/analytics && docker-compose up -d
+
+  # Enable docker-compose service restart on boot
+  - |
+    cat > /etc/systemd/system/analytics.service <<'EOF'
+    [Unit]
+    Description=Analytics and Newsletter Services
+    Requires=docker.service
+    After=docker.service
+
+    [Service]
+    Type=oneshot
+    RemainAfterExit=yes
+    WorkingDirectory=/opt/analytics
+    ExecStart=/usr/bin/docker-compose up -d
+    ExecStop=/usr/bin/docker-compose down
+
+    [Install]
+    WantedBy=multi-user.target
+    EOF
+  - systemctl enable analytics.service

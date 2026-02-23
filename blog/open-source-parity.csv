@@ -1,0 +1,7 @@
+frontier_model,provider,frontier_release_date,benchmark,os_model,os_model_params,months_to_parity
+GPT-3.5,OpenAI,2022-11-01,MMLU,Llama 2 70B,70B,9
+GPT-4,OpenAI,2023-03-01,MMLU,Llama 3.1 405B,405B,16
+Claude 3 Opus,Anthropic,2024-03-01,MMLU,Llama 3.1 405B,405B,4
+GPT-4o,OpenAI,2024-05-01,MMLU-Pro,DeepSeek-V3,671B (37B active),7
+Claude 3.5 Sonnet,Anthropic,2024-06-01,MMLU-Pro,DeepSeek-V3,671B (37B active),6
+o1,OpenAI,2024-09-01,AIME 2024,DeepSeek-R1,671B (37B active),4

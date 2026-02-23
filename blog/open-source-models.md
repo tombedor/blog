@@ -1,0 +1,55 @@
+---
+title: Open Source Models
+date: 2026-02-23
+draft: true
+---
+
+thesis: open source models represent an underrated threat to frontier model developers. the eventual future of AI is on device and open source.
+
+
+narrative: apple is behind in AI:
+https://x.com/staysaasy/status/2023372537913356497
+
+## Time to Parity: Open Source Models Matching Frontier Benchmarks
+
+| Frontier Model | Provider | Release | Benchmark | Score | Open Source Match | OS Model | Months to Parity | Source |
+|---|---|---|---|---|---|---|---|---|
+| GPT-3.5 / ChatGPT | OpenAI | Nov 2022 | MMLU | ~70% | Aug 2023 | Llama 2 70B (70B) | ~9 | [Stanford HAI AI Index 2025](https://hai.stanford.edu/ai-index/2025-ai-index-report/technical-performance) |
+| GPT-4 | OpenAI | Mar 2023 | MMLU | 86.4% | Jul 2024 | Llama 3.1 405B (405B) | ~16 | [Epoch AI](https://epoch.ai/data-insights/open-weights-vs-closed-weights-models) |
+| Claude 3 Opus | Anthropic | Mar 2024 | MMLU | 86.8% | Jul 2024 | Llama 3.1 405B (405B) | ~4 | [Epoch AI](https://epoch.ai/data-insights/open-weights-vs-closed-weights-models) |
+| GPT-4o | OpenAI | May 2024 | MMLU-Pro | 71.6% | Dec 2024 | DeepSeek-V3 (671B total / 37B active) | ~7 | [DeepSeek V3 Technical Report](https://arxiv.org/abs/2412.19437) |
+| Claude 3.5 Sonnet | Anthropic | Jun 2024 | MMLU-Pro | 73.3% | Dec 2024 | DeepSeek-V3 (671B total / 37B active) | ~6 | [DeepSeek V3 Technical Report](https://arxiv.org/abs/2412.19437) |
+| o1 | OpenAI | Sep 2024 | AIME 2024 | 79.2% | Jan 2025 | DeepSeek-R1 (671B total / 37B active) | ~4 | [DeepSeek R1 via TechCrunch](https://techcrunch.com/2025/01/27/deepseek-claims-its-reasoning-model-beats-openais-o1-on-certain-benchmarks/) |
+
+### Aggregate trend data
+- **Epoch AI**: Average lag of best open-weight model behind best closed model is now ~3 months ([source](https://epoch.ai/data-insights/open-weights-vs-closed-weights-models))
+- **Stanford HAI**: Chatbot Arena Elo gap between closed and open models shrank from 8.04% to 1.70% between Jan 2024 and Feb 2025 ([source](https://hai.stanford.edu/ai-index/2025-ai-index-report/technical-performance))
+
+## iPhone Hardware and On-Device Model Capability
+
+Key constraint: **memory bandwidth** (not TOPS) limits LLM inference speed on mobile — iPhones have ~50-90 GB/s vs 2-3 TB/s on datacenter GPUs. RAM determines what fits; bandwidth determines speed.
+
+| iPhone Pro | Year | Chip | RAM | Neural Engine TOPS | Practical Max Model (10+ t/s) |
+|---|---|---|---|---|---|
+| iPhone 11 Pro | 2019 | A13 Bionic | 4 GB | ~5 TOPS | ~1B (Q4) |
+| iPhone 12 Pro | 2020 | A14 Bionic | 6 GB | 11 TOPS | ~1-3B (Q4) |
+| iPhone 13 Pro | 2021 | A15 Bionic | 6 GB | 15.8 TOPS | ~1-3B (Q4) |
+| iPhone 14 Pro | 2022 | A16 Bionic | 6 GB | 17 TOPS | ~3B (Q4) — Phi-2 3B at 23 t/s confirmed |
+| iPhone 15 Pro | 2023 | A17 Pro | 8 GB | 35 TOPS | ~3B comfortably; Apple ships 3B on-device at 30 t/s |
+| iPhone 16 Pro | 2024 | A18 Pro | 8 GB | 35 TOPS | ~3-7B (Q4); 7B slow |
+| iPhone 17 Pro | 2025 | A19 Pro | 12 GB | ~38 TOPS | ~7B (Q4) comfortably; 13B possible with heavy quant |
+| iPhone 18 Pro (expected) | 2026 | A20 Pro | 12 GB | TBD | WL-MCM improves memory bandwidth; 13B+ plausible |
+
+**Apple Intelligence on-device model** (iPhone 15 Pro+): ~3B parameters, mixed 2-bit/4-bit quantization (~3.7 bits/weight), ~30 t/s. ([Apple ML Research](https://machinelearning.apple.com/research/introducing-apple-foundation-models))
+
+**Sources**: [llama.cpp benchmark thread](https://github.com/ggml-org/llama.cpp/discussions/4508), [Apple ML Research 2025 update](https://machinelearning.apple.com/research/apple-foundation-models-tech-report-2025), [iPhone 17 Pro specs](https://www.apple.com/iphone-17-pro/specs/), [iPhone 18 A20 rumors — AppleInsider](https://appleinsider.com/articles/26/01/23/what-to-expect-from-the-spring-2027-iphone-18-a20-12gb-of-ram-and-more)
+
+### Notable 2025–2026 open source releases
+| Model | Lab | Release | Parameters | Key Benchmarks | License |
+|---|---|---|---|---|---|
+| DeepSeek-R1 | DeepSeek | Jan 2025 | 671B total / 37B active (MoE) | AIME 79.8%, MATH-500 97.3%, GPQA Diamond 71.5% | MIT |
+| Llama 4 Maverick | Meta | Apr 2025 | 400B total / 17B active (MoE) | GPQA Diamond 84.8% | Llama 4 Community |
+| Qwen3-235B | Alibaba | Apr 2025 | 235B total / 22B active (MoE) | GPQA Diamond ~84%, MMLU-Pro 80.6% | Apache 2.0 |
+| Mistral Large 3 | Mistral | Dec 2025 | 675B total / 41B active (MoE) | #2 open model on LMArena at launch | Apache 2.0 |
+| Qwen3.5-397B | Alibaba | Feb 2026 | 397B total / 17B active (MoE) | GPQA Diamond 88.4%, MMLU-Pro 87.8%, AIME26 91.3% | Apache 2.0 |
+

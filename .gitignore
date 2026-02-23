@@ -19,3 +19,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-lock.yaml
+
+# Infrastructure secrets
+infrastructure/terraform/terraform.tfstate
+infrastructure/terraform/terraform.tfstate.backup
+infrastructure/terraform/.terraform/
+infrastructure/terraform/.terraform.lock.hcl
+infrastructure/terraform/terraform.tfvars
+infrastructure/terraform/*.auto.tfvars
+infrastructure/docker/.env
+
+# Diagram hash cache (for excalidraw export)
+static/diagrams/.diagram_hashes/

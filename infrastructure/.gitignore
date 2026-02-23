@@ -1,0 +1,19 @@
+# Terraform
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfvars
+terraform/*.auto.tfvars
+
+# Docker environment
+docker/.env
+
+# Local data directories (if running locally)
+docker/data/
+docker/postgres_data/
+docker/caddy_data/
+docker/caddy_config/
+
+# Logs
+*.log

@@ -1,0 +1,28 @@
+# DigitalOcean API Token
+# Get from: https://cloud.digitalocean.com/account/api/tokens
+do_token = "dop_v1_xxxxxxxxxxxxxxxxxxxx"
+
+# SSH Key Name
+# Must match a key name in your DigitalOcean account
+# View keys at: https://cloud.digitalocean.com/account/security
+ssh_key_name = "your-ssh-key-name"
+
+# Droplet Configuration
+droplet_name = "blog-analytics"
+region       = "nyc3"  # Options: nyc1, nyc3, sfo3, sgp1, lon1, fra1, tor1, blr1
+droplet_size = "s-1vcpu-2gb"  # $12/mo - sufficient for most blogs
+
+# Security: SSH Access Control
+# Restrict to your IP for better security, or use ["0.0.0.0/0", "::/0"] for anywhere
+ssh_allowed_ips = ["0.0.0.0/0", "::/0"]
+
+# Tags
+tags = ["analytics", "blog", "production"]
+
+# Domain Configuration (optional)
+# Leave empty "" if not using DigitalOcean DNS
+domain = ""  # e.g., "yourdomain.com"
+
+# Subdomains (only used if domain is set)
+analytics_subdomain = ""  # e.g., "analytics" for analytics.yourdomain.com
+listmonk_subdomain  = ""  # e.g., "newsletter" for newsletter.yourdomain.com

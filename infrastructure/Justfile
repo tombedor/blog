@@ -1,0 +1,117 @@
+set shell := ["zsh", "-c"]
+
+# Initialize Terraform
+init:
+	cd terraform && terraform init
+
+# Plan infrastructure changes
+plan:
+	cd terraform && terraform plan
+
+# Apply infrastructure changes
+apply:
+	cd terraform && terraform apply
+
+# Destroy all infrastructure
+destroy:
+	cd terraform && terraform destroy
+
+# Show infrastructure outputs
+output:
+	cd terraform && terraform output
+
+# Validate Terraform configuration
+validate:
+	cd terraform && terraform fmt -check
+	cd terraform && terraform validate
+
+# Format Terraform files
+fmt:
+	cd terraform && terraform fmt -recursive
+
+# Generate secure secrets for .env file
+generate-secrets:
+	@echo "Copy these to your docker/.env file:"
+	@echo ""
+	@echo "POSTGRES_PASSWORD=$(openssl rand -base64 32)"
+	@echo "UMAMI_APP_SECRET=$(openssl rand -hex 32)"
+
+# SSH into the droplet
+ssh:
+	@terraform -chdir=terraform output -raw ssh_command | sh
+
+# View logs from all services
+logs:
+	@echo "Connecting to droplet and showing logs..."
+	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
+		ssh root@$DROPLET_IP 'cd /opt/analytics && docker-compose logs -f'
+
+# View logs from a specific service (umami, listmonk, postgres, caddy)
+logs-service service:
+	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
+		ssh root@$DROPLET_IP 'cd /opt/analytics && docker-compose logs -f {{service}}'
+
+# Check service status
+status:
+	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
+		ssh root@$DROPLET_IP 'cd /opt/analytics && docker-compose ps'
+
+# Restart all services
+restart:
+	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
+		ssh root@$DROPLET_IP 'cd /opt/analytics && docker-compose restart'
+
+# Update services to latest versions
+update:
+	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
+		ssh root@$DROPLET_IP 'cd /opt/analytics && docker-compose pull && docker-compose up -d'
+
+# Backup PostgreSQL database
+backup:
+	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
+		ssh root@$DROPLET_IP "docker exec postgres pg_dumpall -U postgres" > backup_$(date +%Y%m%d_%H%M%S).sql && \
+		echo "Backup saved to: backup_$(date +%Y%m%d_%H%M%S).sql"
+
+# Test local docker-compose setup (without Terraform)
+test-local:
+	cd docker && docker-compose up
+
+# Stop local docker-compose setup
+stop-local:
+	cd docker && docker-compose down
+
+# Setup: copy example files
+setup:
+	@echo "Setting up configuration files..."
+	@[ ! -f docker/.env ] && cp docker/.env.example docker/.env && echo "✓ Created docker/.env" || echo "⚠ docker/.env already exists"
+	@[ ! -f terraform/terraform.tfvars ] && cp terraform/terraform.tfvars.example terraform/terraform.tfvars && echo "✓ Created terraform/terraform.tfvars" || echo "⚠ terraform/terraform.tfvars already exists"
+	@echo ""
+	@echo "Next steps:"
+	@echo "1. Edit docker/.env and set secure passwords"
+	@echo "2. Run 'just generate-secrets' for random values"
+	@echo "3. Edit terraform/terraform.tfvars with your DigitalOcean settings"
+	@echo "4. Run 'just init' to initialize Terraform"
+	@echo "5. Run 'just apply' to deploy"
+
+# Show next steps after deployment
+help:
+	@echo "Infrastructure Management Commands:"
+	@echo ""
+	@echo "  just setup          - Copy example config files"
+	@echo "  just generate-secrets - Generate secure random passwords"
+	@echo "  just init           - Initialize Terraform"
+	@echo "  just plan           - Preview infrastructure changes"
+	@echo "  just apply          - Deploy infrastructure"
+	@echo "  just output         - Show deployment info (IPs, URLs)"
+	@echo ""
+	@echo "Server Management:"
+	@echo "  just ssh            - SSH into the droplet"
+	@echo "  just status         - Check service status"
+	@echo "  just logs           - View all service logs"
+	@echo "  just logs-service SERVICE - View specific service logs"
+	@echo "  just restart        - Restart all services"
+	@echo "  just update         - Update services to latest versions"
+	@echo "  just backup         - Backup PostgreSQL database"
+	@echo ""
+	@echo "Cleanup:"
+	@echo "  just destroy        - Destroy all infrastructure"
