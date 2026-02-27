@@ -4,6 +4,8 @@ date: 2026-02-27
 draft: true
 ---
 
+[that the comapny's moonshot division was literally called "TBD" is almost beyond parady]
+
 Much ink has been spilled of late on Jack Dorsey's leadership of Block. I've recently wrapped up a 9 year stint at Block, here's what I've learned.
 
 The primary takeaway I come away with is that there are critical, core differences between _entrepreneurs_ and _operators_. Entreprenuers are risk takers, either starting or working at new, unproven ventures. They are contrarian, sticking to a product vision that can only be realized far into the future. They stick to this vision, even in the face of headwinds or even solid evidence against it.
