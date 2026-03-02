@@ -5,11 +5,8 @@ draft: true
 ---
 
 import ParityChart from '@site/src/components/ParityChart';
-import ParityLagOverTimeChart from '@site/src/components/ParityLagOverTimeChart';
 import MaxUsableModelChart from '@site/src/components/MaxUsableModelChart';
 import OpenSourceReleaseCadenceChart from '@site/src/components/OpenSourceReleaseCadenceChart';
-import BandwidthVsTopsChart from '@site/src/components/BandwidthVsTopsChart';
-import TokensPerSecVsModelSizeChart from '@site/src/components/TokensPerSecVsModelSizeChart';
 
 
 Fast, private, and free: The future of AI
@@ -18,11 +15,7 @@ Fast, private, and free: The future of AI
 - thesis: open source models present a threat to frontier model providers
 - Arguments:
     - Open source models catch up to frontier models relatively quickly
-        <ParityLagOverTimeChart />
     - Laptops and phones are not that far off from being able to support big enough models
-        - background on what the constraint is, explanation of memory bandwidth vs tops
-            - <BandwidthVsTopsChart />
-              <TokensPerSecVsModelSizeChart />
         - <MaxUsableModelChart />
     - open source release cadence is still strong
         <OpenSourceReleaseCadenceChart />
@@ -39,8 +32,6 @@ narrative: apple is behind in AI:
 https://x.com/staysaasy/status/2023372537913356497
 
 ## Time to Parity: Open Source Models Matching Frontier Benchmarks
-
-<ParityLagOverTimeChart />
 
 | Frontier Model | Provider | Release | Benchmark | Score | Open Source Match | OS Model | Months to Parity | Source |
 |---|---|---|---|---|---|---|---|---|
@@ -59,8 +50,6 @@ https://x.com/staysaasy/status/2023372537913356497
 
 Key constraint: **memory bandwidth** (not TOPS) limits LLM inference speed on mobile — iPhones have ~50-90 GB/s vs 2-3 TB/s on datacenter GPUs. RAM determines what fits; bandwidth determines speed.
 
-<BandwidthVsTopsChart />
-<TokensPerSecVsModelSizeChart />
 <MaxUsableModelChart />
 
 

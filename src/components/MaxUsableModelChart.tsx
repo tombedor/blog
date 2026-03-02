@@ -7,112 +7,251 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  ReferenceLine,
 } from 'recharts';
 import { parseCsv } from './csv';
 
 type Row = {
+  deviceModel: string;
+  device: 'iphone' | 'macbook';
   year: number;
-  model: string;
   maxModel: number;
+  speculative: boolean;
+  displayName: string;
 };
 
-const modelLabels: Record<string, string> = {
-  iphone_11_pro: 'iPhone 11 Pro',
-  iphone_12_pro: 'iPhone 12 Pro',
-  iphone_13_pro: 'iPhone 13 Pro',
-  iphone_14_pro: 'iPhone 14 Pro',
-  iphone_15_pro: 'iPhone 15 Pro',
-  iphone_16_pro: 'iPhone 16 Pro',
+type ChartPoint = {
+  year: number;
+  iphoneConfirmed: number | null;
+  iphoneSpec: number | null;
+  macbookConfirmed: number | null;
+  macbookSpec: number | null;
+  iphoneLabel: string | null;
+  macbookLabel: string | null;
+  iphoneIsSpec: boolean;
+  macbookIsSpec: boolean;
 };
+
+const LegendItem = ({
+  color,
+  label,
+  dashed = false,
+}: {
+  color: string;
+  label: string;
+  dashed?: boolean;
+}) => (
+  <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#495057' }}>
+    <svg width="24" height="14">
+      <line
+        x1="0"
+        y1="7"
+        x2="24"
+        y2="7"
+        stroke={color}
+        strokeWidth="2"
+        strokeDasharray={dashed ? '5 4' : undefined}
+      />
+      {!dashed && <circle cx="12" cy="7" r="3.5" fill={color} />}
+      {dashed && (
+        <circle cx="12" cy="7" r="3.5" fill="white" stroke={color} strokeWidth="2" />
+      )}
+    </svg>
+    {label}
+  </span>
+);
 
 const CustomTooltip = ({ active, payload }: any) => {
-  if (active && payload && payload.length) {
-    const d = payload[0].payload as Row;
-    return (
-      <div
-        style={{
-          background: '#fff',
-          border: '1px solid #dee2e6',
-          borderRadius: 6,
-          padding: '10px 14px',
-          fontSize: 13,
-          lineHeight: 1.6,
-        }}
-      >
-        <div style={{ fontWeight: 600, marginBottom: 4 }}>{d.model}</div>
-        <div>Max usable size: <strong>{d.maxModel}B</strong></div>
-        <div style={{ color: '#868e96', fontSize: 12 }}>Assumes Q4, 8k context, >=8 t/s</div>
-      </div>
-    );
-  }
-  return null;
+  if (!active || !payload?.length) return null;
+  const d: ChartPoint = payload[0]?.payload;
+  if (!d) return null;
+
+  const iphoneValue = d.iphoneConfirmed ?? d.iphoneSpec;
+  const macbookValue = d.macbookConfirmed ?? d.macbookSpec;
+
+  return (
+    <div
+      style={{
+        background: '#fff',
+        border: '1px solid #dee2e6',
+        borderRadius: 6,
+        padding: '10px 14px',
+        fontSize: 13,
+        lineHeight: 1.6,
+      }}
+    >
+      <div style={{ fontWeight: 600, marginBottom: 4 }}>{d.year}</div>
+      {iphoneValue != null && (
+        <div style={{ color: '#2f9e44' }}>
+          {d.iphoneLabel ?? 'iPhone'}
+          {d.iphoneIsSpec ? ' (est.)' : ''}: <strong>{iphoneValue}B</strong>
+        </div>
+      )}
+      {macbookValue != null && (
+        <div style={{ color: '#1971c2' }}>
+          {d.macbookLabel ?? 'MacBook Pro'}
+          {d.macbookIsSpec ? ' (est.)' : ''}: <strong>{macbookValue}B</strong>
+        </div>
+      )}
+      <div style={{ color: '#868e96', fontSize: 12, marginTop: 4 }}>Q4, 8k ctx, ≥8 t/s</div>
+    </div>
+  );
 };
 
 export default function MaxUsableModelChart() {
-  const [data, setData] = useState<Row[]>([]);
+  const [chartData, setChartData] = useState<ChartPoint[]>([]);
 
   useEffect(() => {
     let cancelled = false;
     fetch('/data/open-source-models/iphone-max-usable-model.csv')
       .then((res) => res.text())
       .then((text) => {
-        const rows = parseCsv(text)
+        const rows: Row[] = parseCsv(text)
           .map((row) => {
             if (row.quantization !== 'Q4') return null;
             const year = Number(row.year);
             const maxModel = Number(row.max_model_b);
             if (!year || Number.isNaN(maxModel)) return null;
             return {
+              deviceModel: row.device_model,
+              device: row.device as 'iphone' | 'macbook',
               year,
-              model: modelLabels[row.iphone_model] ?? row.iphone_model,
               maxModel: Number(maxModel.toFixed(1)),
+              speculative: row.speculative === 'true',
+              displayName: row.display_name || row.device_model,
             } as Row;
           })
           .filter(Boolean) as Row[];
-        rows.sort((a, b) => a.year - b.year);
-        if (!cancelled) setData(rows);
+
+        const iphoneRows = rows.filter((r) => r.device === 'iphone');
+        const macRows = rows.filter((r) => r.device === 'macbook');
+
+        const lastConfirmedIPhoneYear = Math.max(
+          ...iphoneRows.filter((r) => !r.speculative).map((r) => r.year)
+        );
+        const lastConfirmedMacYear = Math.max(
+          ...macRows.filter((r) => !r.speculative).map((r) => r.year)
+        );
+
+        const allYears = [...new Set(rows.map((r) => r.year))].sort((a, b) => a - b);
+
+        const data: ChartPoint[] = allYears.map((year) => {
+          const iphoneRow = iphoneRows.find((r) => r.year === year);
+          const macRow = macRows.find((r) => r.year === year);
+
+          return {
+            year,
+            iphoneConfirmed: iphoneRow && !iphoneRow.speculative ? iphoneRow.maxModel : null,
+            iphoneSpec:
+              iphoneRow && iphoneRow.speculative
+                ? iphoneRow.maxModel
+                : year === lastConfirmedIPhoneYear && iphoneRow
+                ? iphoneRow.maxModel
+                : null,
+            macbookConfirmed: macRow && !macRow.speculative ? macRow.maxModel : null,
+            macbookSpec:
+              macRow && macRow.speculative
+                ? macRow.maxModel
+                : year === lastConfirmedMacYear && macRow
+                ? macRow.maxModel
+                : null,
+            iphoneLabel: iphoneRow?.displayName ?? null,
+            macbookLabel: macRow?.displayName ?? null,
+            iphoneIsSpec: iphoneRow?.speculative ?? false,
+            macbookIsSpec: macRow?.speculative ?? false,
+          };
+        });
+
+        if (!cancelled) setChartData(data);
       })
       .catch(() => {
-        if (!cancelled) setData([]);
+        if (!cancelled) setChartData([]);
       });
     return () => {
       cancelled = true;
     };
   }, []);
 
-  if (data.length === 0) {
+  if (chartData.length === 0) {
     return <div style={{ margin: '2rem 0', color: '#868e96' }}>Loading chart…</div>;
   }
 
   return (
     <div style={{ margin: '2rem 0' }}>
-      <ResponsiveContainer width="100%" height={320}>
-        <LineChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 40 }}>
+      <ResponsiveContainer width="100%" height={360}>
+        <LineChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 40 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
-          <XAxis
-            dataKey="year"
-            tick={{ fontSize: 12 }}
-            interval={0}
-          />
+          <XAxis dataKey="year" tick={{ fontSize: 12 }} interval={0} />
           <YAxis
-            label={{ value: 'Max usable model size (B params)', angle: -90, position: 'insideLeft', offset: 10, style: { fontSize: 12, fill: '#868e96' } }}
-            domain={[0, 10]}
-            ticks={[0, 2, 4, 6, 8, 10]}
+            label={{
+              value: 'Max usable model (B params)',
+              angle: -90,
+              position: 'insideLeft',
+              offset: 10,
+              style: { fontSize: 12, fill: '#868e96' },
+            }}
+            domain={[0, 60]}
+            ticks={[0, 10, 20, 30, 40, 50, 60]}
             tick={{ fontSize: 12 }}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ced4da' }} />
-          <ReferenceLine y={3} stroke="#adb5bd" strokeDasharray="4 4" label={{ value: 'Apple on-device baseline (3B)', position: 'insideTopRight', fontSize: 11, fill: '#868e96' }} />
           <Line
             type="monotone"
-            dataKey="maxModel"
+            dataKey="iphoneConfirmed"
             stroke="#2f9e44"
             strokeWidth={2}
             dot={{ r: 4, fill: '#2f9e44' }}
             activeDot={{ r: 5 }}
+            connectNulls={false}
+            legendType="none"
+          />
+          <Line
+            type="monotone"
+            dataKey="iphoneSpec"
+            stroke="#2f9e44"
+            strokeWidth={2}
+            strokeDasharray="5 4"
+            dot={{ r: 4, fill: '#fff', stroke: '#2f9e44', strokeWidth: 2 }}
+            activeDot={{ r: 5 }}
+            connectNulls={false}
+            legendType="none"
+          />
+          <Line
+            type="monotone"
+            dataKey="macbookConfirmed"
+            stroke="#1971c2"
+            strokeWidth={2}
+            dot={{ r: 4, fill: '#1971c2' }}
+            activeDot={{ r: 5 }}
+            connectNulls={false}
+            legendType="none"
+          />
+          <Line
+            type="monotone"
+            dataKey="macbookSpec"
+            stroke="#1971c2"
+            strokeWidth={2}
+            strokeDasharray="5 4"
+            dot={{ r: 4, fill: '#fff', stroke: '#1971c2', strokeWidth: 2 }}
+            activeDot={{ r: 5 }}
+            connectNulls={false}
+            legendType="none"
           />
         </LineChart>
       </ResponsiveContainer>
+      <div
+        style={{
+          display: 'flex',
+          gap: 24,
+          justifyContent: 'center',
+          fontSize: 12,
+          marginTop: 4,
+          flexWrap: 'wrap',
+        }}
+      >
+        <LegendItem color="#2f9e44" label="iPhone Pro" />
+        <LegendItem color="#1971c2" label="MacBook Pro" />
+        <LegendItem color="#868e96" dashed label="estimated / speculative" />
+      </div>
     </div>
   );
 }
