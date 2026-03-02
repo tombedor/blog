@@ -1,0 +1,8 @@
+model,lab,release_date,parameters_total_b,parameters_active_b,benchmark_name,benchmark_score,license,source
+Llama-2-70B,Meta,2023-07-18,70,,MMLU (5-shot),68.9,"Llama 2 Community",https://huggingface.co/meta-llama/Llama-2-70b-hf
+Llama-3.1-405B,Meta,2024-07-23,405,,MMLU (5-shot),85.2,"Llama 3.1",https://huggingface.co/meta-llama/Llama-3.1-405B
+DeepSeek-V3,DeepSeek,2024-12-27,671,37,MMLU (Pass@1),88.5,MIT,"https://huggingface.co/deepseek-ai/DeepSeek-R1; https://ar5iv.labs.arxiv.org/html/2412.19437v1"
+DeepSeek-R1,DeepSeek,,671,37,MMLU-Pro (EM),84.0,MIT,https://huggingface.co/deepseek-ai/DeepSeek-R1
+Qwen3 (up to 235B),Alibaba,,,,,,Apache 2.0,
+Qwen3.5-397B-A17B,Alibaba,,,,,,Apache 2.0,
+Mistral Large 3,Mistral,,,,,,Apache 2.0,

@@ -4,12 +4,31 @@ date: 2026-02-23
 draft: true
 ---
 
+import ParityChart from '@site/src/components/ParityChart';
+import ParityLagOverTimeChart from '@site/src/components/ParityLagOverTimeChart';
+import MaxUsableModelChart from '@site/src/components/MaxUsableModelChart';
+import OpenSourceReleaseCadenceChart from '@site/src/components/OpenSourceReleaseCadenceChart';
+import BandwidthVsTopsChart from '@site/src/components/BandwidthVsTopsChart';
+import TokensPerSecVsModelSizeChart from '@site/src/components/TokensPerSecVsModelSizeChart';
 
 
 Fast, private, and free: The future of AI
 
 
-import ParityChart from '@site/src/components/ParityChart';
+- thesis: open source models present a threat to frontier model providers
+- Arguments:
+    - Open source models catch up to frontier models relatively quickly
+        <ParityLagOverTimeChart />
+    - Laptops and phones are not that far off from being able to support big enough models
+        - background on what the constraint is, explanation of memory bandwidth vs tops
+            - <BandwidthVsTopsChart />
+              <TokensPerSecVsModelSizeChart />
+        - <MaxUsableModelChart />
+    - open source release cadence is still strong
+        <OpenSourceReleaseCadenceChart />
+
+
+# Raw notes
 
 <ParityChart />
 
@@ -20,6 +39,8 @@ narrative: apple is behind in AI:
 https://x.com/staysaasy/status/2023372537913356497
 
 ## Time to Parity: Open Source Models Matching Frontier Benchmarks
+
+<ParityLagOverTimeChart />
 
 | Frontier Model | Provider | Release | Benchmark | Score | Open Source Match | OS Model | Months to Parity | Source |
 |---|---|---|---|---|---|---|---|---|
@@ -38,6 +59,11 @@ https://x.com/staysaasy/status/2023372537913356497
 
 Key constraint: **memory bandwidth** (not TOPS) limits LLM inference speed on mobile — iPhones have ~50-90 GB/s vs 2-3 TB/s on datacenter GPUs. RAM determines what fits; bandwidth determines speed.
 
+<BandwidthVsTopsChart />
+<TokensPerSecVsModelSizeChart />
+<MaxUsableModelChart />
+
+
 | iPhone Pro | Year | Chip | RAM | Neural Engine TOPS | Practical Max Model (10+ t/s) |
 |---|---|---|---|---|---|
 | iPhone 11 Pro | 2019 | A13 Bionic | 4 GB | ~5 TOPS | ~1B (Q4) |
@@ -54,6 +80,9 @@ Key constraint: **memory bandwidth** (not TOPS) limits LLM inference speed on mo
 **Sources**: [llama.cpp benchmark thread](https://github.com/ggml-org/llama.cpp/discussions/4508), [Apple ML Research 2025 update](https://machinelearning.apple.com/research/apple-foundation-models-tech-report-2025), [iPhone 17 Pro specs](https://www.apple.com/iphone-17-pro/specs/), [iPhone 18 A20 rumors — AppleInsider](https://appleinsider.com/articles/26/01/23/what-to-expect-from-the-spring-2027-iphone-18-a20-12gb-of-ram-and-more)
 
 ### Notable 2025–2026 open source releases
+
+<OpenSourceReleaseCadenceChart />
+
 | Model | Lab | Release | Parameters | Key Benchmarks | License |
 |---|---|---|---|---|---|
 | DeepSeek-R1 | DeepSeek | Jan 2025 | 671B total / 37B active (MoE) | AIME 79.8%, MATH-500 97.3%, GPQA Diamond 71.5% | MIT |
@@ -61,4 +90,3 @@ Key constraint: **memory bandwidth** (not TOPS) limits LLM inference speed on mo
 | Qwen3-235B | Alibaba | Apr 2025 | 235B total / 22B active (MoE) | GPQA Diamond ~84%, MMLU-Pro 80.6% | Apache 2.0 |
 | Mistral Large 3 | Mistral | Dec 2025 | 675B total / 41B active (MoE) | #2 open model on LMArena at launch | Apache 2.0 |
 | Qwen3.5-397B | Alibaba | Feb 2026 | 397B total / 17B active (MoE) | GPQA Diamond 88.4%, MMLU-Pro 87.8%, AIME26 91.3% | Apache 2.0 |
-

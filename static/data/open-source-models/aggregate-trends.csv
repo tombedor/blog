@@ -1,0 +1,5 @@
+metric,period_start,period_end,value,unit,source
+open_weight_lag_months_average,,,3.5 (90% CI 1.1-5.3),months,https://epoch.ai/data-insights/open-weights-vs-closed-weights-models
+open_weight_gap_eci_points_average,,,7 (90% CI 0-14),ECI points,https://epoch.ai/data-insights/open-weights-vs-closed-weights-models
+chatbot_arena_gap_closed_open_pct,2024-01-01,,8.04,percent,https://hai.stanford.edu/ai-index/2025-ai-index-report/technical-performance
+chatbot_arena_gap_closed_open_pct,2025-02-01,,1.70,percent,https://hai.stanford.edu/ai-index/2025-ai-index-report/technical-performance

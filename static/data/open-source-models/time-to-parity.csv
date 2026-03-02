@@ -1,0 +1,4 @@
+frontier_model,provider,frontier_release,benchmark,frontier_score,os_match_date,os_model,months_to_parity,source
+GPT-3.5 (ChatGPT),OpenAI,2022-11-30,MMLU (5-shot),70.0,2023-07-18,Llama-2-70B,7.6,"https://openai.com/index/chatgpt/; https://ar5iv.labs.arxiv.org/html/2303.08774v6; https://huggingface.co/meta-llama/Llama-2-70b-hf"
+GPT-4,OpenAI,2023-03-14,MMLU (5-shot),86.4,2024-07-23,Llama-3.1-405B,16.3,"https://openai.com/index/gpt-4-research/; https://ar5iv.labs.arxiv.org/html/2303.08774v6; https://huggingface.co/meta-llama/Llama-3.1-405B"
+GPT-4o,OpenAI,2024-05-13,MMLU (Pass@1),87.2,2024-12-27,DeepSeek-V3,7.5,"https://openai.com/index/hello-gpt-4o/; https://huggingface.co/deepseek-ai/DeepSeek-R1; https://ar5iv.labs.arxiv.org/html/2412.19437v1"
