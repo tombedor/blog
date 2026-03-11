@@ -18,7 +18,7 @@ This assumes that AI inference will continue to largely be handled by remote pro
 
 ## Reasons the future of AI will be local
 
-### Remote providers increasing prices
+### Remote providers increase prices
 
 The case that the unit economics of AI token providers are unsustainable has been exhaustively argued, I won't rehash it here (for the ongoing bear case, see https://www.wheresyoured.at/)
 
@@ -28,8 +28,7 @@ The feature comes priced at an eye-watering [$15-$25 per PR](https://code.claude
 
 It seems as though this is a pricing experiment by Claude to see just how high a price point enterprise subscribers will tolerate.
 
-
-## Open source models reliably catch up to frontier models relatively quickly
+## Open source models (continue to) catch up to frontier models relatively quickly
 
 With the exception of gpt-4, open source models have matched performance of frontier models within 6 months of frontier model release:
 
@@ -38,6 +37,15 @@ With the exception of gpt-4, open source models have matched performance of fron
 Naturally, there have been accusations of open source models gaming evals, but the same could be argued of frontier models. There just does not seem to be a durable advantage in model performance.
 
 We can expect this to continue. Startups usually try to create a moat, but model providers build have more of a waterslide: frontier models help train their open source competitors. Providers can complain about open source competitors violating terms of use in training their own models, but it's doubtfully possible to prevent.
+
+
+
+### Small, specialized models emerge
+
+Given today's low prices, there seems to be little downward economic pressure on token usage. People reach for the most recent model, regardless of what they are doing.
+
+This could change as price increases, and the increasing prevalence of subagent-driven workflows provide a natural transition. I probably don't need a frontier model to fix style issues in my Python PR - a small, specialized model can fill that void. If frontier models get dramatically more (i.e. $25 per PR review) expensive, demand will increase for these models, and the open source community will be plenty able to meet it.
+
 
 ## Apple is betting on local
 
@@ -51,9 +59,21 @@ For now, running frontier open source models requires users to by specialized hr
 
 <!-- chart: size of model -->
 
+## Private and free is hard to beat
 
+Fast, private, and free is difficult to beat. Anthropic and OpenAI have had no trouble selling Netflix-sized subscriptions, but they lack good options for building a moat.
 
-## The size of frontier models is levelling off
+One moat could be _memory_: if the model behaves as if it knows you and your data is held within a remote provider service, it could be a way for model providers to increase switching cost. But that comes with an _ick_ factor: not everyone wants an all knowing agent.
+
+Local, open source tools provide a much better route for this.
+
+Local models don't get all that much attention: there's not anyone standing to get mega-rich if they become the default option for AI. But it represents a potent threat.
+
+## Appendix
+
+<!-- Data tables here -->
+
+## Raw notes below ##
 
 
 
