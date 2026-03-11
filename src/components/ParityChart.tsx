@@ -63,12 +63,15 @@ const CustomLabel = ({ x, y, width, value }: any) => (
 export default function ParityChart() {
   return (
     <div style={{ margin: '2rem 0' }}>
+      <div style={{ textAlign: 'center', fontWeight: 600, fontSize: 14, marginBottom: 8, color: '#212529' }}>
+        Months to open source parity with frontier models
+      </div>
       <ResponsiveContainer width="100%" height={380}>
         <BarChart data={data} margin={{ top: 30, right: 20, left: 0, bottom: 60 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
           <XAxis
             dataKey="model"
-            tick={{ fontSize: 13, dy: 15 }}
+            tick={{ fontSize: 13, dy: 17 }}
             interval={0}
             angle={-25}
             textAnchor="end"

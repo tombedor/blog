@@ -202,6 +202,9 @@ export default function MaxUsableModelChart() {
 
   return (
     <div style={{ margin: '2rem 0' }}>
+      <div style={{ textAlign: 'center', fontWeight: 600, fontSize: 14, marginBottom: 8, color: '#212529' }}>
+        Max usable model by device (Q4, ≥8 t/s)
+      </div>
       <ResponsiveContainer width="100%" height={360}>
         <LineChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 40 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
