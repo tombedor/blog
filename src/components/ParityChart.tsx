@@ -75,18 +75,12 @@ export default function ParityChart() {
             height={70}
           />
           <YAxis
-            label={{ value: 'Months to parity', angle: -90, position: 'insideLeft', offset: 10, style: { fontSize: 12, fill: '#868e96' } }}
+            label={{ value: 'Months to parity', angle: -90, position: 'insideLeft', dy: 30, offset: 10, style: { fontSize: 12, fill: '#868e96' } }}
             domain={[0, 18]}
             ticks={[0, 4, 8, 12, 16]}
             tick={{ fontSize: 12 }}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
-          <ReferenceLine
-            y={16}
-            stroke="#adb5bd"
-            strokeDasharray="4 4"
-            label={{ value: 'GPT-4: open weights hadn\'t yet scaled', position: 'insideTopRight', fontSize: 11, fill: '#adb5bd' }}
-          />
           <Bar dataKey="months" radius={[3, 3, 0, 0]}>
             <LabelList dataKey="osModel" content={<CustomLabel />} />
             {data.map((entry, index) => (
