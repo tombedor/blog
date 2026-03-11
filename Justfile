@@ -23,3 +23,11 @@ dual-publish:
 # Export all excalidraw diagrams to PNG
 export-diagrams:
 	./scripts/excalidraw-export.sh -r static/diagrams
+
+# Screenshot the open-source-models post for review
+screenshot:
+	npm start &
+	SERVER_PID=$!
+	sleep 8
+	npx pageres-cli http://localhost:3000/is-the-future-of-ai-local 1440x900 --filename=screenshot --format=png
+	kill $SERVER_PID
