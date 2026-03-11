@@ -8,6 +8,58 @@ import ParityChart from '@site/src/components/ParityChart';
 import MaxUsableModelChart from '@site/src/components/MaxUsableModelChart';
 import OpenSourceReleaseCadenceChart from '@site/src/components/OpenSourceReleaseCadenceChart';
 
+Debate about whether the explosion of datacenter buildout will prove to be a worthwhile investment centers on two scenarios:
+
+1. AI adoption accelerates, the datacenter investment pays out
+1. AI adoption is not as fast as forecasted, and it doesn't.
+
+This assumes that AI inference will continue to largely be handled by remote providers. But can local models eat into this market share? There are a few reasons to think so:
+
+
+## Reasons the future of AI will be local
+
+### Remote providers increasing prices
+
+The case that the unit economics of AI token providers are unsustainable has been exhaustively argued, I won't rehash it here (for the ongoing bear case, see https://www.wheresyoured.at/)
+
+Exact figures are impossible to get, but there's good reason to believe existing remote AI subscriptions are heavily subsidized. Cursor recently estimated a $200/month Claude Max subscription [can consume up to $5,000 in compute](https://www.forbes.com/sites/annatong/2026/03/05/cursor-goes-to-war-for-ai-coding-dominance/). Granted this is coming from a rival, but the newly release [Claude Code Review](https://code.claude.com/docs/en/code-review) lends further weight to the idea that we are in the AI version of Uber's ["decade of cheap rides"](https://slate.com/business/2022/05/uber-subsidy-lyft-cheap-rides.html)
+
+The feature comes priced at an eye-watering [$15-$25 per PR](https://code.claude.com/docs/en/code-review#pricing), and the feature description doesn't have much to indicate why it is so superior to existing workflows as to justify a month's basic subscription cost in a single PR.
+
+It seems as though this is a pricing experiment by Claude to see just how high a price point enterprise subscribers will tolerate.
+
+
+## Open source models reliably catch up to frontier models relatively quickly
+
+With the exception of gpt-4, open source models have matched performance of frontier models within 6 months of frontier model release:
+
+<!-- chart: open source model months to parity -->
+
+Naturally, there have been accusations of open source models gaming evals, but the same could be argued of frontier models. There just does not seem to be a durable advantage in model performance.
+
+We can expect this to continue. Startups usually try to create a moat, but model providers build have more of a waterslide: frontier models help train their open source competitors. Providers can complain about open source competitors violating terms of use in training their own models, but it's doubtfully possible to prevent.
+
+## Apple is betting on local
+
+Apple is the lone contrarian amongst tech giants, in that they are not spending mountains of capital on datacenters:
+
+https://x.com/JoshKale/status/2028889347794047071
+
+Apple has been criticized for being "behind" on AI, but their bet appears to be: _have competitors burn cash to train models, let advances propogate into open source models, and make devices good enough to run them._
+
+For now, running frontier open source models requires users to by specialized hradware. However, the most recent Macbook 4 pro Max looks to have made a leap in the size of model that's viable locally:
+
+<!-- chart: size of model -->
+
+
+
+## The size of frontier models is levelling off
+
+
+
+
+
+
 
 Fast, private, and free: The future of AI
 

@@ -15,6 +15,8 @@ type Row = {
   device: 'iphone' | 'macbook';
   year: number;
   maxModel: number;
+  ramFit: number;
+  speedFit: number;
   speculative: boolean;
   displayName: string;
 };
@@ -29,6 +31,10 @@ type ChartPoint = {
   macbookLabel: string | null;
   iphoneIsSpec: boolean;
   macbookIsSpec: boolean;
+  iphoneRamFit: number | null;
+  iphoneSpeedFit: number | null;
+  macbookRamFit: number | null;
+  macbookSpeedFit: number | null;
 };
 
 const LegendItem = ({
@@ -68,6 +74,9 @@ const CustomTooltip = ({ active, payload }: any) => {
   const iphoneValue = d.iphoneConfirmed ?? d.iphoneSpec;
   const macbookValue = d.macbookConfirmed ?? d.macbookSpec;
 
+  const ramLimited = (ramFit: number | null, speedFit: number | null) =>
+    ramFit != null && speedFit != null && ramFit <= speedFit;
+
   return (
     <div
       style={{
@@ -84,15 +93,25 @@ const CustomTooltip = ({ active, payload }: any) => {
         <div style={{ color: '#2f9e44' }}>
           {d.iphoneLabel ?? 'iPhone'}
           {d.iphoneIsSpec ? ' (est.)' : ''}: <strong>{iphoneValue}B</strong>
+          <span style={{ color: '#868e96', fontSize: 11, marginLeft: 6 }}>
+            (RAM: {d.iphoneRamFit}B, speed: {d.iphoneSpeedFit}B
+            {ramLimited(d.iphoneRamFit, d.iphoneSpeedFit) ? ', RAM-limited' : ', speed-limited'})
+          </span>
         </div>
       )}
       {macbookValue != null && (
         <div style={{ color: '#1971c2' }}>
           {d.macbookLabel ?? 'MacBook Pro'}
           {d.macbookIsSpec ? ' (est.)' : ''}: <strong>{macbookValue}B</strong>
+          <span style={{ color: '#868e96', fontSize: 11, marginLeft: 6 }}>
+            (RAM: {d.macbookRamFit}B, speed: {d.macbookSpeedFit}B
+            {ramLimited(d.macbookRamFit, d.macbookSpeedFit) ? ', RAM-limited' : ', speed-limited'})
+          </span>
         </div>
       )}
-      <div style={{ color: '#868e96', fontSize: 12, marginTop: 4 }}>Q4, 8k ctx, ≥8 t/s</div>
+      <div style={{ color: '#868e96', fontSize: 12, marginTop: 4 }}>
+        Q4, 8k ctx, ≥8 t/s (dense model). MoE: RAM-fit is binding for total-param size.
+      </div>
     </div>
   );
 };
@@ -116,6 +135,8 @@ export default function MaxUsableModelChart() {
               device: row.device as 'iphone' | 'macbook',
               year,
               maxModel: Number(maxModel.toFixed(1)),
+              ramFit: Number(Number(row.ram_fit_b).toFixed(1)),
+              speedFit: Number(Number(row.speed_fit_b).toFixed(1)),
               speculative: row.speculative === 'true',
               displayName: row.display_name || row.device_model,
             } as Row;
@@ -158,6 +179,10 @@ export default function MaxUsableModelChart() {
             macbookLabel: macRow?.displayName ?? null,
             iphoneIsSpec: iphoneRow?.speculative ?? false,
             macbookIsSpec: macRow?.speculative ?? false,
+            iphoneRamFit: iphoneRow?.ramFit ?? null,
+            iphoneSpeedFit: iphoneRow?.speedFit ?? null,
+            macbookRamFit: macRow?.ramFit ?? null,
+            macbookSpeedFit: macRow?.speedFit ?? null,
           };
         });
 

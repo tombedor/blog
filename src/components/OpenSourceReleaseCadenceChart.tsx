@@ -16,6 +16,7 @@ type Row = {
   model: string;
   displayName: string;
   lab: string;
+  date: number; // timestamp
   releaseDate: string;
   parametersTotal: number;
   parametersActive: number;
@@ -29,6 +30,10 @@ const LAB_COLORS: Record<string, string> = {
   DeepSeek: '#7950f2',
   Mistral: '#c92a2a',
 };
+
+const YEAR_TICKS = [2022, 2023, 2024, 2025, 2026].map((y) =>
+  new Date(`${y}-01-01`).getTime()
+);
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
@@ -75,6 +80,25 @@ const CustomTooltip = ({ active, payload }: any) => {
   );
 };
 
+// Rotated label rendered above each bar
+const BarLabel = (props: any) => {
+  const { x, y, width, value } = props;
+  const cx = x + width / 2;
+  const cy = y - 6;
+  return (
+    <text
+      x={cx}
+      y={cy}
+      transform={`rotate(-70, ${cx}, ${cy})`}
+      textAnchor="start"
+      fontSize={10}
+      fill="#495057"
+    >
+      {value}
+    </text>
+  );
+};
+
 export default function OpenSourceReleaseCadenceChart() {
   const [data, setData] = useState<Row[]>([]);
 
@@ -87,20 +111,20 @@ export default function OpenSourceReleaseCadenceChart() {
           .map((row) => {
             if (!row.release_date || !row.parameters_total_b) return null;
             const parametersTotal = Number(row.parameters_total_b);
-            if (Number.isNaN(parametersTotal)) return null;
+            const date = new Date(row.release_date).getTime();
+            if (Number.isNaN(parametersTotal) || Number.isNaN(date)) return null;
             return {
               model: row.model,
               displayName: row.display_name || row.model,
               lab: row.lab,
+              date,
               releaseDate: row.release_date,
               parametersTotal,
               parametersActive: Number(row.parameters_active_b) || parametersTotal,
             } as Row;
           })
           .filter(Boolean) as Row[];
-        rows.sort(
-          (a, b) => new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime()
-        );
+        rows.sort((a, b) => a.date - b.date);
         if (!cancelled) setData(rows);
       })
       .catch(() => {
@@ -119,14 +143,20 @@ export default function OpenSourceReleaseCadenceChart() {
 
   return (
     <div style={{ margin: '2rem 0' }}>
-      <ResponsiveContainer width="100%" height={360}>
-        <BarChart data={data} margin={{ top: 28, right: 20, left: 0, bottom: 10 }}>
+      <ResponsiveContainer width="100%" height={420}>
+        <BarChart data={data} margin={{ top: 100, right: 30, left: 0, bottom: 10 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
           <XAxis
-            dataKey="displayName"
-            tick={{ fontSize: 11, angle: -40, textAnchor: 'end' }}
-            interval={0}
-            height={72}
+            dataKey="date"
+            type="number"
+            scale="time"
+            domain={[
+              new Date('2021-10-01').getTime(),
+              new Date('2026-04-01').getTime(),
+            ]}
+            ticks={YEAR_TICKS}
+            tickFormatter={(v) => new Date(v).getFullYear().toString()}
+            tick={{ fontSize: 12 }}
           />
           <YAxis
             label={{
@@ -141,17 +171,11 @@ export default function OpenSourceReleaseCadenceChart() {
             tick={{ fontSize: 12 }}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
-          <Bar dataKey="parametersTotal" radius={[3, 3, 0, 0]} maxBarSize={38}>
+          <Bar dataKey="parametersTotal" barSize={14} radius={[3, 3, 0, 0]}>
             {data.map((entry, i) => (
               <Cell key={i} fill={LAB_COLORS[entry.lab] ?? '#868e96'} />
             ))}
-            <LabelList
-              dataKey="parametersTotal"
-              position="top"
-              fontSize={10}
-              fill="#495057"
-              formatter={(v: number) => `${v}B`}
-            />
+            <LabelList dataKey="displayName" content={BarLabel} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
