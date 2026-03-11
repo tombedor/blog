@@ -68,7 +68,7 @@ export default function ParityChart() {
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
           <XAxis
             dataKey="model"
-            tick={{ fontSize: 13 }}
+            tick={{ fontSize: 13, dy: 15 }}
             interval={0}
             angle={-25}
             textAnchor="end"
