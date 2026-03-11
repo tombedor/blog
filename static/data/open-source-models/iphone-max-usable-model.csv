@@ -1,9 +1,4 @@
 device_model,device,year,quantization,max_model_b,ram_fit_b,speed_fit_b,speculative,display_name,assumptions,source
-iphone_6s,iphone,2015,Q4,2.1,2.1,5.5,false,iPhone 6s,"A9 Bionic 2 GB ~25 GB/s. RAM_fit=2*0.8/0.75=2.1B, speed_fit=3*(30/8)*(25/51.2)=5.5B, min=2.1B","https://en.wikipedia.org/wiki/IPhone_6s"
-iphone_7,iphone,2016,Q4,3.2,3.2,7.5,false,iPhone 7,"A10 Fusion 3 GB ~34 GB/s. RAM_fit=3.2B, speed_fit=7.5B, min=3.2B","https://en.wikipedia.org/wiki/IPhone_7"
-iphone_x,iphone,2017,Q4,3.2,3.2,7.5,false,iPhone X,"A11 Bionic 3 GB ~34 GB/s. RAM_fit=3.2B, speed_fit=7.5B, min=3.2B","https://en.wikipedia.org/wiki/IPhone_X"
-iphone_xs,iphone,2018,Q4,4.3,4.3,7.5,false,iPhone XS,"A12 Bionic 4 GB ~34 GB/s. RAM_fit=4.3B, speed_fit=7.5B, min=4.3B","https://en.wikipedia.org/wiki/IPhone_XS"
-iphone_11_pro,iphone,2019,Q4,4.3,4.3,7.5,false,iPhone 11 Pro,"A13 Bionic 4 GB 34 GB/s. RAM_fit=4.3B, speed_fit=7.5B, min=4.3B","https://en.wikipedia.org/wiki/IPhone_11_Pro"
 iphone_12_pro,iphone,2020,Q4,6.4,6.4,7.5,false,iPhone 12 Pro,"A14 Bionic 6 GB 34 GB/s. RAM_fit=6.4B, speed_fit=7.5B, min=6.4B","https://en.wikipedia.org/wiki/IPhone_12_Pro"
 iphone_13_pro,iphone,2021,Q4,6.4,6.4,7.5,false,iPhone 13 Pro,"A15 Bionic 6 GB 34 GB/s. RAM_fit=6.4B, speed_fit=7.5B, min=6.4B","https://en.wikipedia.org/wiki/IPhone_13_Pro"
 iphone_14_pro,iphone,2022,Q4,6.4,6.4,11.3,false,iPhone 14 Pro,"A16 Bionic 6 GB 51.2 GB/s. RAM_fit=6.4B, speed_fit=11.3B, min=6.4B","https://en.wikipedia.org/wiki/IPhone_14_Pro"
