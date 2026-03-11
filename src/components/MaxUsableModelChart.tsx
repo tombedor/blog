@@ -214,11 +214,12 @@ export default function MaxUsableModelChart() {
               value: 'Max usable model (B params)',
               angle: -90,
               position: 'insideLeft',
+              dy: 75,
               offset: 10,
               style: { fontSize: 12, fill: '#868e96' },
             }}
-            domain={[0, 60]}
-            ticks={[0, 10, 20, 30, 40, 50, 60]}
+            domain={[0, 140]}
+            ticks={[0, 10, 20, 30, 40, 50, 60, 80, 100, 120, 140]}
             tick={{ fontSize: 12 }}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ced4da' }} />
