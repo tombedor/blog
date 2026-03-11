@@ -6,7 +6,6 @@ draft: true
 
 import ParityChart from '@site/src/components/ParityChart';
 import MaxUsableModelChart from '@site/src/components/MaxUsableModelChart';
-import OpenSourceReleaseCadenceChart from '@site/src/components/OpenSourceReleaseCadenceChart';
 import Tweet from '@site/src/components/Tweet';
 
 Debate about whether the explosion of datacenter buildout will prove to be a worthwhile investment centers on two scenarios:
@@ -31,7 +30,7 @@ It seems as though this is a pricing experiment by Claude to see just how high a
 
 ## Open source models (continue to) catch up to frontier models relatively quickly
 
-With the exception of gpt-4, open source models have matched performance of frontier models within 6 months of frontier model release:
+With the exception of gpt-4, open source models have matched performance of frontier models within 6 months of frontier model release ([data](#open-source-parity-data)):
 
 <ParityChart />
 
@@ -56,7 +55,7 @@ Apple is the lone contrarian amongst tech giants, in that they are not spending 
 
 Apple has been criticized for being "behind" on AI, but their bet appears to be: _have competitors burn cash to train models, let advances propogate into open source models, and make devices good enough to run them._
 
-For now, running frontier open source models requires users to by specialized hradware. However, the most recent Macbook 4 pro Max looks to have made a leap in the size of model that's viable locally:
+For now, running frontier open source models requires users to by specialized hradware. However, the most recent Macbook 4 pro Max looks to have made a leap in the size of model that's viable locally ([data](#on-device-model-size)):
 
 <MaxUsableModelChart />
 
@@ -72,6 +71,8 @@ Local models don't get all that much attention: there's not anyone standing to g
 
 ## Appendix
 
+### Open Source Parity Data {#open-source-parity-data}
+
 | Frontier Model | Provider | Release | Benchmark | Score | Open Source Match | OS Model | Months to Parity | Source |
 |---|---|---|---|---|---|---|---|---|
 | GPT-3.5 / ChatGPT | OpenAI | Nov 2022 | MMLU | ~70% | Aug 2023 | Llama 2 70B (70B) | ~9 | [Stanford HAI AI Index 2025](https://hai.stanford.edu/ai-index/2025-ai-index-report/technical-performance) |
@@ -84,26 +85,43 @@ Local models don't get all that much attention: there's not anyone standing to g
 - **Epoch AI**: Average lag of best open-weight model behind best closed model is now ~3 months ([source](https://epoch.ai/data-insights/open-weights-vs-closed-weights-models))
 - **Stanford HAI**: Chatbot Arena Elo gap between closed and open models shrank from 8.04% to 1.70% between Jan 2024 and Feb 2025 ([source](https://hai.stanford.edu/ai-index/2025-ai-index-report/technical-performance))
 
-| iPhone Pro | Year | Chip | RAM | Neural Engine TOPS | Practical Max Model (10+ t/s) |
-|---|---|---|---|---|---|
-| iPhone 11 Pro | 2019 | A13 Bionic | 4 GB | ~5 TOPS | ~1B (Q4) |
-| iPhone 12 Pro | 2020 | A14 Bionic | 6 GB | 11 TOPS | ~1-3B (Q4) |
-| iPhone 13 Pro | 2021 | A15 Bionic | 6 GB | 15.8 TOPS | ~1-3B (Q4) |
-| iPhone 14 Pro | 2022 | A16 Bionic | 6 GB | 17 TOPS | ~3B (Q4) — Phi-2 3B at 23 t/s confirmed |
-| iPhone 15 Pro | 2023 | A17 Pro | 8 GB | 35 TOPS | ~3B comfortably; Apple ships 3B on-device at 30 t/s |
-| iPhone 16 Pro | 2024 | A18 Pro | 8 GB | 35 TOPS | ~3-7B (Q4); 7B slow |
-| iPhone 17 Pro | 2025 | A19 Pro | 12 GB | ~38 TOPS | ~7B (Q4) comfortably; 13B possible with heavy quant |
-| iPhone 18 Pro (expected) | 2026 | A20 Pro | 12 GB | TBD | WL-MCM improves memory bandwidth; 13B+ plausible |
+### On-Device Model Size {#on-device-model-size}
 
-<OpenSourceReleaseCadenceChart />
+**Definition:** "Max usable model" is the largest Q4-quantized model that fits in device RAM *and* runs at ≥8 tokens/second with an 8k context window — a threshold for a responsive conversational experience. It is `min(RAM-fit, speed-fit)`, where:
 
-| Model | Lab | Release | Parameters | Key Benchmarks | License |
-|---|---|---|---|---|---|
-| DeepSeek-R1 | DeepSeek | Jan 2025 | 671B total / 37B active (MoE) | AIME 79.8%, MATH-500 97.3%, GPQA Diamond 71.5% | MIT |
-| Llama 4 Maverick | Meta | Apr 2025 | 400B total / 17B active (MoE) | GPQA Diamond 84.8% | Llama 4 Community |
-| Qwen3-235B | Alibaba | Apr 2025 | 235B total / 22B active (MoE) | GPQA Diamond ~84%, MMLU-Pro 80.6% | Apache 2.0 |
-| Mistral Large 3 | Mistral | Dec 2025 | 675B total / 41B active (MoE) | #2 open model on LMArena at launch | Apache 2.0 |
-| Qwen3.5-397B | Alibaba | Feb 2026 | 397B total / 17B active (MoE) | GPQA Diamond 88.4%, MMLU-Pro 87.8%, AIME26 91.3% | Apache 2.0 |
+- **RAM-fit** = `RAM × 0.8 / 0.75` — usable RAM (80% of total) divided by bytes per parameter at Q4 (~0.75 bytes/param after overhead)
+- **Speed-fit** = `(memory_bandwidth / 51.2 GB/s) × (baseline_speed / bits_per_weight) × target_t/s_factor` — scales from a reference of ~11B params at 8 t/s on a 51.2 GB/s device
+
+For MoE models, RAM-fit applies to **total** parameters (all weights must be loaded); speed-fit applies to **active** parameters only.
+
+**iPhone Pro**
+
+| Device | Year | Chip | RAM | Max Model | RAM-fit | Speed-fit | Source |
+|---|---|---|---|---|---|---|---|
+| iPhone 6s | 2015 | A9 Bionic | 2 GB | 2.1B | 2.1B | 5.5B | [Wikipedia](https://en.wikipedia.org/wiki/IPhone_6s) |
+| iPhone 7 | 2016 | A10 Fusion | 3 GB | 3.2B | 3.2B | 7.5B | [Wikipedia](https://en.wikipedia.org/wiki/IPhone_7) |
+| iPhone X | 2017 | A11 Bionic | 3 GB | 3.2B | 3.2B | 7.5B | [Wikipedia](https://en.wikipedia.org/wiki/IPhone_X) |
+| iPhone XS | 2018 | A12 Bionic | 4 GB | 4.3B | 4.3B | 7.5B | [Wikipedia](https://en.wikipedia.org/wiki/IPhone_XS) |
+| iPhone 11 Pro | 2019 | A13 Bionic | 4 GB | 4.3B | 4.3B | 7.5B | [Wikipedia](https://en.wikipedia.org/wiki/IPhone_11_Pro) |
+| iPhone 12 Pro | 2020 | A14 Bionic | 6 GB | 6.4B | 6.4B | 7.5B | [Wikipedia](https://en.wikipedia.org/wiki/IPhone_12_Pro) |
+| iPhone 13 Pro | 2021 | A15 Bionic | 6 GB | 6.4B | 6.4B | 7.5B | [Wikipedia](https://en.wikipedia.org/wiki/IPhone_13_Pro) |
+| iPhone 14 Pro | 2022 | A16 Bionic | 6 GB | 6.4B | 6.4B | 11.3B | [Wikipedia](https://en.wikipedia.org/wiki/IPhone_14_Pro) |
+| iPhone 15 Pro | 2023 | A17 Pro | 8 GB | 8.5B | 8.5B | 11.3B | [Wikipedia](https://en.wikipedia.org/wiki/IPhone_15_Pro) |
+| iPhone 16 Pro | 2024 | A18 Pro | 8 GB | 8.5B | 8.5B | 13.1B | [Wikipedia](https://en.wikipedia.org/wiki/IPhone_16_Pro) |
+| iPhone 17 Pro | 2025 | A19 Pro | 12 GB | 12.8B | 12.8B | 16.6B | [Apple](https://www.apple.com/iphone-17-pro/specs/), [NotebookCheck](https://www.notebookcheck.net/Apple-A19-Pro-Processor-Benchmarks-and-Specs.1126974.0.html) |
+| iPhone 18 Pro (est.) | 2026 | A20 Pro | 16 GB | 17.1B | 17.1B | 22.0B | [AppleInsider](https://appleinsider.com/articles/26/01/23/what-to-expect-from-the-spring-2027-iphone-18-a20-12gb-of-ram-and-more) |
+
+**MacBook Pro**
+
+| Device | Year | Chip | RAM | Max Model | RAM-fit | Speed-fit | Source |
+|---|---|---|---|---|---|---|---|
+| MacBook Pro M1 | 2020 | M1 | 16 GB | 15.0B | 17.1B | 15.0B | [Wikipedia](https://en.wikipedia.org/wiki/MacBook_Pro_(Apple_silicon)) |
+| MacBook Pro M1 Pro | 2021 | M1 Pro | 16 GB | 17.1B | 17.1B | 43.9B | [Wikipedia](https://en.wikipedia.org/wiki/MacBook_Pro_(Apple_silicon)) |
+| MacBook Pro (M1 Pro) | 2022 | M1 Pro | 16 GB | 17.1B | 17.1B | 43.9B | [Wikipedia](https://en.wikipedia.org/wiki/MacBook_Pro_(Apple_silicon)) |
+| MacBook Pro M3 Pro | 2023 | M3 Pro | 18 GB | 19.2B | 19.2B | 32.9B | [Apple](https://www.apple.com/macbook-pro/specs/) |
+| MacBook Pro M4 Pro | 2024 | M4 Pro | 24 GB | 25.6B | 25.6B | 59.9B | [Apple](https://www.apple.com/macbook-pro/specs/) |
+| MacBook Pro M5 | 2025 | M5 | 32 GB | 33.6B | 34.1B | 33.6B | [Apple Support](https://support.apple.com/en-us/125405), [Apple Newsroom](https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/) |
+| MacBook Pro M5 Max | 2026 | M5 Max | 128 GB | 134.9B | 136.5B | 134.9B | [@JoshKale](https://x.com/JoshKale/status/2028842880572199173) |
 
 {/* Raw notes below — not yet incorporated
 
