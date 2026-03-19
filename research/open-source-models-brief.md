@@ -36,7 +36,6 @@ The post's core thesis is well-supported. The open-source parity case and Apple'
 
 **Verdict: Strongly supported**
 
-- The MMLU gap between open-source and proprietary models collapsed from **17.5 percentage points to 0.3%** in 2025. ([Introl](https://introl.com/blog/best-open-source-ai-models-december-2025))
 - Chatbot Arena Elo gap shrank from **8% to 1.7%** between January 2024 and February 2025. ([Stanford HAI AI Index](https://hai.stanford.edu/ai-index/2025-ai-index-report))
 - DeepSeek-V3.2 (open weights, MIT license) achieved parity with GPT-5 on multiple reasoning benchmarks at **$0.28/M input tokens** — 94% cheaper than Claude Opus 4.5. ([ArXiv — DeepSeek-V3.2](https://arxiv.org/html/2512.02556v1))
 - Llama 4 Maverick, Qwen3-235B, Mistral Large 3: all at 85–90% of frontier on key benchmarks. ([BentoML](https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models))
@@ -131,7 +130,7 @@ True frontier-class open models (DeepSeek-V3, Qwen3.5-397B) are not runnable loc
 | Prices will rise (end of cheap era) | ⚠️ Contested | Per-token deflation continues; decay-of-value is sharper framing |
 | Subscription value quietly decays | ✅ Supported | Rate limits, enterprise priority, holiday capacity story |
 | Total AI spend high despite falling unit costs | ✅ Supported | Jevons paradox; 320% enterprise spend increase in 2025 |
-| OS models reach parity in ~6 months | ✅ Supported | Gap now 0.3% on MMLU |
+| OS models reach parity in ~6 months | ✅ Supported | Elo gap 8% → 1.7% (Stanford HAI) |
 | Benchmark gaming symmetric (both sides) | ✅ Supported | Meta admitted cheating; SWE-bench contaminated across labs |
 | Waterslide / distillation propagates capabilities | ✅ Supported | Active research field; DeepSeek-R1, OpenAI's own distillation API |
 | Small specialized models are the future | ✅ Supported | Already happening; Gartner 3x prediction |
