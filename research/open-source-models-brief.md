@@ -92,6 +92,19 @@ The post's core thesis is well-supported. The open-source parity case and Apple'
 
 **Ceiling:** 128GB caps out around 70B parameters for quality inference. The largest frontier-matching open models (DeepSeek V3 671B, Qwen3.5 397B) still require multi-GPU cloud setups. The "frontier parity" models are not yet locally runnable on a single device.
 
+### Mac mini M4: demand signal for local AI hardware
+
+The Mac mini M4 is a sharper data point than the MacBook for the post's thesis — it's a purpose-bought local AI server, not a laptop that happens to run models:
+
+- **Actual shortage:** Apple stores reported weeks-long wait times on higher-memory Mac mini M4 configurations specifically because of AI agent use, catching Apple off guard. ([WCCFTech](https://wccftech.com/m4-mac-mini-shortage-due-to-installing-ai-agent/))
+- The shortage was driven by OpenClaw/Clawdbot (always-on AI agent software) and accelerated when **Perplexity announced "Personal Computer"** on March 11, 2026 — software turning a Mac mini into a 24/7 AI worker with local file/app access. ([TechFundingNews](https://techfundingnews.com/m4-mac-mini-clawdbot-ai-boom/), [SF Today](https://nationaltoday.com/us/ca/san-francisco/news/2026/03/16/mac-mini-sees-sales-boost-from-openclaw-ai-trend/))
+- Developers are stacking multiple units on their desks to run several agents simultaneously — it's become "a small status symbol inside tech circles."
+- **Power economics make it viable as always-on hardware:** ~30W under AI load vs. 600W+ for a GPU rig; ~$15/year in electricity for 24/7 operation vs. $400+/year for a GPU server.
+- The **sweet spot config (M4 Pro 48GB at $1,799)** runs 32B models at 15–22 t/s and fits Llama 3.3 70B at Q3. The base $599 M4 is too constrained for serious use (best for 3B–8B). ([InsiderLLM](https://insiderllm.com/guides/mac-mini-m4-local-ai/))
+- Mac sales were **up 13% YoY in Q4 2025** with Apple CFO calling it "the best June quarter ever for Mac at enterprise" — the M4 mini was specifically cited as a driver. ([Macworld](https://www.macworld.com/article/2958203/apple-posts-record-q4-2025-with-double-digit-mac-sales-increase.html))
+
+The Mac mini shortage is the clearest revealed-preference data point in the post's favor: people are spending real money on dedicated local AI hardware, not just running models opportunistically on laptops they already own.
+
 ---
 
 ## Claim 7: "Private and free is hard to beat"
@@ -178,6 +191,7 @@ True frontier-class open models (DeepSeek-V3, Qwen3.5-397B) are not runnable loc
 | Small specialized models are the future | ✅ Supported | Already happening; Gartner 3x prediction |
 | Apple is contrarian on capex | ✅ Supported | 1/10th of nearest competitor |
 | Mac hardware can run meaningful models | ✅ Supported (with ceiling) | 70B practical max; frontier-class open models still cloud-only |
+| Mac mini M4 shortage = revealed preference | ✅ Strong demand signal | Shortage driven by AI agent use; Perplexity Personal Computer |
 | Privacy/local is hard to beat | ✅ Qualitatively | Weakened for agentic use cases |
 | Local will eat cloud market share | ⚠️ Mixed | Strong for consumer/dev; weak for enterprise agentic |
 | Coding dominates token volume (~50%+) | ✅ Supported | OpenRouter data; coding is structurally local-friendly |
