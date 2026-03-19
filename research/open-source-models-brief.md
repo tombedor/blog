@@ -109,10 +109,52 @@ The post's core thesis is well-supported. The open-source parity case and Apple'
 
 ---
 
+## Counter to "agentic AI is cloud-native"
+
+The objection that AI workloads are cloud-native by nature has a composition problem: it describes the *most complex* use cases as if they represent the *typical* use case. The evidence on where tokens actually go undercuts it.
+
+**Coding dominates token consumption:**
+- Coding went from ~11% of token volume in early 2025 to **over 50% of all tokens** by end of 2025 — by OpenRouter's State of AI data. It is now the majority use case by volume, still accelerating. ([OpenRouter — State of AI](https://openrouter.ai/state-of-ai))
+- **92.6% of developers** use an AI coding assistant at least monthly; **26.9% of all production code** is now AI-authored (up from 22% last quarter). ([DX — AI-Assisted Engineering Q4 2025](https://getdx.com/blog/ai-assisted-engineering-q4-impact-report-2025/))
+- Gartner estimated the 2025 AI code-assistant market at **$3.0–$3.5 billion**; growing to $30.1B by 2032 at 27.1% CAGR.
+- Between 20–40% of workers across industries use AI on the job, but **the highest use is in software development** — consistently. ([Stack Overflow Developer Survey 2025](https://survey.stackoverflow.co/2025/ai))
+
+**Coding is structurally local-friendly — the opposite of cloud-native:**
+- Reads and writes local files; the entire context is already on the machine
+- Runs local tests; the feedback loop is local
+- No external orchestration required — even "agentic" coding tools like Claude Code and Cursor primarily operate on the local filesystem
+- Strong IP/compliance incentive: sending proprietary code to a third-party provider is a genuine legal and security risk, already driving enterprise demand for local coding assistants specifically (Samsung data leak via ChatGPT is the canonical example)
+- Coding prompts are long (routinely 20K+ input tokens), making per-request cloud cost high and the economics of local inference more attractive as hardware improves
+
+**The reframe:** Local AI doesn't need to win every use case — it just needs to win its natural home. That home happens to be where most tokens live right now. The cloud-native objection correctly describes *agentic enterprise workflow* AI (customer pipelines, CRM orchestration, cross-system agents), but that's a downstream, still-emerging use case. The current dominant use case — coding — runs most naturally local.
+
+---
+
+## Related: canirun.ai (HN front page, March 13 2026)
+
+[canirun.ai](https://www.canirun.ai/) — built by midudev — is a browser tool that detects your hardware and tells you which local AI models you can run. It went viral on HN with **899 points and 235 comments**. ([HN discussion](https://news.ycombinator.com/item?id=47363754))
+
+**Intersection with the post:**
+- Uses the same methodology as the post's appendix: memory bandwidth as the primary inference speed constraint, VRAM/RAM as the fit constraint, Q4 quantization as baseline — independently arrived at the same framework
+- Viral success is itself demand validation for the post's thesis: a large audience is actively trying to run models locally and frustrated by the lack of clear guidance
+- HN comments called out small models (Qwen3.5 9B) as "fantastic for local tool use and information extraction" — validates the small-specialized-models section
+- One commenter noted a 3090 hitting "100+ tokens/second for Qwen" — the post's 8 t/s threshold in the appendix is quite conservative; the practical ceiling is much higher on mid-range hardware
+- The tool's **device comparison feature** (highlighted by Gigazine as "useful when considering buying a new graphics card") implies a forming market for dedicated local AI hardware — purchasing decisions, not just capability assessment
+
+**Where the post's analysis is stronger:** The post shows the split between RAM-fit and speed-fit separately; canirun.ai blends them into a single 0–100 score, hiding which constraint is actually binding.
+
+**Known limitations of canirun.ai** (likely discussed in HN thread):
+- Database covers only ~40 GPUs and ~12 Apple Silicon chips; many configs unrecognized
+- ±20% variance on performance estimates
+- Firefox detection failures (Chrome/Edge recommended)
+- CPU+GPU hybrid inference not modeled
+
+---
+
 ## Key counterarguments the post doesn't address
 
 **1. Agentic AI is cloud-native by architecture**
-The biggest near-term AI use case growth (agents, multi-step workflows, tool-calling) requires coordination across APIs, databases, and external services. Local models are structurally disadvantaged here — not because of capability, but because of network access and orchestration requirements. Serverless cloud is projected to be the default for 80% of AI agents by 2026 (Forrester).
+The biggest near-term AI use case growth (agents, multi-step workflows, tool-calling) requires coordination across APIs, databases, and external services. Local models are structurally disadvantaged here — not because of capability, but because of network access and orchestration requirements. Serverless cloud is projected to be the default for 80% of AI agents by 2026 (Forrester). *See counter above — this objection has a composition problem given coding's dominance of token volume.*
 
 **2. Inference deflation continues structurally**
 Algorithmic efficiency is improving at ~3x/year independent of competition. If GPT-4-class performance reaches $0.05/M tokens, the cost argument for local becomes much weaker (though privacy and latency arguments remain). The post assumes "Uber cheap rides" must end; the efficiency curve suggests prices can keep falling.
@@ -138,3 +180,5 @@ True frontier-class open models (DeepSeek-V3, Qwen3.5-397B) are not runnable loc
 | Mac hardware can run meaningful models | ✅ Supported (with ceiling) | 70B practical max; frontier-class open models still cloud-only |
 | Privacy/local is hard to beat | ✅ Qualitatively | Weakened for agentic use cases |
 | Local will eat cloud market share | ⚠️ Mixed | Strong for consumer/dev; weak for enterprise agentic |
+| Coding dominates token volume (~50%+) | ✅ Supported | OpenRouter data; coding is structurally local-friendly |
+| Agentic = cloud-native objection | ⚠️ Composition problem | True for complex agents, but coding is the dominant use case |
