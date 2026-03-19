@@ -20,13 +20,14 @@ This assumes that AI inference will continue to largely be handled by remote pro
 
 ### Remote providers increase prices
 
-The case that the unit economics of AI token providers are unsustainable has been exhaustively argued, I won't rehash it here (for the ongoing bear case, see https://www.wheresyoured.at/)
+The case that the unit economics of AI token providers are unsustainable has been exhaustively argued, I won't rehash it here.
 
-Exact figures are impossible to get, but there's good reason to believe existing remote AI subscriptions are heavily subsidized. Cursor recently estimated a $200/month Claude Max subscription [can consume up to $5,000 in compute](https://www.forbes.com/sites/annatong/2026/03/05/cursor-goes-to-war-for-ai-coding-dominance/). Granted this is coming from a rival, but the newly release [Claude Code Review](https://code.claude.com/docs/en/code-review) lends further weight to the idea that we are in the AI version of Uber's ["decade of cheap rides"](https://slate.com/business/2022/05/uber-subsidy-lyft-cheap-rides.html)
+Exact figures are impossible to get, but there's good reason to believe existing remote AI subscriptions are heavily subsidized. Cursor recently estimated a $200/month Claude Max subscription [can consume up to $5,000 in compute](https://www.forbes.com/sites/annatong/2026/03/05/cursor-goes-to-war-for-ai-coding-dominance/). Granted, these figures come from a rival, but there are other signs the big providers are looking to increase prices.
 
-The feature comes priced at an eye-watering [$15-$25 per PR](https://code.claude.com/docs/en/code-review#pricing), and the feature description doesn't have much to indicate why it is so superior to existing workflows as to justify a month's basic subscription cost in a single PR.
+ The newly release [Claude Code Review](https://code.claude.com/docs/en/code-review) comes priced at an eye-watering [$15-$25 per PR](https://code.claude.com/docs/en/code-review#pricing). The release came with little information why it should replace existing PR review workflows, at a monthly subscription price per single PR. It seems as though this is a pricing experiment, to see how high a price enterprise is willing to tolerate.
 
-It seems as though this is a pricing experiment by Claude to see just how high a price point enterprise subscribers will tolerate.
+ OpenAI is also [reportedly narrowing its focus to enterprise](https://www.wsj.com/tech/ai/openai-chatgpt-side-projects-16b3a825?st=oHmik2&reflink=article_copyURL_share).
+
 
 ## Open source models keep up
 
@@ -34,18 +35,17 @@ With the exception of gpt-4, open source models have matched performance of fron
 
 <ParityChart />
 
-Naturally, there have been accusations of open source models gaming evals, but the same could be argued of frontier models. There just does not seem to be a durable advantage in model performance.
+Naturally, there have been accusations of open source models gaming evals, but the same could be argued of frontier models.
 
-We can expect this to continue. Startups usually try to create a moat, but model providers build have more of a waterslide: frontier models help train their open source competitors. Providers can complain about open source competitors violating terms of use in training their own models, but it's doubtfully possible to prevent.
+We can expect this to continue. Startups usually try to create a moat, but model providers build waterslides: frontier models help train their open source competitors.
 
-
+Providers can ([and have](https://fortune.com/2026/02/24/anthropic-china-deepseek-theft-claude-distillation-copyright-national-security/)) complain about competitors using their model to train competition. As a practical matter, however, this "theft" could be impossible to prevent - and that's to say nothing of the [ask forgiveness rather than permission approach to intellectual property the providers have taken themselves](https://www.anthropiccopyrightsettlement.com/).
 
 ### Small, specialized models emerge
 
 Given today's low prices, there seems to be little downward economic pressure on token usage. People reach for the most recent model, regardless of what they are doing.
 
 This could change as price increases, and the increasing prevalence of subagent-driven workflows provide a natural transition. I probably don't need a frontier model to fix style issues in my Python PR - a small, specialized model can fill that void. If frontier models get dramatically more (i.e. $25 per PR review) expensive, demand will increase for these models, and the open source community will be plenty able to meet it.
-
 
 ## Apple is betting on local
 
@@ -61,13 +61,7 @@ For now, running frontier open source models requires users to by specialized hr
 
 ## Private and free is hard to beat
 
-Fast, private, and free is difficult to beat. Anthropic and OpenAI have had no trouble selling Netflix-sized subscriptions, but they lack good options for building a moat.
-
-One moat could be _memory_: if the model behaves as if it knows you and your data is held within a remote provider service, it could be a way for model providers to increase switching cost. But that comes with an _ick_ factor: not everyone wants an all knowing agent.
-
-Local, open source tools provide a much better route for this.
-
-Local models don't get all that much attention: there's not anyone standing to get mega-rich if they become the default option for AI. But it represents a potent threat.
+If they can gain parity with hosted alternatives, local open source models have a compelling value proposition: _fast, private, and free_. This possibility has not gotten much attention: no one stands to get mega-rich from them. But the threat to current leaders is a potent one.
 
 ## Appendix
 
