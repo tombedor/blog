@@ -23,16 +23,10 @@ type Row = {
 
 type ChartPoint = {
   year: number;
-  iphoneConfirmed: number | null;
-  iphoneSpec: number | null;
   macbookConfirmed: number | null;
   macbookSpec: number | null;
-  iphoneLabel: string | null;
   macbookLabel: string | null;
-  iphoneIsSpec: boolean;
   macbookIsSpec: boolean;
-  iphoneRamFit: number | null;
-  iphoneSpeedFit: number | null;
   macbookRamFit: number | null;
   macbookSpeedFit: number | null;
 };
@@ -71,7 +65,6 @@ const CustomTooltip = ({ active, payload }: any) => {
   const d: ChartPoint = payload[0]?.payload;
   if (!d) return null;
 
-  const iphoneValue = d.iphoneConfirmed ?? d.iphoneSpec;
   const macbookValue = d.macbookConfirmed ?? d.macbookSpec;
 
   const ramLimited = (ramFit: number | null, speedFit: number | null) =>
@@ -89,16 +82,6 @@ const CustomTooltip = ({ active, payload }: any) => {
       }}
     >
       <div style={{ fontWeight: 600, marginBottom: 4 }}>{d.year}</div>
-      {iphoneValue != null && (
-        <div style={{ color: '#2f9e44' }}>
-          {d.iphoneLabel ?? 'iPhone'}
-          {d.iphoneIsSpec ? ' (est.)' : ''}: <strong>{iphoneValue}B</strong>
-          <span style={{ color: '#868e96', fontSize: 11, marginLeft: 6 }}>
-            (RAM: {d.iphoneRamFit}B, speed: {d.iphoneSpeedFit}B
-            {ramLimited(d.iphoneRamFit, d.iphoneSpeedFit) ? ', RAM-limited' : ', speed-limited'})
-          </span>
-        </div>
-      )}
       {macbookValue != null && (
         <div style={{ color: '#1971c2' }}>
           {d.macbookLabel ?? 'MacBook Pro'}
@@ -143,31 +126,19 @@ export default function MaxUsableModelChart() {
           })
           .filter(Boolean) as Row[];
 
-        const iphoneRows = rows.filter((r) => r.device === 'iphone');
         const macRows = rows.filter((r) => r.device === 'macbook');
 
-        const lastConfirmedIPhoneYear = Math.max(
-          ...iphoneRows.filter((r) => !r.speculative).map((r) => r.year)
-        );
         const lastConfirmedMacYear = Math.max(
           ...macRows.filter((r) => !r.speculative).map((r) => r.year)
         );
 
-        const allYears = [...new Set(rows.map((r) => r.year))].sort((a, b) => a - b);
+        const allYears = [...new Set(macRows.map((r) => r.year))].sort((a, b) => a - b);
 
         const data: ChartPoint[] = allYears.map((year) => {
-          const iphoneRow = iphoneRows.find((r) => r.year === year);
           const macRow = macRows.find((r) => r.year === year);
 
           return {
             year,
-            iphoneConfirmed: iphoneRow && !iphoneRow.speculative ? iphoneRow.maxModel : null,
-            iphoneSpec:
-              iphoneRow && iphoneRow.speculative
-                ? iphoneRow.maxModel
-                : year === lastConfirmedIPhoneYear && iphoneRow
-                ? iphoneRow.maxModel
-                : null,
             macbookConfirmed: macRow && !macRow.speculative ? macRow.maxModel : null,
             macbookSpec:
               macRow && macRow.speculative
@@ -175,12 +146,8 @@ export default function MaxUsableModelChart() {
                 : year === lastConfirmedMacYear && macRow
                 ? macRow.maxModel
                 : null,
-            iphoneLabel: iphoneRow?.displayName ?? null,
             macbookLabel: macRow?.displayName ?? null,
-            iphoneIsSpec: iphoneRow?.speculative ?? false,
             macbookIsSpec: macRow?.speculative ?? false,
-            iphoneRamFit: iphoneRow?.ramFit ?? null,
-            iphoneSpeedFit: iphoneRow?.speedFit ?? null,
             macbookRamFit: macRow?.ramFit ?? null,
             macbookSpeedFit: macRow?.speedFit ?? null,
           };
@@ -225,27 +192,6 @@ export default function MaxUsableModelChart() {
           <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ced4da' }} />
           <Line
             type="monotone"
-            dataKey="iphoneConfirmed"
-            stroke="#2f9e44"
-            strokeWidth={2}
-            dot={{ r: 4, fill: '#2f9e44' }}
-            activeDot={{ r: 5 }}
-            connectNulls={false}
-            legendType="none"
-          />
-          <Line
-            type="monotone"
-            dataKey="iphoneSpec"
-            stroke="#2f9e44"
-            strokeWidth={2}
-            strokeDasharray="5 4"
-            dot={{ r: 4, fill: '#fff', stroke: '#2f9e44', strokeWidth: 2 }}
-            activeDot={{ r: 5 }}
-            connectNulls={false}
-            legendType="none"
-          />
-          <Line
-            type="monotone"
             dataKey="macbookConfirmed"
             stroke="#1971c2"
             strokeWidth={2}
@@ -277,7 +223,6 @@ export default function MaxUsableModelChart() {
           flexWrap: 'wrap',
         }}
       >
-        <LegendItem color="#2f9e44" label="iPhone Pro" />
         <LegendItem color="#1971c2" label="MacBook Pro" />
         <LegendItem color="#868e96" dashed label="estimated / speculative" />
       </div>
