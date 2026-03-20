@@ -98,8 +98,8 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://tombedor.dev/rss.xml',
-          label: 'RSS',
+          to: '/subscribe',
+          label: 'Subscribe',
           position: 'right',
         },
       ],
