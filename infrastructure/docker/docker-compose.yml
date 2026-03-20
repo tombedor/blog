@@ -54,6 +54,12 @@ services:
       LISTMONK_db__password: ${POSTGRES_PASSWORD}
       LISTMONK_db__database: listmonk
       LISTMONK_db__ssl_mode: disable
+      LISTMONK_app__smtp_address: ${LISTMONK_app__smtp_address:-smtp.sendgrid.net}
+      LISTMONK_app__smtp_port: ${LISTMONK_app__smtp_port:-587}
+      LISTMONK_app__smtp_auth_protocol: ${LISTMONK_app__smtp_auth_protocol:-login}
+      LISTMONK_app__smtp_username: ${LISTMONK_app__smtp_username:-apikey}
+      LISTMONK_app__smtp_password: ${LISTMONK_app__smtp_password}
+      LISTMONK_app__smtp_from_address: ${LISTMONK_app__smtp_from_address}
     depends_on:
       postgres:
         condition: service_healthy

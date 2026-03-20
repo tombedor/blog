@@ -3,11 +3,12 @@ import Footer from '@theme-original/BlogPostItem/Footer';
 import type FooterType from '@theme/BlogPostItem/Footer';
 import type {WrapperProps} from '@docusaurus/types';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
+import NewsletterSignup from '@site/src/components/NewsletterSignup';
 
 type Props = WrapperProps<typeof FooterType>;
 
-export default function FooterWrapper(props: Props): JSX.Element {
-  const {metadata} = useBlogPost();
+export default function FooterWrapper(props: Props): React.JSX.Element {
+  const {metadata, isBlogPostPage} = useBlogPost();
   const {frontMatter} = metadata;
   const canonicalUrl = frontMatter.canonical_url as string | undefined;
 
@@ -26,6 +27,11 @@ export default function FooterWrapper(props: Props): JSX.Element {
           Also published at <a href={canonicalUrl} target="_blank" rel="noopener noreferrer">
             {canonicalUrl}
           </a>
+        </div>
+      )}
+      {isBlogPostPage && (
+        <div style={{marginTop: '2.5rem'}}>
+          <NewsletterSignup />
         </div>
       )}
     </>

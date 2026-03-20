@@ -31,29 +31,27 @@ Naturally, there have been accusations of open source models gaming evals, but t
 
 We can expect this to continue. Startups usually try to create a moat, but model providers build waterslides: frontier models help train their open source competitors.
 
-This can be authorized: OpenAI provides their own [model distillation API](https://openai.com/index/api-model-distillation/). But unauthorized distillation is is difficult threat to counter. Providers can ([and have](https://fortune.com/2026/02/24/anthropic-china-deepseek-theft-claude-distillation-copyright-national-security/)) complain about competitors using their model to train competition. As a practical matter, however, this "theft"[^1] could be impossible to prevent.
+Unauthorized distillation is a difficult threat to counter. Providers can ([and have](https://fortune.com/2026/02/24/anthropic-china-deepseek-theft-claude-distillation-copyright-national-security/)) complain about competitors using their model to train competition. As a practical matter, however, this "theft"[^1] could be impossible to prevent.
 
 [^1]: The complaints are ironic given Anthropic's own [ask forgiveness rather than permission approach to intellectual property the providers have taken themselves](https://www.anthropiccopyrightsettlement.com/).
 
 ## Remote providers increase prices (or degrade subscription value)
 
-The unit economics of remote models are brutal: for example, despite $13 billion in revenue, [OpenAI projects $14 billion in losses for 2026](https://ai2.work/blog/ai-market-openai-anthropic-inference-losses-2025). That bill includes $8 billion in compute costs.
+The unit economics of frontier models are reminiscent of Uber's "[cheap ride era](https://slate.com/business/2022/05/uber-subsidy-lyft-cheap-rides.html)": for example, despite $13 billion in revenue, [OpenAI projects $14 billion in losses for 2026](https://ai2.work/blog/ai-market-openai-anthropic-inference-losses-2025). That bill includes $8 billion in compute costs.
 
-Cursor recently estimated a $200/month Claude Max subscription [can consume up to $5,000 in compute](https://www.forbes.com/sites/annatong/2026/03/05/cursor-goes-to-war-for-ai-coding-dominance/). Granted, these figures come from a rival, but there are other signs the big providers are looking to increase prices and/or focus on enterprise (read: customers willing to pay more).
+For Anthropic, Cursor recently estimated a $200/month Claude Max subscription [can consume up to $5,000 in compute](https://www.forbes.com/sites/annatong/2026/03/05/cursor-goes-to-war-for-ai-coding-dominance/). Even before this report, they [introduced rate limits on that subscription](https://techcrunch.com/2025/07/28/anthropic-unveils-new-rate-limits-to-curb-claude-code-power-users/).
 
-The newly release [Claude Code Review](https://code.claude.com/docs/en/code-review) comes priced at an eye-watering [$15-$25 per PR](https://code.claude.com/docs/en/code-review#pricing). The release came with little information as to why it should replace existing PR review workflows. It seems as though this is a pricing experiment, to see how high a price enterprise is willing to tolerate.
+Their newly released [Claude Code Review](https://code.claude.com/docs/en/code-review) feature is priced at a _very_ expensive [$15-$25 per PR](https://code.claude.com/docs/en/code-review#pricing). Its announcement came with little information as to why it should replace existing PR review workflows. This seems like a pricing experiment, to see how high a price enterprise is willing to tolerate.
 
-OpenAI is also [reportedly narrowing its focus to enterprise](https://www.wsj.com/tech/ai/openai-chatgpt-side-projects-16b3a825?st=oHmik2&reflink=article_copyURL_share)[^2].
+In OpenAI's case, there is public [reporting on pruning side bets and focusing on enterprise](https://www.wsj.com/tech/ai/openai-chatgpt-side-projects-16b3a825?st=oHmik2&reflink=article_copyURL_share)[^2].
 
-Providers are also looking to improve their unit economics by degrading existing subscriptions without changes prices. Anthropic has [already introduced rate limits](https://techcrunch.com/2025/07/28/anthropic-unveils-new-rate-limits-to-curb-claude-code-power-users/) on their Max plan.
-
-[^2]: Granted, part of this seems to be motivated by some bets just not getting adoption, like the Sora video generation app.
+[^2]: Granted, part of this seems to be motivated by some side bets just not getting adoption, like the Sora video generation app.
 
 ### Small, specialized models emerge
 
-Given today's low prices, there seems to be little downward economic pressure on token usage. People reach for the most recent model, regardless of what they are doing.
+Given today's low prices, there is relativewly little downward economic pressure on token usage. People reach for the most powerful model, regardless of the task at hand.
 
-This could change as price increases, and the increasing prevalence of subagent-driven workflows provide a natural transition. I probably don't need a frontier model to fix style issues in my Python PR - a small, specialized model can fill that void. If frontier models get dramatically more (i.e. $25 per PR review) expensive, demand will increase for these models, and the open source community will be plenty able to meet it.
+This will change if prices increase, and the dominant pattern of subagent-driven workflows provide a natural transition. I probably don't need a frontier model to fix style issues in my Python PR - a small, specialized model can fill that void. If frontier models get dramatically more (i.e. $25 per PR review) expensive, demand will increase for these models, and the open source community will be plenty able to meet it.
 
 This is already happening on a small scale: [one whitepaper](https://www.v2solutions.com/blogs/specialized-language-models-domain-focused-ai-2025/) claimed to get parity with GPT-4o with a fine tuned GPT-4o-mini model, at 2% of the cost.
 
