@@ -14,6 +14,11 @@ export default function FooterWrapper(props: Props): React.JSX.Element {
 
   return (
     <>
+      {isBlogPostPage && (
+        <div style={{marginBottom: '2.5rem'}}>
+          <NewsletterSignup />
+        </div>
+      )}
       <Footer {...props} />
       {canonicalUrl && (
         <div style={{
@@ -27,11 +32,6 @@ export default function FooterWrapper(props: Props): React.JSX.Element {
           Also published at <a href={canonicalUrl} target="_blank" rel="noopener noreferrer">
             {canonicalUrl}
           </a>
-        </div>
-      )}
-      {isBlogPostPage && (
-        <div style={{marginTop: '2.5rem'}}>
-          <NewsletterSignup />
         </div>
       )}
     </>
