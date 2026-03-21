@@ -39,7 +39,7 @@ export default function NewsletterSignup(): React.JSX.Element {
   if (status === 'success') {
     return (
       <div style={styles.container}>
-        <p style={styles.heading}>Check your email to confirm your subscription.</p>
+        <p style={styles.heading}>You're subscribed!</p>
       </div>
     );
   }
