@@ -23,10 +23,10 @@ fi
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 # Get list of blog posts in current branch
-CURRENT_POSTS=$(git ls-files blog/*.md 2>/dev/null | sort)
+CURRENT_POSTS=$(git ls-files 'blog/*.md' 'blog/*.mdx' 2>/dev/null | sort)
 
 # Get list of blog posts in gh-pages branch
-DEPLOYED_POSTS=$(git ls-tree -r --name-only gh-pages blog/ 2>/dev/null | grep '\.md$' | sort)
+DEPLOYED_POSTS=$(git ls-tree -r --name-only gh-pages blog/ 2>/dev/null | grep -E '\.(md|mdx)$' | sort)
 
 # Find new posts (in current but not in deployed)
 NEW_POSTS=$(comm -23 <(echo "$CURRENT_POSTS") <(echo "$DEPLOYED_POSTS"))

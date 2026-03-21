@@ -14,6 +14,10 @@ This is a personal blog built with [Docusaurus](https://docusaurus.io/) v3.9.1, 
 
 ```
 blog/               # Blog posts (Markdown/MDX files)
+research/           # Research briefs and source notes organized by post name
+  {post-name}/      # Each blog post has its own research directory
+    brief.md        # Main research brief (claims, fact-checks, counterarguments)
+    {source}.md     # Individual source notes
 src/
   components/       # Custom React components
   css/             # Custom CSS styles
@@ -52,6 +56,20 @@ When asked for feedback or content suggestions:
 ## Dual Publishing
 
 This blog is configured to dual-publish content to the Elroy project blog at `../elroy/docs/blog/`. Use `just dual-publish` or `npm run dual-publish` to sync blog posts and diagrams to the Elroy project. See `DUAL-PUBLISH.md` for details.
+
+## Research
+
+Research for blog posts is stored in `research/{post-name}/`. The directory name matches the blog post slug (e.g., research for `open-source-models.mdx` goes in `research/open-source-models/`).
+
+Each post's research directory contains:
+- `brief.md` — the main research brief: fact-checks of post claims, source summaries, and counterarguments
+- Individual source files (e.g., `hn-thread.md`, `paper-notes.md`) — detailed notes on specific sources
+
+When asked to do research for a post:
+- Update or create `research/{post-name}/brief.md` with findings
+- Add separate source files for substantial individual sources
+- Maintain a sources section in `brief.md` linking to source files
+- Do NOT edit the actual blog post file — research output goes only in `research/`
 
 ## Diagrams
 
