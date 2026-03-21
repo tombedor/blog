@@ -99,23 +99,14 @@ If **NOT** using DigitalOcean DNS, manually create A records:
 
 ## 📧 SMTP Setup for Listmonk
 
-Listmonk needs SMTP to send emails. Options:
+Listmonk needs SMTP to send emails. This setup uses Resend (3,000 emails/month free).
 
-### Option 1: Transactional Email Service (Recommended)
+### Resend Setup
 
-Use a service for better deliverability:
-- **Postmark** - $10/mo for 10k emails
-- **SendGrid** - Free tier: 100 emails/day
-- **AWS SES** - ~$1/1000 emails
-- **Mailgun** - Free tier: 5k emails/mo
-
-### Option 2: Forward Email (SMTP Relay)
-
-1. Sign up at https://forwardemail.net
-2. Configure DNS records
-3. Use their SMTP settings in Listmonk
-
-See: https://forwardemail.net/en/guides/newsletter-with-listmonk
+1. Create an account at https://resend.com
+2. Add and verify your domain under **Domains**
+3. Create an API key under **API Keys** with "Sending access"
+4. Set `LISTMONK_app__smtp_password=re_your_key` in `docker/.env`
 
 ## 🔧 Management
 

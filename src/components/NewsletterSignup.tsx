@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 // After setting up Listmonk, get the list UUID from:
 // Settings → Lists → your list → copy the UUID
 const LISTMONK_URL = 'https://newsletter.tombedor.dev';
-const LIST_UUID = 'REPLACE_WITH_YOUR_LIST_UUID';
+const LIST_UUID = '0e2a0310-73c6-4ad5-97e8-75611a164bc7';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 

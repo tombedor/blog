@@ -83,6 +83,16 @@ resource "digitalocean_firewall" "analytics" {
   }
 }
 
+# Reserved IP (static IP that survives droplet replacement)
+resource "digitalocean_reserved_ip" "analytics" {
+  region = var.region
+}
+
+resource "digitalocean_reserved_ip_assignment" "analytics" {
+  ip_address = digitalocean_reserved_ip.analytics.ip_address
+  droplet_id = digitalocean_droplet.analytics.id
+}
+
 # Optional: Domain A record (if using DigitalOcean DNS)
 resource "digitalocean_record" "analytics" {
   count = var.domain != "" && var.analytics_subdomain != "" ? 1 : 0
