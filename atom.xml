@@ -106,8 +106,8 @@
 <img src="https://tombedor.dev/diagrams/how-to-write-good-short-docs/diagrams.png" alt="diagrams" style="width:60%">
 <p>Excalidraw is a really excellent tool for this. It's open source (you can make them in your code editor), and has just the right amount of knobs and shapes. The hand drawn look means that it's not as distracting when shapes aren't perfectly aligned.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="align-with-reader-interest">Align with reader interest<a href="https://tombedor.dev/how-to-write-good-short-docs/#align-with-reader-interest" class="hash-link" aria-label="Direct link to Align with reader interest" title="Direct link to Align with reader interest" translate="no">​</a></h3>
-<p>It's very hard to persuade people to care about something that they don't already care about. Much easier is to convince people that something <em>aligns with the thing they care about</em>.</p>
-<p>I.e., don't write "we should do more of XYZ", write "doing XYZ helps us <code>{thing people already care about}</code>"</p>
+<p>It's very hard to persuade people to care about something that they don't already care about. Much easier is to convince people that something <em>aligns with the thing they care about</em>, or especially an <em>outcome they want</em>.</p>
+<p>I.e., don't write "we should do more of XYZ", write "doing XYZ helps us accomplish <code>{thing people already care about}</code>".</p>
 <p>If your doc can be summarized by, "everyone should care more about XYZ", it's probably not a very good doc!</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="connect-to-existing-conversations">Connect to existing conversations<a href="https://tombedor.dev/how-to-write-good-short-docs/#connect-to-existing-conversations" class="hash-link" aria-label="Direct link to Connect to existing conversations" title="Direct link to Connect to existing conversations" translate="no">​</a></h3>
 <p>A concrete way to align with reader interest is to connect the dots between your document and other conversations and documents at your company.</p>

@@ -1,0 +1,17 @@
+model,display_name,lab,release_date,parameters_total_b,parameters_active_b,license
+GPT-NeoX-20B,NeoX-20B,EleutherAI,2022-02-01,20,20,Apache 2.0
+OPT-175B,OPT-175B,Meta,2022-05-02,175,175,OPT-NC
+BLOOM-176B,BLOOM-176B,BigScience,2022-07-11,176,176,RAIL
+LLaMA-1-65B,LLaMA 1,Meta,2023-02-24,65,65,Non-commercial
+LLaMA-2-70B,LLaMA 2,Meta,2023-07-18,70,70,Llama 2 Community
+Mistral-7B,Mistral 7B,Mistral,2023-10-10,7,7,Apache 2.0
+Mixtral-8x7B,Mixtral,Mistral,2024-01-08,47,13,Apache 2.0
+LLaMA-3-70B,LLaMA 3,Meta,2024-04-18,70,70,Llama 3 Community
+Qwen2-72B,Qwen2-72B,Alibaba,2024-06-07,72,72,Apache 2.0
+LLaMA-3.1-405B,LLaMA 3.1,Meta,2024-07-23,405,405,Llama 3.1 Community
+Qwen2.5-72B,Qwen2.5-72B,Alibaba,2024-09-18,72,72,Apache 2.0
+DeepSeek-V3,DS-V3,DeepSeek,2024-12-27,671,37,MIT
+DeepSeek-R1,DS-R1,DeepSeek,2025-01-22,671,37,MIT
+Llama-4-Maverick,Llama 4,Meta,2025-04-05,400,17,Llama 4 Community
+Qwen3-235B,Qwen3-235B,Alibaba,2025-04-28,235,22,Apache 2.0
+Mistral-Large-3,Mistral L3,Mistral,2025-12-01,675,41,Apache 2.0
