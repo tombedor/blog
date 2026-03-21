@@ -23,6 +23,8 @@ This brief covers prior art and key libraries for agent memory management. The m
 ## Sources
 
 - [mem0.md](./mem0.md) — Deep research on Mem0: architecture, integration, limitations, version history
+- [zep.md](./zep.md) — Deep research on Zep: temporal knowledge graph architecture, benchmarks, integration, limitations
+- [evaluation-techniques.md](./evaluation-techniques.md) — Benchmarks and metrics for evaluating agent memory (LoCoMo, LongMemEval, MemBench, AMA-Bench; LLM-as-judge vs. lexical; benchmark controversy)
 
 ### Platform Documentation
 
@@ -73,6 +75,19 @@ This brief covers prior art and key libraries for agent memory management. The m
 ---
 
 ## Systems Researched
+
+### Zep (researched)
+
+See [zep.md](./zep.md) for full notes. Key points:
+- Core architecture: Graphiti, a temporal knowledge graph with three subgraphs (episode, semantic entity, community)
+- Key innovation: bitemporal data model — tracks both when facts occurred (Event Time) and when they were ingested (Ingestion Time). Enables querying historical state.
+- Fact invalidation: old facts marked invalid (not deleted) when superseded — supports "what was true at time X" queries
+- Retrieval: combines semantic search + full-text search + BFS graph traversal, pre-formatted as a context block (P95 < 200ms)
+- Benchmarks: 94.8% on DMR (vs. MemGPT 93.4%); 71.2% on LongMemEval; involved in LoCoMo benchmark dispute with Mem0
+- Community Edition deprecated April 2025; now cloud-first (Zep Cloud) + Graphiti open source
+- SDKs: Python, TypeScript, Go. Integrations: LangGraph, Autogen, Chainlit, MCP
+- Best for: temporal reasoning, multi-hop queries, enterprise use cases with complex entity relationships
+- Limitations: high memory footprint, delayed availability (background graph build), operational complexity for self-hosting
 
 ### Mem0 (researched)
 
