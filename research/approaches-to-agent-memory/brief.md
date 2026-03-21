@@ -11,6 +11,43 @@ This brief covers prior art and key libraries for agent memory management. The m
 
 ---
 
+## Why People Want AI Memory (Commonly Discussed Motivations)
+
+Collated from papers, blog posts, practitioner discussions, and product marketing in the space.
+
+**1. Avoiding repetitive re-explanation ("don't make me repeat myself")**
+The most frequently cited frustration: users must re-establish context every session. "Here's who I am, here's what I'm working on, here's my preferences" — at scale this is genuinely expensive and friction-inducing. Memory converts this per-session cost into a one-time cost.
+
+**2. Personalization**
+Agents that remember preferences (communication style, tools used, project conventions) feel qualitatively different from generic assistants. The appeal is partly functional (fewer mismatches) and partly social — a sense of being known. Consumer products (ChatGPT memory) lean heavily on this in marketing.
+
+**3. Long-horizon task completion**
+Many meaningful tasks span days or weeks: a software project, a research effort, a hiring process. Without memory, each session requires re-reading prior work. With memory, an agent can pick up where it left off and maintain a coherent picture of where the task stands.
+
+**4. Learning from past interactions**
+Beyond factual recall, the aspiration is that agents improve through experience — learning that a user prefers certain approaches, that a particular customer is sensitive on pricing, or that a codebase has idiosyncratic conventions. This is more ambitious than most current systems deliver.
+
+**5. Maintaining relational context in multi-turn work**
+Complex tasks generate entities that matter later: decisions made, people mentioned, constraints established. Without memory, agents lose track of these relationships as conversation history scrolls out of context. Memory preserves the relational web, not just individual facts.
+
+**6. Enabling agents to operate autonomously over time**
+The strongest argument for memory is architectural: agents that run unattended (overnight, over weeks) cannot rely on a human to reconstruct context at the start of each session. Memory is the infrastructure that makes truly autonomous agents possible, not just a UX nicety.
+
+**7. Trust and consistency**
+An agent that remembers past commitments, promises, and decisions behaves consistently. One that forgets them can contradict itself, re-open settled questions, or fail to honor stated preferences. Memory is load-bearing for trust in long-term relationships.
+
+**8. Reducing cognitive load on users**
+Related to (1) but distinct: the user shouldn't have to track what the agent knows and doesn't. Memory externalizes that bookkeeping from the user's head to the system.
+
+**Skeptical pushback worth noting:**
+- Many stated use cases are actually short-session and don't need memory
+- Personalization value is often overstated; users frequently want to start fresh
+- The "learns from experience" framing typically oversells current capabilities — most systems do retrieval, not learning
+- Context window sizes have expanded dramatically (1M+ tokens), reducing the urgency of the problem for many use cases
+- Simple approaches (flat file storage) are competitive with sophisticated memory systems on benchmarks
+
+---
+
 ## Key Claims to Fact-Check / Explore
 
 - Agent memory is the primary unsolved problem for production AI agents
