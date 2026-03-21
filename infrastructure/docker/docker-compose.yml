@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # PostgreSQL database for both Umami and Listmonk
   postgres:

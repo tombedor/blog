@@ -5,6 +5,13 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
+  scripts: [
+    {
+      src: 'https://analytics.tombedor.dev/script.js',
+      'data-website-id': '8694de38-6514-4d57-a9bd-7c62b89c008d',
+      defer: true,
+    },
+  ],
   title: 'Tom Bedor\'s Blog',
   tagline: 'Thoughts on software, AI, and building things',
   favicon: 'img/logo.svg',
