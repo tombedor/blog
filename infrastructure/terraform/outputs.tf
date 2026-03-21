@@ -8,6 +8,11 @@ output "droplet_ip" {
   value       = digitalocean_droplet.analytics.ipv4_address
 }
 
+output "reserved_ip" {
+  description = "Reserved (static) IP address — use this for DNS records"
+  value       = digitalocean_reserved_ip.analytics.ip_address
+}
+
 output "analytics_url" {
   description = "URL for Umami analytics"
   value = var.domain != "" && var.analytics_subdomain != "" ? (
