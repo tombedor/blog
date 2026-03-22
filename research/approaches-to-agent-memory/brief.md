@@ -305,20 +305,26 @@ Not memory per se, but relevant to context budget management. Skills are folders
 
 ---
 
-## Platform vs. Third-Party Comparison
+## Comparison Table
 
-| Dimension | Anthropic (Claude) | OpenAI | mem0 | Letta | Elroy |
-|---|---|---|---|---|---|
-| Memory type | File system (key-value files) | Session state + stateful chaining | Semantic/vector + optional graph | Core/Recall/Archival hierarchy | Vector + markdown files on disk |
-| Agent control over memory | High (Claude writes files explicitly) | Medium (SDK manages sessions) | Low (passive extraction) | High (agent self-edits) | Medium (agent creates; background synthesizes) |
-| Framework lock-in | Moderate (Claude API) | Moderate (OpenAI API + Agents SDK) | None (framework-agnostic) | High (full runtime) | High (standalone app) |
-| Long-term persistence | Developer-managed files | Developer-managed + SQLite/Redis | Managed by mem0 | Managed by Letta runtime | Managed by Elroy (SQLite + files) |
-| Semantic retrieval | No (file I/O only) | No (trimming/summarization) | Yes | Yes (archival memory) | Yes (vector + LLM filter) |
-| Consolidation approach | None | Summarization | Per-write LLM update/merge/delete | Agent-controlled via core_memory_replace | Batched DBSCAN clustering + LLM synthesis |
-| Open source | No | Partial (Agents SDK is open) | Partial | Yes (Apache 2.0) | Yes (Apache 2.0) |
-| Production maturity | Beta (memory tool) | GA | GA | GA | Active development |
-| Python SDK | Yes | Yes | Yes | Yes | Yes |
-| TypeScript SDK | Yes | Yes | Yes | No | No |
+| | Anthropic | OpenAI | Mem0 | Zep | Letta | Elroy |
+|---|---|---|---|---|---|---|
+| **Integration model** | Platform primitive | Platform primitive | Drop-in library | Drop-in library | Full runtime | Standalone app |
+| **Who decides what to remember** | Developer | Developer | System (passive extraction) | System (passive extraction) | Agent (self-edits) | Agent creates; system synthesizes |
+| **Knowledge representation** | Text files | Session state | Vector + optional graph | Temporal knowledge graph | Core / Recall / Archival tiers | Vector + markdown files |
+| **Temporal awareness** | None | None | Timestamps only | Bitemporal (validity windows) | None | None (archives superseded) |
+| **Consolidation** | None | Summarization | Per-write (LLM merge/delete) | Fact invalidation | Agent-controlled | Batched DBSCAN + LLM synthesis |
+| **Consolidation trigger** | N/A | Context overflow | Every write | Continuous (background) | Agent decides | Every 5th memory (configurable) |
+| **Semantic retrieval** | No | No | Yes | Yes | Yes | Yes |
+| **Graph memory** | No | No | Optional (+2% accuracy, 2x cost) | Yes (core architecture) | No | No |
+| **Retrieval strategy** | File read | Trim / summarize | Vector similarity | Semantic + BM25 + graph traversal | Vector (agent-driven) | Heuristic → vector → LLM filter |
+| **Cross-session by default** | Yes (file-backed) | Opt-in (Sessions API) | Yes | Yes | Yes | Yes |
+| **Lock-in** | Claude API | OpenAI API | None | None | High (full runtime) | High (standalone app) |
+| **Open source** | No | Partial | Partial | Graphiti yes; Zep Cloud no | Yes (Apache 2.0) | Yes (Apache 2.0) |
+| **Maturity** | Beta | GA | GA | GA | GA | Active development |
+| **Python SDK** | Yes | Yes | Yes | Yes | Yes | Yes |
+| **TypeScript SDK** | Yes | Yes | Yes | Yes | No | No |
+| **Go SDK** | No | No | No | Yes | No | No |
 
 ---
 
