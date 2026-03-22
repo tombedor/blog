@@ -46,6 +46,28 @@ Related to (1) but distinct: the user shouldn't have to track what the agent kno
 - Context window sizes have expanded dramatically (1M+ tokens), reducing the urgency of the problem for many use cases
 - Simple approaches (flat file storage) are competitive with sophisticated memory systems on benchmarks
 
+**Why large context windows don't actually solve the problem:**
+
+The "just use a bigger context window" counter-argument has strong empirical pushback.
+
+- **"Lost in the Middle" (Liu et al., Stanford/TACL 2024):** LLMs attend strongly to the beginning and end of context and poorly to the middle. In multi-document QA with 20 documents, accuracy dropped >30% when the relevant document was in positions 5–15 vs. position 1 or 20. The performance curve is U-shaped across input position.
+
+- **Context Rot (Chroma Research, July 2025):** Tested 18 frontier models (GPT-4.1, Claude Opus 4, Gemini 2.5). Every single one shows measurable output quality degradation as context length increases — even before approaching the advertised limit. A model with a 200K token window can show significant degradation at 50K tokens. The decline is continuous, not a cliff.
+
+- **NoLiMa benchmark (Adobe Research, Feb 2025):** 11 of 12 models dropped below 50% of baseline performance at just 32K tokens when questions and answers lacked lexical overlap (realistic conditions). GPT-4o dropped from 99.3% to 69.7%.
+
+- **"Context Length Alone Hurts Performance Despite Perfect Retrieval" (arXiv, Oct 2025):** Even with 100% perfect retrieval of relevant information pre-selected, performance degraded 13.9%–85% as input length increased. Degradation persisted even when irrelevant tokens were replaced with whitespace. Sheer context length imposes a cognitive tax independent of content quality.
+
+- **Practical limits vs. advertised limits:** Research suggests ~30–35% degradation from the theoretical maximum is common. Approximate reliable limits: Claude 200K → ~130K, Gemini 1M → ~650K, GPT-4 128K → ~83K.
+
+- **Root cause is architectural:** Transformer attention is quadratic — 100K tokens = 10 billion pairwise relationships. Softmax normalization means each token's attention weight shrinks as context grows. The signal doesn't get louder; the noise floor rises. This is an architectural property of transformer attention, not a capability gap training can simply close.
+
+- **Cost and latency compound the problem for agents:** Token cost scales linearly with context size. Latency scales even faster (quadratic attention). A typical multi-turn agent task runs dozens of tool calls; each adds to accumulated context. Memory layers cut token costs ~90% and latency ~91% vs. full-context approaches (Mem0's reported figures). The break-even point depends on how often a user re-engages with the same context.
+
+The upshot: "just expand the context window" is not a memory strategy — it's a deferred memory problem that gets more expensive and less accurate over time.
+
+Sources: [Context Rot — Chroma Research](https://research.trychroma.com/context-rot) · [Context Length Alone Hurts Performance — arXiv:2510.05381](https://arxiv.org/html/2510.05381v1) · [Context Rot — understandingai.org](https://www.understandingai.org/p/context-rot-the-emerging-challenge) · [Cost-Performance Analysis of Fact-Based Memory vs. Long-Context LLMs — arXiv:2603.04814](https://arxiv.org/html/2603.04814)
+
 ---
 
 ## Key Claims to Fact-Check / Explore
