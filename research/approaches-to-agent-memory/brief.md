@@ -304,6 +304,27 @@ Not memory per se, but relevant to context budget management. Skills are folders
 
 ---
 
+## What All Implementations Have in Common
+
+Despite the architectural diversity, every major approach converges on the same basic pipeline and the same set of unsolved tensions.
+
+**The write-retrieve-inject loop is universal.** Every system, regardless of storage backend, does some version of: observe something worth remembering → store it → on a future query, retrieve relevant pieces → inject them into context. The differences are entirely in how each step is implemented, not whether it exists.
+
+**All systems treat the context window as the bottleneck.** The whole problem is that models can only attend to what's in context right now. Every approach is a strategy for managing what occupies that finite space. This is true whether you're doing vector retrieval, file I/O, or graph traversal — the endpoint is always "get the right tokens into context."
+
+**All use LLMs for memory operations.** Extraction (what's worth storing), consolidation (how does this new fact relate to existing ones), and retrieval scoring all involve LLM calls. Memory quality is upstream of retrieval — garbage in, garbage out. This creates a dependency on model quality for the memory layer itself, not just the final response.
+
+**All struggle with the same hard problems:**
+- *What's worth remembering?* No system has cleanly solved selective retention. Too strict → important context is lost. Too liberal → retrieval quality degrades from noise.
+- *Knowledge update and contradiction.* When new information supersedes old, how do you handle it? Every system has a mechanism (Mem0's update/delete, Zep's invalidation, Letta's core_memory_replace) but none handles arbitrary contradictions reliably.
+- *Evaluation is broken.* No benchmark is trusted across vendors. Every company cherry-picks the benchmark where they look best. Independent evaluation consistently produces different numbers than vendor-reported ones.
+
+**All require developers to make explicit design choices.** Even the most automatic systems (Mem0, Zep) require decisions about: what to include in the memory context, user/session/agent scoping, what model to use for extraction, and when to retrieve. There's no zero-configuration memory system that just works for any use case.
+
+**All are fundamentally retrieval systems, not learning systems.** Despite marketing language about agents that "learn" and "improve," every current implementation does retrieval-augmented generation, not weight updates. The agent doesn't become smarter — it gets more relevant context. This distinction matters for the post's framing.
+
+---
+
 ## Key Axes of Differentiation
 
 The major implementations (Mem0, Zep, Letta, Anthropic memory tool, OpenAI Agents SDK) depart from each other on five main dimensions. Most interesting design choices involve a tradeoff on at least two of them simultaneously.
