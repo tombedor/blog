@@ -1,5 +1,5 @@
 ---
-title: "Issues with MCP"
+title: "MCP is a Fad"
 date: 2025-12-12
 ---
 
