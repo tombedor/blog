@@ -1,13 +1,13 @@
 # Research Brief: Approaches to Agent Memory
 
 **Post:** `blog/approaches-to-agent-memory.md`
-**Last updated:** 2026-03-21 (platform sections updated with web research)
+**Last updated:** 2026-03-22 (added Elroy)
 
 ---
 
 ## Summary
 
-This brief covers prior art and key libraries for agent memory management. The main systems researched are Mem0 and Letta (formerly MemGPT), along with approaches from OpenAI and Anthropic/Claude.
+This brief covers prior art and key libraries for agent memory management. The main systems researched are Mem0, Letta (formerly MemGPT), Zep, and Elroy, along with approaches from OpenAI and Anthropic/Claude.
 
 ---
 
@@ -83,6 +83,7 @@ Sources: [Context Rot — Chroma Research](https://research.trychroma.com/contex
 
 - [mem0.md](./mem0.md) — Deep research on Mem0: architecture, integration, limitations, version history
 - [zep.md](./zep.md) — Deep research on Zep: temporal knowledge graph architecture, benchmarks, integration, limitations
+- [elroy.md](./elroy.md) — Source-code-level notes on Elroy: consolidation algorithm, memory data model, recall pipeline, comparison with other systems
 - [evaluation-techniques.md](./evaluation-techniques.md) — Benchmarks and metrics for evaluating agent memory (LoCoMo, LongMemEval, MemBench, AMA-Bench; LLM-as-judge vs. lexical; benchmark controversy)
 
 ### Platform Documentation
@@ -147,6 +148,22 @@ See [zep.md](./zep.md) for full notes. Key points:
 - SDKs: Python, TypeScript, Go. Integrations: LangGraph, Autogen, Chainlit, MCP
 - Best for: temporal reasoning, multi-hop queries, enterprise use cases with complex entity relationships
 - Limitations: high memory footprint, delayed availability (background graph build), operational complexity for self-hosting
+
+### Elroy (researched)
+
+See [elroy.md](./elroy.md) for full notes. Key points:
+
+- **What it is:** A CLI-based, memory-augmented AI assistant. Not a library — a standalone application. Supports OpenAI, Anthropic, and Google Gemini models.
+- **Memory model:** Memory content stored in markdown files on disk; database stores metadata (`name`, `file_path`, `is_active`, `source_metadata`). Embeddings stored separately in a vector DB. No separate Goal model — goals are memories with goal-oriented names.
+- **Consolidation trigger:** Creation-based. A `MemoryOperationTracker` counter increments on each memory creation; when it reaches `memories_between_consolidation` (default: 5), consolidation runs in a background thread and the counter resets.
+- **Consolidation algorithm:** DBSCAN clustering (cosine metric, eps=0.85, min_samples=2) on all active memory embeddings → reduce large clusters to densest members → LLM synthesis call per cluster. The LLM generates one or more new synthesized `Memory` objects; source memories are marked `is_active=False` (not deleted). Up to 3 clusters processed per consolidation run.
+- **LLM synthesis vs. deduplication:** The key claim is that consolidation produces genuinely new synthesized representations, not just merged summaries. Whether this consistently holds in practice is empirically unclear.
+- **Recall pipeline:** Three stages: (1) fast heuristics skip retrieval for obvious non-content messages; (2) vector similarity search over active memories + reminders; (3) LLM relevance filter over candidates. Relevant items injected as synthetic tool call results.
+- **Non-destructive:** Consolidated source memories archived, not deleted; source relationships recorded.
+- **Known code issues:** N+1 query on embedding load during clustering (noted TODO). 3-cluster-per-run cap may leave high-volume memory creation under-consolidated.
+- **Integration model:** Standalone CLI / Python SDK. Not a drop-in library; not a server runtime. Somewhere between Mem0 (library) and Letta (server).
+
+---
 
 ### Mem0 (researched)
 
@@ -290,17 +307,18 @@ Not memory per se, but relevant to context budget management. Skills are folders
 
 ## Platform vs. Third-Party Comparison
 
-| Dimension | Anthropic (Claude) | OpenAI | mem0 | Letta |
-|---|---|---|---|---|
-| Memory type | File system (key-value files) | Session state + stateful chaining | Semantic/vector + optional graph | Core/Recall/Archival hierarchy |
-| Agent control over memory | High (Claude writes files explicitly) | Medium (SDK manages sessions) | Low (passive extraction) | High (agent self-edits) |
-| Framework lock-in | Moderate (Claude API) | Moderate (OpenAI API + Agents SDK) | None (framework-agnostic) | High (full runtime) |
-| Long-term persistence | Developer-managed files | Developer-managed + SQLite/Redis | Managed by mem0 | Managed by Letta runtime |
-| Semantic retrieval | No (file I/O only) | No (trimming/summarization) | Yes | Yes (archival memory) |
-| Open source | No | Partial (Agents SDK is open) | Partial | Yes (Apache 2.0) |
-| Production maturity | Beta (memory tool) | GA | GA | GA |
-| Python SDK | Yes | Yes | Yes | Yes |
-| TypeScript SDK | Yes | Yes | Yes | No |
+| Dimension | Anthropic (Claude) | OpenAI | mem0 | Letta | Elroy |
+|---|---|---|---|---|---|
+| Memory type | File system (key-value files) | Session state + stateful chaining | Semantic/vector + optional graph | Core/Recall/Archival hierarchy | Vector + markdown files on disk |
+| Agent control over memory | High (Claude writes files explicitly) | Medium (SDK manages sessions) | Low (passive extraction) | High (agent self-edits) | Medium (agent creates; background synthesizes) |
+| Framework lock-in | Moderate (Claude API) | Moderate (OpenAI API + Agents SDK) | None (framework-agnostic) | High (full runtime) | High (standalone app) |
+| Long-term persistence | Developer-managed files | Developer-managed + SQLite/Redis | Managed by mem0 | Managed by Letta runtime | Managed by Elroy (SQLite + files) |
+| Semantic retrieval | No (file I/O only) | No (trimming/summarization) | Yes | Yes (archival memory) | Yes (vector + LLM filter) |
+| Consolidation approach | None | Summarization | Per-write LLM update/merge/delete | Agent-controlled via core_memory_replace | Batched DBSCAN clustering + LLM synthesis |
+| Open source | No | Partial (Agents SDK is open) | Partial | Yes (Apache 2.0) | Yes (Apache 2.0) |
+| Production maturity | Beta (memory tool) | GA | GA | GA | Active development |
+| Python SDK | Yes | Yes | Yes | Yes | Yes |
+| TypeScript SDK | Yes | Yes | Yes | No | No |
 
 ---
 
@@ -338,6 +356,7 @@ The deepest architectural choice: is memory management the agent's responsibilit
 - **Agent-controlled (Letta):** The LLM itself calls memory tools (`core_memory_append`, `archival_memory_insert`) during its reasoning loop. Memory is a first-class cognitive act. Upside: adaptive, context-aware decisions. Downside: costs inference tokens, and if the model doesn't judge something worth saving, it's gone.
 - **System-controlled (Mem0, Zep):** The infrastructure observes conversations and extracts facts automatically, without the agent "deciding." The agent gets relevant context injected on retrieval. Upside: efficient, transparent to the agent. Downside: extraction quality depends on pipeline tuning, and the agent has no awareness of what it "knows."
 - **Developer-controlled (Anthropic memory tool):** The developer writes application logic that calls read/write operations; Claude executes file I/O. The agent participates but the developer defines when and what. Upside: maximum observability and control. Downside: more integration code.
+- **Agent-creates, system-synthesizes (Elroy):** The agent (LLM) decides what to create and names the memory; a separate background process periodically clusters and synthesizes existing memories. Creation and consolidation are decoupled. Upside: consolidation doesn't block the conversation; synthesis can generate representations that transcend any individual memory. Downside: consolidation is deferred and may lag high-volume creation; synthesis quality depends on LLM judgment in batch context rather than in-conversation context.
 
 ---
 
@@ -359,7 +378,7 @@ A surprisingly large differentiator, especially for enterprise use cases.
 
 - **Bitemporal (Zep):** Tracks both when something occurred and when it was ingested. Old facts are invalidated, not deleted. Can answer "what was the account status before the change?" No other mainstream system does this natively.
 - **Creation-timestamped (Mem0):** Memories have timestamps, but there's no validity window. If a preference changes, the old entry must be deleted/updated manually; there's no concept of supersession.
-- **No temporal model (Letta archival, Anthropic files):** Retrieval is purely semantic or literal. Time must be encoded in the content itself if it matters.
+- **No temporal model (Letta archival, Anthropic files, Elroy):** Retrieval is purely semantic or literal. Time must be encoded in the content itself if it matters. Elroy archives superseded memories (marks them inactive) but has no validity windows — no point-in-time querying.
 
 Most use cases don't need temporal reasoning — but for enterprise workflows (customer history, auditable decisions, long-running projects), the absence of it is a real gap.
 
@@ -383,6 +402,7 @@ How context gets from memory back into the model.
 - **Hybrid (Zep Context Block):** Combines semantic search + full-text (BM25) + breadth-first graph traversal, then reranks. More accurate but more compute. Pre-formatted as a single context string (P95 < 200ms).
 - **Full-context injection:** The entire conversation history is stuffed into the prompt. Not memory per se — this is what memory systems are designed to replace. Still competitive on benchmarks (Letta's "Is a Filesystem All You Need?" finding), especially as context windows approach 1M tokens.
 - **Agent-driven search (Letta archival):** The agent issues explicit search queries to archival memory, decides what to retrieve, and pulls it into context. The most flexible but also the most expensive — retrieval is an inference step.
+- **Heuristic + vector + LLM filter (Elroy):** Three-stage pipeline: fast heuristics skip retrieval for obvious non-content messages (greetings, acknowledgments) without any LLM call; vector similarity search over all active memories and reminders; LLM relevance filter over candidates before injection. The heuristic stage is a meaningful optimization — it avoids retrieval overhead on a large fraction of conversation turns.
 
 ---
 
