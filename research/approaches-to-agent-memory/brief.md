@@ -282,6 +282,75 @@ Not memory per se, but relevant to context budget management. Skills are folders
 
 ---
 
+## Key Axes of Differentiation
+
+The major implementations (Mem0, Zep, Letta, Anthropic memory tool, OpenAI Agents SDK) depart from each other on five main dimensions. Most interesting design choices involve a tradeoff on at least two of them simultaneously.
+
+---
+
+### 1. Who decides what to remember?
+
+The deepest architectural choice: is memory management the agent's responsibility or the infrastructure's?
+
+- **Agent-controlled (Letta):** The LLM itself calls memory tools (`core_memory_append`, `archival_memory_insert`) during its reasoning loop. Memory is a first-class cognitive act. Upside: adaptive, context-aware decisions. Downside: costs inference tokens, and if the model doesn't judge something worth saving, it's gone.
+- **System-controlled (Mem0, Zep):** The infrastructure observes conversations and extracts facts automatically, without the agent "deciding." The agent gets relevant context injected on retrieval. Upside: efficient, transparent to the agent. Downside: extraction quality depends on pipeline tuning, and the agent has no awareness of what it "knows."
+- **Developer-controlled (Anthropic memory tool):** The developer writes application logic that calls read/write operations; Claude executes file I/O. The agent participates but the developer defines when and what. Upside: maximum observability and control. Downside: more integration code.
+
+---
+
+### 2. What is the knowledge representation?
+
+How memory is stored determines what kinds of queries it can answer well.
+
+- **Vector embeddings (Mem0 base):** Facts extracted as text, embedded, retrieved by semantic similarity. Good for "what does this user prefer?" Bad for "what was true before the update?" or multi-hop relational queries.
+- **Entity-relation graph (Mem0g, Zep/Graphiti):** Knowledge stored as nodes and edges. Enables traversal: "all decisions related to the API since the security review." Costs more tokens and compute, but unlocks relational reasoning.
+- **Temporal knowledge graph (Zep):** Like graph memory, but every edge carries `valid_from`/`valid_to` metadata. Facts aren't overwritten — they're invalidated. Enables point-in-time queries. The most expressive representation, and the most expensive.
+- **Hierarchical in-context tiers (Letta):** Core memory (in context window, directly editable), recall memory (conversation transcript, searchable), archival memory (vector store, agent inserts explicitly). The tiers mirror OS memory hierarchy; the agent manages what lives where.
+- **File system (Anthropic):** Structured text files on disk. No semantic retrieval — Claude reads the file back literally. Simple, auditable, and often sufficient.
+
+---
+
+### 3. Temporal awareness
+
+A surprisingly large differentiator, especially for enterprise use cases.
+
+- **Bitemporal (Zep):** Tracks both when something occurred and when it was ingested. Old facts are invalidated, not deleted. Can answer "what was the account status before the change?" No other mainstream system does this natively.
+- **Creation-timestamped (Mem0):** Memories have timestamps, but there's no validity window. If a preference changes, the old entry must be deleted/updated manually; there's no concept of supersession.
+- **No temporal model (Letta archival, Anthropic files):** Retrieval is purely semantic or literal. Time must be encoded in the content itself if it matters.
+
+Most use cases don't need temporal reasoning — but for enterprise workflows (customer history, auditable decisions, long-running projects), the absence of it is a real gap.
+
+---
+
+### 4. Integration model (library vs. runtime)
+
+How much of the existing stack the memory system displaces.
+
+- **Drop-in library (Mem0, Zep):** Import an SDK, add `m.add()` / `m.search()` calls around existing agent code. Works with any framework (LangGraph, CrewAI, AutoGen, raw API calls). Low lock-in.
+- **Full runtime (Letta):** Not a library — a server you deploy. Your application connects to Letta via REST. Agents live in the Letta runtime. LangGraph and CrewAI don't integrate; Letta replaces them. High lock-in, but enables features (shared memory blocks, sleep-time agents) that a library can't provide.
+- **Platform primitive (Anthropic memory tool, OpenAI Responses API):** Memory capabilities built into the model/API layer. Zero added infrastructure, but you're within the platform's constraints. The Anthropic memory tool is still beta; OpenAI's Responses API handles session state but outsources semantic memory.
+
+---
+
+### 5. Retrieval strategy
+
+How context gets from memory back into the model.
+
+- **Semantic similarity only:** Vector search over extracted facts. Fast, good for preference lookups, poor for relational or temporal queries.
+- **Hybrid (Zep Context Block):** Combines semantic search + full-text (BM25) + breadth-first graph traversal, then reranks. More accurate but more compute. Pre-formatted as a single context string (P95 < 200ms).
+- **Full-context injection:** The entire conversation history is stuffed into the prompt. Not memory per se — this is what memory systems are designed to replace. Still competitive on benchmarks (Letta's "Is a Filesystem All You Need?" finding), especially as context windows approach 1M tokens.
+- **Agent-driven search (Letta archival):** The agent issues explicit search queries to archival memory, decides what to retrieve, and pulls it into context. The most flexible but also the most expensive — retrieval is an inference step.
+
+---
+
+### The underlying tension
+
+Most of these axes trade off against each other in the same direction: **richer representation and more autonomous management → higher token cost, more infrastructure, and more lock-in.** Flat-file storage is cheap, transparent, and portable. A temporal knowledge graph with agent-controlled retrieval is expressive and adaptive but expensive and complex.
+
+The benchmark evidence (Letta's flat-file baseline; full-context beating Mem0 on LOCOMO) suggests the fancier end of this spectrum may not be necessary for most current use cases. The interesting question for the post is: under what conditions does the complexity actually pay off?
+
+---
+
 ## Key Themes and Tensions (Updated)
 
 **The multi-session problem is the central challenge.** Every major player is grappling with the same core: context windows are finite, tasks span sessions, naive approaches mean starting fresh each time. Solutions: file-writing (Anthropic), stateful chaining (OpenAI), passive extraction (mem0), LLM-driven self-editing (Letta).
