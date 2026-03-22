@@ -28,6 +28,7 @@ export default function NewsletterSignup(): React.JSX.Element {
       if (res.ok) {
         setStatus('success');
         setEmail('');
+        window.umami?.track('email-subscribe');
       } else {
         setStatus('error');
       }

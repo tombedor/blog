@@ -23,10 +23,10 @@ export default function Subscribe(): React.JSX.Element {
           </p>
           <ul style={{paddingLeft: '1.25rem'}}>
             <li>
-              <a href="/rss.xml">RSS feed</a>
+              <a href="/rss.xml" data-umami-event="rss-subscribe">RSS feed</a>
             </li>
             <li>
-              <a href="/atom.xml">Atom feed</a>
+              <a href="/atom.xml" data-umami-event="rss-subscribe">Atom feed</a>
             </li>
           </ul>
         </section>
