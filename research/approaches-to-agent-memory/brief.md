@@ -136,188 +136,147 @@ Sources: [Context Rot — Chroma Research](https://research.trychroma.com/contex
 
 ## Systems Researched
 
-<!-- the goal of my post is not to help people choose which option is best for their use case, it's more to highlight the different ways in which one can build memory for ai -->
+### Zep
 
-<!-- would like more detail on how injection works for the different systems: does recall happen when the agent decides there is something worth scanning memory for? or automatically? -->
+See [zep.md](./zep.md) for full notes.
 
-<!-- organize sections with subheadings:
-- how memories are created (passively in background, or via tool calls)
-- how memories are recalled (via tool calls, or via matching)
-    - what kind of recall post processing happens before injection?
-- memory architecture: does it create memories against a predefined taxonomy? does it leverage a graph?
-- how are memories stored? is a graph db used, or is it just a filesystem?
-- how are old / outdated memories updated?
--->
+**Memory creation:** Passive and automatic. After each conversation turn, the developer calls `memory.add(session_id, messages)` and Zep processes the exchange in the background. An LLM extracts entities and facts, which are written into the Graphiti graph asynchronously. The developer does not write individual memory facts — ingestion is at the conversation level, and the system handles extraction.
 
+**Memory architecture:** Temporal knowledge graph (Graphiti) with three subgraphs, each corresponding to a different granularity of representation:
+- *Episode subgraph* (episodic memory): raw conversation events and messages stored verbatim, never modified. This is the ground-truth record.
+- *Semantic entity subgraph* (semantic memory): entities and facts extracted from episodes via LLM. Stored as graph nodes with relationships as edges, each carrying temporal metadata.
+- *Community subgraph* (abstract knowledge): clusters of strongly connected entities with summarized context, updated via dynamic label propagation. Sits above the entity layer and supports higher-level retrieval.
 
-<!-- remove: SDK's, best for sections, limitations -->
-### Zep (researched)
+Key innovation: bitemporal data model. Every node and edge carries two timestamps — when the fact occurred (Event Time) and when it was ingested (Ingestion Time). This is distinct from most systems, which only record when a memory was created.
 
-See [zep.md](./zep.md) for full notes. Key points:
-- Core architecture: Graphiti, a temporal knowledge graph with three subgraphs (episode, semantic entity, community) <!-- define what these are -->
-- Key innovation: bitemporal data model — tracks both when facts occurred (Event Time) and when they were ingested (Ingestion Time). Enables querying historical state.
-- Fact invalidation: old facts marked invalid (not deleted) when superseded — supports "what was true at time X" queries
-- Retrieval: combines semantic search + full-text search + BFS graph traversal, pre-formatted as a context block (P95 < 200ms)
-- Benchmarks: 94.8% on DMR (vs. MemGPT 93.4%); 71.2% on LongMemEval; involved in LoCoMo benchmark dispute with Mem0
-- Community Edition deprecated April 2025; now cloud-first (Zep Cloud) + Graphiti open source
-- SDKs: Python, TypeScript, Go. Integrations: LangGraph, Autogen, Chainlit, MCP
-- Best for: temporal reasoning, multi-hop queries, enterprise use cases with complex entity relationships
-- Limitations: high memory footprint, delayed availability (background graph build), operational complexity for self-hosting
+**Storage:** Graph database (Neo4j or compatible). Zep Cloud manages this; self-hosters use the open-source Graphiti library directly. Community Edition was deprecated April 2025.
 
-### Elroy (researched)
+**Recall and injection:** System-controlled and automatic. Before generating a response, the developer calls `memory.get_context(session_id)`, which runs three retrieval strategies in parallel: semantic vector search (1024D embeddings), full-text search (BM25), and breadth-first graph traversal from matched entities. Results are reranked and returned as a single pre-formatted context string, ready to inject into the system prompt. P95 latency < 200ms. The developer is responsible for including this string in the prompt — Zep does not inject it automatically.
 
-See [elroy.md](./elroy.md) for full notes. Key points:
-
-- **What it is:** A CLI-based, memory-augmented AI assistant. Not a library — a standalone application. Supports OpenAI, Anthropic, and Google Gemini models.
-- **Memory model:** Memory content stored in markdown files on disk; database stores metadata (`name`, `file_path`, `is_active`, `source_metadata`). Embeddings stored separately in a vector DB. No separate Goal model — goals are memories with goal-oriented names.
-- **Consolidation trigger:** Creation-based. A `MemoryOperationTracker` counter increments on each memory creation; when it reaches `memories_between_consolidation` (default: 5), consolidation runs in a background thread and the counter resets.
-- **Consolidation algorithm:** DBSCAN clustering (cosine metric, eps=0.85, min_samples=2) on all active memory embeddings → reduce large clusters to densest members → LLM synthesis call per cluster. The LLM generates one or more new synthesized `Memory` objects; source memories are marked `is_active=False` (not deleted). Up to 3 clusters processed per consolidation run.
-- **LLM synthesis vs. deduplication:** The key claim is that consolidation produces genuinely new synthesized representations, not just merged summaries. Whether this consistently holds in practice is empirically unclear.
-- **Recall pipeline:** Three stages: (1) fast heuristics skip retrieval for obvious non-content messages; (2) vector similarity search over active memories + reminders; (3) LLM relevance filter over candidates. Relevant items injected as synthetic tool call results.
-- **Non-destructive:** Consolidated source memories archived, not deleted; source relationships recorded.
-- **Known code issues:** N+1 query on embedding load during clustering (noted TODO). 3-cluster-per-run cap may leave high-volume memory creation under-consolidated.
-- **Integration model:** Standalone CLI / Python SDK. Not a drop-in library; not a server runtime. Somewhere between Mem0 (library) and Letta (server).
+**Handling outdated memories:** Fact invalidation, not deletion. When a new fact supersedes an old one, the old edge is marked with an `invalid_at` timestamp and a new valid fact is written. Both facts remain queryable. This supports "what was true at time X" queries — a capability no other mainstream system provides natively.
 
 ---
 
-### Mem0 (researched)
+### Elroy
 
-See [mem0.md](./mem0.md) for full notes. Key points:
-- Memory layer that extracts facts from conversations, stores them as vectors (and optionally as a knowledge graph), and retrieves relevant context on future queries
-- Three scopes: user memory, session memory, agent memory <!-- define what these are -->
-- Two-phase pipeline: extraction (LLM extracts candidate facts) then consolidation (LLM decides keep/update/merge/delete against existing memories) <!-- does this happen within response loop, or async? -->
-- Graph variant (Mem0g) adds ~2% accuracy, doubles token cost, underperforms on simple single-hop queries
-- Strong ecosystem integrations: LangGraph, CrewAI, AutoGen, Azure AI, AWS Agent SDK
-- v1.0.0 released Oct 2025; currently at v1.0.6 (Mar 2026)
-- Main limitations: developer must manage memory lifecycle explicitly, embedding dimension lock-in, graph overhead rarely justified
+See [elroy.md](./elroy.md) for full notes.
+
+**Memory creation:** Agent-initiated. The LLM creates memories via tool calls during conversation. A `MemoryOperationTracker` counter increments on each creation; when it reaches the threshold (default: 5), a background consolidation pass is triggered and the counter resets.
+
+**Memory architecture:** Flat — one memory type, no tiers. Goals are memories with goal-oriented names; no separate goal model. Reminders are a distinct entity type sharing the same retrieval pipeline. No predefined taxonomy for memory categories.
+
+**Storage:** SQLite for metadata, vector database for embeddings, markdown files on disk for content. Memory content is stored at `file_path` and formatted as `#{name}\n{file_content}` for LLM consumption.
+
+**Recall and injection:** Automatic, three-stage pipeline that runs on every conversation turn:
+1. Fast heuristics: skips retrieval entirely for obvious non-content messages (greetings, single-word acknowledgments) — no LLM call, no vector search.
+2. Vector similarity search: embeds the query and searches all active memories and reminders using L2 distance threshold.
+3. LLM relevance filter: candidates are passed to a small/fast LLM, which returns a binary relevance decision per memory. Only memories marked relevant proceed.
+
+Relevant items are injected as synthetic tool call results in the conversation — not as prepended system prompt text.
+
+**Handling outdated memories:** Consolidation-based archival. Periodically, DBSCAN clustering (cosine metric, eps=0.85) groups semantically similar memories. An LLM synthesizes each cluster into one or more new memories; source memories are marked `is_active=False` (not deleted). This is the primary mechanism for superseding outdated facts — there are no validity windows or explicit invalidation. If contradicting facts are never near enough in embedding space to cluster together, both remain active.
+
+---
+
+### Mem0
+
+See [mem0.md](./mem0.md) for full notes.
+
+**Memory creation:** Developer-triggered via `m.add(messages, user_id)`. Two-phase pipeline:
+1. Extraction: an LLM processes the conversation and extracts candidate memory facts. A rolling summary is refreshed asynchronously in the background (non-blocking).
+2. Consolidation: each candidate fact is compared against the top-N similar existing memories. An LLM decides, per existing memory: keep, update, merge, or delete. This keeps the store non-redundant and coherent.
+
+Timing: in the open-source library, both phases are synchronous by default (the call blocks until completion). In the hosted platform API, async mode is the default since v1.0.0 — the entire pipeline is queued as a background job and the `add()` call returns immediately with a `PENDING` status. The caller can check completion via webhooks or polling.
+
+**Memory architecture:** Vector embeddings (base Mem0). Facts are extracted as text, embedded, and stored. Optional graph variant (Mem0g) additionally builds entity-relation triplets stored in a knowledge graph, enabling multi-hop relational queries — at roughly 2x token cost and ~2% accuracy improvement.
+
+Three memory scopes, which can be combined:
+- *User memory*: persists across all sessions for a specific person. Available in every future conversation with that user.
+- *Session memory*: scoped to a single conversation (short-term).
+- *Agent memory*: scoped to a specific agent instance. Multiple agents can share or silo what they know about a user.
+
+**Storage:** Vector database (24+ backends supported: Qdrant, Pinecone, pgvector, MongoDB, etc.). Graph memory uses Neo4j, Memgraph, Kuzu, or Neptune. Embedding dimension is locked at setup — switching embedders requires a full re-index.
+
+**Recall and injection:** Developer-controlled. The developer explicitly calls `m.search(query, user_id)` to retrieve relevant memories before generating a response, then manually incorporates results into the prompt. Mem0 does not auto-inject context — the developer owns the retrieval and injection step. This provides observability but means developers must wire the retrieval logic into their agent loop.
+
+**Handling outdated memories:** The consolidation phase during `m.add()` handles contradictions: the LLM can issue an update or delete operation on an existing memory when a superseding fact arrives. Memories have creation timestamps but no validity windows — there is no way to query what was true at a prior point in time.
+
+---
 
 ### Letta (formerly MemGPT)
 
-Origins: research project from UC Berkeley; MemGPT paper introduced self-editing memory for LLMs. Rebranded to Letta, raised $10M to commercialize. ~21K GitHub stars, Apache 2.0.
+Origins: research project from UC Berkeley. MemGPT paper introduced self-editing memory for LLMs. Rebranded to Letta, raised $10M. ~21K GitHub stars, Apache 2.0.
 
-**Architecture: OS-inspired memory hierarchy**
-<!-- how does these 3 differ from other styles -->
-- **Core Memory** (in-context, like RAM): agent reads and writes directly within context window.
-- **Recall Memory** (searchable conversation history outside context, like disk cache).
-- **Archival Memory** (long-term cold storage, agent queries via tool calls).
+**Memory creation:** Agent-controlled. The LLM decides what to remember and calls memory tools during its own reasoning loop:
+- `core_memory_append(section, content)` — adds to in-context working memory
+- `core_memory_replace(section, old, new)` — edits in-context working memory in place
+- `archival_memory_insert(content)` — writes to long-term cold storage
 
-**Key design decision: agent self-editing memory.** The LLM itself decides what is worth remembering by calling memory functions during its reasoning loop. This is the opposite of Mem0's passive extraction — the model is an active participant in managing its own state.
+Recall memory (conversation history) is populated automatically from the message stream — the agent does not insert into it directly.
 
-**Letta V1 architecture (October 2025):** Rearchitected agent loop to align with modern agentic patterns (convergence toward "in-distribution" behavior for heavily post-trained models). Deprecated the old heartbeat/`send_message` pattern. Better support for GPT-5 and Claude 4.5 Sonnet.
+**Memory architecture:** OS-inspired three-tier hierarchy. The key distinction from other approaches is that the agent actively routes information across tiers based on its own judgment:
 
-**Recent milestones:**
-- Letta Code (December 2025): #1 model-agnostic open-source agent on Terminal-Bench coding benchmark. Supports skills and subagents with built-in memory.
-- Conversations API (January 2026): agents can maintain shared memory across parallel user experiences.
-- Programmatic Tool Calling (December 2025): agents can generate their own workflows.
-- Agent File Format (.af): open format for serializing stateful agents with persistent memory.
-- Letta Evals (October 2025): open-source evaluation framework for stateful agents.
+- *Core Memory* (in-context, like RAM): small, always-present text blocks in the system prompt that the agent can read and edit directly. Unique to Letta: this is writable by the agent in real time. No other mainstream system makes in-context state explicitly editable by the model.
+- *Recall Memory* (outside context, like disk cache): the full conversation history, stored outside the context window but searchable. The agent queries it; matching turns are injected on demand.
+- *Archival Memory* (cold storage, like disk): arbitrary long-term facts. Agent inserts and queries explicitly.
 
-**Benchmarks:** 74.0% on LoCoMo with GPT-4o mini. Published benchmark post arguing a filesystem approach is competitive ("Is a Filesystem All You Need?"). The mem0 vs. Letta benchmark comparison is disputed — Letta's team could not reproduce mem0's LoCoMo results and mem0 did not respond to requests for methodology clarification.
+This differs from flat systems (Mem0, Zep) which treat all memory as a single pool retrieved by similarity. And it differs from file-based systems (Anthropic) where the model reads files but doesn't have a persistent editable slot in its own context. Letta's agent has a slice of its own context window it owns and rewrites over time.
 
-**Limitations:**
-- Python-only SDK (no TypeScript or Go).
-- Adopting Letta means adopting the full Letta agent runtime — not a drop-in layer.
-- Higher complexity; overkill if you just need basic memory augmentation.
+**Storage:** Letta manages its own backend — SQLite or Postgres for metadata and conversation history, vector store (pgvector on self-hosted, TurboPuffer on managed) for embeddings. `text-embedding-3-small` for archival memory.
 
-**Best for:** Teams starting fresh who want a full-stack, stateful agent runtime with memory as a first-class concern.
+**Recall and injection:**
+- Core memory: always in context. No retrieval step — the agent reads it by virtue of it being in the system prompt.
+- Recall memory: agent calls `conversation_search(query)`, which does hybrid search (keyword + semantic, ranked via Reciprocal Rank Fusion). Matching turns are returned to the agent.
+- Archival memory: agent calls `archival_memory_search(query)`, which does semantic vector search. Results returned as tool output.
+
+Nothing is automatically injected based on query relevance — the agent explicitly pulls what it wants.
+
+**Handling outdated memories:** Agent-controlled. The LLM calls `core_memory_replace(section, old_content, new_content)` to update working memory. Archival entries persist until explicitly deleted. There is no automated consolidation or fact invalidation — correctness of the memory state depends entirely on the agent's judgment.
+
+**Benchmarks:** 74.0% on LoCoMo with GPT-4o mini. Published a benchmark post arguing a filesystem approach is competitive ("Is a Filesystem All You Need?"). The mem0 vs. Letta benchmark comparison is disputed — Letta could not reproduce mem0's LoCoMo results; mem0 did not respond to requests for methodology clarification.
 
 ---
 
-### OpenAI Memory
+### OpenAI
 
-**Two distinct tracks: consumer product vs. developer API.**
+Two distinct tracks: consumer product (ChatGPT) and developer API. ChatGPT's memory — which references all past conversations and supports saved and implicit memory modes — is **not exposed to developers via the API**.
 
-#### ChatGPT (Consumer)
+On the developer side, the Assistants API is deprecated (shutdown August 26, 2026). The recommended path is the Responses API + Agents SDK.
 
-Major updates in 2025:
-- **April 10, 2025:** Memory expanded to reference all past conversations, not just explicit saved memories.
-- **June 3, 2025:** Memory rolled out to free users (lightweight version; Plus/Pro get longer-term understanding).
-- Two modes: **saved memories** (explicit, user-managed) and **chat history reference** (implicit, ChatGPT-driven).
-- Automatic memory management for Plus/Pro: prioritizes relevant details by recency and frequency.
-- **Project-only memory:** memory can be scoped to a project, not leaking outside.
-- User controls: delete individual memories, clear all, disable entirely.
-- ChatGPT trained not to proactively remember sensitive health info.
+**Memory creation:** No automatic extraction. Developers manage what goes into memory explicitly. The `RunContextWrapper` holds structured state objects (notes, preferences) that persist across runs. For semantic/vector memory — extracting and storing facts from conversations — OpenAI explicitly outsources to third-party libraries (mem0, Zep, Pinecone). The platform provides no built-in fact extraction.
 
-This is consumer-facing and is **not exposed to developers via API**.
+**Memory architecture:** Conversation history (session state), not extracted facts. The Responses API chains responses via `store: true` + `previous_response_id`. The Agents SDK adds a `Session` object (SQLite or Redis backed) that replays prior conversation turns. There is no built-in concept of a "memory" distinct from conversation history.
 
-#### Assistants API (Deprecated)
+**Storage:** SQLite or Redis for session state (developer-chosen). Semantic memory requires external vector databases — no built-in vector store for conversational memory (File Search in the Responses API is for document retrieval, not conversation memory).
 
-Officially deprecated, shutdown date **August 26, 2026**. Had provided stateful thread management, file handling, and built-in tools. Azure OpenAI is not impacted (runs its own endpoints).
+**Recall and injection:** Three strategies for managing what conversation history enters context:
+- *Context trimming (last-N)*: deterministic, keeps only the most recent N turns. Zero latency, high fidelity for recent turns.
+- *Context summarization*: compresses prior messages into a structured summary injected into history. Loses detail, preserves gist.
+- *Context compaction* (`OpenAIResponsesCompactionSession`): auto-compacts using the model itself.
 
-#### Responses API (Launched 2025)
+Semantic memory recall is a third-party concern — developers integrate mem0, Zep, or similar, call them before generation, and inject results manually.
 
-Replaces Chat Completions as the recommended API for new projects:
-- Stateful chaining via `store: true` + `previous_response_id`.
-- Agentic by default: model can call multiple tools in a single request.
-- Built-in tools: Web Search, File Search (vector over internal docs), Computer Use, Image Generation.
-- 40–80% better cache utilization vs. Chat Completions.
-- State still largely developer-managed: collect outputs and resubmit, or chain via `previous_response_id`.
-
-#### OpenAI Agents SDK (Launched March 2025)
-
-Production-ready successor to experimental Swarm. Four-primitive minimalist design.
-
-Memory capabilities:
-- **Session** object (e.g., `SQLiteSession("user_123")`): automatic recall of past conversation turns.
-- **Redis** session backing for production.
-- **`RunContextWrapper`**: structured state objects persisting across runs — enables memory, preferences, notes to evolve.
-- **Context compaction** via `OpenAIResponsesCompactionSession`: auto-compacts conversation history.
-- **Context trimming (last-N):** deterministic, zero latency, high fidelity for recent turns.
-- **Context summarization:** prior messages compressed into structured summaries injected into history.
-
-For durable semantic/vector memory, the SDK **explicitly outsources to third-party libraries** (mem0, Zep, Pinecone). OpenAI's Cookbook documents the integration patterns.
-
-**OpenAI Cookbook patterns documented:**
-1. State Management with Long-Term Memory Notes (`RunContextWrapper` + hooks).
-2. Short-Term Memory Management with Sessions (trimming, compaction, summarization).
-
-**Key characterization:** OpenAI's approach is explicit state management with platform primitives. More powerful than the Assistants API, but more developer-responsibility-heavy. Semantic memory remains a third-party concern.
+**Handling outdated memories:** Not handled at the platform level. Session history is a linear replay of past turns — there is no invalidation, consolidation, or contradiction detection. Managing stale information in semantic memory is delegated to whatever third-party library the developer uses.
 
 ---
 
 ### Anthropic / Claude
 
-**Note:** The prior claim "No native persistent memory product as of early 2026" is incorrect as of the research update. Anthropic launched a memory tool in September 2025.
+Launched a memory tool in September 2025 (beta). Prior to that, no native persistent memory product existed.
 
-#### Memory Tool (Launched September 29, 2025, Beta)
+**Memory creation:** Agent-initiated file I/O. Claude calls file tools (`write_file`, `update_file`, `delete_file`) to create and maintain memory files in a `/memories` directory. The application executes these operations locally — the files live in developer-controlled storage. Claude decides what to write and when; there is no background extraction process.
 
-Beta header: `context-management-2025-06-27`.
+A companion feature, context editing, works alongside: as conversation history grows, old tool results are automatically cleared. Claude is warned before clearing and can proactively write important information to memory files to preserve it. This enables unbounded-length agentic sessions.
 
-- Claude makes tool calls to create, read, update, and delete files in a `/memories` directory; the application executes them locally (client-side).
-- Developers control storage backend (files, database, encrypted storage, cloud).
-- SDK helpers: `BetaAbstractMemoryTool` (Python), `betaMemoryTool` (TypeScript).
-- Eligible for Zero Data Retention (ZDR).
-- Security: developers must validate paths to prevent directory traversal.
+**Memory architecture:** File system — structured text files on disk. No semantic indexing, no graph, no embeddings. Claude writes prose or structured text and reads it back literally. Files can be organized however the developer wants (the `/memories` convention is a default). No predefined taxonomy.
 
-**Key design:** This is **file-system-as-memory**. Not semantic/vector retrieval — Claude writes structured text files and reads them back. Simple, transparent, developer-controlled.
+**Storage:** Developer-controlled. The files can go anywhere — local disk, database, encrypted storage, cloud object store. Eligible for Zero Data Retention. Developer is responsible for path validation (directory traversal risk).
 
-#### Context Editing (Companion Feature)
+**Recall and injection:** Agent-initiated file reads. Claude calls `read_file` on specific known files, or lists the directory to discover what exists. There is no semantic search — Claude cannot retrieve memories by meaning, only by reading files it knows about. If a relevant memory exists in a file Claude doesn't read, it stays unread. The developer controls which files (if any) Claude has access to at session start.
 
-Automatically clears old tool results as conversation grows. Claude receives a warning before clearing and can proactively write important information to memory files. Enables unbounded-length agentic sessions.
+**Handling outdated memories:** Agent-controlled updates. Claude calls `update_file` or `delete_file` on existing memory files. There is no automated invalidation or consolidation. Correctness depends on Claude's judgment about when to overwrite old information.
 
-Combined with the memory tool, this is Anthropic's answer to the context overflow problem in long-running agents.
-
-#### Claude Agent SDK
-
-Evolved from Claude Code's internal harness, opened to developers.
-
-Addresses multi-session memory architecturally with two patterns:
-- **Initializer agent:** sets up environment, logs what has been done, which files exist.
-- **Coding agent:** makes incremental progress each session and leaves structured artifacts for the next.
-
-Built-in context compaction. Automatic prompt caching and session management.
-
-#### Anthropic Engineering Blog Posts
-
-- **"Effective Harnesses for Long-Running Agents"** (November 26, 2025): Engineering post on multi-session agents, the initializer/coding agent pattern, and context window bridging. https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
-- **"Context Engineering"** (September 29, 2025): Framing shift — the goal is curating "the smallest set of high-signal tokens that maximize the likelihood of your desired outcome."
-- **"Advanced Tool Use"**: Covers the memory tool, tool search tool, programmatic tool calling, and tool use examples.
-
-#### Agent Skills (December 2025, now an open standard)
-
-Not memory per se, but relevant to context budget management. Skills are folders of instructions/scripts loaded dynamically; each takes ~few dozen tokens summarized in context, full details load on demand. Reduces context overhead. Partner skills from Atlassian, Figma, Canva, Stripe, Notion, Zapier.
-
-**Key characterization:** Anthropic's memory approach is deliberately simple and developer-controlled — file I/O, not vector search. The philosophy aligns with their "context engineering" framing: curate the right information into context, not build a complex retrieval layer. The trade-off is that semantic/associative retrieval is not supported.
+The Claude Agent SDK (evolved from Claude Code's internal harness) addresses multi-session memory architecturally with two patterns: an initializer agent that sets up context at session start, and a coding agent that leaves structured artifacts for the next session. Built-in context compaction and prompt caching.
 
 ---
 
