@@ -136,10 +136,25 @@ Sources: [Context Rot — Chroma Research](https://research.trychroma.com/contex
 
 ## Systems Researched
 
+<!-- the goal of my post is not to help people choose which option is best for their use case, it's more to highlight the different ways in which one can build memory for ai -->
+
+<!-- would like more detail on how injection works for the different systems: does recall happen when the agent decides there is something worth scanning memory for? or automatically? -->
+
+<!-- organize sections with subheadings:
+- how memories are created (passively in background, or via tool calls)
+- how memories are recalled (via tool calls, or via matching)
+    - what kind of recall post processing happens before injection?
+- memory architecture: does it create memories against a predefined taxonomy? does it leverage a graph?
+- how are memories stored? is a graph db used, or is it just a filesystem?
+- how are old / outdated memories updated?
+-->
+
+
+<!-- remove: SDK's, best for sections, limitations -->
 ### Zep (researched)
 
 See [zep.md](./zep.md) for full notes. Key points:
-- Core architecture: Graphiti, a temporal knowledge graph with three subgraphs (episode, semantic entity, community)
+- Core architecture: Graphiti, a temporal knowledge graph with three subgraphs (episode, semantic entity, community) <!-- define what these are -->
 - Key innovation: bitemporal data model — tracks both when facts occurred (Event Time) and when they were ingested (Ingestion Time). Enables querying historical state.
 - Fact invalidation: old facts marked invalid (not deleted) when superseded — supports "what was true at time X" queries
 - Retrieval: combines semantic search + full-text search + BFS graph traversal, pre-formatted as a context block (P95 < 200ms)
@@ -169,8 +184,8 @@ See [elroy.md](./elroy.md) for full notes. Key points:
 
 See [mem0.md](./mem0.md) for full notes. Key points:
 - Memory layer that extracts facts from conversations, stores them as vectors (and optionally as a knowledge graph), and retrieves relevant context on future queries
-- Three scopes: user memory, session memory, agent memory
-- Two-phase pipeline: extraction (LLM extracts candidate facts) then consolidation (LLM decides keep/update/merge/delete against existing memories)
+- Three scopes: user memory, session memory, agent memory <!-- define what these are -->
+- Two-phase pipeline: extraction (LLM extracts candidate facts) then consolidation (LLM decides keep/update/merge/delete against existing memories) <!-- does this happen within response loop, or async? -->
 - Graph variant (Mem0g) adds ~2% accuracy, doubles token cost, underperforms on simple single-hop queries
 - Strong ecosystem integrations: LangGraph, CrewAI, AutoGen, Azure AI, AWS Agent SDK
 - v1.0.0 released Oct 2025; currently at v1.0.6 (Mar 2026)
@@ -181,6 +196,7 @@ See [mem0.md](./mem0.md) for full notes. Key points:
 Origins: research project from UC Berkeley; MemGPT paper introduced self-editing memory for LLMs. Rebranded to Letta, raised $10M to commercialize. ~21K GitHub stars, Apache 2.0.
 
 **Architecture: OS-inspired memory hierarchy**
+<!-- how does these 3 differ from other styles -->
 - **Core Memory** (in-context, like RAM): agent reads and writes directly within context window.
 - **Recall Memory** (searchable conversation history outside context, like disk cache).
 - **Archival Memory** (long-term cold storage, agent queries via tool calls).
