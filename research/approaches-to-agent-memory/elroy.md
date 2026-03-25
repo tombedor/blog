@@ -18,25 +18,15 @@ It supports multiple model providers (OpenAI, Anthropic, Google Gemini) and expo
 
 ## Memory Data Model
 
-Memory content lives in **markdown files on disk**, not in the database directly. The `Memory` table stores metadata:
+Three distinct entity types, all embedded and searchable via the same vector pipeline:
 
-```python
-class Memory(EmbeddableSqlModel, MemorySource, SQLModel, table=True):
-    id: int | None
-    created_at: datetime
-    updated_at: datetime
-    user_id: int
-    name: str                    # e.g., "UserFoo's goal to be more thoughtful in conversation"
-    file_path: str | None        # path to markdown file storing actual content
-    source_metadata: str         # JSON array of source references
-    is_active: bool | None       # False when consolidated/superseded
-```
+**Memory** (`db_models.py`): general knowledge and facts. File-backed — content stored in a markdown file; database stores metadata (`name`, `file_path`, `source_metadata`, `is_active`). `source_metadata` is a JSON array tracking which documents or reminders contributed to the memory. `is_active=False` when consolidated or superseded.
 
-Embeddings are stored separately in a vector database. Content is retrieved from the file at `file_path` and formatted as `#{name}\n{file_content}` for LLM consumption.
+**Reminder** (`db_models.py`): action items with a status lifecycle (`created` → `completed`/`deleted`). Triggered by time (`trigger_datetime`) or context (`reminder_context`). Stores content directly in the database (no file). Has a `closing_comment` field for why it was completed or deleted.
 
-**Goals are not a separate model.** No `Goal` class exists in the codebase. Goal-related information is stored as `Memory` rows with goal-oriented names. This is enforced only by the consolidation prompt's naming examples (e.g., "UserFoo's goal to be more thoughtful in conversation" as an example of an effective memory title).
+**AgendaItem** (`db_models.py`): time-scoped tasks stored as markdown files, supporting checklists and timestamped updates within the file content. Simpler than Memory — no `source_metadata` tracking.
 
-**Reminders** are a separate model (`Reminder`) and function as time- or context-triggered actionable items. They use the same vector embedding and retrieval pipeline as memories.
+**Goals are not a separate model.** No `Goal` class exists. Goal-related information is stored as `Memory` rows. This was previously enforced by naming conventions in the consolidation prompt; goals have since been removed as a distinct concept.
 
 ---
 
@@ -117,10 +107,10 @@ Three stages:
 Skips retrieval for obvious non-content messages (single-word greetings, short acknowledgments like "ok", "thanks"). Returns immediately without any LLM call or vector search. Configurable via `memory_recall_classifier_enabled`.
 
 **Stage 2 — Vector similarity search:**
-Embeds the query and searches active memories AND reminders using L2 distance threshold (default `l2_memory_relevance_distance_threshold = 1.4`). Returns a combined list.
+Searches active memories, reminders, and agenda items in parallel (top 2 of each type via `juxt(get_most_relevant_memories, get_most_relevant_reminders, get_most_relevant_agenda_items)`). Results are concatenated and deduplicated.
 
 **Stage 3 — LLM relevance filtering:**
-The candidate memories are passed to the `fast_llm` with the query, and it returns a binary relevance decision per memory (`RelevanceResponse`). Only memories marked relevant are injected into context.
+The candidate items are passed to the `fast_llm` with the query, and it returns a binary relevance decision per item (`RelevanceResponse`). Only items marked relevant are injected into context.
 
 Relevant items are injected as tool call results (synthetic "fast recall" tool calls), not prepended as system prompt text.
 
@@ -137,6 +127,16 @@ Relevant items are injected as tool call results (synthetic "fast recall" tool c
 | `l2_memory_relevance_distance_threshold` | 1.4 | Vector search cutoff |
 | `memory_recall_classifier_enabled` | True | Enable heuristic stage |
 | `memory_recall_classifier_window` | 3 | Conversation window for LLM recall decision |
+
+---
+
+## Updating Outdated Memories
+
+Two mechanisms for handling stale facts:
+
+**Agent-initiated updates (`update_outdated_or_incorrect_memory`):** A tool decorated with `@tool` (available to the LLM). Takes `memory_name` and `update_text`. Marks the original memory `is_active=False`, removes its embedding, and creates a new Memory with content: `{original_content}\n\nUpdate (YYYY-MM-DD HH:MM:SS):\n{update_text}`. The timestamp is embedded in the new memory's text content, making it visible to the LLM during future retrieval and consolidation.
+
+**Consolidation:** Database-level `created_at`/`updated_at` are NOT passed to the LLM during consolidation. The consolidation prompt includes the current date/time but not individual memory timestamps. However, if a memory was created or updated via `update_outdated_or_incorrect_memory`, the update timestamp is embedded in the content text itself and IS visible to the consolidation LLM.
 
 ---
 

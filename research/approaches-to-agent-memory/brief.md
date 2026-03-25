@@ -163,18 +163,25 @@ See [elroy.md](./elroy.md) for full notes.
 
 **Memory creation:** Agent-initiated. The LLM creates memories via tool calls during conversation. A `MemoryOperationTracker` counter increments on each creation; when it reaches the threshold (default: 5), a background consolidation pass is triggered and the counter resets.
 
-**Memory architecture:** Flat — one memory type, no tiers. Goals are memories with goal-oriented names; no separate goal model. Reminders are a distinct entity type sharing the same retrieval pipeline. No predefined taxonomy for memory categories.
+**Memory architecture:** Three distinct entity types, each with a different purpose:
+- *Memory*: general knowledge and facts about the user or context. File-backed (markdown on disk).
+- *Reminder*: action items triggered by time (`trigger_datetime`) or by conversational context (`reminder_context`). Has a status lifecycle (created → completed/deleted).
+- *Agenda item*: time-scoped tasks stored as markdown files, supporting checklists and timestamped updates within the file.
 
-**Storage:** SQLite for metadata, vector database for embeddings, markdown files on disk for content. Memory content is stored at `file_path` and formatted as `#{name}\n{file_content}` for LLM consumption.
+All three types are embedded and searched via the same vector retrieval pipeline. No predefined taxonomy for memory content categories.
+
+**Storage:** SQLite for metadata, vector database for embeddings. Memories and agenda items are file-backed; reminders store content directly in the database.
 
 **Recall and injection:** Automatic, three-stage pipeline that runs on every conversation turn:
-1. Fast heuristics: skips retrieval entirely for obvious non-content messages (greetings, single-word acknowledgments) — no LLM call, no vector search.
-2. Vector similarity search: embeds the query and searches all active memories and reminders using L2 distance threshold.
-3. LLM relevance filter: candidates are passed to a small/fast LLM, which returns a binary relevance decision per memory. Only memories marked relevant proceed.
+1. Fast heuristics: skips retrieval entirely for obvious non-content messages — no LLM call, no vector search.
+2. Vector similarity search: searches active memories, reminders, and agenda items in parallel (top 2 of each type), then combines and deduplicates results.
+3. LLM relevance filter: candidates are passed to a small/fast LLM, which returns a binary relevance decision per item. Only relevant items proceed.
 
 Relevant items are injected as synthetic tool call results in the conversation — not as prepended system prompt text.
 
-**Handling outdated memories:** Consolidation-based archival. Periodically, DBSCAN clustering (cosine metric, eps=0.85) groups semantically similar memories. An LLM synthesizes each cluster into one or more new memories; source memories are marked `is_active=False` (not deleted). This is the primary mechanism for superseding outdated facts — there are no validity windows or explicit invalidation. If contradicting facts are never near enough in embedding space to cluster together, both remain active.
+**Handling outdated memories:** Two mechanisms:
+- *Agent-initiated updates*: the LLM can call `update_outdated_or_incorrect_memory(memory_name, update_text)`, which marks the original memory inactive and creates a new one with the update appended, including an explicit timestamp (`Update (YYYY-MM-DD HH:MM:SS): {update_text}`). This timestamp is visible in the content during future consolidation, so the LLM can reason about recency.
+- *Consolidation-based archival*: periodically, DBSCAN clustering groups semantically similar memories. An LLM synthesizes each cluster into new memories; source memories are archived (`is_active=False`). There are no validity windows — if contradicting facts never cluster together, both remain active.
 
 ---
 
