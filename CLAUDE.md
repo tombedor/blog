@@ -38,6 +38,33 @@ scripts/
 - **Styling**: Custom CSS in `src/css/custom.css`, uses Prism themes for syntax highlighting
 - **GitHub Pages**: Configured with `trailingSlash: true` for proper routing
 
+## Writing Style
+
+These patterns are consistent across published posts and should inform suggestions and feedback:
+
+**Tone**
+- Opinionated but self-aware — the author states strong positions while explicitly acknowledging when reasoning is based on limited evidence or intuition ("my evidence is, as I should have stated, _vibes_")
+- Conversational-professional: first-person grounded in personal experience, but posts are idea-centric, not author-centric
+- Meta-commentary is welcome; acknowledging the limits of an argument is part of the style
+
+**Structure**
+- Posts typically follow one of a few patterns: Problem→Analysis→Solution, Conceptual Framework→Examples, Advice by stage, or Narrative/Reflection
+- Length: 1,000–3,000 words; tightly scoped
+- `<!-- truncate -->` tag belongs ~100–200 words in, after an opening hook or framing paragraph
+- Sections use H2 headers; H3 used only for nested subsections in longer posts
+
+**Prose vs. lists**
+- Prose for argument, analysis, and explanation
+- Bulleted/numbered lists for categorical or comparative information (pros/cons, steps, options)
+
+**Footnotes**
+- Used heavily (3–6 per post) for asides, caveats, humor, and definitions that would interrupt the main argument
+- Preferred over inline parentheticals when the aside is more than a few words
+
+**Diagrams**
+- Most published posts include 2–4 diagrams that illustrate core concepts — they are central content, not decoration
+- When suggesting structure for a new post, consider where diagrams would carry the argument
+
 ## Content Editing Policy
 
 **The writing must come from the author.** Claude can help with suggestions but should not edit blog post files with content unless explicitly instructed.
