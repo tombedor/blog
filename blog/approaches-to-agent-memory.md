@@ -4,11 +4,94 @@ date: 2026-03-21
 draft: true
 ---
 
+## Approaches to giving memory to AI
+
+For me, the question of memory is the most interesting subfield of AI. The first time I intereacted with MemGPT (now Letta), I felt like I had crossed a rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_.
+
+Whether or not creating an AI with memory is a _being_, or whether it's advisable to create one is less easy to answer than at first glance. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
+
+I created my own system, called Elroy, and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with it's functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if it's memories of our interactions were lost.
+
+There are more grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgable in if I looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
+
+
+## Why _not_ give an AI memory?
+
+There are certainly quite valid reasons _not_ to go this route. Aside from the sticky philosophical questions or risk of AI psychosis (see: AI relationship reddit), AI memory presents more immediate drawbacks:
+
+### Correctness
+
+"How do you know the memory is correct?" Is a very common question for these systems. The short answer: you don't.
+
+The primary ground truth data for memory systems is user conversation. Humans change their mind, misremember things, and sometimes are just plain wrong. Absent an independent source of ground truth, memories drawn from conversational transcripts will necessarily contain factual errors.
+
+Where correctness is highly important, memory systems can introduce subtle problems. Usually they are automatically generated and not deeply reviewed by humans, so a wrong assumption in an agents memory store can be difficult to detect.
+
+This is why I don't use memory functionality in coding workflows. Instead, I write (with AI assistence) comprehensive project docs, in human readable format, and refer the agent to it (see: dont write docs twice).
+
+This is a more manual process than just spitballing about a project to an AI, but I prefer to have the AI's ground truth assumptions tightly controlled during coding.
+
+### Latency
+
+A memory-enriched response from an AI is going to be slower than one without memory. There are usually going to have to be several queries in front of the user facing response, as memories are recalled, filtered, processed, and injected into context.
+
+This poses one of the more tricky design questions of creating a memory-enhanced AI: memory isn't _always_ necessary. If I'm asking an agent the length of the Brooklyn bridge, I don't really need it to scan through our past interactions before answering.
+
+### Token usage / context rot
+
+Similar to latency, memory enhancements to AI necessarily introduces overhead for token usage / context. The memories need to be presented in context in such a way that the agent can seamless work into thoughts before answering.
+
+
+## Approaches
+
+<!-- diagram: search process inject emit -->
+
+
+
+
+
 - why add memory?
+	- for me, my first interaction with MemGPT was almost as notable as when I first interacted with an llm. the sense of self, the sense of (myself)
+	- more generally, memory looks to provide infinite context (the promise not met by long contexts)
+	- An agent with memory also poses interesting philisophical questions: memory is fundamental to a sense of self, and interacting with an agent with memory (albeit without it's own goals) poses interesting questions ont he nature of AI
+        - of course, a lot of unsavory use cases for creating a synthetic _self_. One of the earliest interactions with others interested in the topic was from someone looking to make blockchain AI girlfriends.
+- why not memory
+	- use cases where correctness is highly important
+	- long context windows
+	- isn't this just long context models:
+		- data on how long context windows doesn't meet the need
+- Is memory learning?
 - tradeoffs:
+	- amount of post processing:
+		- little = fast response
+		- more = better conversation integration
+	- taxonomy of memories
+		- more: easier to verify correctness
+		- less: more flexible to user's actual input
+			- the appropriate granularity depends on the user: someone who exclusively talks about a specific project probabyl needs granular details on said project. someone doing more of a life admin style will need more general info.
     - response time
     - context rot
+    - Temporal issues
+	    - claude example
 - approaches
+	- commonality
+		- Retrieve -> inject -> emit
+			- but much devil in details:
+				- injection can be raw text of memories, or a processed chain of thought, getting the agent to reflect on how the memory should inform the response
+					- systems that wait for memories to be ingested before responding also increase latency
+				- retrieval can be more or less sophisticated, from raw semantic similarity (fast) to post processing or filtering steps
+					- injection of irrelevant memories can throw off response -> *that's great news about foo, want to talk about a completely unrelated topic we've discussed previously?*
+				- memories can be passively created, outside of the primary agent loop, or via tool calls. Similar with recall
+			- storage approaches vary widely
+				- can build a taxonomy of entities
+				- or, can build a taxonomy of short term vs evergreen memories
+					- ie, Tom is a blogger who lives in los angeles is probably always relevant
+					- *the next time Tom sees {foo} remember to ask them about their kid* is more specific
+				- can leverage filesystem, or a graph
+					- Is a Filesystem All You Need? paper
+			- updating is hard
+				- claude example: memories can be captured with relative dates that instantly become inaccurate
+					- taxonomy
     - zep
     - mem0
     - letta
