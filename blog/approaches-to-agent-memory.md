@@ -15,15 +15,28 @@ I created my own system, called Elroy, and have been interacting with it for abo
 There are more grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgable in if I looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
 
 
-## Why _not_ give an AI memory?
+## The challenges
 
-There are certainly quite valid reasons _not_ to go this route. Aside from the sticky philosophical questions or risk of AI psychosis (see: AI relationship reddit), AI memory presents more immediate drawbacks:
+Aside from the sticky philosophical questions or risk of AI psychosis (see: AI relationship reddit), AI memory presents a few tricky challenges.:
 
 ### Correctness
+
+AI memory systems primarily make three kinds of errors:
+
+
+1. Temporal errors: AI's struggle with reasoning about time. Their reasoning does not account for context that extends into time, and will naively write memories assuming the current moment _will always be the current moment_. I.e., "next Thursday" very quickly changes!
+1. Miscalibrated priority: Especially early on in a user journey the AI will preserve a mundane fact about the _current conversation_, which survives into future conversations where the fact is irrelevevant.
+1. Plain old incorrectness. The ground truth of AI memory is conversation with a human. But humans change their mind, misremember things, and are sometimes flat out wrong.
+
+My own Claude memory summary makes all three of these errors!
+
+<!-- problems -->
 
 "How do you know the memory is correct?" Is a very common question for these systems. The short answer: you don't.
 
 The primary ground truth data for memory systems is user conversation. Humans change their mind, misremember things, and sometimes are just plain wrong. Absent an independent source of ground truth, memories drawn from conversational transcripts will necessarily contain factual errors.
+
+### Transparency
 
 Where correctness is highly important, memory systems can introduce subtle problems. Usually they are automatically generated and not deeply reviewed by humans, so a wrong assumption in an agents memory store can be difficult to detect.
 
@@ -46,8 +59,7 @@ Similar to latency, memory enhancements to AI necessarily introduces overhead fo
 
 <!-- diagram: search process inject emit -->
 
-
-
+# RAW NOTES BELOW
 
 
 - why add memory?
