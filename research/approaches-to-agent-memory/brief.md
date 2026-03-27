@@ -1,7 +1,7 @@
 # Research Brief: Approaches to Agent Memory
 
 **Post:** `blog/approaches-to-agent-memory.md`
-**Last updated:** 2026-03-22 (added Elroy)
+**Last updated:** 2026-03-27 (added context window compression section)
 
 ---
 
@@ -256,10 +256,11 @@ On the developer side, the Assistants API is deprecated (shutdown August 26, 202
 
 **Storage:** SQLite or Redis for session state (developer-chosen). Semantic memory requires external vector databases — no built-in vector store for conversational memory (File Search in the Responses API is for document retrieval, not conversation memory).
 
-**Recall and injection:** Three strategies for managing what conversation history enters context:
-- *Context trimming (last-N)*: deterministic, keeps only the most recent N turns. Zero latency, high fidelity for recent turns.
-- *Context summarization*: compresses prior messages into a structured summary injected into history. Loses detail, preserves gist.
-- *Context compaction* (`OpenAIResponsesCompactionSession`): auto-compacts using the model itself.
+**Recall and injection:** Two documented strategies for managing conversation history length, both implemented as session classes in the OpenAI Cookbook (`TrimmingSession`, `SummarizingSession`):
+- *Context trimming (last-N)*: deterministic, keeps only the most recent N user turns. Zero latency, high fidelity for recent turns. Earlier constraints and commitments are dropped hard.
+- *Context summarization*: when history exceeds a turn limit, older turns are compressed into a synthetic user→assistant pair via LLM call. The last N turns remain verbatim. Preserves long-range memory compactly at the cost of summarization latency and potential distortion.
+
+A `call_model_input_filter` hook enables custom history editing before model calls (e.g., keep only last 5 items). Note: "OpenAIResponsesCompactionSession" is not a class in the OpenAI Agents SDK; the trimming and summarization patterns are cookbook examples, not built-in primitives.
 
 Semantic memory recall is a third-party concern — developers integrate mem0, Zep, or similar, call them before generation, and inject results manually.
 
@@ -284,6 +285,118 @@ A companion feature, context editing, works alongside: as conversation history g
 **Handling outdated memories:** Agent-controlled updates. Claude calls `update_file` or `delete_file` on existing memory files. There is no automated invalidation or consolidation. Correctness depends on Claude's judgment about when to overwrite old information.
 
 The Claude Agent SDK (evolved from Claude Code's internal harness) addresses multi-session memory architecturally with two patterns: an initializer agent that sets up context at session start, and a coding agent that leaves structured artifacts for the next session. Built-in context compaction and prompt caching.
+
+---
+
+## Context Window Compression
+
+*This section covers a distinct but related problem: not how systems store long-term memory, but how they handle a running conversation that is growing too long for the context window.*
+
+The write-retrieve-inject memory pipeline (Mem0, Zep, Elroy) partially sidesteps this problem by design — if you're retrieving relevant facts instead of replaying history, the context doesn't grow unboundedly. But systems that keep conversation history (Letta, OpenAI sessions, Anthropic tool-use sessions) must eventually handle overflow.
+
+There are four basic strategies, each with a distinct tradeoff:
+
+---
+
+### 1. Truncation / Trimming
+
+**What it does:** Drop the oldest N turns. Keep only the most recent messages verbatim.
+
+**OpenAI Cookbook `TrimmingSession`:** Implemented as a session class. Defines a "turn" as one user message plus all subsequent system activity. When history exceeds `max_turns`, older turns are discarded entirely. Deterministic — no model calls required.
+
+**Tradeoffs:**
+- Zero latency overhead (no extra model calls)
+- Perfect fidelity for the retained window
+- Hard cliff: any constraint, commitment, or context set before turn N vanishes instantly
+- "User experience amnesia" — agents forget prior promises once they scroll past the window
+
+**Best for:** Independent tool-use tasks, short workflows where recent context is all that matters.
+
+---
+
+### 2. Summarization
+
+**What it does:** When history exceeds a threshold, compress older turns into a structured summary via LLM call. Inject the summary as a synthetic message pair. Keep the last N turns verbatim.
+
+**OpenAI Cookbook `SummarizingSession`:** Tracks turns in a deque. At the compression threshold, everything before the last `keep_last_n_turns` messages is summarized. The summarizer creates a synthetic user→assistant pair: user says "Summarize the conversation we had so far," assistant generates the summary. Verbose tool outputs are trimmed to keep the summarization prompt compact. The summarization prompt itself is carefully engineered (contradiction check, temporal ordering, categorized sections, ≤200 words target).
+
+**Letta's `EphemeralSummaryAgent`:** Similar but recursive. When summarizing, the agent feeds the *previous summary* as context alongside the new content to compress (delimited by `--- Previous Summary ---`). Each pass condenses prior summaries, building a single accumulating block. This block is stored as a `conversation_summary` memory block in Letta's core memory.
+
+**Tradeoffs:**
+- Preserves long-range memory compactly — decisions and constraints survive past N
+- Higher latency and cost at compression points (one extra model call per compaction event)
+- Summarization loss and bias: details can be dropped or misweighted; the model decides what matters
+- Compounding errors: a bad summary "poisons" all subsequent turns that depend on it
+- Not inspectable: unlike raw history, a summary's accuracy is hard to audit after the fact
+
+**Best for:** Long-horizon conversations where requirements and decisions accumulate over time (planning, coaching, extended research sessions).
+
+---
+
+### 3. Agent-Managed Eviction (Letta/MemGPT)
+
+**What it does:** The LLM itself decides what to keep in context and what to move out, using memory management tool calls during its reasoning loop.
+
+**MemGPT original design:** The foundational insight was to treat context management as an OS virtual memory problem. The agent has a `main_context` (the context window, like RAM) and external stores (like disk). When context pressure mounts, the agent calls tools to evict content:
+- `archive_memory(content)` — moves a fact to archival storage
+- `search_archival_memory(query)` — pages content back in when needed
+
+The LLM monitors its own context length and proactively evicts low-priority content before it causes overflow. This makes memory management a *cognitive act* of the agent, not an external mechanism.
+
+**Letta V3 automated fallback:** In the current Letta codebase, the agent also has an automated compaction path: if the context token estimate exceeds the configured `context_window`, the `compact()` method is called — either reactively (on `ContextWindowExceededError` from the API) or proactively (post-step check). The compact method delegates to a `Summarizer` with configurable `CompactionSettings`.
+
+**Tradeoffs:**
+- Most adaptive: the agent has semantic understanding of what's important enough to keep
+- Most expensive: every memory management decision costs inference tokens
+- Model-dependent: if the agent doesn't judge something worth keeping, it's lost
+- Adds a reasoning burden to the agent beyond its primary task
+
+---
+
+### 4. Avoidance by Design (Mem0, Zep, Elroy)
+
+**What it does:** Rather than compressing history, these systems never accumulate it in the first place. Facts are extracted from conversations and stored externally; retrieval injects only relevant fragments.
+
+**Mem0:** After each conversation, `m.add(messages)` extracts facts and stores them as embeddings. Future calls use `m.search(query)` to retrieve relevant memories. The conversation history itself is not replayed — only the extracted, de-duplicated fact store. Context never grows beyond the retrieved fragments + current turn.
+
+**Zep:** Even more aggressive: the full conversation history is stored as a temporal knowledge graph. What gets injected into context is a pre-formatted "Context Block" — the result of retrieval, already bounded in size. P95 latency < 200ms. The raw conversation transcript is never stuffed back into the prompt.
+
+**Elroy:** Uses a three-stage pipeline on every turn (heuristics → vector search → LLM filter) that retrieves only the most relevant stored memories. The heuristic stage skips retrieval entirely for short acknowledgments. Relevant items are injected as synthetic tool calls, not as the entire history.
+
+**Tradeoffs:**
+- Avoids the compression tradeoff entirely — no choice between truncation loss and summarization distortion
+- Requires extraction to work correctly: if fact extraction is lossy or imprecise, the problem isn't solved, it's just moved upstream
+- Loses conversational texture: exact phrasing, nuance, and context that didn't make it into a "fact" are gone permanently
+- Benchmark evidence suggests simple fact retrieval is often worse than full-context for multi-hop reasoning tasks (Zep's temporal graph does better here)
+
+---
+
+### Anthropic / Claude: Context Editing
+
+**What it does:** A hybrid approach specific to long agentic sessions. As conversations grow, old *tool results* are automatically cleared from context (not the conversation turns themselves). Claude is warned before tool results are cleared, giving it an opportunity to proactively write important information to memory files before it disappears.
+
+This creates a feedback loop: context pressure → warning → agent decides what to persist to files → tool results cleared → agent continues without losing critical information. Unlike summarization (which compresses) or trimming (which drops), this approach lets the agent self-select what is worth preserving — with the cost/benefit of agent judgment.
+
+**Claude Code's context compaction:** Claude Code (the CLI) has an automatic compaction mechanism: when context approaches the limit (~95% utilization), the tool compacts the conversation by summarizing earlier history and restarting with the summary as new context. This is invisible to the user — the conversation continues seamlessly. The Claude Agent SDK inherits this behavior.
+
+**Tradeoffs:**
+- More selective than summarization: the agent decides what's worth keeping, not a generic compressor
+- Still depends on agent judgment; important context can be lost if Claude doesn't recognize its future relevance
+- Tool result clearing is automatic; the agent must act proactively if it wants to preserve something
+
+---
+
+### Summary: How Compression Strategies Differ
+
+| Strategy | Who decides what survives? | Cost | Risk | Info lost |
+|---|---|---|---|---|
+| Trimming | Nobody — recency wins | Zero | Hard amnesia cliff | Everything before turn N |
+| Summarization | LLM summarizer | +1 LLM call at trigger | Distortion / compounding error | Detail, nuance, specifics |
+| Agent eviction (Letta) | The agent | +inference tokens per decision | Model judgment failures | Whatever the agent devalues |
+| Avoidance (Mem0/Zep) | Extraction pipeline | +extraction pass | Lossy extraction | Conversational texture, nuance |
+| Context editing (Anthropic) | The agent (for files); system (for tool results) | +agent overhead when warned | Agent may not act in time | Tool result details not written to file |
+
+**A note on compounding errors:** Summarization and agent-eviction both introduce a subtle asymmetry: errors in the compressed representation propagate forward and are hard to correct later. Truncation loses information cleanly — you know what's gone. Summarization may silently distort it. This is an underappreciated tradeoff in the "trimming vs. summarization" debate.
 
 ---
 
