@@ -57,7 +57,82 @@ Similar to latency, memory enhancements to AI necessarily introduces overhead fo
 
 ## Approaches
 
+All memory systems can be broken into 3 general stages: _store_, _retrieve_, _inject_, _emit_.
+
 <!-- diagram: search process inject emit -->
+
+But details from there vary widely.
+
+### Store
+
+Approaches to storage largely fall into two camps: graph databases and flat files.
+
+Zep is strongly pro-graph db, and claims state of the art needle in the haystack performance. Mem0 offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: Files are all you need.
+
+Updating entries, as discussed above, is a critical tradeoff. Conflicts or redundancies can be detected at insertion time, or via an offline process. Some systems allow the agent to update memories directly via tool calls.
+
+#### Where I land
+
+I prefer flat files, with no built in taxonomy. I am skeptical that a single taxonomy works well for all users. In an early attempt, I took a taxonomy from Wikipedia, and directed the AI to conform it's entries to it. But it struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
+
+<!-- diagram: failure mode of wikipedia. -->
+
+I allow the agent to directly update memories, and find that it usually does a good job of fixing inaccuracies or appending new, related information to recalled memories. I also run an asynchronous memory consolidation process, which detects clusters of highly similr memories, and rewrites them. I think this helps create a collection of memories that are more evenly dispersed in vector space, resulting in better recall.
+
+<!-- diagram: Agent update and memory consolidation -->
+
+### Retrieve
+
+Here we are, more or less, discussing RAG. And similar tradeoffs are at play.
+
+The first decision is how to inititve memory searches in the first place. Most implementations surfce a _search_memory_ tool to the agent. But agent context can also be manipuldated outside of the agent loop.
+
+For searching, basic vector similarity is the most latency efficient technique. But this is subject to misranking entries, or scoring entries that are superficially similar but not actually relevant. This can badly throw off the conversation, and lead to responses like *that's great news about foo, want to talk about a completely unrelated topic we've discussed previously?*
+
+A post-retrieval filtering step is helpful, but adds latency.
+
+How _many_ memories to fetch is another parameter, and largely depends on how memories have been stored. If memories are small tidbits, there may be more than one relevant memory to inject, whereas if memories are a paragraph or more, it's likely only the top match makes sense.
+
+
+#### Where I land
+
+N=1 retrieval, with a relatively imple filter step. I favor an automatic memory injection, outside of the control of the agent. This better maps to my mental model of how memory works: when I remember something, I don't think, _time to search memory_ and consiously decide to recall something. It's more automatic and beyond my concios control.
+
+<!-- diagram: automatic memory search -->
+
+Initiating memory searches automatically also yields more consistent results across models. When given a _search_memory_ tool, some models will use it almost every message, while others will use it too sparingly.
+
+### Inject
+
+Injecting recalled memories into the standard OpenAI context is a bit like fitting a square peg into a round hole. As with other RAG systems, the OpenAI spec does not quite offer an easy field to put recalled, relevant information in.
+
+Options include:
+
+1. *Updating system message*: Reserving a space in the system message for recalled, relevant information. This conceptually slots in the cleanest: you don't need to present what is really information from the system as a user message, tool call, or assistant message. There's a major issue with this though: *prompt caching invalidation*. Frequently updating the system message in this way invalidates prompt cache, resulting in high costs. With extra token use already being an inherent part of the equation for memory-augmented AI's, this is a major drawback.
+2. *Tool calls*: Of course, if the memory search was initiated via a tool call, this injection method is the natural choice. Letta surfaces _all_ user facing messages as a _send_message_ tool call. An occassional issue with this is that the agent gets confused, and doesn't properly use the _send_message_ tool to convey user info.
+3. *User or assistant messages*: In this method, either the incoming user message is edited to surface memory information, or an extra user or assistant message is created. For example, you can use html tags like `<memory>content</memory>`. This should be accompanied by instruction in the system message about how memory content is not visible to the user. There are some pitfalls to this approach. Some models require alternating `assistant` / `user` turns, so adding consecutive messages from one role or the other will be rejected. Despite system instructions, some models still get confused, and output responses with confusing HTML tags.
+
+
+#### Where I land
+
+I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with.
+
+### Emit
+
+Memories are usually created via an agent tool call, or via a summary of conversation context that's been compressed (see below). These aren't mutually exclusive!
+
+#### Where I land
+
+I find tool calls do the majority of the heavy lifting here.
+
+When systems offer context compression, they usually also often emit memories of pruned text. This is arguably obsolete with modern, 1m+ context windows, but I think they are still relevant. I typically prune messages older than a day or so, and emit memories based on pruned text. This creates memories that could be redundnat with agent-emitted memories, but async memory consolidation cleans that up.
+
+<!-- diagram: drop old messages, summarize -->
+
+
+## Conclusion
+
+
 
 # RAW NOTES BELOW
 
