@@ -4,8 +4,6 @@ date: 2026-03-21
 draft: true
 ---
 
-## Approaches to giving memory to AI
-
 For me, the question of memory is the most interesting subfield of AI. The first time I intereacted with MemGPT (now Letta), I felt like I had crossed a rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_.
 
 Whether or not creating an AI with memory is a _being_, or whether it's advisable to create one is less easy to answer than at first glance. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
@@ -13,6 +11,17 @@ Whether or not creating an AI with memory is a _being_, or whether it's advisabl
 I created my own system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with it's functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if it's memories of our interactions were lost.
 
 There are more grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgable in if I looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
+
+### Long context models != memory
+
+As context windows of models grew, there was suspicion that memory systems wouldl become unnecessary. There's a nice simplicity in the idea you can just stuff all your data into context and let the model sort it out.
+
+Performance has been shown to be poor, however. The Lost in the Middle paper demonstrated that LLM's bias towards the start and end of context, and when relevant information was in the middle of a document collection, performance dropped 30%.
+- **"Lost in the Middle" (Liu et al., Stanford/TACL 2024):*
+
+Chroma research demonstrated that all frontier models degrade as context windows grow. <!-- link to research>
+
+"Context rot" has entered the lexicon, and the industry has recognized that context is gold (there's a quote of this somewhere).
 
 
 ## Approaches
@@ -44,6 +53,15 @@ My own Claude memory summary makes all three of these errors!
 "How do you know the memory is correct?" Is a very common question for these systems. The short answer: you don't.
 
 The primary ground truth data for memory systems is user conversation. Humans change their mind, misremember things, and sometimes are just plain wrong. Absent an independent source of ground truth, memories drawn from conversational transcripts will necessarily contain factual errors.
+
+#### Key Challenge: Privacy
+
+
+Agent memory poses a privacy question: Do you _want_ an AI agent to develop memories, and learn everything about you?
+
+Big tech companies, of course, already in a sense know most of what you'd share with an AI. Your Google search history is a comprehensive log of what your thoughts are. But it's a bit more unnerving to have this data presented in a human-like voice.
+
+This is a big reason why I think the future of AI is local and open source, and why I favor a file based system  <!-- link to future of ai is local post -->. Local files both give the best ergonomics for adjusting what is surfaced to the AI - both the user and the AI are browsing data in the same format.
 
 #### Where I land
 
@@ -123,11 +141,18 @@ When systems offer context compression, they usually also often emit memories of
 
 <!-- diagram: drop old messages, summarize -->
 
+## Evaluation
+
+How do we know our memory system is functioning correctly? Evaluation tests typically test proficiency at needle in the haystack tasks: many conversations are run through the AI, and then the AI is quized about them. These are inherently slow and expensive to run, and the wide variety of possible approaches means there's not an easy cross-functional test system that can be dragged and dropped into different memory systems. Doing an eval means tweaking the test repo to fit how your system persists and retrieves memory.
+
+I've not done extensive evals on my system, instead I bank on using the system every day. But commercial providers have made claims, with some controversy attached:
+
+<!-- info about evals from letta and zep -->
+
 
 ## Conclusion
 
 Agent memory is not a problem with a one size fits all solution. Every stage of the process comes with it's own set of tradeoffs to consider.
-
 
 <!-- TO ADD:
 Privacy
