@@ -49,11 +49,11 @@ The primary ground truth data for memory systems is user conversation. Humans ch
 
 I prefer flat files, with no built in taxonomy. I am skeptical that a single taxonomy works well for all users. In an early attempt, I took a taxonomy from Wikipedia, and directed the AI to conform it's entries to it. But it struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
 
-<!-- diagram: failure mode of wikipedia. -->
+![wikipedia](/diagrams/approaches-to-agent-memory/wikipedia.png)
 
 I allow the agent to directly update memories, and find that it usually does a good job of fixing inaccuracies or appending new, related information to recalled memories. I also run an asynchronous memory consolidation process, which detects clusters of highly similr memories, and rewrites them. I think this helps create a collection of memories that are more evenly dispersed in vector space, resulting in better recall.
 
-<!-- diagram: Agent update and memory consolidation -->
+![consolidation](/diagrams/approaches-to-agent-memory/consolidation.png)
 
 ### Retrieve
 
