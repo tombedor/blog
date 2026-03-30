@@ -153,11 +153,3 @@ I've not done extensive evals on my system, instead I bank on using the system e
 ## Conclusion
 
 Agent memory is not a problem with a one size fits all solution. Every stage of the process comes with it's own set of tradeoffs to consider.
-
-<!-- TO ADD:
-Privacy
-evaluation
-why long context windows dont solve this
-
-
--->
