@@ -1,7 +1,7 @@
 # Research Brief: Approaches to Agent Memory
 
 **Post:** `blog/approaches-to-agent-memory.md`
-**Last updated:** 2026-03-22 (added Elroy)
+**Last updated:** 2026-03-30 (added in-weights memory section; updated benchmark controversy with Zep response, Hindsight, LifeBench)
 
 ---
 
@@ -84,7 +84,7 @@ Sources: [Context Rot — Chroma Research](https://research.trychroma.com/contex
 - [mem0.md](./mem0.md) — Deep research on Mem0: architecture, integration, limitations, version history
 - [zep.md](./zep.md) — Deep research on Zep: temporal knowledge graph architecture, benchmarks, integration, limitations
 - [elroy.md](./elroy.md) — Source-code-level notes on Elroy: consolidation algorithm, memory data model, recall pipeline, comparison with other systems
-- [evaluation-techniques.md](./evaluation-techniques.md) — Benchmarks and metrics for evaluating agent memory (LoCoMo, LongMemEval, MemBench, AMA-Bench; LLM-as-judge vs. lexical; benchmark controversy)
+- [evaluation-techniques.md](./evaluation-techniques.md) — Benchmarks and metrics for evaluating agent memory (LoCoMo, LongMemEval, MemBench, AMA-Bench, LifeBench, MemoryCD; LLM-as-judge vs. lexical; benchmark controversy and saturation)
 
 ### Platform Documentation
 
@@ -240,7 +240,7 @@ Nothing is automatically injected based on query relevance — the agent explici
 
 **Handling outdated memories:** Agent-controlled. The LLM calls `core_memory_replace(section, old_content, new_content)` to update working memory. Archival entries persist until explicitly deleted. There is no automated consolidation or fact invalidation — correctness of the memory state depends entirely on the agent's judgment.
 
-**Benchmarks:** 74.0% on LoCoMo with GPT-4o mini. Published a benchmark post arguing a filesystem approach is competitive ("Is a Filesystem All You Need?"). The mem0 vs. Letta benchmark comparison is disputed — Letta could not reproduce mem0's LoCoMo results; mem0 did not respond to requests for methodology clarification.
+**Benchmarks:** 74.0% on LoCoMo with GPT-4o mini using flat-file storage. Published a benchmark post arguing a filesystem approach is competitive ("Is a Filesystem All You Need?"). The mem0 vs. Letta benchmark comparison is disputed — Letta could not reproduce mem0's LoCoMo results; mem0 did not respond to requests for methodology clarification. Context: Hindsight later hit 89.61% on LoCoMo (2025), which the Hindsight authors say effectively saturates the benchmark. Letta's flat-file result at 74% — beating Mem0's specialized system — remains the clearest argument that LoCoMo is measuring something simpler than "memory."
 
 ---
 
@@ -284,6 +284,72 @@ A companion feature, context editing, works alongside: as conversation history g
 **Handling outdated memories:** Agent-controlled updates. Claude calls `update_file` or `delete_file` on existing memory files. There is no automated invalidation or consolidation. Correctness depends on Claude's judgment about when to overwrite old information.
 
 The Claude Agent SDK (evolved from Claude Code's internal harness) addresses multi-session memory architecturally with two patterns: an initializer agent that sets up context at session start, and a coding agent that leaves structured artifacts for the next session. Built-in context compaction and prompt caching.
+
+---
+
+## In-Weights / Parametric Memory
+
+All the systems covered above (Mem0, Zep, Letta, Elroy, Anthropic, OpenAI) are *retrieval* systems — they store memories externally and inject them into context at inference time. A distinct approach is encoding memory directly into model weights, so the knowledge is available through the forward pass without any retrieval step. This is worth understanding as a contrast case and potential future direction.
+
+### The taxonomy
+
+A useful four-part taxonomy of LLM memory (from ["Memory in Large Language Models: Mechanisms, Evaluation and Evolution," arXiv:2509.18868, Sep 2025](https://arxiv.org/abs/2509.18868)):
+
+- **Parametric memory**: facts encoded in weights during pre-training or fine-tuning. Accessed purely via the forward pass; no retrieval step.
+- **Contextual memory**: what's currently in the context window.
+- **External memory**: retrieval systems (vector DBs, files, graphs). What all the systems above implement.
+- **Procedural/episodic memory**: cross-session behavioral consistency; the agent remembers *how* to do something or *what happened*, not just facts.
+
+The paper notes that conflation of these types is endemic in the research literature — the same system is often described inconsistently across papers, making results non-comparable.
+
+### How in-weights encoding works (and why it's hard)
+
+**Fine-tuning / PEFT**: The classic approach to encoding user-specific knowledge in weights. LoRA (Low-Rank Adaptation) is the current standard — it trains small adapter matrices (~few MB) while keeping base model weights frozen, making per-user adapters theoretically tractable.
+
+**Model editing (ROME, MEMIT)**: A more surgical alternative — targeted edits to specific fact associations in mid-layer FFN weights without retraining. ROME does rank-one weight edits; MEMIT extends to batched updates across multiple layers.
+
+### Viability for personalization
+
+**RAG vs. PEFT head-to-head**: The most directly relevant study is ["Comparing Retrieval-Augmentation and Parameter-Efficient Fine-Tuning for Privacy-Preserving Personalization" (Salemi & Zamani, UMass Amherst; arXiv:2409.09510)](https://arxiv.org/abs/2409.09510), using the LaMP benchmark across 7 personalized tasks:
+
+- RAG: +14.92% over non-personalized baseline
+- PEFT alone: +1.07% — substantially weaker
+- RAG + PEFT combined: +15.98% — best overall, but marginal gain over RAG alone
+
+Key finding: PEFT effectiveness correlates with user data volume. For cold-start users (limited history), RAG dominates. PEFT becomes more competitive with large per-user profiles. The practical implication: fine-tuning is hard to justify for personalization when user data is sparse, which is the common case.
+
+**Catastrophic forgetting is a real barrier**: Even LoRA shows significant forgetting when trained sequentially on multiple tasks. Despite keeping base weights frozen, LoRA adapter weights can interfere with each other — researchers describe a drop in performance on earlier tasks as "quite alarming" given the assumption that frozen base weights would prevent it. Production deployments that need to continually update user-specific adapters have no clean solution; mixing 20–30% general data helps but doesn't eliminate the problem.
+
+**Model editing limitations ("The Mirage of Model Editing")**: A 2025 ACL paper ([arXiv:2502.11177](https://arxiv.org/abs/2502.11177)) argues that evaluation of ROME/MEMIT-style editing is far more optimistic than real-world performance. Specific findings:
+- Sequential edits induce gradual "knowledge attenuation" — earlier edits degrade as new ones accumulate
+- Edited models show *significantly degraded* performance on reasoning benchmarks, even when the targeted fact is correctly updated
+- Knowledge in LLMs is highly *entangled* — editing one fact in isolation doesn't respect its connections to related facts
+- Generalization (applying an edit correctly to semantically related queries) and portability (using the edited fact in multi-hop reasoning) are both weak across all methods
+
+In short, ROME/MEMIT can patch a specific fact but the patch doesn't propagate correctly through the model's knowledge graph. This is a fundamental limitation, not an implementation detail.
+
+**Reasoning degradation**: This is the sharpest practical concern. A 2025 paper specifically on knowledge editing in the "reasoning era" found that parametric edits harm reasoning-heavy tasks even when factual accuracy is maintained. For a personalization use case — where the goal is often to help a user with complex reasoning — this is a serious trade-off.
+
+### Where in-weights approaches might still make sense
+
+- **Stable domain adaptation**: If a user or organization has a large, relatively stable corpus of private knowledge (a company's internal procedures, a specialist domain), fine-tuning can outperform retrieval. LoRA makes this tractable.
+- **Style and preference encoding**: Communication style, verbosity preferences, tone — these may be better encoded in weights than retrieved from a database of explicit facts.
+- **Latency-critical inference**: No retrieval step means lower p50 latency. For some product contexts, this matters.
+
+### The hybrid outlook
+
+The research consensus (2025–2026) is converging toward hybrid architectures: parametric weights for stable domain knowledge + retrieval for dynamic, user-specific, and time-sensitive facts. Neither alone is sufficient. But for the current agent memory problem (multi-session context, preference recall, relational facts across conversations), retrieval-based systems are clearly ahead on both cost and accuracy.
+
+**"Memento: Fine-tuning LLM Agents without Fine-tuning LLMs" ([arXiv:2508.16153](https://arxiv.org/abs/2508.16153))**: The title captures the emerging direction — achieving the *effect* of personalized fine-tuning through context/retrieval mechanisms, without the compute and catastrophic forgetting costs of actual weight updates. Worth reading for anyone exploring this boundary.
+
+### Sources
+
+- [Memory in Large Language Models: Mechanisms, Evaluation and Evolution (arXiv:2509.18868)](https://arxiv.org/abs/2509.18868) — Sept 2025 survey; four-part taxonomy
+- [Comparing RAG and PEFT for Personalization (arXiv:2409.09510)](https://arxiv.org/abs/2409.09510) — Salemi & Zamani, UMass; RAG +14.92%, PEFT +1.07%, combined +15.98%
+- [The Mirage of Model Editing (arXiv:2502.11177)](https://arxiv.org/abs/2502.11177) — ACL 2025; ROME/MEMIT evaluation is overly optimistic
+- [Can We Continually Edit Language Models? (ACL 2024 Findings)](https://aclanthology.org/2024.findings-acl.323.pdf) — key limits of sequential editing
+- [Memento: Fine-tuning LLM Agents without Fine-tuning LLMs (arXiv:2508.16153)](https://arxiv.org/abs/2508.16153) — hybrid direction
+- [On the Way to LLM Personalization (ACL 2025 L2M2)](https://aclanthology.org/2025.l2m2-1.5.pdf) — personalization approaches survey
 
 ---
 
@@ -404,7 +470,7 @@ The benchmark evidence (Letta's flat-file baseline; full-context beating Mem0 on
 
 **Semantic memory is still a third-party concern.** Neither Anthropic nor OpenAI provides semantic/vector memory out of the box in their developer APIs. Both explicitly point developers toward external solutions.
 
-**The Letta vs. mem0 debate.** Reflects a deeper question: should LLMs actively manage their own memory (Letta), or should memory be managed externally and passively extracted (mem0)? Benchmark comparisons are contested. Letta claims 74.0% vs. mem0's claimed 68.5% on LoCoMo, methodology dispute unresolved. Independent LongMemEval shows mem0 at 49.0%; Hindsight at 91.4% (but less known).
+**The Letta vs. mem0 debate and benchmark controversy.** Reflects a deeper question: should LLMs actively manage their own memory (Letta), or should memory be managed externally and passively extracted (mem0)? Benchmark comparisons are contested. Letta claims 74.0% vs. mem0's claimed 68.5% on LoCoMo, methodology dispute unresolved. Zep (Dec 2025) published a detailed rebuttal showing their corrected LoCoMo score is 75.14% — 10% better than Mem0 Graph — after fixing Mem0's incorrect role-assignment setup. Hindsight hit 91.4% on LongMemEval and 89.61% on LoCoMo in late 2025, effectively saturating both benchmarks. LoCoMo and LongMemEval are no longer considered adequate differentiation tools; LifeBench (March 2026) is the new challenge frontier. Mem0 has not publicly responded to the methodology criticisms as of March 2026.
 
 **Consumer memory vs. developer memory.** OpenAI has the most sophisticated consumer memory product. It is not exposed to developers. The developer API is stateless-by-default with opt-in statefulness.
 
