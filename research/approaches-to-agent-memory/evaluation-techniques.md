@@ -24,10 +24,14 @@ Research notes on benchmarks, metrics, and practices for evaluating agent memory
 
 **Baseline scores:** GPT-4 achieves ~32.1 F1; human ceiling is 87.9. Long-context and RAG approaches improve scores 22–66% but still underperform humans by ~56%.
 
-**Recent leaderboard (2025):**
-- Hindsight's structured memory: up to 89.61% (Gemini-3 Pro + TEMPR)
-- MemMachine v0.2: industry-leading scores, 75% faster than competitors
-- Letta (GPT-4o-mini, flat file storage): 74.0% accuracy
+**Recent leaderboard (2025–2026):**
+- Hindsight (Vectorize.io + Virginia Tech + WaPo): 89.61% on LoCoMo; 91.4% on LongMemEval
+- Zep: 75.14% ± 0.17 (corrected, self-reported; Mem0 originally reported 65.99%)
+- Letta (GPT-4o-mini, flat file storage): 74.0%
+- Mem0 Graph: ~68.5% (claimed in Mem0 paper; disputed)
+- Full-context baseline: ~73%
+
+**Note on saturation:** Hindsight's paper itself flags that scores approaching 90% on LoCoMo and LongMemEval mean "current benchmarks are no longer sufficient for testing state-of-the-art memory systems." LifeBench (March 2026) was designed specifically to address this.
 
 **Limitations:**
 - Conversations relatively short (~9k–16k tokens) — within modern LLMs' context windows, so "memory" isn't actually needed
@@ -35,7 +39,7 @@ Research notes on benchmarks, metrics, and practices for evaluating agent memory
 - Category 5 unusable due to missing ground truth answers
 - Multimodal errors from BLIP-generated image descriptions
 - Speaker misattribution and ambiguous questions
-- Only covers personal/casual domains
+- Only covers personal/casual domains; no non-declarative memory (habits, skills)
 
 ---
 
@@ -86,6 +90,31 @@ Evaluates: effectiveness, efficiency, and capacity across:
 - Knowledge updating
 - Preference following
 - Temporal reasoning
+
+---
+
+### LifeBench (March 2026)
+
+**Paper:** "LifeBench: A Benchmark for Long-Horizon Multi-Source Memory" — arXiv:2603.03781
+
+Designed to address the saturation of LoCoMo and LongMemEval by SOTA systems like Hindsight.
+
+**What makes it harder:**
+- Captures non-declarative memory (habits, skills, routines) alongside explicit episodic/semantic facts
+- Dense event streams: ~14 events per day, distributed across 24 diverse digital artifacts (apps, logs, messages, calendar)
+- Context depth exceeds 2x LongMemEval trajectories
+- User actions must be *inferred* from fragmented, multi-source traces — not just recalled from dialogue
+- Single-domain synthetic benchmarks don't capture real cross-domain personalization
+
+SOTA memory systems (Hindsight, Mem0, Zep, etc.) that perform well on LoCoMo and LongMemEval "still struggle significantly" on LifeBench. This is the benchmark to watch as the field matures.
+
+---
+
+### MemoryCD (March 2026)
+
+**Paper:** "MemoryCD: Benchmarking Long-Context User Memory of LLM Agents for Lifelong Cross-Domain Personalization" — arXiv:2603.25973
+
+Focuses specifically on cross-domain personalization (e.g., does a preference expressed in a cooking conversation affect a travel recommendation?). Addresses a gap in prior benchmarks that silo interactions within a single domain.
 
 ---
 
@@ -205,15 +234,21 @@ A notable controversy erupted in 2025 over benchmarking practices in agent memor
 
 **What happened:** Mem0 published a paper claiming state-of-the-art performance on LoCoMo. Competitors and independent researchers identified multiple issues:
 
-1. **Incorrect competitor evaluation:** Mem0 assigned user role to both participants in Zep's evaluation (Zep uses single user-assistant structure)
-2. **Disputed scores:** Zep's actual score on LoCoMo corrected from ~65.99% (Mem0's report) to 58.44% after fixing setup errors — then Zep's own evaluation showed 75.14%
-3. **MemGPT benchmarking opaque:** The MemGPT/Letta team couldn't reproduce how Mem0 ran LoCoMo on their system; Mem0 didn't respond to clarification requests
-4. **Timestamp errors:** Community members reported Mem0's evaluation used current date (Jan 2026) instead of LoCoMo dataset timestamps
-5. **Template drift:** Mem0 replaced retrieval template from prior DMR benchmarks, introducing confounding variable
+1. **Incorrect competitor evaluation:** Mem0 assigned user role to both participants in Zep's evaluation (Zep uses a single user-assistant structure). This is a fundamental setup error that inflated Mem0's relative standing.
+2. **Disputed scores:** Mem0 reported Zep's LoCoMo score as 65.99%. Zep's own corrected evaluation showed 75.14% ± 0.17 — a 10% relative improvement over Mem0 Graph. Zep also found Mem0 used a sequential search implementation that inflated Zep's reported latency (0.778s vs. Zep's actual concurrent p95 of 0.632s).
+3. **MemGPT benchmarking opaque:** The Letta team couldn't reproduce how Mem0 ran LoCoMo on their system; Mem0 didn't respond to requests for methodology clarification.
+4. **Timestamp errors:** Community members reported Mem0's evaluation used current date (Jan 2026) instead of LoCoMo dataset timestamps, which distorts temporal reasoning evaluation.
+5. **Template drift:** Mem0 replaced the retrieval template from prior DMR benchmarks, introducing a confounding variable not present in prior evaluations.
+
+Zep published a detailed post-mortem on December 10, 2025: ["Is Mem0 Really SOTA in Agent Memory?"](https://blog.getzep.com/lies-damn-lies-statistics-is-mem0-really-sota-in-agent-memory/). As of March 2026, Mem0 has not publicly responded to the methodology criticisms.
+
+**Emergence AI's independent k=42 issue:** A separate analysis of Emergence AI's LoCoMo results (documented by Calvin Ku on Medium) found a hardcoded retrieval limit of `k=42` in their implementation that caused a performance dip. Even after fixing it, scores remained below Zep — suggesting the remaining gap was a data representation problem, not algorithmic.
 
 **Broader lesson:** The controversy revealed LoCoMo's fundamental limitations — it may be too easy (modern LLMs can fit conversations in context) and too simple for a "state-of-the-art" claim to carry weight.
 
-**Key insight from Letta:** Their agents achieve 74% accuracy on LoCoMo by simply storing conversation history as flat files. If flat-file storage beats specialized memory systems, the benchmark isn't measuring what it claims to measure.
+**Key insight from Letta:** Their agents achieve 74% accuracy on LoCoMo by simply storing conversation history as flat files ("Is a Filesystem All You Need?", Letta blog). If flat-file storage beats specialized memory systems, the benchmark isn't measuring what it claims to measure. Hindsight's 89.61% in 2026 corroborates this: the benchmark is now effectively saturated.
+
+**Hindsight and the post-saturation landscape:** Hindsight (arXiv:2512.12818, Vectorize.io + Virginia Tech + Washington Post) is a four-network memory architecture using TEMPR (semantic + BM25 + graph traversal + temporal filtering, merged via Reciprocal Rank Fusion) and CARA (adaptive reflection). It hit 91.4% on LongMemEval and 89.61% on LoCoMo. Notably, the Hindsight paper itself argues these results mean LoCoMo and LongMemEval are no longer adequate benchmarks — which is why LifeBench and MemoryCD were introduced in 2026.
 
 ---
 
@@ -224,9 +259,13 @@ A notable controversy erupted in 2025 over benchmarking practices in agent memor
 - [LongMemEval GitHub](https://github.com/xiaowu0162/LongMemEval)
 - [AMA-Bench (arXiv:2602.22769)](https://arxiv.org/abs/2602.22769)
 - [MemBench (ACL 2025)](https://aclanthology.org/2025.findings-acl.989/)
-- [Is Mem0 Really SOTA in Agent Memory?](https://blog.getzep.com/lies-damn-lies-statistics-is-mem0-really-stata-in-agent-memory/) — Zep blog
-- [Zep LOCOMO issue: Corrected Evaluation & 58.44% Accuracy](https://github.com/getzep/zep-papers/issues/5)
+- [LifeBench (arXiv:2603.03781)](https://arxiv.org/abs/2603.03781) — Long-horizon, multi-source, non-declarative memory benchmark, March 2026
+- [MemoryCD (arXiv:2603.25973)](https://arxiv.org/abs/2603.25973) — Cross-domain lifelong personalization benchmark, March 2026
+- [Hindsight paper (arXiv:2512.12818)](https://arxiv.org/abs/2512.12818) — Vectorize.io + Virginia Tech + WaPo; TEMPR + CARA architecture, 91.4% LongMemEval
+- [Is Mem0 Really SOTA in Agent Memory?](https://blog.getzep.com/lies-damn-lies-statistics-is-mem0-really-sota-in-agent-memory/) — Zep blog, Dec 10 2025
+- [Zep LOCOMO issue: Corrected Evaluation](https://github.com/getzep/zep-papers/issues/5)
 - [Benchmarking AI Agent Memory: Is a Filesystem All You Need?](https://www.letta.com/blog/benchmarking-ai-agent-memory) — Letta
+- [Emergence AI broke the agent memory benchmark](https://medium.com/asymptotic-spaghetti-integration/emergence-ai-broke-the-agent-memory-benchmark-i-tried-to-break-their-code-23b9751ded97) — Calvin Ku on Medium (k=42 hardcoding issue)
 - [LLM-as-a-Judge complete guide](https://www.evidentlyai.com/llm-guide/llm-as-a-judge) — Evidently AI
 - [RAG Evaluation guide 2025](https://www.getmaxim.ai/articles/rag-evaluation-a-complete-guide-for-2025/) — Maxim
 - [A/B Testing Retrieval](https://www.shaped.ai/blog/ab-testing-retrieval-how-to-prove-your-agent-is-getting-better) — Shaped
