@@ -127,3 +127,12 @@ When systems offer context compression, they usually also often emit memories of
 ## Conclusion
 
 Agent memory is not a problem with a one size fits all solution. Every stage of the process comes with it's own set of tradeoffs to consider.
+
+
+<!-- TO ADD:
+Privacy
+evaluation
+why long context windows dont solve this
+
+
+-->
