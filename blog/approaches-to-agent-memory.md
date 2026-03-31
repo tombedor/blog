@@ -4,7 +4,7 @@ date: 2026-03-21
 draft: true
 ---
 
-For me, the question of memory is the most interesting subfield of AI. The first time I intereacted with MemGPT (now Letta), I felt like I had crossed a rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_.
+For me, the question of memory is the most interesting subfield of AI. The first time I intereacted with [MemGPT (now Letta)](https://letta.com), I felt like I had crossed a rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_.
 
 Whether or not creating an AI with memory is a _being_, or whether it's advisable to create one is less easy to answer than at first glance. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
 
@@ -16,10 +16,9 @@ There are more grounded reasons to want to give AI memory. It's useful for AI to
 
 As context windows of models grew, there was suspicion that memory systems wouldl become unnecessary. There's a nice simplicity in the idea you can just stuff all your data into context and let the model sort it out.
 
-Performance has been shown to be poor, however. The Lost in the Middle paper demonstrated that LLM's bias towards the start and end of context, and when relevant information was in the middle of a document collection, performance dropped 30%.
-- **"Lost in the Middle" (Liu et al., Stanford/TACL 2024):*
+Performance has been shown to be poor, however. The [Lost in the Middle paper](https://arxiv.org/abs/2307.03172) demonstrated that LLM's bias towards the start and end of context, and when relevant information was in the middle of a document collection, performance dropped 30%.
 
-Chroma research demonstrated that all frontier models degrade as context windows grow. <!-- link to research>
+[Chroma research](https://research.trychroma.com/context-rot) demonstrated that all frontier models degrade as context windows grow.
 
 "Context rot" has entered the lexicon, and the industry has recognized that context is gold (there's a quote of this somewhere).
 
@@ -36,7 +35,7 @@ But details from there vary widely! Below I'll go through different approaches f
 
 Approaches to storage largely fall into two camps: graph databases and flat files.
 
-Zep is strongly pro-graph db, and claims state of the art needle in the haystack performance. Mem0 offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: Files are all you need.
+Zep is strongly pro-graph db, and [claims state of the art needle in the haystack performance](https://blog.getzep.com/state-of-the-art-agent-memory/). Mem0 offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: [Files are all you need](https://www.letta.com/blog/benchmarking-ai-agent-memory).
 
 #### Key Challenge: Correctness
 
@@ -61,7 +60,7 @@ Agent memory poses a privacy question: Do you _want_ an AI agent to develop memo
 
 Big tech companies, of course, already in a sense know most of what you'd share with an AI. Your Google search history is a comprehensive log of what your thoughts are. But it's a bit more unnerving to have this data presented in a human-like voice.
 
-This is a big reason why I think the future of AI is local and open source, and why I favor a file based system  <!-- link to future of ai is local post -->. Local files both give the best ergonomics for adjusting what is surfaced to the AI - both the user and the AI are browsing data in the same format.
+This is a big reason why I think the future of AI is local and open source, and why I favor a file based system <!-- TODO: link to future of ai is local post — does not exist yet -->. Local files both give the best ergonomics for adjusting what is surfaced to the AI - both the user and the AI are browsing data in the same format.
 
 #### Where I land
 
@@ -118,7 +117,7 @@ Injecting memories into context presents a tradeoff: the most seamless experienc
 
 Where correctness is highly important, memory systems can introduce subtle problems. Usually they are automatically generated and not deeply reviewed by humans, so a wrong assumption in an agents memory store can be difficult to detect.
 
-This is why I don't use memory functionality in coding workflows. Instead, I write (with AI assistence) comprehensive project docs, in human readable format, and refer the agent to it (see: dont write docs twice).
+This is why I don't use memory functionality in coding workflows. Instead, I write (with AI assistence) comprehensive project docs, in human readable format, and refer the agent to it (see: [dont write docs twice](/make-it-easy-for-humans)).
 
 This is a more manual process than just spitballing about a project to an AI, but I prefer to have the AI's ground truth assumptions tightly controlled during coding.
 
