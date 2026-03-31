@@ -62,7 +62,7 @@ Agent memory poses a privacy question: Do you _want_ an AI agent to develop memo
 
 Big tech companies, of course, already in a sense know most of what you'd share with an AI. Your Google search history is a comprehensive log of what your thoughts are. But it's a bit more unnerving to have this data presented in a human-like voice.
 
-This is a big reason why I think the future of AI is local and open source, and why I favor a file based system  <!-- link to future of ai is local post (open-source-models.md) -->. Local files both give the best ergonomics for adjusting what is surfaced to the AI - both the user and the AI are browsing data in the same format.
+This is a big reason why I think the future of AI is local and open source, and why I favor a file based system ([open source models post](/open-source-models)). Local files both give the best ergonomics for adjusting what is surfaced to the AI - both the user and the AI are browsing data in the same format.
 
 #### Where I land
 
@@ -117,7 +117,7 @@ Injecting memories into context presents a tradeoff: the most seamless experienc
 
 Where correctness is highly important, memory systems can introduce subtle problems. Usually they are automatically generated and not deeply reviewed by humans, so a wrong assumption in an agent's memory store can be difficult to detect.
 
-This is why I don't use memory functionality in coding workflows. Instead, I write (with AI assistance) comprehensive project docs, in human readable format, and refer the agent to it (see: dont write docs twice).
+This is why I don't use memory functionality in coding workflows. Instead, I write (with AI assistance) comprehensive project docs, in human readable format, and refer the agent to it (see: [Don't Write Docs Twice](/make-it-easy-for-humans)).
 
 This is a more manual process than just spitballing about a project to an AI, but I prefer to have the AI's ground truth assumptions tightly controlled during coding.
 
