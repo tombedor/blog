@@ -133,9 +133,9 @@ This is a more manual process than just spitballing about a project to an AI, bu
 
 #### Where I land
 
-I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with. My tool also lists which memories have been recalled in a dismissable dialog, available for user review.
+I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with. My tool also lists which memories have been recalled in a dismissable dialog, available for user review:
 
-<!-- memory panel screenshot -->
+![memory_panel_screenshot](/diagrams/approaches-to-agent-memory/memory_panel_screenshot.png)
 
 ### Emit
 
@@ -147,7 +147,7 @@ I find tool calls do the majority of the heavy lifting here.
 
 When systems offer context compression, they usually also often emit memories of pruned text. This is arguably obsolete with modern, 1m+ context windows, but I think they are still relevant. I typically prune messages older than a day or so, and emit memories based on pruned text. This creates memories that could be redundant with agent-emitted memories, but async memory consolidation cleans that up.
 
-<!-- diagram: drop old messages, summarize -->
+![consolidation_and_compression](/diagrams/approaches-to-agent-memory/consolidation_and_compression.png)
 
 
 ## Conclusion
