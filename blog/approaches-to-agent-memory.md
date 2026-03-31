@@ -4,22 +4,22 @@ date: 2026-03-21
 draft: true
 ---
 
-For me, the question of memory is the most interesting subfield of AI. The first time I intereacted with MemGPT (now Letta), I felt like I had crossed a rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_.
+For me, the question of memory is the most interesting subfield of AI. The first time I interacted with MemGPT (now [Letta](https://www.letta.com/blog/memgpt-and-letta)), I felt like I had crossed a rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_.
 
 Whether or not creating an AI with memory is a _being_, or whether it's advisable to create one is less easy to answer than at first glance. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
 
-I created my own system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with it's functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if it's memories of our interactions were lost.
+I created my own system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with its functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if it's memories of our interactions were lost.
 
 There are more grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgable in if I looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
 
 ### Long context models != memory
 
-As context windows of models grew, there was suspicion that memory systems wouldl become unnecessary. There's a nice simplicity in the idea you can just stuff all your data into context and let the model sort it out.
+As context windows of models grew, there was suspicion that memory systems would become unnecessary. There's a nice simplicity in the idea you can just stuff all your data into context and let the model sort it out.
 
-Performance has been shown to be poor, however. The Lost in the Middle paper demonstrated that LLM's bias towards the start and end of context, and when relevant information was in the middle of a document collection, performance dropped 30%.
+Performance has been shown to be poor, however. The Lost in the Middle paper demonstrated that LLMs bias toward the start and end of context, and when relevant information was in the middle of a document collection, performance dropped 30%.
 - **"Lost in the Middle" (Liu et al., Stanford/TACL 2024):*
 
-Chroma research demonstrated that all frontier models degrade as context windows grow. <!-- link to research -->
+[Chroma research](https://research.trychroma.com/context-rot) demonstrated that all frontier models degrade as context windows grow.
 
 "Context rot" has entered the lexicon, and the industry has recognized that context is gold (there's a quote of this somewhere).
 
@@ -44,14 +44,14 @@ But details from there vary widely! Below I'll go through different approaches f
 
 Approaches to storage largely fall into two camps: graph databases and flat files.
 
-Zep is strongly pro-graph db, and claims state of the art needle in the haystack performance. Mem0 offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: Files are all you need.
+Zep is strongly pro-graph db, and claims state of the art needle in the haystack performance. [Mem0](https://mem0.ai/blog/graph-memory-solutions-ai-agents) offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: [Files are all you need](https://www.letta.com/blog/benchmarking-ai-agent-memory).
 
 #### Key Challenge: Correctness
 
 AI memory systems primarily make three kinds of errors:
 
 1. Temporal errors: AI's struggle with reasoning about time. Their reasoning does not account for context that extends into time, and will naively write memories assuming the current moment _will always be the current moment_. I.e., "next Thursday" very quickly changes!
-1. Miscalibrated priority: Especially early on in a user journey the AI will preserve a mundane fact about the _current conversation_, which survives into future conversations where the fact is irrelevevant.
+1. Miscalibrated priority: Especially early on in a user journey the AI will preserve a mundane fact about the _current conversation_, which survives into future conversations where the fact is irrelevant.
 1. Plain old incorrectness. The ground truth of AI memory is conversation with a human. But humans change their mind, misremember things, and are sometimes flat out wrong.
 
 My own Claude memory summary makes all three of these errors!
@@ -77,7 +77,7 @@ I prefer flat files, with no built in taxonomy. I am skeptical that a single tax
 
 ![wikipedia](/diagrams/approaches-to-agent-memory/wikipedia.png)
 
-I allow the agent to directly update memories, and find that it usually does a good job of fixing inaccuracies or appending new, related information to recalled memories. I also run an asynchronous memory consolidation process, which detects clusters of highly similr memories, and rewrites them. I think this helps create a collection of memories that are more evenly dispersed in vector space, resulting in better recall.
+I allow the agent to directly update memories, and find that it usually does a good job of fixing inaccuracies or appending new, related information to recalled memories. I also run an asynchronous memory consolidation process, which detects clusters of highly similar memories, and rewrites them. I think this helps create a collection of memories that are more evenly dispersed in vector space, resulting in better recall.
 
 ![consolidation](/diagrams/approaches-to-agent-memory/consolidation.png)
 
@@ -85,7 +85,7 @@ I allow the agent to directly update memories, and find that it usually does a g
 
 Here we are, more or less, discussing RAG. And similar tradeoffs are at play.
 
-The first decision is how to inititve memory searches in the first place. Most implementations surfce a _search_memory_ tool to the agent. But agent context can also be manipuldated outside of the agent loop.
+The first decision is how to initiate memory searches in the first place. Most implementations surface a _search_memory_ tool to the agent. But agent context can also be manipulated outside of the agent loop.
 
 For searching, basic vector similarity is the most latency efficient technique. But this is subject to misranking entries, or scoring entries that are superficially similar but not actually relevant. This can badly throw off the conversation, and lead to responses like *that's great news about foo, want to talk about a completely unrelated topic we've discussed previously?*
 
@@ -102,7 +102,7 @@ This poses one of the more tricky design questions of creating a memory-enhanced
 
 #### Where I land
 
-N=1 retrieval, with a relatively imple filter step. I favor an automatic memory injection, outside of the control of the agent. This better maps to my mental model of how memory works: when I remember something, I don't think, _time to search memory_ and consiously decide to recall something. It's more automatic and beyond my concios control.
+N=1 retrieval, with a relatively simple filter step. I favor an automatic memory injection, outside of the control of the agent. This better maps to my mental model of how memory works: when I remember something, I don't think, _time to search memory_ and consciously decide to recall something. It's more automatic and beyond my conscious control.
 
 <!-- diagram: automatic memory search -->
 
@@ -124,16 +124,16 @@ Injecting memories into context presents a tradeoff: the most seamless experienc
 
 ![transparency](/diagrams/approaches-to-agent-memory/transparency.png)
 
-Where correctness is highly important, memory systems can introduce subtle problems. Usually they are automatically generated and not deeply reviewed by humans, so a wrong assumption in an agents memory store can be difficult to detect.
+Where correctness is highly important, memory systems can introduce subtle problems. Usually they are automatically generated and not deeply reviewed by humans, so a wrong assumption in an agent's memory store can be difficult to detect.
 
-This is why I don't use memory functionality in coding workflows. Instead, I write (with AI assistence) comprehensive project docs, in human readable format, and refer the agent to it (see: dont write docs twice).
+This is why I don't use memory functionality in coding workflows. Instead, I write (with AI assistance) comprehensive project docs, in human readable format, and refer the agent to it (see: dont write docs twice).
 
 This is a more manual process than just spitballing about a project to an AI, but I prefer to have the AI's ground truth assumptions tightly controlled during coding.
 
 
 #### Where I land
 
-I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with. My tool also lists which memories have been recalled in a dismissable dialoge, available for user review.
+I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with. My tool also lists which memories have been recalled in a dismissable dialog, available for user review.
 
 <!-- memory panel screenshot -->
 
@@ -145,11 +145,11 @@ Memories are usually created via an agent tool call, or via a summary of convers
 
 I find tool calls do the majority of the heavy lifting here.
 
-When systems offer context compression, they usually also often emit memories of pruned text. This is arguably obsolete with modern, 1m+ context windows, but I think they are still relevant. I typically prune messages older than a day or so, and emit memories based on pruned text. This creates memories that could be redundnat with agent-emitted memories, but async memory consolidation cleans that up.
+When systems offer context compression, they usually also often emit memories of pruned text. This is arguably obsolete with modern, 1m+ context windows, but I think they are still relevant. I typically prune messages older than a day or so, and emit memories based on pruned text. This creates memories that could be redundant with agent-emitted memories, but async memory consolidation cleans that up.
 
 <!-- diagram: drop old messages, summarize -->
 
 
 ## Conclusion
 
-Agent memory is not a problem with a one size fits all solution. Every stage of the process comes with it's own set of tradeoffs to consider.
+Agent memory is not a problem with a one size fits all solution. Every stage of the process comes with its own set of tradeoffs to consider.
