@@ -19,9 +19,17 @@ As context windows of models grew, there was suspicion that memory systems would
 Performance has been shown to be poor, however. The Lost in the Middle paper demonstrated that LLM's bias towards the start and end of context, and when relevant information was in the middle of a document collection, performance dropped 30%.
 - **"Lost in the Middle" (Liu et al., Stanford/TACL 2024):*
 
-Chroma research demonstrated that all frontier models degrade as context windows grow. <!-- link to research>
+Chroma research demonstrated that all frontier models degrade as context windows grow. <!-- link to research -->
 
 "Context rot" has entered the lexicon, and the industry has recognized that context is gold (there's a quote of this somewhere).
+
+## Evaluation
+
+How do we know our memory system is functioning correctly? Evaluation tests typically test proficiency at needle in the haystack tasks: many conversations are run through the AI, and then the AI is quized about them. These are inherently slow and expensive to run, and the wide variety of possible approaches means there's not an easy cross-functional test system that can be dragged and dropped into different memory systems. Doing an eval means tweaking the test repo to fit how your system persists and retrieves memory.
+
+I've not done extensive evals on my system, instead I bank on using the system every day. But commercial providers have made claims, with some controversy attached:
+
+<!-- info about evals from letta and zep -->
 
 
 ## Approaches
@@ -140,14 +148,6 @@ I find tool calls do the majority of the heavy lifting here.
 When systems offer context compression, they usually also often emit memories of pruned text. This is arguably obsolete with modern, 1m+ context windows, but I think they are still relevant. I typically prune messages older than a day or so, and emit memories based on pruned text. This creates memories that could be redundnat with agent-emitted memories, but async memory consolidation cleans that up.
 
 <!-- diagram: drop old messages, summarize -->
-
-## Evaluation
-
-How do we know our memory system is functioning correctly? Evaluation tests typically test proficiency at needle in the haystack tasks: many conversations are run through the AI, and then the AI is quized about them. These are inherently slow and expensive to run, and the wide variety of possible approaches means there's not an easy cross-functional test system that can be dragged and dropped into different memory systems. Doing an eval means tweaking the test repo to fit how your system persists and retrieves memory.
-
-I've not done extensive evals on my system, instead I bank on using the system every day. But commercial providers have made claims, with some controversy attached:
-
-<!-- info about evals from letta and zep -->
 
 
 ## Conclusion
