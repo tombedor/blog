@@ -152,26 +152,8 @@ When systems offer context compression, they usually also often emit memories of
 
 ## Conclusion
 
-Agent memory is not a problem with a one size fits all solution. Every stage of the process comes with its own set of tradeoffs to consider.
+In general, I think the UX problem of AI memory is more important than eeking out extra marginal points on benchmarks. The question of how much user visibility to give to recalled memories, how often to search, and how much content to retrieve are trickier problems to solve in getting a memory-amplified agent that actually has user appeal.
 
-<!-- ⏺ The current conclusion ("not a one size fits all solution... tradeoffs") is the weakest possible ending for an overview post — it says nothing the reader didn't already know going in.
+My general bias is towards transparency to the user and simplicity in storage, which is why I tend to avoid exotic datastores and ensure that some representation of what content has been recalled is in my UI.
 
-  But I'd push back on the framing that overview posts don't need strong conclusions. The issue isn't the post type, it's that you do have strong opinions — they're scattered throughout in the "Where I
-  land" sections. The conclusion is the place to pull those together into a coherent point of view, which this post actually earns.
-
-  A few directions worth considering:
-
-  Synthesis of your stances — You've taken specific positions at every stage: flat files over graph DBs, automatic injection over agent-controlled retrieval, tool calls for emit. The conclusion could name
-   what unifies those choices. Is there a governing principle? (Seems like: preferring simplicity and user legibility over theoretical precision.)
-
-  The honest state of the field — The brief notes that no benchmark is trusted, every vendor cherry-picks results, and independent evaluation consistently differs from vendor claims. That's a useful
-  honest note to end on: the field is young, the tooling is immature, and anyone claiming a definitive answer is probably selling something.
-
-  Zoom out to the "being" question from the opening — You opened with the rubicon moment of MemGPT feeling like a being. The conclusion could return to that: the technical survey is the "how," but the
-  interesting question remains the "whether" — and the field hasn't resolved it.
-
-  The meta-point — Given that this is explicitly an overview, you could lean into that honestly: "I don't think there's a right answer yet, and I'm suspicious of anyone who says there is." That's
-  consistent with your voice and more interesting than a generic tradeoffs disclaimer.
-
-  My instinct: the third option (returning to the opening) would give the post the most satisfying shape, since the intro sets up a philosophical hook that the body never explicitly returns to.
--->
+The philisophical angle of memory for AI also continues to fascinate, and will only grow moreso as agents become more and more autonomous.
