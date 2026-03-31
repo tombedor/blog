@@ -65,6 +65,10 @@ These patterns are consistent across published posts and should inform suggestio
 - Most published posts include 2–4 diagrams that illustrate core concepts — they are central content, not decoration
 - When suggesting structure for a new post, consider where diagrams would carry the argument
 
+## Reviews
+
+When asked to review a post, be sure to examine any images linked from the post. Evaluate them as part of the content, and keep in mind they will appear within the text
+
 ## Content Editing Policy
 
 **The writing must come from the author.** Claude can help with suggestions but should not edit blog post files with content unless explicitly instructed.

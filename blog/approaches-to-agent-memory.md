@@ -12,6 +12,8 @@ I created my own system, called [Elroy](https://elroy.bot), and have been intera
 
 There are more grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgable in if I looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
 
+One could reasonably ask: how do I know my memory system is working? Evals for memory systems is a large topic in and of itself. I'll save it for another day, and focus on approaches here.
+
 ### Long context models != memory
 
 As context windows of models grew, there was suspicion that memory systems would become unnecessary. There's a nice simplicity in the idea you can just stuff all your data into context and let the model sort it out.
@@ -22,15 +24,6 @@ Performance has been shown to be poor, however. The Lost in the Middle paper dem
 [Chroma research](https://research.trychroma.com/context-rot) demonstrated that all frontier models degrade as context windows grow.
 
 "Context rot" has entered the lexicon, and the industry has recognized that context is gold (there's a quote of this somewhere).
-
-## Evaluation
-
-How do we know our memory system is functioning correctly? Evaluation tests typically test proficiency at needle in the haystack tasks: many conversations are run through the AI, and then the AI is quized about them. These are inherently slow and expensive to run, and the wide variety of possible approaches means there's not an easy cross-functional test system that can be dragged and dropped into different memory systems. Doing an eval means tweaking the test repo to fit how your system persists and retrieves memory.
-
-I've not done extensive evals on my system, instead I bank on using the system every day. But commercial providers have made claims, with some controversy attached:
-
-<!-- info about evals from letta and zep -->
-
 
 ## Approaches
 
@@ -153,5 +146,3 @@ When systems offer context compression, they usually also often emit memories of
 In general, I think the UX problem of AI memory is more important than eeking out extra marginal points on benchmarks. The question of how much user visibility to give to recalled memories, how often to search, and how much content to retrieve are trickier problems to solve in getting a memory-amplified agent that actually has user appeal.
 
 My general bias is towards transparency to the user and simplicity in storage, which is why I tend to avoid exotic datastores and ensure that some representation of what content has been recalled is in my UI.
-
-The philisophical angle of memory for AI also continues to fascinate, and will only grow moreso as agents become more and more autonomous.
