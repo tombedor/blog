@@ -114,7 +114,14 @@ SOTA memory systems (Hindsight, Mem0, Zep, etc.) that perform well on LoCoMo and
 
 **Paper:** "MemoryCD: Benchmarking Long-Context User Memory of LLM Agents for Lifelong Cross-Domain Personalization" — arXiv:2603.25973
 
-Focuses specifically on cross-domain personalization (e.g., does a preference expressed in a cooking conversation affect a travel recommendation?). Addresses a gap in prior benchmarks that silo interactions within a single domain.
+Focuses specifically on cross-domain personalization (e.g., does a preference expressed in a cooking conversation affect a travel recommendation?). Addresses a gap in prior benchmarks that silo interactions within a single domain. Built on real Amazon Review data across 12 domains, 14 LLM base models, 6 memory method baselines, 4 personalization tasks.
+
+**Status:** Paper submitted March 26, 2026; GitHub repo (`AgentMemoryWorld/MemoryCD`) exists but is empty — code not yet released. Not currently runnable.
+
+**Alternatives if you want to run cross-domain personalization evaluation now:**
+- **LaMP** (`github.com/LaMP-Benchmark/LaMP`) — 7 personalized tasks on real Amazon Review data; used in the RAG vs PEFT study above
+- **LongMemEval** (`github.com/xiaowu0162/LongMemEval`) — runnable today; covers temporal reasoning, knowledge updates, multi-session
+- **MemoryBench** (`github.com/supermemoryai/memorybench`) — unified harness across multiple datasets; fastest path to a cross-benchmark sweep
 
 ---
 
