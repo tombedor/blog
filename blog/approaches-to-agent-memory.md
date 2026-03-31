@@ -68,11 +68,11 @@ This is a big reason why I think the future of AI is local and open source, and 
 
 I prefer flat files, with no built in taxonomy. I am skeptical that a single taxonomy works well for all users. In an early attempt, I took a taxonomy from Wikipedia, and directed the AI to conform it's entries to it. But it struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
 
-![wikipedia](/diagrams/approaches-to-agent-memory/wikipedia.png)
+<img src="/diagrams/approaches-to-agent-memory/wikipedia.png" alt="wikipedia" style={{width:'50%'}} />
 
-I allow the agent to directly update memories, and find that it usually does a good job of fixing inaccuracies or appending new, related information to recalled memories. I also run an asynchronous memory consolidation process, which detects clusters of highly similar memories, and rewrites them. I think this helps create a collection of memories that are more evenly dispersed in vector space, resulting in better recall.
+I allow the agent to directly update memories, and find that it usually does a good job of fixing inaccuracies or appending new, related information to recalled memories. I also run an asynchronous memory consolidation process, which detects clusters of highly similar memories, and rewrites them. I think this helps create a collection of memories that are more evenly dispersed in vector space, resulting in better recall:
 
-![consolidation](/diagrams/approaches-to-agent-memory/consolidation.png)
+<img src="/diagrams/approaches-to-agent-memory/consolidation.png" alt="consolidation" style={{width:'50%'}} />
 
 ### Retrieve
 
