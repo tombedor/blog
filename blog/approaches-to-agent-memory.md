@@ -17,7 +17,7 @@ There are more grounded reasons to want to give AI memory. It's useful for AI to
 As context windows of models grew, there was suspicion that memory systems would become unnecessary. There's a nice simplicity in the idea you can just stuff all your data into context and let the model sort it out.
 
 Performance has been shown to be poor, however. The Lost in the Middle paper demonstrated that LLMs bias toward the start and end of context, and when relevant information was in the middle of a document collection, performance dropped 30%.
-- **"Lost in the Middle" (Liu et al., Stanford/TACL 2024):*
+- **"Lost in the Middle" (Liu et al., Stanford/TACL 2024):* (https://arxiv.org/abs/2307.03172)
 
 [Chroma research](https://research.trychroma.com/context-rot) demonstrated that all frontier models degrade as context windows grow.
 
@@ -69,7 +69,7 @@ Agent memory poses a privacy question: Do you _want_ an AI agent to develop memo
 
 Big tech companies, of course, already in a sense know most of what you'd share with an AI. Your Google search history is a comprehensive log of what your thoughts are. But it's a bit more unnerving to have this data presented in a human-like voice.
 
-This is a big reason why I think the future of AI is local and open source, and why I favor a file based system  <!-- link to future of ai is local post -->. Local files both give the best ergonomics for adjusting what is surfaced to the AI - both the user and the AI are browsing data in the same format.
+This is a big reason why I think the future of AI is local and open source, and why I favor a file based system  <!-- link to future of ai is local post (open-source-models.md) -->. Local files both give the best ergonomics for adjusting what is surfaced to the AI - both the user and the AI are browsing data in the same format.
 
 #### Where I land
 
@@ -103,8 +103,6 @@ This poses one of the more tricky design questions of creating a memory-enhanced
 #### Where I land
 
 N=1 retrieval, with a relatively simple filter step. I favor an automatic memory injection, outside of the control of the agent. This better maps to my mental model of how memory works: when I remember something, I don't think, _time to search memory_ and consciously decide to recall something. It's more automatic and beyond my conscious control.
-
-<!-- diagram: automatic memory search -->
 
 Initiating memory searches automatically also yields more consistent results across models. When given a _search_memory_ tool, some models will use it almost every message, while others will use it too sparingly.
 
