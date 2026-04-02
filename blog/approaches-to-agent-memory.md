@@ -8,7 +8,7 @@ For me, the question of memory is the most interesting subfield of AI. The first
 
 [^1]: The degree to which an AI with memory has _conciousness_ is an interesting philisophical question for another day. Also for another time is when this is _advisable_. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
 
-I created my own system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with its functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if its memories of our interactions were lost.
+I created my own open source system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with its functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if its memories of our interactions were lost.
 
 Philosphy questions aside, there are well grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgeable in if I'm looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
 
@@ -69,9 +69,13 @@ Big tech companies, of course, already know most of what you'd share with an AI.
 
 This is a big reason why I think the [future of AI is local and open source](/open-source-models).
 
-#### Where I land
+#### How I built Elroy
 
-I prefer flat files, with no built-in taxonomy. I am skeptical that a single taxonomy works well for all users. In an early attempt, I tried to structure memories similar to a personal Wikipedia. But the agent struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
+After experimenting with database backed memories, I landed on markdown files. Rather than a taxonomy of _what entities the agent remembers_, I've focused on finding the right taxonomy of what the agent should _do_ with the memory. I've landed on the concept of an Agenda Item, which represents some longer running goal I have. This includes subtasks and reminder triggers. This makes memories _actionable_, rather than just generically informing conversations:
+
+![agenda_panel_screenshot](/diagrams/approaches-to-agent-memory/agenda_panel_screenshot.png)
+
+I am skeptical that a single taxonomy of _entities_ can works well for all users. In an early attempt, I tried to structure memories similar to a personal Wikipedia. But the agent struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
 
 <img src="/diagrams/approaches-to-agent-memory/wikipedia.png" alt="wikipedia" style={{width:'50%'}} />
 
@@ -79,7 +83,8 @@ The challenge here is understandable. The appropriate scope for a given memory e
 
 <img src="/diagrams/approaches-to-agent-memory/consolidation.png" alt="consolidation" style={{width:'50%'}} />
 
-I allow the agent to directly update memories to fix inaccuracies or append new information. I find this to work reasonably well, but as with any process that relies on tool calls, performance will vary depending on the model.
+For storage, markdown files provide for easier human reading, better portability, and an easier onramp to ingesting external files. I place my agent's memory files directly in my Obsidian Vault, where they feel like a natural extension of my other notes and documents.
+
 
 ### Retrieve
 
@@ -100,9 +105,13 @@ A memory-enriched response from an AI is going to be slower than one without mem
 This poses one of the more tricky design questions of creating a memory-enhanced AI: memory isn't _always_ necessary. If I'm asking an agent the length of the Brooklyn bridge, I don't really need it to scan through our past interactions before answering.
 
 
-#### Where I land
+#### How I built Elroy
 
-Small-N retrieval, with a relatively simple filter step. In Elroy, I currently auto-recall a handful of items rather than forcing a strict top-1, but I still prefer keeping recall narrow. I favor an automatic memory injection, outside of the control of the agent. This better maps to my mental model of how memory works: when I remember something, I don't think, _time to search memory_ and consciously decide to recall something. It's more automatic and beyond my conscious control.
+Elroy retrieves up to a small number of memories, deduplicated against any already in context. This step has been the one I've tinkered with the most. At first, I injected the raw text of memories, but found that it bloated context. Then, I added a reflection step, where the AI paused to think about how the recalled memory relates to the conversation. These pre-response steps quickly blow up latency, however.
+
+Where I've landed more recently is raw text, but with a simple LLM backed filtering step of results from vector similarity searches. For recall, a false positive is worse than a false negative - it can be very odd to have the agent suddenly talk about a completely unrelated topic in the middle of a chat.
+
+Rather than tool calls, I've stuck with automatic memory injection, outside of the control of the agent. This better maps to my mental model of how memory works: when I remember something, I don't think, _time to search memory_ and consciously decide to recall something. It's more automatic and beyond my conscious control.
 
 Initiating memory searches automatically also yields more consistent results across models. When given a _search_memory_ tool, some models will use it almost every message, while others will use it too sparingly.
 
@@ -129,7 +138,7 @@ This is why I don't use memory functionality in coding workflows. Instead, I wri
 This is a more manual process than just spitballing about a project to an AI, but I prefer to have the AI's ground truth assumptions tightly controlled during coding.
 
 
-#### Where I land
+#### How I built Elroy
 
 I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with. My tool also lists which memories have been recalled in a dismissible panel, available for user review:
 
@@ -139,7 +148,9 @@ I inject recalled memories via a "synthetic" tool call. That is, the memory is e
 
 Memories are usually created via an agent tool call, or via a summary of conversation context that's been compressed (see below). These aren't mutually exclusive!
 
-#### Where I land
+This pattern is typical across different implementations. One point of divergence is whether (and how) to ingest external documents. This can be handy, if nothing else than an easy interface for doing vector searches across documents. However, dumping many external documents into a memory store risks biasing recall towards those documents.
+
+#### How I built Elroy
 
 I find tool calls do the majority of the heavy lifting here.
 
