@@ -39,7 +39,7 @@ But details from there vary widely! Below I'll go through different approaches f
 
 Approaches to storage largely fall into two camps: graph databases and flat files.
 
-Zep is strongly pro-graph db, and claims state of the art needle in the haystack performance. [Mem0](https://mem0.ai/blog/graph-memory-solutions-ai-agents) offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: [Files are all you need](https://www.letta.com/blog/benchmarking-ai-agent-memory). The recently leaked Claude Code source[^1] reveals a similar stance: memories are stored in markdown files, with metadata in frontmatter.
+[Zep](https://arxiv.org/abs/2501.13956) is strongly pro-graph db, and claims state of the art needle in the haystack performance. [Mem0](https://mem0.ai/blog/graph-memory-solutions-ai-agents) offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: [Files are all you need](https://www.letta.com/blog/benchmarking-ai-agent-memory). The recently leaked Claude Code source[^1] reveals a similar stance: memories are stored in markdown files, with metadata in frontmatter.
 
 [^1:] I've examined the leaked Claude Code, but won't link to it, mostly because repos that host it seem to be being taken down.
 
