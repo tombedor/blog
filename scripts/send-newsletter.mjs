@@ -7,6 +7,7 @@ import process from 'node:process';
 const ROOT = process.cwd();
 const BLOG_DIR = path.join(ROOT, 'blog');
 const DOCUSAURUS_CONFIG_PATH = path.join(ROOT, 'docusaurus.config.ts');
+const ENV_PATH = path.join(ROOT, '.env');
 
 function usage() {
   console.error(`Usage:
@@ -21,7 +22,8 @@ Required environment:
   LISTMONK_URL
   LISTMONK_API_USER
   LISTMONK_API_TOKEN
-  LISTMONK_LIST_ID or LISTMONK_LIST_UUID
+  For "test": LISTMONK_TEST_LIST_ID or LISTMONK_TEST_LIST_UUID
+  For "send": LISTMONK_PROD_LIST_ID or LISTMONK_PROD_LIST_UUID
 
 Optional environment:
   LISTMONK_TEST_EMAILS Default test recipients for "test" mode
@@ -43,6 +45,41 @@ async function readFileIfExists(filePath) {
     return await fs.readFile(filePath, 'utf8');
   } catch {
     return null;
+  }
+}
+
+async function loadDotEnv() {
+  const envContent = await readFileIfExists(ENV_PATH);
+  if (!envContent) {
+    return;
+  }
+
+  for (const rawLine of envContent.split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith('#')) {
+      continue;
+    }
+
+    const normalized = line.startsWith('export ') ? line.slice(7).trim() : line;
+    const idx = normalized.indexOf('=');
+    if (idx === -1) {
+      continue;
+    }
+
+    const key = normalized.slice(0, idx).trim();
+    if (!key || process.env[key] !== undefined) {
+      continue;
+    }
+
+    let value = normalized.slice(idx + 1).trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+
+    process.env[key] = value;
   }
 }
 
@@ -110,7 +147,7 @@ async function resolvePostPath(postArg) {
   throw new Error(`Could not find post: ${postArg}`);
 }
 
-function sanitizeExcerpt(markdown) {
+function sanitizePostBody(markdown, siteUrl) {
   return markdown
     .split(/\r?\n/)
     .filter((line) => {
@@ -118,29 +155,20 @@ function sanitizeExcerpt(markdown) {
       if (!trimmed) {
         return true;
       }
-      if (trimmed.startsWith('import ') || trimmed.startsWith('export ')) {
+      if (trimmed === '<!-- truncate -->') {
         return false;
       }
-      if (trimmed.startsWith('![') || trimmed.startsWith('<img')) {
+      if (trimmed.startsWith('import ') || trimmed.startsWith('export ')) {
         return false;
       }
       return true;
     })
     .join('\n')
     .replace(/\n{3,}/g, '\n\n')
+    .replace(/(!?\[[^\]]*]\()\/(?!\/)/g, `$1${siteUrl}/`)
+    .replace(/(<img[^>]*\ssrc=["'])\/(?!\/)/g, `$1${siteUrl}/`)
+    .replace(/(<a[^>]*\shref=["'])\/(?!\/)/g, `$1${siteUrl}/`)
     .trim();
-}
-
-function buildExcerpt(body) {
-  const [beforeTruncate] = body.split('<!-- truncate -->');
-  const source = beforeTruncate.trim() ? beforeTruncate : body;
-  const cleaned = sanitizeExcerpt(source);
-
-  if (!cleaned) {
-    throw new Error('Could not derive newsletter excerpt from post body');
-  }
-
-  return cleaned;
 }
 
 async function getSiteUrl() {
@@ -163,20 +191,20 @@ function buildPostUrl(siteUrl, slug) {
   return `${siteUrl}/${slug.replace(/^\/+|\/+$/g, '')}/`;
 }
 
-function buildCampaignBody({title, excerpt, postUrl}) {
+function buildCampaignBody({title, body, postUrl}) {
   return `# ${title}
 
-${excerpt}
+[Read online instead](${postUrl})
 
-[Read the full post](${postUrl})`;
+${body}`;
 }
 
-function buildAltBody({title, excerpt, postUrl}) {
+function buildAltBody({title, body, postUrl}) {
   return `${title}
 
-${excerpt}
+Read online instead: ${postUrl}
 
-Read the full post: ${postUrl}`;
+${body}`;
 }
 
 function getAuthHeaders() {
@@ -218,18 +246,36 @@ async function requestJson(url, options = {}) {
   return payload;
 }
 
-async function resolveListId(baseUrl, headers) {
-  if (process.env.LISTMONK_LIST_ID) {
-    const value = Number(process.env.LISTMONK_LIST_ID);
+function getListEnv(mode) {
+  if (mode === 'test') {
+    return {
+      id: process.env.LISTMONK_TEST_LIST_ID,
+      uuid: process.env.LISTMONK_TEST_LIST_UUID,
+      label: 'LISTMONK_TEST_LIST_ID or LISTMONK_TEST_LIST_UUID',
+    };
+  }
+
+  return {
+    id: process.env.LISTMONK_PROD_LIST_ID,
+    uuid: process.env.LISTMONK_PROD_LIST_UUID,
+    label: 'LISTMONK_PROD_LIST_ID or LISTMONK_PROD_LIST_UUID',
+  };
+}
+
+async function resolveListId(baseUrl, headers, mode) {
+  const listEnv = getListEnv(mode);
+
+  if (listEnv.id) {
+    const value = Number(listEnv.id);
     if (!Number.isInteger(value)) {
-      throw new Error('LISTMONK_LIST_ID must be an integer');
+      throw new Error(`${listEnv.label.split(' or ')[0]} must be an integer`);
     }
     return value;
   }
 
-  const listUuid = process.env.LISTMONK_LIST_UUID;
+  const listUuid = listEnv.uuid;
   if (!listUuid) {
-    throw new Error('Set LISTMONK_LIST_ID or LISTMONK_LIST_UUID');
+    throw new Error(`Set ${listEnv.label}`);
   }
 
   const listsResponse = await requestJson(
@@ -250,7 +296,7 @@ async function resolveListId(baseUrl, headers) {
     return matching.id;
   }
 
-  throw new Error(`Could not find a Listmonk list matching LISTMONK_LIST_UUID=${listUuid}`);
+  throw new Error(`Could not find a Listmonk list matching ${listEnv.label.split(' or ')[1]}=${listUuid}`);
 }
 
 function parseEmails(rawEmails) {
@@ -261,6 +307,7 @@ function parseEmails(rawEmails) {
 }
 
 async function main() {
+  await loadDotEnv();
   const {mode, postArg, emailsArg} = parseArgs(process.argv.slice(2));
   const rawListmonkUrl = process.env.LISTMONK_URL;
   if (!rawListmonkUrl) {
@@ -283,8 +330,11 @@ async function main() {
   const slug = String(frontmatter.slug || path.basename(postPath).replace(/\.(md|mdx)$/, ''));
   const siteUrl = await getSiteUrl();
   const postUrl = buildPostUrl(siteUrl, slug);
-  const excerpt = buildExcerpt(body);
-  const listId = await resolveListId(baseUrl, headers);
+  const newsletterBody = sanitizePostBody(body, siteUrl);
+  if (!newsletterBody) {
+    throw new Error('Could not derive newsletter body from post');
+  }
+  const listId = await resolveListId(baseUrl, headers, mode);
 
   const campaignPayload = {
     name: `Blog post: ${frontmatter.title}`,
@@ -292,8 +342,8 @@ async function main() {
     lists: [listId],
     type: 'regular',
     content_type: 'markdown',
-    body: buildCampaignBody({title: String(frontmatter.title), excerpt, postUrl}),
-    altbody: buildAltBody({title: String(frontmatter.title), excerpt, postUrl}),
+    body: buildCampaignBody({title: String(frontmatter.title), body: newsletterBody, postUrl}),
+    altbody: buildAltBody({title: String(frontmatter.title), body: newsletterBody, postUrl}),
     messenger: 'email',
     tags: ['blog-post', slug],
   };
