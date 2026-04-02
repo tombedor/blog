@@ -37,7 +37,9 @@ But details from there vary widely! Below I'll go through different approaches f
 
 Approaches to storage largely fall into two camps: graph databases and flat files.
 
-Zep is strongly pro-graph db, and claims state of the art needle in the haystack performance. [Mem0](https://mem0.ai/blog/graph-memory-solutions-ai-agents) offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: [Files are all you need](https://www.letta.com/blog/benchmarking-ai-agent-memory).
+Zep is strongly pro-graph db, and claims state of the art needle in the haystack performance. [Mem0](https://mem0.ai/blog/graph-memory-solutions-ai-agents) offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: [Files are all you need](https://www.letta.com/blog/benchmarking-ai-agent-memory). The recently leaked Claude Code source[^1] reveals a similar stance: memories are stored in markdown files, with metadata in frontmatter.
+
+[^1:] I've examined the leaked Claude Code, but won't link to it, mostly because repos that host it seem to be being taken down.
 
 #### Key Challenge: Correctness
 
@@ -81,6 +83,8 @@ Here we are, more or less, discussing RAG. And similar tradeoffs are at play.
 The first decision is how to initiate memory searches in the first place. Most implementations surface a _search_memory_ tool to the agent. But agent context can also be manipulated outside of the agent loop.
 
 For searching, basic vector similarity is the most latency efficient technique. But this is subject to misranking entries, or scoring entries that are superficially similar but not actually relevant. This can badly throw off the conversation, and lead to responses like *that's great news about foo, want to talk about a completely unrelated topic we've discussed previously?*
+
+Claude Code is an interesting outlier in terms of retrieval: it does not use vector similarity for retrieval. Instead, it keeps some metadata about which memories are available in context, and delegates retrieval to a background Sonnet call. My guess is they use Sonnet rather than vector similarity because they don't have a public embeddings API, but I think this probably leads to suboptimal recall. The background call for recall means that the user isn't blocked on it, but also means that relevant memories might not get to context in time.
 
 A post-retrieval filtering step is helpful, but adds latency.
 

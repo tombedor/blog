@@ -486,3 +486,109 @@ The benchmark evidence (Letta's flat-file baseline; full-context beating Mem0 on
 - **Explicit vs. automatic memory management:** Mem0's explicit API approach gives observability but creates developer burden. More automatic systems (MemGPT/Letta) may be more ergonomic for agent-native workflows.
 - **RAG vs. memory:** Mem0 positions itself as superior to chunk-based RAG for conversational memory. The distinction matters: RAG is document retrieval; memory is fact/preference extraction from dialogue. They serve different purposes and may be complementary.
 - **Evaluation benchmark concerns:** LOCOMO is Mem0's chosen benchmark. LLM-as-a-judge metrics and prior lexical metrics (F1, BLEU) both have known weaknesses for factual accuracy evaluation.
+
+---
+
+## Elroy vs. Claude Code: A Concrete Implementation Comparison
+
+*Added 2026-04-01. Both systems were reviewed from source code and the claude-code memory-brief.md.*
+
+These are two systems the author has direct access to — a useful grounding exercise for the post's framework.
+
+### Store
+
+Both use flat markdown files (validating the post's preferred approach), but they diverge in what sits alongside the files:
+
+- **Elroy:** Files + PostgreSQL + ChromaDB (vector embeddings via `text-embedding-3-small`). Each memory is embedded and stored in a per-user ChromaDB collection. Memories are organized by user ID, not by project.
+- **Claude Code:** Pure markdown files only — no vector store, no database. Memories live in `~/.claude/projects/<sanitized-git-root>/memory/`, with worktrees sharing memory via canonical git root resolution.
+
+The Claude Code design is notable: it achieves semantic retrieval without embeddings by using an LLM to read human-readable description fields and rank relevance. This trades infrastructure complexity for an additional LLM call per turn.
+
+Both have a structural index:
+- Elroy: no explicit index; all memories discovered at search time via vector query
+- Claude Code: `MEMORY.md` — an always-loaded pointer index, truncated at 200 lines. This is a two-level design: the index is always in context; the full files are fetched on demand.
+
+### Retrieve
+
+| | Elroy | Claude Code |
+|---|---|---|
+| Trigger | Two-stage classifier: heuristics first (skip greetings, short messages) → LLM decision | Always — async prefetch per turn |
+| Algorithm | L2 vector distance (ChromaDB, threshold 1.4) | Sonnet reads 30-line frontmatter of all files; returns up to 5 relevant paths |
+| Post-retrieval | Optional "reflective recall": LLM generates first-person introspection, filters irrelevant | Deduplication across session |
+| N results | Top 2 per type (Memory, AgendaItem, DueItem) | Up to 5 files; 4KB/file, 60KB session cap |
+| Staleness | `trigger_datetime` on agenda items | Mtime-based: memories >1 day old get a staleness caveat |
+
+**The two retrieval paradigms:**
+- Elroy uses **semantic vector search** — meaning is encoded numerically; retrieval finds nearby concept space.
+- Claude Code uses **LLM description-based ranking** — the agent reads human-readable descriptions and reasons about contextual fit.
+
+Both have real tradeoffs. Vector search is fast and doesn't need an extra LLM call; it can miss intent-level relevance and requires embedding infrastructure. LLM ranking is slower (adds a Sonnet call per turn) but works without embeddings and can reason flexibly.
+
+**Latency management strategies diverge:**
+- Elroy's classifier skips recall for trivial inputs (greetings, short messages < 10 chars) — reducing load on the retrieval pipeline entirely.
+- Claude Code always prefetches, but does it asynchronously, hiding the latency from the user.
+
+**Elroy's "reflective recall"** is a distinctive feature not discussed in the post: a secondary LLM call transforms raw memories into a first-person internal thought ("I remember that Tom mentioned..."). This is more immersive but adds latency. The model determines relevance during this step; memories it deems not relevant are filtered out.
+
+### Inject
+
+Both avoid updating the system message (which would break prompt caching), and both avoid the user/assistant alternation problem:
+
+- **Elroy:** Synthetic tool call (TOOL role message) — the memory appears as though the agent called `get_fast_recall` or `get_reflective_recall`. The agent didn't actually make the call.
+- **Claude Code:** `<system-reminder>` attachment messages — presented as system context, not as a tool result.
+
+Elroy's approach aligns with the post's "where I land" position (synthetic tool calls). Claude Code's `<system-reminder>` method is a fourth injection variant not currently discussed in the post.
+
+Elroy also surfaces recalled memories in a dismissable UI panel — user-visible transparency that Claude Code lacks for this purpose.
+
+#### How `<system-reminder>` injection actually works (Claude Code deep dive)
+
+This is worth understanding in detail because it's a genuinely distinct approach.
+
+**It's a user-role message, not a system message.** The `<system-reminder>` tag is XML wrapped around content that gets sent as a standard `role: 'user'` message — not in the system prompt. Each recalled memory file becomes a separate user message with `isMeta: true`. The tag is explicitly explained in the system prompt:
+
+> "Tool results and user messages may include `<system-reminder>` tags. They are automatically added by the system, and bear no direct relation to the specific tool results or user messages in which they appear."
+
+That last phrase — "bear no direct relation" — is the key instruction: the model should apply the memory contextually, not treat it as tied to whatever user message it's co-located with.
+
+**Injection timing: post-tool-execution bubbling.** Attachment messages are collected after each tool loop iteration, then "bubble up" by reordering toward the nearest user/tool boundary before the next API call. The memories land in the context between tool activity and the next assistant turn.
+
+**Why this preserves prompt cache.** The system prompt is cached as a stable prefix. If memories were injected into the system prompt, any change would bust that cache. By injecting into user-role messages instead, the system prompt prefix stays byte-for-byte identical. An additional trick: memory headers are pre-computed at attachment-creation time (not at render time), so the timestamp shown in the header doesn't change between turns, preventing stale-age recomputation from busting anything downstream.
+
+**Budget controls.** There's an explicit per-turn byte budget: up to 5 files × 4KB = 20KB per turn, with a 60KB cap across the session (reset on compact). Memories already surfaced in the current session are deduplicated.
+
+**Comparison to the post's 3 options:**
+
+| Method | Role | Cache impact | Model perception |
+|--------|------|-------------|-----------------|
+| Update system message | system | Busts on every change | Authoritative background |
+| Tool call (real) | tool | No bust | Agent-initiated retrieval |
+| User/assistant message | user or assistant | Depends on position | Can confuse role attribution |
+| `<system-reminder>` (Claude Code) | user (isMeta) | No bust; header frozen | "System info, not tied to this message" |
+
+The tradeoff relative to Elroy's synthetic tool call: `<system-reminder>` doesn't require maintaining the fiction that an agent-initiated tool call happened. The model is explicitly told this is system-injected context. Synthetic tool calls preserve the tool-use idiom, which may help with models that reason more naturally in tool-call frames. The `<system-reminder>` approach is arguably more honest about what's happening.
+
+### Emit (Save)
+
+| | Elroy | Claude Code |
+|---|---|---|
+| Trigger | Automatic: every 10 user+assistant messages | Explicit ("remember X") OR turn-end extraction subagent |
+| Mechanism | LLM summarizes recent context → file + DB + embeddings | Forked subagent with restricted permissions (write-only to memory dir) |
+| Concurrency | Background task scheduler | Mutual exclusion: if main agent saved this turn, extraction is skipped |
+| Post-emit | DBSCAN clustering → LLM consolidates similar memory clusters | None |
+
+**Elroy's consolidation** is a concrete implementation of what the post mentions abstractly: after every 5 new memories, DBSCAN clusters memories by cosine similarity (threshold 0.85), and an LLM rewrites clusters into a single synthesized memory. Originals are archived. The goal is a dispersed, non-redundant memory collection.
+
+**Claude Code's extraction isolation** is a novel safety mechanism not mentioned in the post: the extraction subagent runs forked with denied `rm` and writes restricted to the memory directory. The mutual-exclusion rule prevents the main agent and extractor from both writing in the same turn.
+
+### Implications for the Post
+
+1. **Embeddings are optional.** Claude Code shows LLM-as-ranker is a viable alternative to vector search. Worth a mention in the Retrieve section — it reframes the design choice as "infrastructure vs. LLM call cost."
+
+2. **"Always prefetch vs. classify first" is an explicit latency tradeoff** the post identifies but doesn't name. Elroy's classifier and Claude Code's async prefetch are the two concrete strategies.
+
+3. **`<system-reminder>` as inject variant.** The post lists 3 injection methods; Claude Code's attachment method is a fourth.
+
+4. **Consolidation.** The post mentions async consolidation in the Store section. Elroy's DBSCAN implementation is the concrete example of this working in production.
+
+5. **Extraction subagent isolation.** Claude Code's forked subagent model is a novel emit approach — not quite tool call, not quite summarization — worth acknowledging if the post expands the Emit section.
