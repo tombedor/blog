@@ -4,22 +4,24 @@ date: 2026-03-21
 draft: true
 ---
 
-For me, the question of memory is the most interesting subfield of AI. The first time I interacted with MemGPT (now [Letta](https://www.letta.com/blog/memgpt-and-letta)), I felt like I had crossed a rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_.
+For me, the question of memory is the most interesting subfield of AI. The first time I interacted with MemGPT (now [Letta](https://www.letta.com/blog/memgpt-and-letta)), I felt like I had crossed a Rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_.
 
 Whether or not creating an AI with memory is a _being_, or whether it's advisable to create one is less easy to answer than at first glance. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
 
-I created my own system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with its functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if it's memories of our interactions were lost.
+I created my own system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with its functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if its memories of our interactions were lost.
 
-There are more grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgable in if I looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
+There are more grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgeable in if I'm looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
+
+<!-- truncate -->
 
 One could reasonably ask: how do I know my memory system is working? Evals for memory systems is a large topic in and of itself. I'll save it for another day, and focus on approaches here.
 
-### Long context models != memory
+## Long context models != memory
 
 As context windows of models grew, there was suspicion that memory systems would become unnecessary. There's a nice simplicity in the idea you can just stuff all your data into context and let the model sort it out.
 
 Performance has been shown to be poor, however. The Lost in the Middle paper demonstrated that LLMs bias toward the start and end of context, and when relevant information was in the middle of a document collection, performance dropped 30%.
-- **"Lost in the Middle" (Liu et al., Stanford/TACL 2024):* (https://arxiv.org/abs/2307.03172)
+- ["Lost in the Middle" (Liu et al., TACL 2024)](https://arxiv.org/abs/2307.03172)
 
 [Chroma research](https://research.trychroma.com/context-rot) demonstrated that all frontier models degrade as context windows grow.
 
@@ -27,7 +29,7 @@ Performance has been shown to be poor, however. The Lost in the Middle paper dem
 
 ## Approaches
 
-All memory systems can be broken into 3 general stages: _store_, _retrieve_, _inject_, _emit_.
+All memory systems can be broken into 4 general stages: _store_, _retrieve_, _inject_, _emit_.
 
 ![general_architecture](/diagrams/approaches-to-agent-memory/general_architecture.png)
 
@@ -53,7 +55,7 @@ My own Claude memory summary makes all three of these errors!
 
 ![problems](/diagrams/approaches-to-agent-memory/problems.png)
 
-"How do you know the memory is correct?" Is a very common question for these systems. The short answer: you don't.
+"How do you know the memory is correct?" is a very common question for these systems. The short answer: you don't.
 
 The primary ground truth data for memory systems is user conversation. Humans change their mind, misremember things, and sometimes are just plain wrong. Absent an independent source of ground truth, memories drawn from conversational transcripts will necessarily contain factual errors.
 
@@ -64,11 +66,11 @@ Agent memory poses a privacy question: Do you _want_ an AI agent to develop memo
 
 Big tech companies, of course, already in a sense know most of what you'd share with an AI. Your Google search history is a comprehensive log of what your thoughts are. But it's a bit more unnerving to have this data presented in a human-like voice.
 
-This is a big reason why I think the future of AI is local and open source, and why I favor a file based system ([open source models post](/open-source-models)). Local files both give the best ergonomics for adjusting what is surfaced to the AI - both the user and the AI are browsing data in the same format.
+This is a big reason why I think the future of AI is local and open source, and why I favor a file-based system ([open source models post](/open-source-models)). Local files both give the best ergonomics for adjusting what is surfaced to the AI - both the user and the AI are browsing data in the same format.
 
 #### Where I land
 
-I prefer flat files, with no built in taxonomy. I am skeptical that a single taxonomy works well for all users. In an early attempt, I took a taxonomy from Wikipedia, and directed the AI to conform it's entries to it. But it struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
+I prefer flat files, with no built-in taxonomy. I am skeptical that a single taxonomy works well for all users. In an early attempt, I took a taxonomy from Wikipedia, and directed the AI to conform its entries to it. But it struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
 
 <img src="/diagrams/approaches-to-agent-memory/wikipedia.png" alt="wikipedia" style={{width:'50%'}} />
 
@@ -92,14 +94,14 @@ How _many_ memories to fetch is another parameter, and largely depends on how me
 
 #### Key challenge: Latency
 
-A memory-enriched response from an AI is going to be slower than one without memory. There are usually going to have to be several queries in front of the user facing response, as memories are recalled, filtered, processed, and injected into context.
+A memory-enriched response from an AI is going to be slower than one without memory. There usually have to be several queries ahead of the user-facing response, as memories are recalled, filtered, processed, and injected into context.
 
 This poses one of the more tricky design questions of creating a memory-enhanced AI: memory isn't _always_ necessary. If I'm asking an agent the length of the Brooklyn bridge, I don't really need it to scan through our past interactions before answering.
 
 
 #### Where I land
 
-N=1 retrieval, with a relatively simple filter step. I favor an automatic memory injection, outside of the control of the agent. This better maps to my mental model of how memory works: when I remember something, I don't think, _time to search memory_ and consciously decide to recall something. It's more automatic and beyond my conscious control.
+Small-N retrieval, with a relatively simple filter step. In Elroy, I currently auto-recall a handful of items rather than forcing a strict top-1, but I still prefer keeping recall narrow. I favor an automatic memory injection, outside of the control of the agent. This better maps to my mental model of how memory works: when I remember something, I don't think, _time to search memory_ and consciously decide to recall something. It's more automatic and beyond my conscious control.
 
 Initiating memory searches automatically also yields more consistent results across models. When given a _search_memory_ tool, some models will use it almost every message, while others will use it too sparingly.
 
@@ -110,7 +112,7 @@ Injecting recalled memories into the standard OpenAI context is a bit like fitti
 Options include:
 
 1. *Updating system message*: Reserving a space in the system message for recalled, relevant information. This conceptually slots in the cleanest: you don't need to present what is really information from the system as a user message, tool call, or assistant message. There's a major issue with this though: *prompt caching invalidation*. Frequently updating the system message in this way invalidates prompt cache, resulting in high costs. With extra token use already being an inherent part of the equation for memory-augmented AI's, this is a major drawback.
-2. *Tool calls*: Of course, if the memory search was initiated via a tool call, this injection method is the natural choice. Letta surfaces _all_ user facing messages as a _send_message_ tool call. An occassional issue with this is that the agent gets confused, and doesn't properly use the _send_message_ tool to convey user info.
+2. *Tool calls*: Of course, if the memory search was initiated via a tool call, this injection method is the natural choice. Letta surfaces _all_ user-facing messages as a _send_message_ tool call. An occasional issue with this is that the agent gets confused, and doesn't properly use the _send_message_ tool to convey user info.
 3. *User or assistant messages*: In this method, either the incoming user message is edited to surface memory information, or an extra user or assistant message is created. For example, you can use html tags like `<memory>content</memory>`. This should be accompanied by instruction in the system message about how memory content is not visible to the user. There are some pitfalls to this approach. Some models require alternating `assistant` / `user` turns, so adding consecutive messages from one role or the other will be rejected. Despite system instructions, some models still get confused, and output responses with confusing HTML tags.
 
 #### Key challenge: Transparency
@@ -121,14 +123,14 @@ Injecting memories into context presents a tradeoff: the most seamless experienc
 
 Where correctness is highly important, memory systems can introduce subtle problems. Usually they are automatically generated and not deeply reviewed by humans, so a wrong assumption in an agent's memory store can be difficult to detect.
 
-This is why I don't use memory functionality in coding workflows. Instead, I write (with AI assistance) comprehensive project docs, in human readable format, and refer the agent to it (see: [Don't Write Docs Twice](/make-it-easy-for-humans)).
+This is why I don't use memory functionality in coding workflows. Instead, I write (with AI assistance) comprehensive project docs, in human-readable format, and refer the agent to it (see: [Don't Write Docs Twice](/make-it-easy-for-humans)).
 
 This is a more manual process than just spitballing about a project to an AI, but I prefer to have the AI's ground truth assumptions tightly controlled during coding.
 
 
 #### Where I land
 
-I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with. My tool also lists which memories have been recalled in a dismissable dialog, available for user review:
+I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with. My tool also lists which memories have been recalled in a dismissible panel, available for user review:
 
 ![memory_panel_screenshot](/diagrams/approaches-to-agent-memory/memory_panel_screenshot.png)
 
@@ -140,13 +142,13 @@ Memories are usually created via an agent tool call, or via a summary of convers
 
 I find tool calls do the majority of the heavy lifting here.
 
-When systems offer context compression, they usually also often emit memories of pruned text. This is arguably obsolete with modern, 1m+ context windows, but I think they are still relevant. I typically prune messages older than a day or so, and emit memories based on pruned text. This creates memories that could be redundant with agent-emitted memories, but async memory consolidation cleans that up.
+When systems offer context compression, they often emit memories of pruned text. This is arguably obsolete with modern, 1m+ context windows, but I think they are still relevant. I typically prune messages older than a day or so, and emit memories based on pruned text. This creates memories that could be redundant with agent-emitted memories, but async memory consolidation cleans that up.
 
 ![consolidation_and_compression](/diagrams/approaches-to-agent-memory/consolidation_and_compression.png)
 
 
 ## Conclusion
 
-In general, I think the UX problem of AI memory is more important than eeking out extra marginal points on benchmarks. The question of how much user visibility to give to recalled memories, how often to search, and how much content to retrieve are trickier problems to solve in getting a memory-amplified agent that actually has user appeal.
+In general, I think the UX problem of AI memory is more important than eking out extra marginal points on benchmarks. The question of how much user visibility to give to recalled memories, how often to search, and how much content to retrieve are trickier problems to solve in getting a memory-amplified agent that actually has user appeal.
 
 My general bias is towards transparency to the user and simplicity in storage, which is why I tend to avoid exotic datastores and ensure that some representation of what content has been recalled is in my UI.
