@@ -24,9 +24,9 @@ dual-publish:
 export-diagrams:
 	./scripts/excalidraw-export.sh -r static/diagrams
 
-# Send a test newsletter for a specific post to one or more comma-separated emails
-newsletter-test post emails="":
-	node ./scripts/send-newsletter.mjs test "{{post}}" "{{emails}}"
+# Send a test newsletter for a specific post to the configured test list
+newsletter-test post:
+	node ./scripts/send-newsletter.mjs test "{{post}}"
 
 # Send a newsletter for a specific post to subscribers
 newsletter-send post:

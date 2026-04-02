@@ -11,12 +11,11 @@ const ENV_PATH = path.join(ROOT, '.env');
 
 function usage() {
   console.error(`Usage:
-  node scripts/send-newsletter.mjs test <post> [emails]
+  node scripts/send-newsletter.mjs test <post>
   node scripts/send-newsletter.mjs send <post>
 
 Arguments:
   <post>     Blog post path, filename, or slug (for example: approaches-to-agent-memory)
-  [emails]   Comma-separated test recipient emails. Falls back to LISTMONK_TEST_EMAILS.
 
 Required environment:
   LISTMONK_URL
@@ -32,12 +31,12 @@ Optional environment:
 }
 
 function parseArgs(argv) {
-  const [mode, postArg, emailsArg] = argv;
+  const [mode, postArg] = argv;
   if (!mode || !postArg || !['test', 'send'].includes(mode)) {
     usage();
     process.exit(1);
   }
-  return {mode, postArg, emailsArg};
+  return {mode, postArg};
 }
 
 async function readFileIfExists(filePath) {
@@ -299,16 +298,9 @@ async function resolveListId(baseUrl, headers, mode) {
   throw new Error(`Could not find a Listmonk list matching ${listEnv.label.split(' or ')[1]}=${listUuid}`);
 }
 
-function parseEmails(rawEmails) {
-  return (rawEmails || '')
-    .split(',')
-    .map((email) => email.trim())
-    .filter(Boolean);
-}
-
 async function main() {
   await loadDotEnv();
-  const {mode, postArg, emailsArg} = parseArgs(process.argv.slice(2));
+  const {mode, postArg} = parseArgs(process.argv.slice(2));
   const rawListmonkUrl = process.env.LISTMONK_URL;
   if (!rawListmonkUrl) {
     throw new Error('LISTMONK_URL is required');
@@ -359,29 +351,16 @@ async function main() {
     throw new Error('Listmonk did not return a campaign ID');
   }
 
-  if (mode === 'test') {
-    const emails = parseEmails(emailsArg || process.env.LISTMONK_TEST_EMAILS);
-    if (emails.length === 0) {
-      throw new Error('Provide test recipient emails as an argument or via LISTMONK_TEST_EMAILS');
-    }
-
-    await requestJson(`${baseUrl}/api/campaigns/${campaignId}/test`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({subscribers: emails}),
-    });
-
-    console.log(
-      `Sent test newsletter for "${frontmatter.title}" to ${emails.join(', ')} (campaign ${campaignId}).`,
-    );
-    return;
-  }
-
   await requestJson(`${baseUrl}/api/campaigns/${campaignId}/status`, {
     method: 'PUT',
     headers,
     body: JSON.stringify({status: 'running'}),
   });
+
+  if (mode === 'test') {
+    console.log(`Started test-list newsletter for "${frontmatter.title}" (campaign ${campaignId}).`);
+    return;
+  }
 
   console.log(`Started subscriber newsletter for "${frontmatter.title}" (campaign ${campaignId}).`);
 }
