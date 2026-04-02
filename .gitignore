@@ -31,3 +31,5 @@ infrastructure/docker/.env
 
 # Diagram hash cache (for excalidraw export)
 static/diagrams/.diagram_hashes/
+
+.env
