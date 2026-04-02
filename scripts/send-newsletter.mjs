@@ -6,7 +6,6 @@ import process from 'node:process';
 
 const ROOT = process.cwd();
 const BLOG_DIR = path.join(ROOT, 'blog');
-const SIGNUP_COMPONENT_PATH = path.join(ROOT, 'src', 'components', 'NewsletterSignup.tsx');
 const DOCUSAURUS_CONFIG_PATH = path.join(ROOT, 'docusaurus.config.ts');
 
 function usage() {
@@ -19,13 +18,12 @@ Arguments:
   [emails]   Comma-separated test recipient emails. Falls back to LISTMONK_TEST_EMAILS.
 
 Required environment:
+  LISTMONK_URL
   LISTMONK_API_USER
   LISTMONK_API_TOKEN
+  LISTMONK_LIST_ID or LISTMONK_LIST_UUID
 
 Optional environment:
-  LISTMONK_URL         Defaults to https://newsletter.tombedor.dev
-  LISTMONK_LIST_ID     Numeric Listmonk list ID to send to
-  LISTMONK_LIST_UUID   List UUID to resolve to an ID
   LISTMONK_TEST_EMAILS Default test recipients for "test" mode
   SITE_URL             Defaults to the Docusaurus site URL or https://tombedor.dev
 `);
@@ -181,20 +179,6 @@ ${excerpt}
 Read the full post: ${postUrl}`;
 }
 
-async function getDefaultListUuid() {
-  if (process.env.LISTMONK_LIST_UUID) {
-    return process.env.LISTMONK_LIST_UUID;
-  }
-
-  const signupComponent = await readFileIfExists(SIGNUP_COMPONENT_PATH);
-  if (!signupComponent) {
-    return null;
-  }
-
-  const match = signupComponent.match(/const LIST_UUID = '([^']+)'/);
-  return match ? match[1] : null;
-}
-
 function getAuthHeaders() {
   const user = process.env.LISTMONK_API_USER;
   const token = process.env.LISTMONK_API_TOKEN;
@@ -243,7 +227,11 @@ async function resolveListId(baseUrl, headers) {
     return value;
   }
 
-  const listUuid = await getDefaultListUuid();
+  const listUuid = process.env.LISTMONK_LIST_UUID;
+  if (!listUuid) {
+    throw new Error('Set LISTMONK_LIST_ID or LISTMONK_LIST_UUID');
+  }
+
   const listsResponse = await requestJson(
     `${baseUrl}/api/lists?status=active&per_page=all`,
     {
@@ -257,21 +245,12 @@ async function resolveListId(baseUrl, headers) {
     throw new Error('Unexpected /api/lists response from Listmonk');
   }
 
-  if (listUuid) {
-    const matching = results.find((list) => list.uuid === listUuid);
-    if (matching) {
-      return matching.id;
-    }
+  const matching = results.find((list) => list.uuid === listUuid);
+  if (matching) {
+    return matching.id;
   }
 
-  const publicLists = results.filter((list) => list.type === 'public');
-  if (publicLists.length === 1) {
-    return publicLists[0].id;
-  }
-
-  throw new Error(
-    'Could not resolve newsletter list ID automatically. Set LISTMONK_LIST_ID or LISTMONK_LIST_UUID.',
-  );
+  throw new Error(`Could not find a Listmonk list matching LISTMONK_LIST_UUID=${listUuid}`);
 }
 
 function parseEmails(rawEmails) {
@@ -283,7 +262,11 @@ function parseEmails(rawEmails) {
 
 async function main() {
   const {mode, postArg, emailsArg} = parseArgs(process.argv.slice(2));
-  const baseUrl = (process.env.LISTMONK_URL || 'https://newsletter.tombedor.dev').replace(/\/+$/, '');
+  const rawListmonkUrl = process.env.LISTMONK_URL;
+  if (!rawListmonkUrl) {
+    throw new Error('LISTMONK_URL is required');
+  }
+  const baseUrl = rawListmonkUrl.replace(/\/+$/, '');
   const headers = getAuthHeaders();
   const postPath = await resolvePostPath(postArg);
   const postContent = await fs.readFile(postPath, 'utf8');

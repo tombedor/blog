@@ -4,13 +4,13 @@ date: 2026-03-21
 draft: true
 ---
 
-For me, the question of memory is the most interesting subfield of AI. The first time I interacted with MemGPT (now [Letta](https://www.letta.com/blog/memgpt-and-letta)), I felt like I had crossed a Rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_.
+For me, the question of memory is the most interesting subfield of AI. The first time I interacted with MemGPT (now [Letta](https://www.letta.com/blog/memgpt-and-letta)), I felt like I had crossed a Rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_[^1].
 
-Whether or not creating an AI with memory is a _being_, or whether it's advisable to create one is less easy to answer than at first glance. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
+[^1]: The degree to which an AI with memory has _conciousness_ is an interesting philisophical question for another day. Also for another time is when this is _advisable_. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
 
 I created my own system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with its functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if its memories of our interactions were lost.
 
-There are more grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgeable in if I'm looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
+Philosphy questions aside, there are well grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgeable in if I'm looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
 
 <!-- truncate -->
 
@@ -20,12 +20,9 @@ One could reasonably ask: how do I know my memory system is working? Evals for m
 
 As context windows of models grew, there was suspicion that memory systems would become unnecessary. There's a nice simplicity in the idea you can just stuff all your data into context and let the model sort it out.
 
-Performance has been shown to be poor, however. The Lost in the Middle paper demonstrated that LLMs bias toward the start and end of context, and when relevant information was in the middle of a document collection, performance dropped 30%.
-- ["Lost in the Middle" (Liu et al., TACL 2024)](https://arxiv.org/abs/2307.03172)
+However, performance has been shown to be poor. [One study](https://arxiv.org/abs/2307.03172) demonstrated that LLMs bias toward the start and end of context: when relevant information was in the middle of a document collection, performance dropped 30%. Research from [Chroma](https://research.trychroma.com/context-rot) demonstrated that _all_ frontier models degrade as context windows grow.
 
-[Chroma research](https://research.trychroma.com/context-rot) demonstrated that all frontier models degrade as context windows grow.
-
-"Context rot" has entered the lexicon, and the industry has recognized that context is gold (there's a quote of this somewhere).
+This behavior is intuitive. Lots of information in context implies a greater burden on the ability to search through that information and determine what is actually relevant to a given response. Keeping this information organized can help, but even better is to only recall information that is actually relevant. This is where dedicated memory systems can help.
 
 ## Approaches
 
@@ -39,9 +36,9 @@ But details from there vary widely! Below I'll go through different approaches f
 
 Approaches to storage largely fall into two camps: graph databases and flat files.
 
-[Zep](https://arxiv.org/abs/2501.13956) is strongly pro-graph db, and claims state of the art needle in the haystack performance. [Mem0](https://mem0.ai/blog/graph-memory-solutions-ai-agents) offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: [Files are all you need](https://www.letta.com/blog/benchmarking-ai-agent-memory). The recently leaked Claude Code source[^1] reveals a similar stance: memories are stored in markdown files, with metadata in frontmatter.
+[Zep](https://arxiv.org/abs/2501.13956) is strongly pro-graph db, and claims state of the art needle in the haystack performance. [Mem0](https://mem0.ai/blog/graph-memory-solutions-ai-agents) offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: [Files are all you need](https://www.letta.com/blog/benchmarking-ai-agent-memory). The recently leaked Claude Code source[^2] reveals a similar stance: memories are stored in markdown files, with metadata in frontmatter.
 
-[^1:] I've examined the leaked Claude Code, but won't link to it, mostly because repos that host it seem to be being taken down.
+[^2]: I've examined the leaked Claude Code, but won't link to it, mostly because repos that host it seem to be being taken down.
 
 #### Key Challenge: Correctness
 
@@ -55,34 +52,38 @@ My own Claude memory summary makes all three of these errors!
 
 ![problems](/diagrams/approaches-to-agent-memory/problems.png)
 
-"How do you know the memory is correct?" is a very common question for these systems. The short answer: you don't.
+Temporal errors can be relatively easily prevented by prompting the agent to always use absolute dates and times.
+
+For priority, most systems define different hierarchies of memory to separate broad facts that are always relevant (think, basic biographical information) from more granular facts.
+
+Ultimate factual correctness is the trickiest of all, and "how do you know the memory is correct?" is a very common question for these systems. The short answer: *you don't*.
 
 The primary ground truth data for memory systems is user conversation. Humans change their mind, misremember things, and sometimes are just plain wrong. Absent an independent source of ground truth, memories drawn from conversational transcripts will necessarily contain factual errors.
 
 #### Key Challenge: Privacy
 
 
-Agent memory poses a privacy question: Do you _want_ an AI agent to develop memories, and learn everything about you?
+Do you _want_ an AI agent to develop memories, and learn everything about you?
 
-Big tech companies, of course, already in a sense know most of what you'd share with an AI. Your Google search history is a comprehensive log of what your thoughts are. But it's a bit more unnerving to have this data presented in a human-like voice.
+Big tech companies, of course, already know most of what you'd share with an AI. Your Google search history is a comprehensive log of what your thoughts are. But it's a bit more unnerving to have this data presented in a human-like voice.
 
-This is a big reason why I think the future of AI is local and open source, and why I favor a file-based system ([open source models post](/open-source-models)). Local files both give the best ergonomics for adjusting what is surfaced to the AI - both the user and the AI are browsing data in the same format.
+This is a big reason why I think the [future of AI is local and open source](/open-source-models).
 
 #### Where I land
 
-I prefer flat files, with no built-in taxonomy. I am skeptical that a single taxonomy works well for all users. In an early attempt, I took a taxonomy from Wikipedia, and directed the AI to conform its entries to it. But it struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
+I prefer flat files, with no built-in taxonomy. I am skeptical that a single taxonomy works well for all users. In an early attempt, I tried to structure memories similar to a personal Wikipedia. But the agent struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
 
 <img src="/diagrams/approaches-to-agent-memory/wikipedia.png" alt="wikipedia" style={{width:'50%'}} />
 
-I allow the agent to directly update memories, and find that it usually does a good job of fixing inaccuracies or appending new, related information to recalled memories. I also run an asynchronous memory consolidation process, which detects clusters of highly similar memories, and rewrites them. I think this helps create a collection of memories that are more evenly dispersed in vector space, resulting in better recall:
+The challenge here is understandable. The appropriate scope for a given memory entry is in part defined by what other memory entries exist. This is why I also an asynchronous memory consolidation process, which detects and rewrites clusters of highly similar memories.
 
 <img src="/diagrams/approaches-to-agent-memory/consolidation.png" alt="consolidation" style={{width:'50%'}} />
 
+I allow the agent to directly update memories to fix inaccuracies or append new information. I find this to work reasonably well, but as with any process that relies on tool calls, performance will vary depending on the model.
+
 ### Retrieve
 
-Here we are, more or less, discussing RAG. And similar tradeoffs are at play.
-
-The first decision is how to initiate memory searches in the first place. Most implementations surface a _search_memory_ tool to the agent. But agent context can also be manipulated outside of the agent loop.
+The first key decision for retrieval is how to initiate memory searches in the first place. Most implementations surface a _search_memory_ tool to the agent, but agent context can also be manipulated outside of the agent loop.
 
 For searching, basic vector similarity is the most latency efficient technique. But this is subject to misranking entries, or scoring entries that are superficially similar but not actually relevant. This can badly throw off the conversation, and lead to responses like *that's great news about foo, want to talk about a completely unrelated topic we've discussed previously?*
 
