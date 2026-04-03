@@ -147,7 +147,7 @@ async function resolvePostPath(postArg) {
 }
 
 function sanitizePostBody(markdown, siteUrl) {
-  const sanitized = markdown
+  const sanitized = normalizeMdxImageTags(markdown)
     .split(/\r?\n/)
     .filter((line) => {
       const trimmed = line.trim();
@@ -170,6 +170,41 @@ function sanitizePostBody(markdown, siteUrl) {
     .trim();
 
   return normalizeFootnotes(sanitized);
+}
+
+function normalizeMdxImageTags(markdown) {
+  return markdown.replace(/<img\b[^>]*>/g, (tag) => {
+    let normalized = tag;
+
+    normalized = normalized.replace(/style=\{\{([^}]*)\}\}/g, (_match, styleBody) => {
+      const declarations = styleBody
+        .split(',')
+        .map((part) => part.trim())
+        .filter(Boolean)
+        .map((part) => {
+          const idx = part.indexOf(':');
+          if (idx === -1) {
+            return null;
+          }
+
+          const rawKey = part.slice(0, idx).trim();
+          let rawValue = part.slice(idx + 1).trim();
+          if (!rawKey || !rawValue) {
+            return null;
+          }
+
+          rawValue = rawValue.replace(/^['"]|['"]$/g, '');
+          const cssKey = rawKey.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
+          return `${cssKey}:${rawValue};`;
+        })
+        .filter(Boolean)
+        .join(' ');
+
+      return declarations ? `style="${declarations}"` : '';
+    });
+
+    return normalized.replace(/\s*\/>$/, '>');
+  });
 }
 
 function normalizeFootnotes(markdown) {
