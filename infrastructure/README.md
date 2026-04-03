@@ -107,6 +107,7 @@ Listmonk needs SMTP to send emails. This setup uses Resend (3,000 emails/month f
 2. Add and verify your domain under **Domains**
 3. Create an API key under **API Keys** with "Sending access"
 4. Set `LISTMONK_app__smtp_password=re_your_key` in `docker/.env`
+5. Use `LISTMONK_app__smtp_port=2587` for Resend on DigitalOcean, since `587` timed out from the production droplet
 
 ## 🔧 Management
 
