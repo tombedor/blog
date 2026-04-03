@@ -10,7 +10,7 @@ For me, the question of memory is the most interesting subfield of AI. The first
 
 I created my own open source system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with its functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if its memories of our interactions were lost.
 
-Philosophy questions aside, there are well-grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgeable in if I'm looking to discuss technical topics. If I'm looking for vacation plans, it's helpful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
+Philosophy questions aside, there are well-grounded reasons to build AI systems with memory. It's useful for an agent to understand what subjects I'm knowledgeable in if I'm looking to discuss technical topics. If I'm looking for vacation plans, it's helpful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
 
 <!-- truncate -->
 
@@ -42,9 +42,9 @@ Approaches to storage largely fall into two camps: graph databases and flat file
 
 #### Key Challenge: Correctness
 
-AI memory systems primarily make three kinds of errors:
+Agent memory systems primarily make three kinds of errors:
 
-1. **Temporal errors**: AI systems struggle with reasoning about time. They typically don't account for context that extends into time, and will naively write memories assuming the current moment _will always be the current moment_. This is a problem: the date of "next Thursday" very quickly changes!
+1. **Temporal errors**: LLMs struggle with reasoning about time. They typically don't account for context that extends into time, and will naively write memories assuming the current moment _will always be the current moment_. This is a problem: the date of "next Thursday" very quickly changes!
 1. **Miscalibrated priority**: Especially early on in a user journey the AI will preserve a mundane fact about the _current conversation_, which survives into future conversations where the fact is irrelevant.
 1. **Plain old incorrectness**: Hopefully self-explanatory.
 
@@ -98,9 +98,9 @@ How _many_ memories to fetch is another parameter, and largely depends on how me
 
 #### Key Challenge: Latency
 
-A memory-enriched response from an AI is going to be slower than one without memory. There usually have to be several queries ahead of the user-facing response, as memories are recalled, filtered, processed, and injected into context.
+A memory-enriched response from an agent is going to be slower than one without memory. There usually have to be several queries ahead of the user-facing response, as memories are recalled, filtered, processed, and injected into context.
 
-This poses one of the trickier design questions in creating a memory-enhanced AI: memory isn't _always_ necessary. If I'm asking an agent how long the Brooklyn Bridge is, I don't really need it to scan through our past interactions before answering.
+This poses one of the trickier design questions in building a memory-enhanced agent: memory isn't _always_ necessary. If I'm asking an agent how long the Brooklyn Bridge is, I don't really need it to scan through our past interactions before answering.
 
 
 #### How I built Elroy
@@ -119,7 +119,7 @@ Injecting recalled memories into the standard OpenAI context is a bit like fitti
 
 Options include:
 
-1. **Updating system message**: Reserving a space in the system message for recalled, relevant information. This conceptually slots in the cleanest: you don't need to present what is really information from the system as a user message, tool call, or assistant message. There's a major issue with this though: *prompt caching invalidation*. Frequently updating the system message in this way invalidates prompt cache, resulting in high costs. With extra token use already being an inherent part of the equation for memory-augmented AIs, this is a major drawback.
+1. **Updating system message**: Reserving a space in the system message for recalled, relevant information. This conceptually slots in the cleanest: you don't need to present what is really information from the system as a user message, tool call, or assistant message. There's a major issue with this though: *prompt caching invalidation*. Frequently updating the system message in this way invalidates prompt cache, resulting in high costs. With extra token use already being an inherent part of the equation for memory-augmented agents, this is a major drawback.
 2. **Tool calls**: Of course, if the memory search was initiated via a tool call, this injection method is the natural choice. Letta surfaces _all_ user-facing messages as a _send_message_ tool call. An occasional issue with this is that the agent gets confused, and doesn't properly use the _send_message_ tool to convey user info.
 3. **User or assistant messages**: In this method, either the incoming user message is edited to surface memory information, or an extra user or assistant message is created. For example, you can use html tags like `<memory>content</memory>`. This should be accompanied by instruction in the system message about how memory content is not visible to the user. There are some pitfalls to this approach. Some models require alternating `assistant` / `user` turns, so adding consecutive messages from one role or the other will be rejected. Despite system instructions, some models still get confused, and output responses with confusing HTML tags.
 
@@ -159,6 +159,6 @@ I also emit memories during context compression. This is arguably obsolete with 
 
 ## Conclusion
 
-In general, I think the UX problem of AI memory is more important than eking out extra marginal points on benchmarks. The question of how much user visibility to give to recalled memories, how often to search, and how much content to retrieve are trickier problems to solve if you want a memory-amplified agent that people actually want to use.
+In general, I think the UX problem of agent memory is more important than eking out extra marginal points on benchmarks. The question of how much user visibility to give to recalled memories, how often to search, and how much content to retrieve are trickier problems to solve if you want a memory-amplified agent that people actually want to use.
 
 My general bias is towards transparency to the user and simplicity in storage, which is why I tend to avoid exotic datastores and ensure that some representation of what content has been recalled is in my UI.
