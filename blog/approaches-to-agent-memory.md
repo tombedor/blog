@@ -1,7 +1,6 @@
 ---
 title: The design of AI memory systems
 date: 2026-03-21
-draft: true
 ---
 
 For me, the question of memory is the most interesting subfield of AI. The first time I interacted with MemGPT (now [Letta](https://www.letta.com/blog/memgpt-and-letta)), I felt like I had crossed a Rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_[^1].
