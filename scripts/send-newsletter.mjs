@@ -147,7 +147,7 @@ async function resolvePostPath(postArg) {
 }
 
 function sanitizePostBody(markdown, siteUrl) {
-  return markdown
+  const sanitized = markdown
     .split(/\r?\n/)
     .filter((line) => {
       const trimmed = line.trim();
@@ -168,6 +168,66 @@ function sanitizePostBody(markdown, siteUrl) {
     .replace(/(<img[^>]*\ssrc=["'])\/(?!\/)/g, `$1${siteUrl}/`)
     .replace(/(<a[^>]*\shref=["'])\/(?!\/)/g, `$1${siteUrl}/`)
     .trim();
+
+  return normalizeFootnotes(sanitized);
+}
+
+function normalizeFootnotes(markdown) {
+  const lines = markdown.split(/\r?\n/);
+  const bodyLines = [];
+  const footnotes = new Map();
+
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i];
+    const match = line.match(/^\[\^([^\]]+)\]:\s*(.*)$/);
+    if (!match) {
+      bodyLines.push(line);
+      continue;
+    }
+
+    const [, label, firstLine] = match;
+    const parts = [firstLine.trim()];
+
+    for (let j = i + 1; j < lines.length; j += 1) {
+      const continuation = lines[j];
+      if (/^( {2,}|\t)/.test(continuation)) {
+        parts.push(continuation.trim());
+        i = j;
+        continue;
+      }
+      break;
+    }
+
+    footnotes.set(label, parts.join(' ').trim());
+  }
+
+  if (footnotes.size === 0) {
+    return markdown;
+  }
+
+  const order = [];
+  const seen = new Set();
+  const body = bodyLines
+    .join('\n')
+    .replace(/\[\^([^\]]+)\]/g, (_match, label) => {
+      if (footnotes.has(label) && !seen.has(label)) {
+        seen.add(label);
+        order.push(label);
+      }
+      return footnotes.has(label) ? `[${label}]` : _match;
+    })
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+
+  if (order.length === 0) {
+    return body;
+  }
+
+  const notes = order
+    .map((label) => `${label}. ${footnotes.get(label)}`)
+    .join('\n');
+
+  return `${body}\n\n## Notes\n\n${notes}`;
 }
 
 async function getSiteUrl() {

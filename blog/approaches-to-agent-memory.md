@@ -1,5 +1,5 @@
 ---
-title: Approaches to giving memory to AI
+title: The design of AI memory systems
 date: 2026-03-21
 draft: true
 ---
@@ -10,7 +10,7 @@ For me, the question of memory is the most interesting subfield of AI. The first
 
 I created my own open source system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with its functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if its memories of our interactions were lost.
 
-Philosphy questions aside, there are well grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgeable in if I'm looking to discuss technical topics. If I'm looking for vacation plans, it's useful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
+Philosphy questions aside, there are well grounded reasons to want to give AI memory. It's useful for AI to understand what subjects I'm knowledgeable in if I'm looking to discuss technical topics. If I'm looking for vacation plans, it's helpful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
 
 <!-- truncate -->
 
@@ -30,13 +30,13 @@ All memory systems can be broken into 4 general stages: _store_, _retrieve_, _in
 
 ![general_architecture](/diagrams/approaches-to-agent-memory/general_architecture.png)
 
-But details from there vary widely! Below I'll go through different approaches for these, and where I land on them.
+But details from there vary widely! Below I'll go through different approaches for these amongst different providers: [Zep](https://www.getzep.com/), [Letta](https://www.letta.com/), Claude Code, and my own program, [Elroy](https://elroy.bot).
 
 ### Store
 
 Approaches to storage largely fall into two camps: graph databases and flat files.
 
-[Zep](https://arxiv.org/abs/2501.13956) is strongly pro-graph db, and claims state of the art needle in the haystack performance. [Mem0](https://mem0.ai/blog/graph-memory-solutions-ai-agents) offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: [Files are all you need](https://www.letta.com/blog/benchmarking-ai-agent-memory). The recently leaked Claude Code source[^2] reveals a similar stance: memories are stored in markdown files, with metadata in frontmatter.
+[Zep](https://www.getzep.com/) is strongly pro-graph db, and [claims state of the art needle in the haystack performance](https://arxiv.org/abs/2501.13956). [Mem0](https://mem0.ai/blog/graph-memory-solutions-ai-agents) offers a graph database integration, but claims only a 2% performance boost. Letta also works with files, and released a research paper arguing for it: [Files are all you need](https://www.letta.com/blog/benchmarking-ai-agent-memory). The recently leaked Claude Code source[^2] reveals a similar stance: memories are stored in markdown files, with metadata in frontmatter.
 
 [^2]: I've examined the leaked Claude Code, but won't link to it, mostly because repos that host it seem to be being taken down.
 
@@ -44,9 +44,9 @@ Approaches to storage largely fall into two camps: graph databases and flat file
 
 AI memory systems primarily make three kinds of errors:
 
-1. Temporal errors: AI's struggle with reasoning about time. Their reasoning does not account for context that extends into time, and will naively write memories assuming the current moment _will always be the current moment_. I.e., "next Thursday" very quickly changes!
-1. Miscalibrated priority: Especially early on in a user journey the AI will preserve a mundane fact about the _current conversation_, which survives into future conversations where the fact is irrelevant.
-1. Plain old incorrectness. The ground truth of AI memory is conversation with a human. But humans change their mind, misremember things, and are sometimes flat out wrong.
+1. **Temporal errors**: AI's struggle with reasoning about time. They typically don't account for context that extends into time, and will naively write memories assuming the current moment _will always be the current moment_. This is a problem: the date of "next Thursday" very quickly changes!
+1. **Miscalibrated priority**: Especially early on in a user journey the AI will preserve a mundane fact about the _current conversation_, which survives into future conversations where the fact is irrelevant.
+1. **Plain old incorrectness**: Hopefully self explanatory.
 
 My own Claude memory summary makes all three of these errors!
 
@@ -54,9 +54,9 @@ My own Claude memory summary makes all three of these errors!
 
 Temporal errors can be relatively easily prevented by prompting the agent to always use absolute dates and times.
 
-For priority, most systems define different hierarchies of memory to separate broad facts that are always relevant (think, basic biographical information) from more granular facts.
+For priority, most systems define different hierarchies of memory to separate broad facts that are always relevant (think, basic biographical information) from more granular facts. This presents other challenges which I will address later.
 
-Ultimate factual correctness is the trickiest of all, and "how do you know the memory is correct?" is a very common question for these systems. The short answer: *you don't*.
+Ultimate factual correctness is the trickiest of all. "How do you know the memory is correct?" is a very common question for these systems. The short answer: *you don't*.
 
 The primary ground truth data for memory systems is user conversation. Humans change their mind, misremember things, and sometimes are just plain wrong. Absent an independent source of ground truth, memories drawn from conversational transcripts will necessarily contain factual errors.
 
@@ -71,7 +71,7 @@ This is a big reason why I think the [future of AI is local and open source](/op
 
 #### How I built Elroy
 
-After experimenting with database backed memories, I landed on markdown files. Rather than a taxonomy of _what entities the agent remembers_, I've focused on finding the right taxonomy of what the agent should _do_ with the memory. I've landed on the concept of an Agenda Item, which represents some longer running goal I have. This includes subtasks and reminder triggers. This makes memories _actionable_, rather than just generically informing conversations:
+After experimenting with database backed memories, I landed on markdown files. Rather than a taxonomy of _what entities the agent remembers_, I've focused on finding the right taxonomy of what the agent should _do_ with the memory. I've landed on the concept of an Agenda Item representing some longer running goal I have, including subtasks and reminder triggers. This makes memories _actionable_, rather than just generically informing conversations:
 
 ![agenda_panel_screenshot](/diagrams/approaches-to-agent-memory/agenda_panel_screenshot.png)
 
@@ -79,7 +79,7 @@ I am skeptical that a single taxonomy of _entities_ can works well for all users
 
 <img src="/diagrams/approaches-to-agent-memory/wikipedia.png" alt="wikipedia" style={{width:'50%'}} />
 
-The challenge here is understandable. The appropriate scope for a given memory entry is in part defined by what other memory entries exist. This is why I also an asynchronous memory consolidation process, which detects and rewrites clusters of highly similar memories.
+The challenge here is understandable. The appropriate scope for a given memory entry is in part defined by what other memory entries exist. This is why I let my agent create memories that could be redundant with existing entries, and rely on an asynchronous memory consolidation process to detect and rewrite clusters of highly similar memories.
 
 <img src="/diagrams/approaches-to-agent-memory/consolidation.png" alt="consolidation" style={{width:'50%'}} />
 
@@ -90,11 +90,9 @@ For storage, markdown files provide for easier human reading, better portability
 
 The first key decision for retrieval is how to initiate memory searches in the first place. Most implementations surface a _search_memory_ tool to the agent, but agent context can also be manipulated outside of the agent loop.
 
-For searching, basic vector similarity is the most latency efficient technique. But this is subject to misranking entries, or scoring entries that are superficially similar but not actually relevant. This can badly throw off the conversation, and lead to responses like *that's great news about foo, want to talk about a completely unrelated topic we've discussed previously?*
+For searching, basic vector similarity is the most latency efficient technique. But this is subject to misranking entries, or scoring entries that are superficially similar but not actually relevant. This can badly throw off the conversation, and lead to responses like *that's great news about foo, want to talk about a completely unrelated topic we've discussed previously?*. A post-retrieval filtering step is effective at avoiding this, but adds latency.
 
-Claude Code is an interesting outlier in terms of retrieval: it does not use vector similarity for retrieval. Instead, it keeps some metadata about which memories are available in context, and delegates retrieval to a background Sonnet call. My guess is they use Sonnet rather than vector similarity because they don't have a public embeddings API, but I think this probably leads to suboptimal recall. The background call for recall means that the user isn't blocked on it, but also means that relevant memories might not get to context in time.
-
-A post-retrieval filtering step is helpful, but adds latency.
+Claude Code is an interesting outlier in terms of retrieval: it does not use vector similarity. Instead, it keeps some metadata about which memories are available in context, and delegates retrieval to a background Sonnet call. My guess is they use Sonnet rather than vector similarity because they don't have a public embeddings API, but I think this probably leads to suboptimal recall. Delegating retrieval to a background call means that it doesn't block the user, but also means that relevant memories might not get to context in time.
 
 How _many_ memories to fetch is another parameter, and largely depends on how memories have been stored. If memories are small tidbits, there may be more than one relevant memory to inject, whereas if memories are a paragraph or more, it's likely only the top match makes sense.
 
@@ -117,13 +115,13 @@ Initiating memory searches automatically also yields more consistent results acr
 
 ### Inject
 
-Injecting recalled memories into the standard OpenAI context is a bit like fitting a square peg into a round hole. As with other RAG systems, the OpenAI spec does not quite offer an easy field to put recalled, relevant information in.
+Injecting recalled memories into the standard OpenAI context is a bit like fitting a square peg into a round hole. Standard LLM API's do not provide a natural place to say, "here is extra information that is relevant to the conversation".
 
 Options include:
 
-1. *Updating system message*: Reserving a space in the system message for recalled, relevant information. This conceptually slots in the cleanest: you don't need to present what is really information from the system as a user message, tool call, or assistant message. There's a major issue with this though: *prompt caching invalidation*. Frequently updating the system message in this way invalidates prompt cache, resulting in high costs. With extra token use already being an inherent part of the equation for memory-augmented AI's, this is a major drawback.
-2. *Tool calls*: Of course, if the memory search was initiated via a tool call, this injection method is the natural choice. Letta surfaces _all_ user-facing messages as a _send_message_ tool call. An occasional issue with this is that the agent gets confused, and doesn't properly use the _send_message_ tool to convey user info.
-3. *User or assistant messages*: In this method, either the incoming user message is edited to surface memory information, or an extra user or assistant message is created. For example, you can use html tags like `<memory>content</memory>`. This should be accompanied by instruction in the system message about how memory content is not visible to the user. There are some pitfalls to this approach. Some models require alternating `assistant` / `user` turns, so adding consecutive messages from one role or the other will be rejected. Despite system instructions, some models still get confused, and output responses with confusing HTML tags.
+1. **Updating system message**: Reserving a space in the system message for recalled, relevant information. This conceptually slots in the cleanest: you don't need to present what is really information from the system as a user message, tool call, or assistant message. There's a major issue with this though: *prompt caching invalidation*. Frequently updating the system message in this way invalidates prompt cache, resulting in high costs. With extra token use already being an inherent part of the equation for memory-augmented AI's, this is a major drawback.
+2. **Tool calls**: Of course, if the memory search was initiated via a tool call, this injection method is the natural choice. Letta surfaces _all_ user-facing messages as a _send_message_ tool call. An occasional issue with this is that the agent gets confused, and doesn't properly use the _send_message_ tool to convey user info.
+3. **User or assistant messages**: In this method, either the incoming user message is edited to surface memory information, or an extra user or assistant message is created. For example, you can use html tags like `<memory>content</memory>`. This should be accompanied by instruction in the system message about how memory content is not visible to the user. There are some pitfalls to this approach. Some models require alternating `assistant` / `user` turns, so adding consecutive messages from one role or the other will be rejected. Despite system instructions, some models still get confused, and output responses with confusing HTML tags.
 
 #### Key challenge: Transparency
 
@@ -140,7 +138,7 @@ This is a more manual process than just spitballing about a project to an AI, bu
 
 #### How I built Elroy
 
-I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with. My tool also lists which memories have been recalled in a dismissible panel, available for user review:
+I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with. Elroy's UX also lists which memories have been recalled in a dismissible panel, available for user review:
 
 ![memory_panel_screenshot](/diagrams/approaches-to-agent-memory/memory_panel_screenshot.png)
 
@@ -154,7 +152,7 @@ This pattern is typical across different implementations. One point of divergenc
 
 I find tool calls do the majority of the heavy lifting here.
 
-When systems offer context compression, they often emit memories of pruned text. This is arguably obsolete with modern, 1m+ context windows, but I think they are still relevant. I typically prune messages older than a day or so, and emit memories based on pruned text. This creates memories that could be redundant with agent-emitted memories, but async memory consolidation cleans that up.
+I also emit memories during context compression. This is arguably obsolete with modern, 1m+ context windows, but I think they are still relevant. I also typically prune messages older than a day or so, and emit memories based on pruned text. This creates memories that could be redundant with agent-emitted memories, but async memory consolidation cleans that up.
 
 ![consolidation_and_compression](/diagrams/approaches-to-agent-memory/consolidation_and_compression.png)
 
