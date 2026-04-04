@@ -237,6 +237,148 @@ The clearest burst-and-fade case is **Sora** (see above). For image generation, 
 
 ---
 
+---
+
+## 7. The Psychology of AI Disclosure — Why Knowledge of Authorship Changes Experience
+
+This section addresses a deeper question: **when people are *told* something is AI-generated, does that change how much they like it, value it, or find it satisfying?** This is distinct from "can people detect AI" — it's about the disclosure effect itself.
+
+### The Core Finding: Yes, Knowledge Changes Experience
+
+The evidence across art, music, and writing consistently shows that disclosing AI authorship reduces how people rate, enjoy, and value creative work — even when the work itself is identical.
+
+### 7a. Visual Art
+
+**Bellaiche et al. (2023)** — *Cognitive Research: Principles and Implications* / Springer
+- Randomly assigned AI-generated paintings one of two labels ("human-created" vs. "AI-created") and collected ratings on liking, beauty, profundity, and perceived monetary worth.
+- **Result:** Human-labeled art scored higher across all four dimensions — taste, beauty, depth, and monetary value — even though the images were identical.
+- A second experiment found that narrative about human effort behind the artwork significantly raised ratings.
+- Source: [Humans versus AI: whether and why we prefer human-created artwork](https://link.springer.com/article/10.1186/s41235-023-00499-6)
+
+**Horton, White & Iyengar (2023)** — *Scientific Reports* (Columbia Business School / Sheena Iyengar lab)
+- Six preregistered experiments, N = 2,965, using US representative samples.
+- **Result:** People consistently devalue art labeled as AI-made — even when they explicitly report the AI work is indistinguishable from human work, and even when the work was described as *collaboratively* produced by human + AI.
+- Corollary finding: showing AI-labeled work *alongside* human-labeled work caused viewers to rate the human work *more* highly (the contrast effect). In other words, AI art makes human art look better.
+- Source: [Bias against AI art can enhance perceptions of human creativity](https://www.nature.com/articles/s41598-023-45202-3)
+
+**Chiarella et al. (2022)** — abstract paintings labeled "human-created" vs. "AI-created" (same images in both conditions). Result: consistent preference for human-labeled work.
+- Source: [Investigating the negative bias towards artificial intelligence — abstract paintings](https://www.sciencedirect.com/science/article/abs/pii/S074756322200228X)
+
+**Meta-analysis findings (2024, Tilburg University):**
+- Pooled across 26+ studies: significant negative effect of AI labeling across the aesthetic experience systems, with the **knowledge-meaning system** (interpretive judgments about skill, intent, and meaning) showing a **moderate negative effect size** — larger than the sensory-motor (color, shape) or emotion-valuation systems.
+- Even basic perceptual features like perceived color vividness and brightness were measurably affected by AI labels — suggesting the bias isn't just cognitive but actually changes the sensory experience.
+- Source: [Bias Against Artificial Intelligence in Visual Art: A Meta-Analysis](https://repository.tilburguniversity.edu/server/api/core/bitstreams/d1cc5a4a-85ce-4aee-9154-09db818cd45f/content)
+
+### 7b. Music
+
+**Shank, Stefanik et al. (2022)** — *Psychology of Aesthetics, Creativity, and the Arts* (Missouri S&T)
+- Two-study design. Study 1: participants listened to electronic and classical music and rated liking + guessed AI/human origin. Study 2: composer identity directly manipulated.
+- **Result:** Participants rated music significantly lower in quality when told it was AI-composed. Pre-existing schemas ("AI music = lower quality") were already in place before listening.
+- The effect was moderated by attitudes toward AI — people with more negative AI attitudes showed stronger bias.
+- Parallel to blind orchestra auditions: without knowing the composer, bias disappears.
+- Source: [AI composer bias: Listeners like music less when they think it was composed by an AI](https://pubmed.ncbi.nlm.nih.gov/36006713/)
+
+**Ansani et al. (2025)** — *Music Perception*
+- Experiment with identical audio presented as human-performed vs. AI-performed.
+- **Result:** The AI-labeled performance was rated lower in likeability, engagement, emotional valence, and quality — same audio, different label.
+- Source: [AI Performer Bias: Listeners Like Music Less When They Think it was Performed by an AI](https://journals.sagepub.com/doi/10.1177/02762374241308807)
+
+**Deezer / Ipsos Survey (November 2025)** — 9,000 participants across 8 countries
+- Blind listening test: 97% of respondents couldn't identify fully AI-generated tracks.
+- But once told: 80% agreed 100% AI-generated music should be labeled; 52% felt uncomfortable after discovering they couldn't tell the difference.
+- 70% believe fully AI-generated music threatens musician income.
+- Source: [Deezer and Ipsos study: AI fools 97% of listeners](https://newsroom-deezer.com/2025/11/deezer-ipsos-survey-ai-music/)
+
+**BPI Music Consumer Survey 2025:** Over 80% of respondents said they value human-made music more than AI-generated; 98% said it was "very important" to know if music is human-made.
+
+**Counterpoint:** One study (*Do listeners devalue AI-generated pop music?*, 2025) found that AI-labeled pop songs were rated *higher* in positive emotions like happiness and energy. Context and genre may matter — pop music may carry different expectations than classical or ambient.
+
+### 7c. Creative Writing and Text
+
+**Raj, Berg & Seamans (2023)** — "Art-ificial Intelligence" (arXiv 2303.06217, Michigan Ross / UPenn)
+- Pre-registered experiments comparing AI-disclosed vs. non-disclosed short stories, descriptive stories, and first-person poems.
+- **Key finding:** AI disclosure had **no meaningful effect** on evaluations of short stories or descriptive writing, but had a **significant negative effect** on evaluations of emotionally evocative, first-person poems.
+- Interpretation: The negative effect activates specifically for content perceived as *distinctly human* — personal expression, emotional interiority.
+- Source: [Art-ificial Intelligence: The Effect of AI Disclosure on Evaluations of Creative Content](https://arxiv.org/abs/2303.06217) / [Michigan Ross writeup](https://michiganross.umich.edu/news/readers-less-favorable-toward-ai-generated-creative-writing-berg-research-finds)
+
+**"AI Disclosure Penalty" study (2024/2025)** — 16 preregistered experiments, N = 27,491 participants
+- The largest study on this topic to date (published in *Psychological Science*).
+- **Result:** Consistent AI disclosure penalty — evaluations decrease when participants believe writing was produced by AI or with AI assistance.
+- The penalty was **stubbornly difficult to mitigate** — of 16 experiments, only 3 found significant moderation.
+- Authenticity was the key mediator: AI-generated writing was seen as less authentic, and this drove lower ratings.
+- Effect sizes: small but consistent (~<0.15 on a 7-point scale), persistent across conditions.
+- Source: [The artificial intelligence disclosure penalty: Humans persistently devalue AI-generated creative writing](https://pubmed.ncbi.nlm.nih.gov/41505277/)
+
+**News/journalism disclosure studies (2024-2025):**
+- Readers perceived news labeled as AI-generated as less trustworthy — even when the content itself was rated as equally credible, accurate, and readable.
+- The trust penalty appears even when readers don't fully understand what role AI played.
+- Source: [Study finds readers trust news less when AI is involved](https://news.ku.edu/news/article/study-finds-readers-trust-news-less-when-ai-is-involved-even-when-they-dont-understand-to-what-extent)
+
+### 7d. The Psychological Mechanisms — Why Does Knowledge Matter?
+
+Research has identified several overlapping explanations:
+
+**1. Perceived effort**
+- People use an "effort heuristic" — the belief that more effort → more value. AI is perceived as exerting minimal effort, and this reduces perceived creative merit.
+- Dimensions of effort (time, physical, cognitive, motivational) all equally mediate the effect.
+
+**2. Perceived intentionality and agency (mind perception)**
+- Messingschlager & Appel (2023, *New Media & Society*) — Two experiments (N=176, N=381) testing AI vs. human artist attribution.
+- **Result:** AI was ascribed significantly less *agency* (capacity for goal-directed action) and less *experience* (capacity to feel). Both mediated lower aesthetic appreciation.
+- Framework: Waytz, Epley et al.'s mind perception research — perceiving a mind in an entity makes its outputs feel intentional and meaningful. AI fails this test.
+- Source: [Mind ascribed to AI and the appreciation of AI-generated art](https://journals.sagepub.com/doi/10.1177/14614448231200248)
+
+**3. Psychological essentialism and the "contagion" effect**
+- Newman & Bloom (Yale, *Journal of Experimental Psychology: General*, 2012) — foundational study on why originals are valued over perfect copies.
+- Five experiments showing that even pixel-for-pixel identical forgeries are valued less than originals.
+- Two mechanisms: **performance** (the artwork as a unique creative act) and **contagion** (physical contact with the artist transfers essence to the object).
+- Applied to AI: AI-generated work lacks both the performance (no intentional creative act) and the contagion (no human touched it). The "essence" is absent.
+- Source: [Art and Authenticity: The Importance of Originals in Judgments of Value](https://pubmed.ncbi.nlm.nih.gov/22082113/)
+
+**4. Authenticity as the core mediator**
+- The AI disclosure penalty study identified authenticity as the primary driver of the writing devaluation effect.
+- When people learn something is AI-generated, they perceive it as less authentic — and authenticity predicts ratings more than quality judgments do.
+- This aligns with the essentialism framework: authentic = genuinely expressive of a human interior.
+
+**5. The knowledge-meaning system (highest effect)**
+- The meta-analysis finding is important: the **knowledge-meaning** dimension — how people interpret what an artwork is *about*, who made it, and what skill it represents — shows the **largest negative effect** of AI disclosure.
+- Sensory and emotional effects exist but are smaller. The biggest hit is to meaning.
+
+### 7e. Consumer Willingness to Pay
+
+**Music industry survey (2025):** 61% of music insiders said they would "definitely" pay a premium for a service guaranteeing verified human-created content; 96% said they were at least open to paying more for authenticity.
+
+**Handmade premium (general):** Studies show consumers willing to pay 17–25% more for handmade goods. The psychological mechanism (human touch, human effort) maps directly onto the AI/human art valuation gap.
+
+**Collectors:** Psychology Today (2024) noted that art collectors face a "collector's dilemma" — AI art is algorithmically indistinguishable but collectability (authenticity, provenance, human touch) is what drives market value.
+
+**Key tension:** Studies show a gap between stated preferences and actual behavior — e.g., one creative writing study found participants would pay the *same amount* to finish reading an AI-labeled story, but 40% said afterward they would have paid less. The "human premium" may be stronger as an attitude than it manifests in real spending behavior.
+
+### 7f. Does the Effect Differ by Content Type?
+
+The evidence suggests the effect is strongest where human interiority is most expected:
+- **First-person emotional poetry** > descriptive short stories (Raj et al.)
+- **Music performance** attribution matters as much as composition (Ansani et al.)
+- **Visual art:** effect appears across categories but is stronger in abstract art where intentionality is more interpretive
+- **Journalism:** effect is primarily about trust, not quality perception
+- **Background/ambient music:** people who don't know it's AI show no different response — suggesting passive consumption is largely immune to the effect
+
+### Key Sources for This Section
+
+- [Humans versus AI: whether and why we prefer human-created artwork (Bellaiche 2023)](https://link.springer.com/article/10.1186/s41235-023-00499-6)
+- [Bias against AI art can enhance perceptions of human creativity (Horton et al. 2023)](https://www.nature.com/articles/s41598-023-45202-3)
+- [Investigating the negative bias towards AI (Chiarella 2022)](https://www.sciencedirect.com/science/article/abs/pii/S074756322200228X)
+- [AI composer bias: Shank et al. 2022](https://pubmed.ncbi.nlm.nih.gov/36006713/)
+- [AI Performer Bias: Ansani et al. 2025](https://journals.sagepub.com/doi/10.1177/02762374241308807)
+- [Art-ificial Intelligence: Raj, Berg, Seamans 2023](https://arxiv.org/abs/2303.06217)
+- [AI disclosure penalty: 16 experiments, 27,491 participants](https://pubmed.ncbi.nlm.nih.gov/41505277/)
+- [Mind ascribed to AI: Messingschlager & Appel 2023](https://journals.sagepub.com/doi/10.1177/14614448231200248)
+- [Art and Authenticity: Newman & Bloom 2012](https://pubmed.ncbi.nlm.nih.gov/22082113/)
+- [Deezer/Ipsos AI music survey 2025](https://newsroom-deezer.com/2025/11/deezer-ipsos-survey-ai-music/)
+- [Readers trust news less when AI involved (KU study)](https://news.ku.edu/news/article/study-finds-readers-trust-news-less-when-ai-is-involved-even-when-they-dont-understand-to-what-extent)
+
+---
+
 ## Counterarguments / Things That Cut Against the Post's Thesis
 
 - **Midjourney is genuinely successful** — $300M revenue in 2024, profitable, growing. Professional image generation has real sustained demand.
