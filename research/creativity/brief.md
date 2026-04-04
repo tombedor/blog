@@ -258,3 +258,5 @@ The clearest burst-and-fade case is **Sora** (see above). For image generation, 
 4. **AI music reveals the real market:** The demand for AI music is for *invisible* background content — ambient, lo-fi, focus music. This is music that nobody cares about, almost by definition. It's not a creative market; it's a commodity market.
 
 5. **The survey data on comfort:** Acceptance of fully AI-generated creative content *declined* year-over-year (44% → 37%). As AI gets better, people want it less.
+
+6. **Professional tools vs. wholesale generation:** Midjourney's sustained growth ($300M revenue, 50% YoY) vs. Sora's collapse maps onto a key distinction: tools that help professionals *refine and extend* their work have real durable demand, while tools that *replace* human creative input end-to-end do not. A designer using Midjourney to iterate on concepts is different from Sora generating a video no human authored. The former fits into a creative workflow; the latter tries to skip it. This may be the sharpest version of the thesis: it's not that AI can't be creative, it's that nobody wants creativity *without* a human in the loop.
