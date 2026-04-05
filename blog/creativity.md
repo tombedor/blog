@@ -14,18 +14,18 @@ What does "being creative" mean?
 - We'll go with Stein's defintion.
 
 
-Info on scope of what's been created, types of work.
+Info on scope of what's been created, types of work. Figures on both scale of creation (relative to non-ai work), and viewership/listeners.
+
+- Types of creators (for each, discuss music, videos, and writing):
+    - novelty users (quickly disappate)
+    - slop cannons
+    - pro's
 
 Can people detect ai? Do they care?
-- news on writing
+- news on reading ai vs humans: people not able to detect
 - Any evidence on ~~reading~`~`?
-- Survey result on people not liking it
+- Survey result on people not liking it once they know it's AI
 
-Revealed preference for Novelty
-- Sora
-- Quick decay of ai generation tools
-- Little evidence of people actually looking at this stuff
-
-Platforms: removing content (demonstates low demand)
-
-
+What the platforms are doing
+- killing Sora
+- platforms, removing content

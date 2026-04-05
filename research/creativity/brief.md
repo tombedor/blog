@@ -1,91 +1,121 @@
 # Research Brief: "Models can't be creative" (creativity.md)
 
-## Creativity definition
+## Topic: Definitions of creativity
 
-- Academic default: creativity usually means **originality + usefulness/appropriateness/effectiveness**.
-  Sources: Runco & Jaeger (2012), Amabile, Sternberg/Lubart
-- Other cited formulations:
-  - **Stein (1953):** novel work accepted as useful/tenable/satisfying by a group
-  - **Boden:** new, surprising, and valuable
-  - **Csikszentmihalyi:** creativity is socially ratified by a field/domain
-  Sources: Stein 1953, Boden via SEP, Csikszentmihalyi via SEP
-- Your original draft: **original work that a significant number of people choose to consume**.
-- Best fit for the post may be **Stein (1953)** rather than the custom draft. Stein already builds in social uptake, but is broader and less market-specific.
-- Difference:
-  - this section is about possible lenses for the post, not "the" correct definition
-  - stricter than the academic default
-  - swaps **useful/appropriate** for **audience uptake**
-  - mainstream psychology definitions let obscure work count as creative if it is novel and valuable/appropriate
-  - Stein/Csikszentmihalyi are closer because they make creativity partly depend on **social recognition**, not just properties of the artifact
-  - your version is still narrower than Stein/Csikszentmihalyi because it pushes from **social validation** toward **actual chosen consumption at scale**
-- Implication: if you want a definition that is cited, defensible, and already social, **Stein is probably the best lead option**.
+- Mainstream psychology definition: creativity requires **originality** plus **effectiveness/usefulness/appropriateness**.
+- Stein (1953): creative work is a "novel work" that is "accepted as tenable or useful or satisfying by a group at some point in time."
+- Boden: creativity involves ideas or artifacts that are "new, surprising, and valuable."
+- Csikszentmihalyi: creativity is not just novelty in a person; novelty must be recognized or "selected by the appropriate field."
+- Comparison:
+  - mainstream psychology focuses on properties of the output
+  - Stein and Csikszentmihalyi place more weight on **social recognition**
+  - "a significant number of people choose to consume" is narrower than Stein because it asks for audience uptake at scale, not merely recognition by a relevant group
 
-## Useful short quotes
+### Sources
 
-- **Stein (1953):** creative work is a "novel work" that is "accepted as tenable or useful or satisfying by a group at some point in time."
-  Why useful: closest match to your instinct, but without requiring mass-market success.
-  Source: [Creativity and Culture (Stein, 1953)](https://www.tandfonline.com/doi/abs/10.1080/00223980.1953.9712897) and secondary restatement in [ERIC/ED060658](https://files.eric.ed.gov/fulltext/ED060658.pdf)
+- [Stein, "Creativity and Culture" (1953)](https://www.tandfonline.com/doi/abs/10.1080/00223980.1953.9712897)
+- [Runco & Jaeger, "The Standard Definition of Creativity" (2012)](https://www.researchgate.net/publication/254301596_The_Standard_Definition_of_Creativity)
+- [Stanford Encyclopedia of Philosophy: Creativity](https://plato.stanford.edu/archives/sum2025/entries/creativity/)
+- [ERIC restatement of Stein quotation](https://files.eric.ed.gov/fulltext/ED060658.pdf)
 
-- **Runco & Jaeger (2012):** "Creativity requires both originality and effectiveness."
-  Why useful: clean statement of the mainstream psychology default.
-  Source: [The Standard Definition of Creativity](https://www.researchgate.net/publication/254301596_The_Standard_Definition_of_Creativity)
+## Claim: novelty tools show burst-then-fade dynamics
 
-- **Boden:** creativity is the ability to come up with ideas or artefacts that are "new, surprising, and valuable."
-  Why useful: concise alternative if you want to foreground surprise rather than uptake.
-  Source: [Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/archives/sum2025/entries/creativity/) and secondary quotation in [Edward A. David 2025](https://journals.sagepub.com/doi/10.1177/09539468251347501)
+- Sora previewed February 15, 2024; launched December 9, 2024; shutdown announced March 24, 2026; app discontinued April 26, 2026.
+- Reported peak usage around 1M daily users, then ~750K stabilized; reported downloads fell 66% by February 2026.
+- The Ghibli-style image wave around GPT-4o image generation produced a sharp usage spike but little evidence of durable demand as a recurring format.
 
-- **Csikszentmihalyi:** creativity occurs when novelty is "selected by the appropriate field."
-  Why useful: strongest support for the idea that creativity is socially ratified, not purely internal.
-  Source: [Creativity: Flow and the Psychology of Discovery and Invention summary](https://smus.com/books/creativity-by-mihaly-csikszentmihalyi/) and secondary quotation in [BU writing presentation citing Csikszentmihalyi](https://www.bu.edu/teaching-writing/files/2021/11/Presentation-Session-4-Final.pdf)
+### Sources
 
-## Core evidence
+- [OpenAI Help Center: Sora discontinuation](https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation)
+- [NBC News: OpenAI shuttering Sora](https://www.nbcnews.com/tech/tech-news/openai-shuttering-sora-video-generating-service-rcna264989)
+- [VentureBeat: OpenAI shutting down Sora](https://venturebeat.com/technology/openai-is-shutting-down-sora-its-powerful-ai-video-app)
+- [Variety: OpenAI shutting down Sora](https://variety.com/2026/digital/news/openai-shutting-down-sora-video-disney-1236698277/)
+- [Variety: Sam Altman responds to Ghibli trend](https://variety.com/2025/digital/news/openai-ceo-chatgpt-studio-ghibli-ai-images-1236349141/)
+- [VentureBeat: Ghibli trend overwhelms GPT-4o](https://venturebeat.com/ai/studio-ghibli-ai-image-trend-overwhelms-openais-new-gpt-4o-feature-delaying-free-tier)
 
-- **Burst then fade is real for novelty tools.**
-  Evidence: Sora previewed February 15, 2024; launched December 9, 2024; shutdown announced March 24, 2026; app discontinued April 26, 2026. Reported peak ~1M daily users, then ~750K, with downloads down 66% by February 2026.
-  Sources: OpenAI Help Center, NBC News, VentureBeat, Variety
+## Claim: image generation is not simply fading
 
-- **Image generation is not simply fading.**
-  Evidence: Midjourney reportedly grew from ~$200M revenue in 2023 to ~$300M in 2024; broader AI image generation volume remained huge through 2024.
-  Sources: Sacra, Everypixel, DemandSage
+- Midjourney reportedly grew from roughly $200M revenue in 2023 to roughly $300M in 2024.
+- Broader AI image generation volume remained extremely large through 2024.
+- The pattern appears split: novelty image moments fade; some image-generation workflows persist commercially.
 
-- **Best synthesis: split market, not one pattern.**
-  Evidence: consumer novelty spikes fade fast; some workflow tools persist.
-  Sources: Ghibli trend reporting, Poe model-usage trends, Midjourney revenue reporting
+### Sources
 
-- **Spotify is evidence for passive consumption, not chosen demand.**
-  Evidence: Spotify said on September 25, 2025 it had removed 75M+ spammy tracks over the prior year; Liz Pelly documented Spotify's "Perfect Fit Content" strategy of cheap playlist filler.
-  Sources: Spotify Newsroom, Music Business Worldwide, Harper's
+- [Sacra: Midjourney](https://sacra.com/c/midjourney/)
+- [Everypixel: AI image statistics](https://journal.everypixel.com/ai-image-statistics)
+- [DemandSage: Midjourney statistics](https://www.demandsage.com/midjourney-statistics/)
+- [Poe: Spring 2025 AI model usage trends](https://poe.com/blog/spring-2025-ai-model-usage-trends)
 
-- **AI content gets watched at scale when embedded in feeds.**
-  Evidence: Kapwing-cited study found 278 AI-slop YouTube channels with 63B views; YouTube changed monetization rules on July 15, 2025 to target mass-produced/inauthentic content.
-  Sources: Search Engine Journal, TechCrunch, YouTube policy/blog
+## Claim: much AI-content consumption is passive feed exposure, not clearly chosen demand
 
-- **But active preference is much weaker than passive exposure.**
-  Evidence: Variety survey found 70% uncomfortable with fully AI-generated creative content; 3 in 4 US consumers want disclosure.
-  Sources: Variety VIP survey, Baringa, Artificial Analysis survey
+- Spotify's "Perfect Fit Content" reporting suggests platforms can insert cheap ambient/background material into contexts where users choose a function ("focus music", "sleep sounds") rather than a creator.
+- Kapwing/Guardian reporting indicates AI-slop content can occupy a substantial share of recommendation surfaces for new YouTube users.
+- Survey evidence is materially less enthusiastic than platform exposure metrics: Variety found 70% discomfort with fully AI-generated creative content and high demand for disclosure.
 
-- **Disclosure itself changes experience.**
-  Evidence: across visual art, music, and writing, identical or similar work is rated lower when labeled AI-made; strongest mechanism appears to be reduced perceived authenticity/intentionality.
-  Sources: Bellaiche 2023, Horton et al. 2023, Shank et al. 2022, AI disclosure penalty paper
+### Sources
 
-## Midjourney: pro users or slop cannon?
+- [Harper's: "The Ghosts in the Machine"](https://harpers.org/archive/2025/01/the-ghosts-in-the-machine-liz-pelly-spotify-musicians/)
+- [Spotify Newsroom: Strengthening AI protections](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/)
+- [Guardian on Kapwing study](https://www.theguardian.com/technology/2025/dec/27/more-than-20-of-videos-shown-to-new-youtube-users-are-ai-slop-study-finds)
+- [Variety VIP survey](https://variety.com/vip/most-consumers-wary-of-fully-ai-generated-creative-content-survey-1236347518/)
+- [Baringa survey](https://www.baringa.com/en/about/regions/north-america/study-explores-shifting-us-consumer-preferences-around-ai-generated-content/)
+- [Artificial Analysis survey](https://artificialanalysis.ai/media/survey-2025)
 
-- We should **not** say "Midjourney users are professional users" flatly.
-- Better claim: Midjourney has real professional/commercial use, but public evidence suggests a **mixed** user base.
-- Evidence for pro use:
-  - large sustained paid revenue
+## Claim: some apparent AI-content "consumption" is bot activity rather than human attention
+
+- Direct music evidence:
+  - DOJ (September 4, 2024): indictment alleging a musician used bots to stream AI-generated songs billions of times and fraudulently obtained more than $10M in royalties.
+  - DOJ language: defendant allegedly used "automated programs called 'bots' to stream the AI-generated songs billions of times."
+  - Deezer (September 2025): said up to 70% of streams on fully AI-generated tracks were fraudulent.
+  - Deezer (January 2026 / FY2025 reporting): said up to 85% of streams on AI-generated music were fraudulent, depending on month in 2025.
+- Implication: at least in music, some headline "consumption" numbers are not evidence of human preference.
+
+### Sources
+
+- [DOJ SDNY: North Carolina Musician Charged With Music Streaming Fraud Aided By Artificial Intelligence](https://www.justice.gov/usao-sdny/pr/north-carolina-musician-charged-music-streaming-fraud-aided-artificial-intelligence)
+- [Deezer Newsroom, September 2025: 28% of all delivered music is now fully AI-generated](https://newsroom-deezer.com/2025/09/28-fully-ai-generated-music/)
+- [Deezer Newsroom, January 2026: up to 85% of AI-generated music streams fraudulent](https://newsroom-deezer.com/fr/2026/01/deezer-vend-outil-detection-musique-ia/)
+- [Deezer FY25 results, March 18, 2026](https://newsroom-deezer.com/2026/03/deezer-achieves-profitability-in-fy25-as-strategy-delivers-tangible-results/)
+
+## Claim: for video/feed content, bot-inflation is plausible but not established at the same level
+
+- AI-slop studies on YouTube establish large recommendation share and large public view counts.
+- They do not establish that those views are mostly human or mostly automated.
+- Separate YouTube fake-view research found corrections on 78.5% of videos in one large corpus and warned that delayed correction can inflate recommendation and popularity.
+- Strongest supported statement: AI-slop video metrics likely combine real feed exposure with some artificial inflation, but public evidence does not yet justify saying the headline numbers are mostly bots.
+
+### Sources
+
+- [Guardian on Kapwing study](https://www.theguardian.com/technology/2025/dec/27/more-than-20-of-videos-shown-to-new-youtube-users-are-ai-slop-study-finds)
+- [Scientific Reports (2024): Fake views removal and popularity on YouTube](https://www.nature.com/articles/s41598-024-63649-w)
+
+## Claim: Midjourney usage is mixed, not clearly majority-professional
+
+- Evidence for professional/commercial usage:
+  - large sustained revenue
   - studies explicitly include professional art/design users
-  - prompt analyses show design/commercial use cases
-- Evidence against "mostly pros":
+  - prompt analyses identify design/commercial workflows
+- Evidence against "mostly professionals":
   - Midjourney-specific research also finds many fun/decorative uses
   - public prompt analyses skew heavily toward stylized/recreational outputs
-  - stealth mode means public Discord logs are biased and cannot cleanly reveal user mix
-- Best framing for post: Midjourney is a **split market**: some serious workflow use, lots of hobbyist/decorative output, likely some slop-adjacent commercial output.
-- Validation path if needed: sample public prompts and classify by end use; sample downstream surfaces like Etsy/KDP/Redbubble/social accounts; treat public logs as a lower bound on pro use.
-  Sources: Tang et al. 2024, McCormack et al. 2024, Xie et al. 2023, Lin 2025
+  - stealth mode hides some professional usage from public prompt logs, making the visible sample non-representative
+- Strongest supported statement: Midjourney appears to be a mixed market, combining commercial workflow use with substantial hobbyist/decorative use.
 
-## Counterevidence / constraints
+### Sources
 
-- Midjourney is a real business and not a clean "fad" example.
-- "Nobody wants AI content" is too strong; passive/feed consumption is obviously real.
-- Stronger claim available: much AI creative output seems to win **distribution** more easily than it wins **chosen attention**.
+- [Tang et al. (2024)](https://arxiv.org/abs/2406.10640)
+- [McCormack et al. (2024)](https://arxiv.org/abs/2401.14425)
+- [Xie et al. (WWW 2023)](https://zhaoyingpan.github.io/assets/pdf/www23-401.pdf)
+- [Lin (2025)](https://www.sijie-lin.com/files/JMP.pdf)
+
+## Claim: disclosure changes evaluation even when output quality is held constant
+
+- Across visual art, music, and writing, AI-labeled work is often rated lower than identical or similar work labeled human-made.
+- The main mechanisms identified in the literature are reduced perceived authenticity, effort, and intentionality.
+
+### Sources
+
+- [Bellaiche et al. (2023)](https://link.springer.com/article/10.1186/s41235-023-00499-6)
+- [Horton et al. (2023)](https://www.nature.com/articles/s41598-023-45202-3)
+- [Shank et al. (2022)](https://pubmed.ncbi.nlm.nih.gov/36006713/)
+- [AI disclosure penalty paper](https://pubmed.ncbi.nlm.nih.gov/41505277/)
