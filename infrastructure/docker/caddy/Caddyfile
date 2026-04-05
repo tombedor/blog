@@ -1,3 +1,33 @@
+elroy.bot {
+    redir /blog/posts/ai-is-a-floor-raiser.html https://tombedor.dev/ai-is-a-floor-raiser/ 302
+    redir /blog/2025/07/29/ai-is-a-floor-raiser-not-a-ceiling-raiser.html https://tombedor.dev/ai-is-a-floor-raiser/ 302
+
+    redir /blog/posts/autonomy-last.html https://tombedor.dev/autonomy-last/ 302
+    redir /blog/posts/autonomy_last.html https://tombedor.dev/autonomy-last/ 302
+    redir /blog/2025/07/07/add-autonomy-last.html https://tombedor.dev/autonomy-last/ 302
+
+    redir /blog/posts/make-it-easy-for-humans.html https://tombedor.dev/make-it-easy-for-humans/ 302
+    redir /blog/posts/optimizing-repos-for-ai.html https://tombedor.dev/optimizing-repos-for-ai/ 302
+    redir /blog/posts/tack.html https://tombedor.dev/tack/ 302
+
+    redir /blog/posts/yes-or-no-please.html https://tombedor.dev/yes-or-no-please/ 302
+    redir /blog/2025/03/04/yes-or-no-please-building-reliable-tests-for-unreliable-llms.html https://tombedor.dev/yes-or-no-please/ 302
+
+    # Keep specific post mappings above this catch-all for any legacy blog URLs.
+    redir /blog https://tombedor.dev/ 302
+    redir /blog/* https://tombedor.dev/ 302
+
+    root * /srv/elroy-docs
+    file_server
+    encode gzip zstd
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Frame-Options "SAMEORIGIN"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+}
+
 analytics.tombedor.dev {
     reverse_proxy umami:3000
     encode gzip zstd
