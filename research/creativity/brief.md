@@ -18,6 +18,32 @@
 - [Stanford Encyclopedia of Philosophy: Creativity](https://plato.stanford.edu/archives/sum2025/entries/creativity/)
 - [ERIC restatement of Stein quotation](https://files.eric.ed.gov/fulltext/ED060658.pdf)
 
+## Claim: replication and oversupply can undermine social recognition of creative work
+
+- Stein does not explicitly say creativity requires scarcity.
+- But Stein's definition makes **group acceptance** part of creativity, which creates a plausible link to oversupply: if outputs are instantly reproducible, distinctiveness and stable recognition may be harder to sustain.
+- Adjacent literature supports the mechanism:
+  - originals are valued for their history and authorship, not only for visible properties
+  - systems that maximize generativity can reduce originality in derivative outputs
+  - expanding concept space can coincide with declining originality
+- Strongest supported statement: scarcity is not built into Stein's definition, but scarcity/authenticity/originality literature gives a defensible basis for arguing that mass replication can weaken the conditions under which work is recognized as creative.
+
+### Pull quotes
+
+- **Stein (1953):** "accepted as tenable or useful or satisfying by a group at some point in time."
+- **Newman & Bloom (2012):** original artworks are valued for "their histories and the processes that led to their creation."
+- **Newman & Bloom (2012):** the value of the original can stem from the "original artwork as a unique creative act."
+- **Hill & Monroy-Hernandez (2015):** there is a "trade-off between generativity and originality."
+- **Sarica & Luo (2023/2024):** there is a "notable decline in the originality of newly created concepts."
+
+### Sources
+
+- [Stein, "Creativity and Culture" (1953)](https://www.tandfonline.com/doi/abs/10.1080/00223980.1953.9712897)
+- [ERIC restatement of Stein quotation](https://files.eric.ed.gov/fulltext/ED060658.pdf)
+- [Newman & Bloom, "Art and Authenticity: The Importance of Originals in Judgments of Value" (2012)](https://minddevlab.yale.edu/sites/default/files/files/art-and-authenticity.pdf)
+- [Hill & Monroy-Hernandez, "The Remixing Dilemma: The Trade-off Between Generativity and Originality"](https://arxiv.org/abs/1507.01295)
+- [Sarica & Luo, "The Innovation Paradox: Concept Space Expansion with Diminishing Originality and the Promise of Creative AI"](https://arxiv.org/abs/2303.13300)
+
 ## Claim: novelty tools show burst-then-fade dynamics
 
 - Sora previewed February 15, 2024; launched December 9, 2024; shutdown announced March 24, 2026; app discontinued April 26, 2026.
