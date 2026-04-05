@@ -102,6 +102,10 @@ When asked to do research for a post:
 - Maintain a sources section in `brief.md` linking to source files
 - Do NOT edit the actual blog post file — research output goes only in `research/`
 
+Research briefs should be ONE PAGE.
+Research briefs should be information-dense and scan-friendly: prefer claim/evidence/source bullets over narrative prose.
+Put nuance and extended caveats in source-note files, not in the brief.
+
 ## Diagrams
 
 Blog diagrams are created with Excalidraw and stored in `static/diagrams/{post-name}/`. The directory structure follows blog post slugs (e.g., diagrams for `ai-is-a-floor-raiser.md` go in `static/diagrams/ai-is-a-floor-raiser/`).
