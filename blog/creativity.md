@@ -13,7 +13,6 @@ What does "being creative" mean?
         - Experience in a band: it’s fun, but unsatisfying if not one listens. Creative work is communication, and if there wasn’t anyone listening there wasn’t communication. This isn’t everyone. Self expression cs communication, if there’s no audience who are you expressing to?
 - We'll go with Stein's defintion.
 
-
 Info on scope of what's been created, types of work. Figures on both scale of creation (relative to non-ai work), and viewership/listeners.
 
 - Types of creators (for each, discuss music, videos, and writing):
@@ -29,3 +28,4 @@ Can people detect ai? Do they care?
 What the platforms are doing
 - killing Sora
 - platforms, removing content
+- Meta is most interesting: Zuckerberg clearly wanted AI content and usage of his AI products to take off, but now they are regulating
