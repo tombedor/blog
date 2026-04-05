@@ -11,6 +11,7 @@ runcmd:
   - mkdir -p /opt/analytics/{caddy,data,config}
   - mkdir -p /opt/analytics/caddy/data
   - mkdir -p /opt/analytics/caddy/config
+  - mkdir -p /opt/analytics/elroy-docs
 
   # Write docker-compose.yml
   - echo "${docker_compose_content}" | base64 -d > /opt/analytics/docker-compose.yml
