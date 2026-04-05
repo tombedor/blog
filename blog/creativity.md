@@ -40,6 +40,8 @@ Thesis: Ai cannot produce anything truly novel. Supply far exceeds demand. New t
     - Popularity
         - Experience in a band: it’s fun, but unsatisfying if not one listens. Creative work is communication, and if there wasn’t anyone listening there wasn’t communication. This isn’t everyone. Self expression cs communication, if there’s no audience who are you expressing to?
 - We'll go with Stein's defintion.
+- scarcity is required:
+    - what makes ghibli ghibli is a _unique_ style
 
 2. AI is creating a LOT of output
 -      A novel output only matters if it remains meaningful long enough to be recognized and valued.
