@@ -9,13 +9,34 @@
   - **Boden:** new, surprising, and valuable
   - **Csikszentmihalyi:** creativity is socially ratified by a field/domain
   Sources: Stein 1953, Boden via SEP, Csikszentmihalyi via SEP
-- Your draft: **original work that a significant number of people choose to consume**.
+- Your original draft: **original work that a significant number of people choose to consume**.
+- Best fit for the post may be **Stein (1953)** rather than the custom draft. Stein already builds in social uptake, but is broader and less market-specific.
 - Difference:
+  - this section is about possible lenses for the post, not "the" correct definition
   - stricter than the academic default
   - swaps **useful/appropriate** for **audience uptake**
-  - does not require popularity in the academic version; obscure work can still be creative
-  - closer to **Stein (1953)** and **Csikszentmihalyi** than to the mainstream psychology definition
-- Implication: good if the post is about **culture/markets/attention**; not a neutral summary of the literature.
+  - mainstream psychology definitions let obscure work count as creative if it is novel and valuable/appropriate
+  - Stein/Csikszentmihalyi are closer because they make creativity partly depend on **social recognition**, not just properties of the artifact
+  - your version is still narrower than Stein/Csikszentmihalyi because it pushes from **social validation** toward **actual chosen consumption at scale**
+- Implication: if you want a definition that is cited, defensible, and already social, **Stein is probably the best lead option**.
+
+## Useful short quotes
+
+- **Stein (1953):** creative work is a "novel work" that is "accepted as tenable or useful or satisfying by a group at some point in time."
+  Why useful: closest match to your instinct, but without requiring mass-market success.
+  Source: [Creativity and Culture (Stein, 1953)](https://www.tandfonline.com/doi/abs/10.1080/00223980.1953.9712897) and secondary restatement in [ERIC/ED060658](https://files.eric.ed.gov/fulltext/ED060658.pdf)
+
+- **Runco & Jaeger (2012):** "Creativity requires both originality and effectiveness."
+  Why useful: clean statement of the mainstream psychology default.
+  Source: [The Standard Definition of Creativity](https://www.researchgate.net/publication/254301596_The_Standard_Definition_of_Creativity)
+
+- **Boden:** creativity is the ability to come up with ideas or artefacts that are "new, surprising, and valuable."
+  Why useful: concise alternative if you want to foreground surprise rather than uptake.
+  Source: [Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/archives/sum2025/entries/creativity/) and secondary quotation in [Edward A. David 2025](https://journals.sagepub.com/doi/10.1177/09539468251347501)
+
+- **Csikszentmihalyi:** creativity occurs when novelty is "selected by the appropriate field."
+  Why useful: strongest support for the idea that creativity is socially ratified, not purely internal.
+  Source: [Creativity: Flow and the Psychology of Discovery and Invention summary](https://smus.com/books/creativity-by-mihaly-csikszentmihalyi/) and secondary quotation in [BU writing presentation citing Csikszentmihalyi](https://www.bu.edu/teaching-writing/files/2021/11/Presentation-Session-4-Final.pdf)
 
 ## Core evidence
 
