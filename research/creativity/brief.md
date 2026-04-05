@@ -389,6 +389,141 @@ The evidence suggests the effect is strongest where human interiority is most ex
 
 ---
 
+---
+
+## 8. Platform Policies on AI Content
+
+This section covers how major platforms have responded to the flood of AI-generated content. The key question: **enforcement** (removal/ban) vs. **disclosure** (labeling) vs. **permissive** (allowed with no special treatment)?
+
+---
+
+### YouTube — Monetization Enforcement + Disclosure
+
+**Policy (enforcement + disclosure, dual approach):**
+YouTube took the most aggressive stance of any major video platform. On **July 15, 2025**, YouTube updated its "repetitious content" policy, renaming it "inauthentic content," requiring that monetized content be "significantly original and authentic." Mass-produced AI content — AI voiceovers over stock footage, synthetic voices reading scripts, automated batch uploads — became ineligible for monetization. Separately, YouTube introduced **mandatory AI disclosure** rules (effective May 21, 2025): creators must label AI-generated content that could be "mistaken for reality," covering synthetic voices, deepfakes, and fabricated real-world events. YouTube can proactively apply labels and remove the creator's ability to remove them; repeat non-disclosure can result in YPP suspension.
+
+In his **January 2026 annual letter**, CEO Neal Mohan explicitly used the term "AI slop" and called managing it a top priority for the year: *"It's becoming harder to detect what's real and what's AI-generated."* He pledged to build on existing spam and clickbait systems to reduce the spread of low-quality AI content, while simultaneously teasing new AI creation tools for legitimate creators — a notable both-and posture. In December 2025, more than 1 million channels were using YouTube's own AI creation tools daily.
+
+**Enforcement evidence:** A channel (True Crime Case Files, 83K subscribers) posting 150+ AI-generated murder stories was removed entirely. NBC News identified a network of AI-generated fake news channels with deepfake images that were demonetized or terminated after the July policy change. The Kapwing study (referenced in Section 5) documented 278 AI slop channels with 63 billion views and ~$117M annual ad revenue — the post-July crackdown directly targeted that revenue.
+
+**Why this matters:** YouTube's response confirms the platform saw mass-produced AI content as an economic threat to the ad ecosystem, not a consumer product. The "AI slop" framing from Mohan is notable — a major platform CEO used that exact phrase in a public letter, a year after its colloquial emergence.
+
+**Sources:**
+- [TechCrunch: YouTube crackdown on mass-produced AI videos (July 2025)](https://techcrunch.com/2025/07/09/youtube-prepares-crackdown-on-mass-produced-and-repetitive-videos-as-concern-over-ai-slop-grows/)
+- [YouTube blog: The Future of YouTube 2026 (Neal Mohan letter)](https://blog.youtube/inside-youtube/the-future-of-youtube-2026/)
+- [CNBC: YouTube chief says managing AI slop is a priority for 2026](https://www.cnbc.com/2026/01/21/youtube-chief-says-managing-ai-slop-is-a-priority-for-2026-.html)
+- [Hollywood Reporter: YouTube CEO Neal Mohan Addresses AI Slop in 2026 Letter](https://www.hollywoodreporter.com/business/digital/youtube-ceo-neal-mohan-2026-letter-ai-slop-1236479185/)
+- [YouTube Help: Disclosing altered or synthetic content](https://support.google.com/youtube/answer/14328491)
+- [Fliki: YouTube Monetization Policy Update July 2025](https://fliki.ai/blog/youtube-monetization-policy-2025)
+
+---
+
+### Spotify — Enforcement (Spam) + Voluntary Disclosure (Labeling)
+
+**Policy (enforcement of spam; disclosure voluntary/emerging):**
+Spotify's September 2025 moves split across two separate tracks. On the **enforcement** side: removing 75 million spammy tracks (covered in Section 3), deploying a new music spam filter, and implementing an impersonation policy banning AI voice clones of real artists. On the **disclosure** side: adopting the DDEX industry standard for AI credits, which allows distributors to indicate whether AI was used for vocals, instrumentation, or post-production — granular rather than binary. These disclosures appear in the app's credits. Critically, **this is voluntary supplier-facing disclosure, not a mandatory consumer-facing label** — Spotify does not require uploaders to disclose, and there is no "AI-generated" badge shown to listeners comparable to YouTube's system.
+
+TuneCore notably went further than Spotify itself: it rejects 100% AI-generated tracks outright, while DistroKid accepts them with restrictions (no impersonation, no bulk spam uploads). The inconsistency across distributors reflects that Spotify set a floor, not a ceiling.
+
+**Why this matters:** Spotify's response is primarily about economic harm to the royalty pool (spam siphoning royalties) rather than about consumer demand for transparency. The labeling initiative is more aspirational than enforced — Spotify is heading toward disclosure but hasn't mandated it.
+
+**Sources:**
+- [Spotify Newsroom: Strengthening AI Protections (Sept 2025)](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/)
+- [TechCrunch: Spotify to label AI music, filter spam (Sept 2025)](https://techcrunch.com/2025/09/25/spotify-updates-ai-policy-to-label-tracks-cut-down-on-spam/)
+- [Music Week: Spotify cleans up AI slop, disclosure on GenAI music](https://www.musicweek.com/digital/read/spotify-cleans-up-ai-slop-with-more-protections-for-real-artists-including-disclosure-on-genai-music/092725)
+- [The Conversation: Why industry-standard AI labels in music could change how we listen](https://theconversation.com/why-industry-standard-labels-for-ai-in-music-could-change-how-we-listen-262840)
+- [DistroKid: Can I Upload Music Made With AI Tools?](https://support.distrokid.com/hc/en-us/articles/41182362733715-Can-I-Upload-Music-Made-With-AI-Tools-to-DistroKid)
+
+---
+
+### Amazon KDP — Disclosure (Internal Only), Permissive
+
+**Policy (disclosure to Amazon; no consumer labeling; 3-book/day cap):**
+Amazon responded to the AI book flood with a policy requiring publishers to **disclose to Amazon** whether text, images, or translations are AI-generated (as opposed to AI-assisted). But — and this is the key detail — **this disclosure is internal only**. Amazon does not display any "AI-generated" badge on book product pages. The cap of **3 books per day** per publisher was introduced as a spam throttle. Amazon won't ban AI-generated books, but non-disclosure risks account suspension.
+
+The distinction Amazon draws: "AI-generated" (fully produced by AI, must disclose even if later edited) vs. "AI-assisted" (human wrote it with AI help — no disclosure needed). Amazon tagged flagged content for internal data analysis, not for consumer transparency.
+
+**Why this matters:** Amazon's approach is the most explicitly permissive of any major platform — AI content is fine, spam controls exist, but readers have no way to know if what they're buying is AI-generated. The Author's Guild called this policy "a welcome first step" while noting it doesn't go far enough.
+
+**Sources:**
+- [Authors Guild: Amazon's New Disclosure Policy Is a Welcome First Step](https://authorsguild.org/news/amazons-new-disclosure-policy-for-ai-generated-book-content-is-a-welcome-first-step/)
+- [Amazon KDP Content Guidelines](https://kdp.amazon.com/en_US/help/topic/G200672390)
+- [AI Box Tools: KDP AI Rules 2025](https://www.aiboxtools.com/amazon-kdp-ai-rules/)
+
+---
+
+### Instagram / Meta — Disclosure (Automated + Mandatory), Moderate Enforcement
+
+**Policy (mandatory disclosure with reach penalties):**
+Meta rolled out AI labeling across Instagram, Facebook, and Threads starting early 2024, with full enforcement in place by 2025. The system works on two levels: **automatic detection** via C2PA metadata embedded by AI tools (Adobe Firefly, DALL-E 3, etc.), and **manual self-labeling** via an upload toggle. Content with AI-generated or heavily manipulated elements gets an "AI Info" or "Made with AI" label. Meta can proactively apply labels if creators don't self-disclose.
+
+The enforcement bite comes through **reach reduction**: AI-labeled content faces 15–80% reduction in visibility depending on type, with deepfake-style face/body manipulation receiving the steepest penalties (60–80%). This is disclosure-as-suppression — labeling is the mechanism, but the effect is reduced distribution.
+
+Meta has not banned AI content; it has made undisclosed AI content algorithmically costly. The EU AI Act's Article 50 will add a separate mandatory disclosure layer for EU users starting August 2026.
+
+**Why this matters:** Meta's approach confirms the platform treats undisclosed AI content as a trust/deception problem, not a quality problem. The reach-reduction mechanism is interesting — it's neither a ban nor a neutral label. It's a penalty.
+
+**Sources:**
+- [Meta Transparency Center: Labeling AI Content](https://transparency.meta.com/governance/tracking-impact/labeling-ai-content/)
+- [About Meta: Our Approach to Labeling AI-Generated Content (April 2024)](https://about.fb.com/news/2024/04/metas-approach-to-labeling-ai-generated-content-and-manipulated-media/)
+- [Influencer Marketing Hub: AI Disclosure Rules by Platform](https://influencermarketinghub.com/ai-disclosure-rules/)
+- [Social Media Today: Instagram Chief Outlines Challenges of AI Content](https://www.socialmediatoday.com/news/instagram-chief-outlines-the-challenges-of-ai-content/808674/)
+
+---
+
+### Getty Images — Hard Ban (Submissions) + Own AI Product
+
+**Policy (ban on AI submissions; contradiction with own AI tool):**
+Getty Images banned all AI-generated content submissions in early 2023, citing unresolved copyright questions. The ban covers submissions created by Stable Diffusion, DALL-E, Midjourney, and similar tools. Enforcement uses C2PA filters plus user reporting. The policy was also partly defensive: Getty was already suing Stability AI for training on its licensed images without permission.
+
+The notable wrinkle: Getty simultaneously launched its **own licensed generative AI image tool** — built in partnership with Nvidia, trained exclusively on Getty's own licensed library, with full commercial indemnification. The 2025 update allows AI tools for minimal retouching (under 10% of pixels, no new elements added) without triggering the ban.
+
+On the litigation front, the UK High Court ruled in November 2025 in Getty v. Stability AI — mixed result for Getty. The court rejected Getty's central copyright infringement claims but found Stability AI liable for trademark infringement (Getty's watermarks appearing in outputs). Getty was granted permission to appeal in December 2025.
+
+**Why this matters:** Getty's position is coherent in a self-interested way: ban uncleared AI images (which could expose buyers to copyright risk) while building a cleared AI image product of their own. It's less about principle than liability management. The Stability AI litigation result (Getty mostly lost) is also relevant — it shows legal enforcement against AI training is uncertain.
+
+**Sources:**
+- [Getty Images Statement (original ban)](https://newsroom.gettyimages.com/en/getty-images/getty-images-statement)
+- [Getty Images: Launches Commercially Safe Generative AI Offering](https://newsroom.gettyimages.com/en/getty-images/getty-images-launches-commercially-safe-generative-ai-offering)
+- [Mayer Brown: Getty Images v Stability AI — High Court Decision (Nov 2025)](https://www.mayerbrown.com/en/insights/publications/2025/11/getty-images-v-stability-ai-what-the-high-courts-decision-means-for-rights-holders-and-ai-developers)
+- [Stock Photo Secrets: Getty & Shutterstock Will Not Accept AI Submissions](https://www.stockphotosecrets.com/news/getty-images-shutterstock-ai-submission.html)
+
+---
+
+### FTC / Federal Regulation — Still Emerging, No Mandate Yet
+
+**Policy (no federal content labeling law; framework still being written):**
+As of early 2026, there is **no federal law requiring AI content labeling** in the US. The FTC has signaled that undisclosed AI-generated content can violate existing deceptive practices rules under the FTC Act — particularly for AI-generated likenesses and endorsements — but this is applied on a case-by-case basis, not through a blanket disclosure mandate.
+
+The Trump executive order on AI (late 2025) directed the FTC to issue a policy statement by March 11, 2026 on how the FTC Act applies to AI, and to develop federal AI reporting and disclosure standards within 90 days of identifying obstructive state laws. The framing is explicitly preemptive of state-level rules rather than additive. A bipartisan House bill proposed mandatory AI content labeling for government agencies, but it has not passed into law.
+
+State-level action is ahead of federal: New York signed laws requiring synthetic performer disclosure in commercials (effective June 2026). The EU AI Act's Article 50 disclosure requirements take effect August 2026 for EU users.
+
+**Why this matters:** The absence of federal mandates means platform self-regulation is the operative regime in the US. The enforcement/disclosure decisions described above are all voluntary by the platforms — legally required only for deceptive AI impersonation under existing FTC deception doctrine. This gives platforms flexibility but also means the rules vary entirely by platform.
+
+**Sources:**
+- [FTC: Artificial Intelligence](https://www.ftc.gov/industry/technology/artificial-intelligence)
+- [FedScoop: Bipartisan House bill asks agencies to label AI-generated content](https://fedscoop.com/bipartisan-house-bill-disclosure-ai-content-label-requirement/)
+- [National Law Review: New Federal AI EO — minimally burdensome approach to states (2026)](https://natlawreview.com/article/new-executive-ai-order-mandates-minimally-burdensome-approach-states)
+- [King & Spalding: New State AI Laws Effective Jan 1 2026 and new EO](https://www.kslaw.com/news-and-insights/new-state-ai-laws-are-effective-on-january-1-2026-but-a-new-executive-order-signals-disruption)
+
+---
+
+### Summary Table
+
+| Platform | Approach | Enforcement or Disclosure? | Bans AI? |
+|---|---|---|---|
+| YouTube | Demonetize spam + label deceptive AI | Both | No (demonetizes, removes egregious cases) |
+| Spotify | Remove spam + voluntary DDEX credits | Enforcement of spam; disclosure voluntary | No (bans spam/impersonation) |
+| Amazon KDP | Internal disclosure + 3/day cap | Disclosure (internal only) | No |
+| Instagram/Meta | "Made with AI" label + reach reduction | Disclosure with reach penalty | No |
+| Getty Images | Ban AI submissions; own AI product allowed | Enforcement (submissions) | Yes (for submissions; not own tool) |
+| FTC / Federal | No mandate yet; existing deception rules apply | None (developing) | No |
+
+**The pattern:** No major platform has banned AI content categorically. The responses cluster into (a) spam/volume enforcement (Spotify, YouTube), (b) deception/impersonation enforcement (all platforms), and (c) disclosure systems of varying rigor (YouTube most strict, Amazon least). The common thread is that platforms are acting against the *economic and trust harms* of AI content floods — not against AI creativity per se.
+
+---
+
 ## Potential Angles / Arguments for the Post
 
 1. **The Ghibli moment as archetypal:** People were excited by the *demonstration of capability*, not by the output itself. Once you've seen one Ghibli-style selfie, you've seen them all. The viral moment was about what AI *can* do, not about what people wanted to make or consume repeatedly.
