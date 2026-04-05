@@ -33,6 +33,21 @@
 - [Variety: Sam Altman responds to Ghibli trend](https://variety.com/2025/digital/news/openai-ceo-chatgpt-studio-ghibli-ai-images-1236349141/)
 - [VentureBeat: Ghibli trend overwhelms GPT-4o](https://venturebeat.com/ai/studio-ghibli-ai-image-trend-overwhelms-openais-new-gpt-4o-feature-delaying-free-tier)
 
+## Claim: "AI cannot produce anything truly novel" is not currently well-supported as a blanket statement
+
+- The evidence here is mixed rather than one-sided.
+- Some creativity-benchmark papers report that top LLMs match or exceed average human performance on divergent/convergent-thinking tasks.
+- Other work argues current systems are more homogeneous, more average-level, or less variable than humans, especially at the collective level.
+- Strongest supported statement from current research: models can often produce outputs that score as novel in benchmark settings, but there is substantial evidence of homogeneity, convergence, and weaker high-end originality than human creative systems.
+
+### Sources
+
+- [Scientific Reports (2025): Generative artificial intelligence models outperform students on divergent and convergent thinking assessments](https://www.nature.com/articles/s41598-025-21398-4)
+- [arXiv (2024): Large Language Models show both individual and collective creativity comparable to humans](https://arxiv.org/abs/2412.03151)
+- [Journal of Creativity (2025): Has the creativity of large-language models peaked?](https://repository.essex.ac.uk/41909/1/1-s2.0-S2713374525000202-main.pdf)
+- [Creativity & Cognition (2024): Homogenization Effects of Large Language Models on Human Creative Ideation](https://scholarcommons.scu.edu/cseng/87/)
+- [PNAS Nexus (2024): Generative artificial intelligence, human creativity, and art](https://academic.oup.com/pnasnexus/article/doi/10.1093/pnasexus/pgae052/7618478)
+
 ## Claim: image generation is not simply fading
 
 - Midjourney reportedly grew from roughly $200M revenue in 2023 to roughly $300M in 2024.
@@ -108,6 +123,25 @@
 - [Xie et al. (WWW 2023)](https://zhaoyingpan.github.io/assets/pdf/www23-401.pdf)
 - [Lin (2025)](https://www.sijie-lin.com/files/JMP.pdf)
 
+## Claim: writing-specific evidence is mixed on detection, but stronger on disclosure effects than on innate preference
+
+- Detection:
+  - some studies find humans, teachers, or readers struggle to distinguish AI-generated writing from human writing
+  - some newer studies find expert annotators or specialized systems can do materially better than average readers
+- Quality/perception:
+  - blinded evaluations can show little difference in quality between human and AI-written text in some constrained settings
+  - once AI authorship is disclosed, ratings often decline, especially for writing framed as personal, expressive, or authentic
+- Strongest supported statement: for writing, "people cannot tell" is too strong as a universal claim; "unaided readers often struggle, and disclosure matters more than raw detection" is better supported.
+
+### Sources
+
+- [Advances in Simulation (2025): Ability of AI detection tools and humans to accurately identify different forms of AI-generated written content](https://link.springer.com/article/10.1186/s41077-025-00396-6)
+- [ScienceDirect (2025): Do humans identify AI-generated text better than machines?](https://www.sciencedirect.com/science/article/pii/S1477388025000131)
+- [ScienceDirect (2025): Detecting and assessing AI-generated and human-produced texts: The case of second language writing teachers](https://www.sciencedirect.com/science/article/pii/S1075293524000928)
+- [arXiv (2024): Evaluating AI and Human Authorship Quality in Academic Writing through Physics Essays](https://arxiv.org/abs/2403.05458)
+- [PubMed: The artificial intelligence disclosure penalty](https://pubmed.ncbi.nlm.nih.gov/41505277/)
+- [arXiv: Art-ificial Intelligence: The Effect of AI Disclosure on Evaluations of Creative Content](https://arxiv.org/abs/2303.06217)
+
 ## Claim: disclosure changes evaluation even when output quality is held constant
 
 - Across visual art, music, and writing, AI-labeled work is often rated lower than identical or similar work labeled human-made.
@@ -119,3 +153,25 @@
 - [Horton et al. (2023)](https://www.nature.com/articles/s41598-023-45202-3)
 - [Shank et al. (2022)](https://pubmed.ncbi.nlm.nih.gov/36006713/)
 - [AI disclosure penalty paper](https://pubmed.ncbi.nlm.nih.gov/41505277/)
+
+## Claim: platform responses are converging on labeling, spam enforcement, and selective suppression rather than blanket bans
+
+- YouTube:
+  - demonetization / enforcement against mass-produced or inauthentic content
+  - disclosure requirements for altered or synthetic content that could be mistaken for reality
+- Spotify:
+  - spam filtering, impersonation enforcement, and DDEX-style disclosure support
+- Meta:
+  - labels AI-generated or AI-edited content via metadata detection and user disclosure
+  - April 5, 2024 policy change: will label more AI-generated content rather than remove it solely under manipulated-media rules
+  - content can still be downranked or fact-checked where deceptive or high-risk
+- Strongest supported statement: major platforms are not banning AI content in general; they are treating it mainly as a transparency, spam, fraud, and deception problem.
+
+### Sources
+
+- [YouTube Help: Disclosing altered or synthetic content](https://support.google.com/youtube/answer/14328491)
+- [TechCrunch: YouTube crackdown on mass-produced AI videos](https://techcrunch.com/2025/07/09/youtube-prepares-crackdown-on-mass-produced-and-repetitive-videos-as-concern-over-ai-slop-grows/)
+- [Spotify Newsroom: Strengthening AI protections](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/)
+- [Meta: Our Approach to Labeling AI-Generated Content and Manipulated Media](https://about.fb.com/news/2024/04/metas-approach-to-labeling-ai-generated-content-and-manipulated-media/)
+- [Meta: How Meta is Preparing for Canada’s 2025 Federal Election](https://about.fb.com/news/2025/03/how-meta-is-preparing-for-canadas-2025-federal-election/)
+- [Ars Technica: Meta will label AI-generated content from OpenAI and Google](https://arstechnica.com/information-technology/2024/02/meta-will-label-ai-generated-content-from-openai-and-google-on-facebook-instagram/)
