@@ -180,6 +180,19 @@
 - [Shank et al. (2022)](https://pubmed.ncbi.nlm.nih.gov/36006713/)
 - [AI disclosure penalty paper](https://pubmed.ncbi.nlm.nih.gov/41505277/)
 
+## Pull quotes: strongest candidates
+
+- **Stein (definition):** "accepted as tenable or useful or satisfying by a group at some point in time."
+- **Runco & Jaeger (mainstream definition):** "Creativity requires both originality and effectiveness."
+- **Boden (alternative definition):** "new, surprising, and valuable."
+- **Newman & Bloom (authenticity/originals):** artworks are valued for "their histories and the processes that led to their creation."
+- **Newman & Bloom (creative act):** the original artwork as a "unique creative act."
+- **Hill & Monroy-Hernandez (oversupply/remix):** "trade-off between generativity and originality."
+- **Sarica & Luo (innovation/novelty decay):** "notable decline in the originality of newly created concepts."
+- **DOJ SDNY (AI music fraud):** "automated programs called 'bots' to stream the AI-generated songs billions of times."
+- **AI disclosure penalty paper:** humans "persistently devalue AI-generated creative writing."
+- **Meta (policy shift):** Meta said it would "label more AI-generated content so people know when photorealistic content has been created using AI."
+
 ## Claim: platform responses are converging on labeling, spam enforcement, and selective suppression rather than blanket bans
 
 - YouTube:

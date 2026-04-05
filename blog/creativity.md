@@ -40,20 +40,15 @@ Thesis: Ai cannot produce anything truly novel. Supply far exceeds demand. New t
     - Popularity
         - Experience in a band: it’s fun, but unsatisfying if not one listens. Creative work is communication, and if there wasn’t anyone listening there wasn’t communication. This isn’t everyone. Self expression cs communication, if there’s no audience who are you expressing to?
 - We'll go with Stein's defintion.
-- scarcity is required:
     - what makes ghibli ghibli is a _unique_ style
 
-2. AI is creating a LOT of output
--      A novel output only matters if it remains meaningful long enough to be recognized and valued.
-- Since everyone has access to same tools, any novel work produced by AI will be instantly replicated, thus destroying novelty
-- human input produces scarcity
-- this is ironic, the lack of scarcity that makes it difficult for human work today makes ai work impossible
+2. Scarcity matters
+- recognition is part of creativity, replication is a problem
+- ghibli is ghibli because of the _unique_ style
 
-3. Weak evidence of consumption
-- passive feed based
-- outright fraud
-    - spotify, etc
-- very little evidence of anyone seeking out ai generated work
+3. AI's oversupply problem
+- explosion of creation
+- evidence of consumption is weak, feed based, or outright fraud
 
 4. People care about authorship
 - sometimes people can't tell
