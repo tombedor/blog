@@ -42,6 +42,10 @@ Thesis: Ai cannot produce anything truly novel. Supply far exceeds demand. New t
 - We'll go with Stein's defintion.
 
 2. AI is creating a LOT of output
+-      A novel output only matters if it remains meaningful long enough to be recognized and valued.
+- Since everyone has access to same tools, any novel work produced by AI will be instantly replicated, thus destroying novelty
+- human input produces scarcity
+- this is ironic, the lack of scarcity that makes it difficult for human work today makes ai work impossible
 
 3. Weak evidence of consumption
 - passive feed based
