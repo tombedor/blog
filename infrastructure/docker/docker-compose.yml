@@ -81,7 +81,6 @@ services:
       - "443:443/udp"  # HTTP/3
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      # Manual Elroy docs deployments land in /opt/analytics/elroy-docs on the host.
       - ./elroy-docs:/srv/elroy-docs:ro
       - caddy_data:/data
       - caddy_config:/config
