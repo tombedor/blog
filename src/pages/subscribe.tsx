@@ -11,7 +11,7 @@ export default function Subscribe(): React.JSX.Element {
         <section style={{marginBottom: '2.5rem'}}>
           <h2 style={{fontSize: '1.2rem'}}>Email</h2>
           <p style={{color: 'var(--ifm-color-emphasis-700)', marginBottom: '1rem'}}>
-            Get new posts delivered to your inbox. No spam, unsubscribe any time.
+            New posts to your inbox. 2-3 posts per month.
           </p>
           <NewsletterSignup />
         </section>
