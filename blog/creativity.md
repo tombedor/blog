@@ -45,6 +45,9 @@ Thesis: Ai cannot produce anything truly novel. Supply far exceeds demand. New t
 2. Scarcity matters
 - recognition is part of creativity, replication is a problem
 - ghibli is ghibli because of the _unique_ style
+- digital platforms maade this much more difficult for humans, by eliminating scarcity
+    - hence the flood of super hero movies
+        - footnote, this makes the disney interest in soros extremely puzzling
 
 3. AI's oversupply problem
 - explosion of creation
