@@ -1,4 +1,7 @@
 set shell := ["zsh", "-c"]
+set dotenv-load := true
+
+host := if env_var_or_default("HOST_IP", "") != "" { env_var("HOST_IP") } else { `terraform -chdir=terraform output -raw droplet_ip` }
 
 # Initialize Terraform
 init:
@@ -38,38 +41,32 @@ generate-secrets:
 
 # SSH into the droplet
 ssh:
-	@terraform -chdir=terraform output -raw ssh_command | sh
+	@ssh root@{{host}}
 
 # View logs from all services
 logs:
 	@echo "Connecting to droplet and showing logs..."
-	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
-		ssh root@$DROPLET_IP 'cd /opt/analytics && docker-compose logs -f'
+	@ssh root@{{host}} 'cd /opt/analytics && docker-compose logs -f'
 
 # View logs from a specific service (umami, listmonk, postgres, caddy)
 logs-service service:
-	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
-		ssh root@$DROPLET_IP 'cd /opt/analytics && docker-compose logs -f {{service}}'
+	@ssh root@{{host}} 'cd /opt/analytics && docker-compose logs -f {{service}}'
 
 # Check service status
 status:
-	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
-		ssh root@$DROPLET_IP 'cd /opt/analytics && docker-compose ps'
+	@ssh root@{{host}} 'cd /opt/analytics && docker-compose ps'
 
 # Restart all services
 restart:
-	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
-		ssh root@$DROPLET_IP 'cd /opt/analytics && docker-compose restart'
+	@ssh root@{{host}} 'cd /opt/analytics && docker-compose restart'
 
 # Update services to latest versions
 update:
-	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
-		ssh root@$DROPLET_IP 'cd /opt/analytics && docker-compose pull && docker-compose up -d'
+	@ssh root@{{host}} 'cd /opt/analytics && docker-compose pull && docker-compose up -d'
 
 # Backup PostgreSQL database
 backup:
-	@DROPLET_IP=$(terraform -chdir=terraform output -raw droplet_ip) && \
-		ssh root@$DROPLET_IP "docker exec postgres pg_dumpall -U postgres" > backup_$(date +%Y%m%d_%H%M%S).sql && \
+	@ssh root@{{host}} "docker exec postgres pg_dumpall -U postgres" > backup_$(date +%Y%m%d_%H%M%S).sql && \
 		echo "Backup saved to: backup_$(date +%Y%m%d_%H%M%S).sql"
 
 # Test local docker-compose setup (without Terraform)
