@@ -101,6 +101,7 @@
   - **2004:** iTunes reached **1 million** songs.
   - **2011:** Spotify U.S. launch offered **more than 15 million** songs.
   - **2022-2023:** Apple Music and Spotify each reported **more than 100 million** tracks.
+  - **2025 inferred pre-purge floor for Spotify:** if Spotify had **100M+** tracks on September 30, 2025, after disclosing on September 25, 2025 that it had removed **75M+** spammy tracks over the prior year, then a rough implied pre-purge floor is **~175M+** tracks. This is an inference, not an official historical catalog count.
 - Strongest supported statement: even allowing for mixed measures, the amount of recorded music a consumer could access moved from **hundreds** of titles in the early LP era to **tens of thousands** in the late physical era, then to **hundreds of thousands / millions** in digital download, and finally to **100M+** in streaming.
 
 ### Pull quotes
@@ -121,6 +122,8 @@
 - [Spotify U.S. launch coverage (2011): more than 15 million songs](https://www.computerworld.com/article/1436659/spotify-launches-in-the-u-s.html)
 - [Apple (2022): 100 million songs](https://www.apple.com/si/newsroom/2022/10/celebrating-100-million-songs/)
 - [Spotify Newsroom (2023): more than 100 million tracks](https://newsroom.spotify.com/2023-11-08/audiobooks-us-spotify-premium-users/)
+- [Spotify Newsroom (2025): over 100 million tracks](https://newsroom.spotify.com/2025-09-30/spotify-announcement-daniel-ek-executive-chairman/)
+- [Spotify Newsroom (2025): removed 75 million+ spammy tracks over prior year](https://newsroom.spotify.com/2025-09-25/spotify-starkt-ki-schutzmasnahmen-fur-kunstlerinnen-und-produzentinnen/)
 
 ## Claim: much AI-content consumption is passive feed exposure, not clearly chosen demand
 
