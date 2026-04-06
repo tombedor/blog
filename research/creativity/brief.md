@@ -87,6 +87,41 @@
 - [DemandSage: Midjourney statistics](https://www.demandsage.com/midjourney-statistics/)
 - [Poe: Spring 2025 AI model usage trends](https://poe.com/blog/spring-2025-ai-model-usage-trends)
 
+## Claim: consumer access to recorded music expanded by orders of magnitude across physical and digital eras
+
+- This is best treated as a **proxy series**, not a perfectly consistent census. The underlying measure changes by era: print catalogs of in-print recordings, then digital storefront catalog size, then streaming library size.
+- Useful rough timeline:
+  - **1949:** first Schwann LP catalog listed **674** long-playing records.
+  - **1958:** Schwann listed **19,830** LP entries generally available in the U.S.
+  - **1973:** Schwann listed **45,000** currently available disks, plus 8-track cartridges and cassettes from nearly 300 companies.
+  - **1983:** estimated **403** CD titles available in the U.S.
+  - **1985:** estimated **4,319** CD titles available in the U.S.; separate Schwann Compact Disc Catalog estimate said **4,500 CDs** containing about **8,000 titles**.
+  - **1990:** estimated **46,700** CD titles available in the U.S.
+  - **2003:** iTunes launched with **200,000** tracks.
+  - **2004:** iTunes reached **1 million** songs.
+  - **2011:** Spotify U.S. launch offered **more than 15 million** songs.
+  - **2022-2023:** Apple Music and Spotify each reported **more than 100 million** tracks.
+- Strongest supported statement: even allowing for mixed measures, the amount of recorded music a consumer could access moved from **hundreds** of titles in the early LP era to **tens of thousands** in the late physical era, then to **hundreds of thousands / millions** in digital download, and finally to **100M+** in streaming.
+
+### Pull quotes
+
+- **TIME (1958):** the whole literature of LP-recorded sound, "as far as generally available in the U.S.," could be worked through in roughly "3 1/2 years."
+- **Apple (2022):** "we've gone from 1,000 songs in your pocket to 100,000x that on Apple Music."
+- **Farrell & Shapiro (1992):** between 1984 and 1990, CD programming variety rose by an estimated "factor of 25."
+
+### Sources
+
+- [TIME (1958): "The LP Decade"](https://time.com/archive/6870649/music-the-lp-decade/)
+- [Audio magazine (1958) on Schwann catalog growth](https://www.worldradiohistory.com/Archive-All-Audio/Archive-Audio/50s/Audio-1958-Jun.pdf)
+- [Boston Musical Intelligencer (2024) on 1973 Schwann catalog size](https://classical-scene.com/2024/05/16/schwann/)
+- [Brookings / Farrell & Shapiro (1992) on CD titles available, 1983-1990](https://www.brookings.edu/~/media/projects/bpea/1992-micro/1992_bpeamicro_farrell.pdf)
+- [NASM Proceedings (1985) on first Schwann Compact Disc Catalog](https://nasm.arts-accredit.org/wp-content/uploads/sites/2/2018/10/M-Proceedings-61st-Annual-Meeting-1985.pdf)
+- [Apple (2003): iTunes launch catalog over 200,000 tracks](https://www.apple.com/newsroom/2003/06/23iTunes-Music-Store-Hits-Five-Million-Downloads/)
+- [Apple (2004): iTunes catalog over 1 million songs](https://www.apple.com/newsroom/2004/08/10iTunes-Music-Store-Catalog-Tops-One-Million-Songs/)
+- [Spotify U.S. launch coverage (2011): more than 15 million songs](https://www.computerworld.com/article/1436659/spotify-launches-in-the-u-s.html)
+- [Apple (2022): 100 million songs](https://www.apple.com/si/newsroom/2022/10/celebrating-100-million-songs/)
+- [Spotify Newsroom (2023): more than 100 million tracks](https://newsroom.spotify.com/2023-11-08/audiobooks-us-spotify-premium-users/)
+
 ## Claim: much AI-content consumption is passive feed exposure, not clearly chosen demand
 
 - Spotify's "Perfect Fit Content" reporting suggests platforms can insert cheap ambient/background material into contexts where users choose a function ("focus music", "sleep sounds") rather than a creator.
@@ -214,3 +249,32 @@
 - [Meta: Our Approach to Labeling AI-Generated Content and Manipulated Media](https://about.fb.com/news/2024/04/metas-approach-to-labeling-ai-generated-content-and-manipulated-media/)
 - [Meta: How Meta is Preparing for Canada’s 2025 Federal Election](https://about.fb.com/news/2025/03/how-meta-is-preparing-for-canadas-2025-federal-election/)
 - [Ars Technica: Meta will label AI-generated content from OpenAI and Google](https://arstechnica.com/information-technology/2024/02/meta-will-label-ai-generated-content-from-openai-and-google-on-facebook-instagram/)
+
+## Synthesis: platform abundance may weaken creative recognition for both humans and AI
+
+- Platform distribution had already pushed culture toward abundance before generative AI:
+  - infinite catalogs
+  - recommendation feeds
+  - low-cost distribution
+  - intense competition for attention
+- Generative AI intensifies those conditions by making supply cheaper, faster, and easier to replicate.
+- Under Stein's definition, creativity depends partly on social recognition by a group.
+- In a high-abundance environment, recognition becomes harder to sustain because:
+  - distinctiveness decays faster
+  - imitation and style-copying are cheap
+  - passive exposure becomes easier to buy or game than durable audience commitment
+  - platforms optimize against spam/fraud/deception rather than for recognition of singular works
+- Strongest supported statement: the same platform conditions that commoditized attention for human creators also make it difficult for AI-generated work to secure durable, socially meaningful recognition.
+
+### Pull quote
+
+- **Hill & Monroy-Hernandez (2015):** "trade-off between generativity and originality."
+
+### Sources
+
+- [Stein, "Creativity and Culture" (1953)](https://www.tandfonline.com/doi/abs/10.1080/00223980.1953.9712897)
+- [Hill & Monroy-Hernandez, "The Remixing Dilemma: The Trade-off Between Generativity and Originality"](https://arxiv.org/abs/1507.01295)
+- [Harper's: "The Ghosts in the Machine"](https://harpers.org/archive/2025/01/the-ghosts-in-the-machine-liz-pelly-spotify-musicians/)
+- [Guardian on Kapwing study](https://www.theguardian.com/technology/2025/dec/27/more-than-20-of-videos-shown-to-new-youtube-users-are-ai-slop-study-finds)
+- [Spotify Newsroom: Strengthening AI protections](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/)
+- [TechCrunch: YouTube crackdown on mass-produced AI videos](https://techcrunch.com/2025/07/09/youtube-prepares-crackdown-on-mass-produced-and-repetitive-videos-as-concern-over-ai-slop-grows/)
