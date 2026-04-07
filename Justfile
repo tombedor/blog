@@ -60,6 +60,34 @@ deploy-elroy-docs HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/elroy-
 
 	echo "Elroy docs deployed to $host:{{DEST_PATH}}"
 
+# Preview the deployed Elroy docs over the droplet IP using the Host header Caddy expects
+preview-elroy-docs HOST="" PATH="/" SHOW_HEADERS="false":
+	#!/usr/bin/env bash
+	set -euo pipefail
+
+	host="{{HOST}}"
+	if [ -z "$host" ]; then
+		host="${HOST_IP:-}"
+	fi
+	if [ -z "$host" ]; then
+		host="$(terraform -chdir=infrastructure/terraform output -raw reserved_ip 2>/dev/null || terraform -chdir=infrastructure/terraform output -raw droplet_ip)"
+	fi
+	if [ -z "$host" ]; then
+		echo "No host configured. Set HOST, HOST_IP in .env, or terraform outputs."
+		exit 1
+	fi
+
+	path="{{PATH}}"
+	if [ -z "$path" ]; then
+		path="/"
+	fi
+
+	if [ "{{SHOW_HEADERS}}" = "true" ]; then
+		curl -i -H 'Host: elroy.bot' "http://$host$path"
+	else
+		curl -L -H 'Host: elroy.bot' "http://$host$path"
+	fi
+
 # Dual publish blog posts to elroy project
 dual-publish:
 	npm run dual-publish
