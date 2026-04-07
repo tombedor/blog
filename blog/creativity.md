@@ -63,3 +63,7 @@ Thesis: Ai cannot produce anything truly novel. Supply far exceeds demand. New t
     - meta's interesting position
 
 6. AI is producing a lot of work, but it is not getting traction creating work that people actually want
+
+
+- originality creates scarcity - newman and bloom: peoplel value the lead up to creative work. you can dismiss this is marketing or algorithmic
+- ai has no such backstory

@@ -23,16 +23,16 @@
 - Stein does not explicitly say creativity requires scarcity.
 - But Stein's definition makes **group acceptance** part of creativity, which creates a plausible link to oversupply: if outputs are instantly reproducible, distinctiveness and stable recognition may be harder to sustain.
 - Adjacent literature supports the mechanism:
+  - originality can be framed as **scarcity of meaningful substitutes**, not scarcity of copies
   - originals are valued for their history and authorship, not only for visible properties
   - systems that maximize generativity can reduce originality in derivative outputs
   - expanding concept space can coincide with declining originality
-- Strongest supported statement: scarcity is not built into Stein's definition, but scarcity/authenticity/originality literature gives a defensible basis for arguing that mass replication can weaken the conditions under which work is recognized as creative.
+- Strongest supported statement: scarcity is not built into Stein's definition, but scarcity/authenticity/originality literature supports a narrower claim: culturally, originality often functions as **scarcity of non-interchangeable works**, and mass replication can weaken that scarcity by flooding the field with substitutes.
 
 ### Pull quotes
 
 - **Stein (1953):** "accepted as tenable or useful or satisfying by a group at some point in time."
-- **Newman & Bloom (2012):** original artworks are valued for "their histories and the processes that led to their creation."
-- **Newman & Bloom (2012):** the value of the original can stem from the "original artwork as a unique creative act."
+- **Newman & Bloom (2012):** originals valued for "their histories and the processes that led to their creation" and the "original artwork as a unique creative act" — directly supports the intrinsic-scarcity claim.
 - **Hill & Monroy-Hernandez (2015):** there is a "trade-off between generativity and originality."
 - **Sarica & Luo (2023/2024):** there is a "notable decline in the originality of newly created concepts."
 
@@ -265,9 +265,10 @@
 - In a high-abundance environment, recognition becomes harder to sustain because:
   - distinctiveness decays faster
   - imitation and style-copying are cheap
+  - audiences face more near-substitutes, making originality harder to perceive as singular
   - passive exposure becomes easier to buy or game than durable audience commitment
   - platforms optimize against spam/fraud/deception rather than for recognition of singular works
-- Strongest supported statement: the same platform conditions that commoditized attention for human creators also make it difficult for AI-generated work to secure durable, socially meaningful recognition.
+- Strongest supported statement: the same platform conditions that commoditized attention for human creators also make it difficult for any work, especially AI-generated work, to secure durable recognition; if originality works partly by being hard to substitute, abundance directly erodes one of the conditions under which originality is socially legible.
 
 ### Pull quote
 
