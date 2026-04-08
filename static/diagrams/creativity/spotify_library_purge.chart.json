@@ -1,0 +1,18 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "./spotify_library_purge.data.csv", "format": "csv" },
+  "mark": "bar",
+  "title": {
+    "text": "Spotify Library Before and After the 2025 Purge",
+    "subtitle": "100M-plus tracks remained after the purge. Adding back the 75M-plus removed spam/AI tracks gives a rough pre-purge floor of about 175M."
+  },
+  "encoding": {
+    "x": { "field": "period", "type": "ordinal", "title": "Spotify snapshot" },
+    "y": { "field": "tracks", "type": "quantitative", "title": "Tracks", "stack": true },
+    "color": {
+      "field": "series",
+      "type": "nominal",
+      "scale": { "domain": ["Retained library", "Removed spam/AI tracks"] }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "./access_growth_multiple.data.csv", "format": "csv" },
+  "mark": "bar",
+  "title": {
+    "text": "Recorded-Music Access Expanded by Orders of Magnitude",
+    "subtitle": "Selected milestones, shown as multiples of the 1949 LP baseline."
+  },
+  "encoding": {
+    "x": { "field": "period", "type": "ordinal", "title": "Era / milestone" },
+    "y": { "field": "multiple", "type": "quantitative", "title": "Multiple of 1949 catalog" },
+    "color": {
+      "field": "series",
+      "type": "nominal",
+      "legend": null,
+      "scale": { "domain": ["Access relative to 1949"] }
+    }
+  }
+}
