@@ -36,7 +36,22 @@ AI has been nothing if not _profilic_:
 
 AI "creators" face a similar challenge to humans: there's vast surplus of content to choose from, and breaking through is quite difficult. To take music as an example, the average consumer's available library has grown exponentially, and is enough to listen to something different every second for X years.
 
-(access_nested_boxes)[/diagrams/creativity/access_nested_boxes.png]
+[access_nested_boxes](/diagrams/creativity/access_nested_boxes.png)
+
+## Platform behavior
+
+Platforms have shown a conflicted relationship with AI: they need content, and in some cases are providing AI creation tools themselves. But much of what _is_ being produced is low quality or fraudulent.
+
+Thus they have not _banned_ AI contributions, but are actively taking them down.
+
+<!-- Table: platform, policy, numbers on how many posts are being taken down -->
+
+## Fundamental challenges
+
+AI faces fundamental challenges in creating work that is recognized as valuable:
+
+[ai_dilemma](/diagrams/creativity/ai_dilemma.png)
+
 
 
 
