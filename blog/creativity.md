@@ -38,6 +38,8 @@ AI "creators" face a similar challenge to humans: there's vast surplus of conten
 
 [access_nested_boxes](/diagrams/creativity/access_nested_boxes.png)
 
+- survey results about people being uncomfortable with ai authorship
+
 ## Platform behavior
 
 Platforms have shown a conflicted relationship with AI: they need content, and in some cases are providing AI creation tools themselves. But much of what _is_ being produced is low quality or fraudulent.
