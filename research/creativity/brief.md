@@ -127,9 +127,9 @@
 
 ## Claim: much AI-content consumption is passive feed exposure, not clearly chosen demand
 
-- Spotify's "Perfect Fit Content" reporting suggests platforms can insert cheap ambient/background material into contexts where users choose a function ("focus music", "sleep sounds") rather than a creator.
+- Spotify's "Perfect Fit Content" reporting suggests platforms can insert cheap ambient/background material into contexts where users choose a function ("focus music", "sleep sounds") rather than a creator. <!-- what is source for this? what is meant by perfect fit content? -->
 - Kapwing/Guardian reporting indicates AI-slop content can occupy a substantial share of recommendation surfaces for new YouTube users.
-- Survey evidence is materially less enthusiastic than platform exposure metrics: Variety found 70% discomfort with fully AI-generated creative content and high demand for disclosure.
+- Survey evidence is materially less enthusiastic than platform exposure metrics: Variety found 70% discomfort with fully AI-generated creative content and high demand for disclosure. <!-- what is source here -->
 
 ### Sources
 
@@ -139,6 +139,16 @@
 - [Variety VIP survey](https://variety.com/vip/most-consumers-wary-of-fully-ai-generated-creative-content-survey-1236347518/)
 - [Baringa survey](https://www.baringa.com/en/about/regions/north-america/study-explores-shifting-us-consumer-preferences-around-ai-generated-content/)
 - [Artificial Analysis survey](https://artificialanalysis.ai/media/survey-2025)
+
+## Claim: AI output volume is already enormous, but available public numbers measure different pipeline stages
+
+- Useful diagram numbers are in [ai-output-scale.md](./ai-output-scale.md).
+- Best compact set:
+  - **75M+** Spotify spam tracks removed over one year.
+  - **60K/day** AI tracks delivered to Deezer in January 2026, about **39%** of daily music delivery.
+  - **700M+** images generated with ChatGPT in roughly GPT-4o image generation's first week.
+  - **104/500** first YouTube recommendations to a new account were AI slop; same Kapwing/Guardian study found AI-only slop channels had **63B+** views.
+- Use caveat: these are not one shared census. They measure removals, deliveries, generations, and recommendation exposure.
 
 ## Claim: some apparent AI-content "consumption" is bot activity rather than human attention
 

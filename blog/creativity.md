@@ -26,8 +26,17 @@ So with that in mind, how is AI doing?
 
 ## AI's output: A flood on top of a flood
 
+AI has been nothing if not _profilic_:
 
+## Consumption: mostly algorithmic
 
+- evidence on bot consumption
+
+## Originality and Scarcity
+
+AI "creators" face a similar challenge to humans: there's vast surplus of content to choose from, and breaking through is quite difficult. To take music as an example, the average consumer's available library has grown exponentially, and is enough to listen to something different every second for X years.
+
+(access_nested_boxes)[/diagrams/creativity/access_nested_boxes.png]
 
 
 
