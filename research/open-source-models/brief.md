@@ -40,6 +40,11 @@ The post's core thesis is well-supported. The open-source parity case and Apple'
 - DeepSeek-V3.2 (open weights, MIT license) achieved parity with GPT-5 on multiple reasoning benchmarks at **$0.28/M input tokens** — 94% cheaper than Claude Opus 4.5. ([ArXiv — DeepSeek-V3.2](https://arxiv.org/html/2512.02556v1))
 - Llama 4 Maverick, Qwen3-235B, Mistral Large 3: all at 85–90% of frontier on key benchmarks. ([BentoML](https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models))
 
+**Related chart idea: frontier-vs-frontier lead durability**
+- See [frontier-leads.md](frontier-leads.md) and `data/open-source-models/frontier-leads.csv` for a draft SWE-bench Verified chart dataset.
+- Early readout: GPT-5's coding lead lasted **~1.7 months** before Claude Sonnet 4.5; Sonnet 4.5's lead lasted **~1.8 months** before Claude Opus 4.5.
+- Caveat: the cross-lab version is weaker because Opus 4.5's same-benchmark lead appears **ongoing** as of 2026-04-10; label this as leaderboard churn, not a universal proof that frontier leads always vanish within months.
+
 **On benchmark gaming:** The post acknowledges this but notes "the same could be argued of frontier models" — this is now well-documented:
 - Meta admitted it "cheated a little" on Llama 4 benchmark testing.
 - OpenAI found SWE-bench Verified contaminated with training data; top models score ~23% on contamination-resistant SWE-bench Pro vs. 70%+ on the standard version.

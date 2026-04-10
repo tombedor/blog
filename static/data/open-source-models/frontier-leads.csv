@@ -1,0 +1,4 @@
+lead_model,lead_provider,lead_release,benchmark,lead_score,match_date,match_model,match_provider,match_score,months_held,status,source
+GPT-5,OpenAI,2025-08-07,SWE-bench Verified,74.9,2025-09-29,Claude Sonnet 4.5,Anthropic,77.2,1.7,beaten,"https://cdn.openai.com/gpt-5-system-card.pdf; https://www.anthropic.com/news/claude-sonnet-4-5"
+Claude Sonnet 4.5,Anthropic,2025-09-29,SWE-bench Verified,77.2,2025-11-24,Claude Opus 4.5,Anthropic,80.9,1.8,beaten by same lab,"https://www.anthropic.com/news/claude-sonnet-4-5; https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf"
+Claude Opus 4.5,Anthropic,2025-11-24,SWE-bench Verified,80.9,,,,,4.6,ongoing lower bound as of 2026-04-10,"https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf; https://openai.com/research/index/release/"
