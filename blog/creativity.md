@@ -36,16 +36,24 @@ A rough breakdown:
 
 Stein's definition resonates with me. Up until after college, I was in a series of bands. While creating and playing songs with my friends was rewarding and fun, it was only when we got to perform in front of an audience that I felt real satisfaction from the creative work. So we'll go with Stein!
 
-So with that in mind, how is AI doing?
+An economical lens to view this through is supply and demand. There's an abundance of supply, but is there demand? It's difficult to think there could be.
+
+## Structural challenges
+
+AI faces fundamental challenges in creating work that is recognized as valuable:
+
+[ai_dilemma](/diagrams/creativity/ai_dilemma.png)
+
+
 
 ## AI's output: A flood on top of a flood
 
 AI has been nothing if not _profilic_:
 
+[ai_output_big_numbers](/diagrams/creativity/ai_output_big_numbers.png)
+
 <!--
 Insert diagram candidate:
-
-[ai_output_big_numbers](/diagrams/creativity/ai_output_big_numbers.png)
 
 Claim:
 - AI has no supply problem. The evidence is not a single unified census, but public numbers from different content pipelines all point in the same direction: extremely cheap, high-volume output.
@@ -134,7 +142,7 @@ Platforms have shown a conflicted relationship with AI: they need content, and i
 
 Thus they have not _banned_ AI contributions, but are actively taking them down.
 
-<!-- Table: platform, policy, numbers on how many posts are being taken down -->
+[platform_policy_table](/diagrams/creativity/platform_policy_table.png)
 
 <!--
 Main claim:
@@ -150,6 +158,7 @@ Rows:
 - Spotify: spam filtering, impersonation enforcement, AI disclosure support. Source: https://newsroom.spotify.com/2025-09-25/spotify-starkt-ki-schutzmasnahmen-fur-kunstlerinnen-und-produzentinnen/
 - YouTube: disclosure requirements for realistic altered/synthetic content; crackdown on mass-produced/repetitive content. Sources: https://support.google.com/youtube/answer/14328491 and https://techcrunch.com/2025/07/09/youtube-prepares-crackdown-on-mass-produced-and-repetitive-videos-as-concern-over-ai-slop-grows/
 - Meta: label more AI-generated content rather than remove solely under manipulated-media policy. Source: https://about.fb.com/news/2024/04/metas-approach-to-labeling-ai-generated-content-and-manipulated-media/
+- TikTok: requires labels for realistic AI-generated content, auto-labels some AI content via C2PA/TikTok effects, can remove misleading or unlabeled harmful AIGC, and has user controls to see less AI-generated content. Sources: https://support.tiktok.com/en/using-tiktok/creating-videos/ai-generated-content and https://newsroom.tiktok.com/en-us/tiktok-introduces-new-tools-to-help-people-manage-ai-generated-content
 
 Pull quote:
 - Meta said it would "label more AI-generated content so people know when photorealistic content has been created using AI."
@@ -157,9 +166,6 @@ Pull quote:
 
 ## Conclusion
 
-AI faces fundamental challenges in creating work that is recognized as valuable:
-
-[ai_dilemma](/diagrams/creativity/ai_dilemma.png)
 
 <!--
 Conclusion target:
