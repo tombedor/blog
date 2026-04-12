@@ -4,6 +4,30 @@ date: 2025-12-12
 draft: true
 ---
 
+Sora is dead, a blwo
+
+
+1. Define creativity (Stein)
+    1. Define Slop:
+        1. creative work often produced in high volume, that, while technically adept, is devoid of intention or originality. Key point: the quantity is key
+1. Recognition takes time.
+    1. Audiences value originality
+    1. for unknown artists, there is a time lag
+    1. For recognized artists, work is anticipated, and more immediately accepted
+    1. Imitators emerge:
+        1. but only after recongition has occurred
+        1. recognition is retained, because there is a unique author.
+1. AI
+    1. There is no unique author
+    1. Recongition algorithmic recognition begins. imitators emerge, there lost in the slop
+1. The data
+    1. Consumption is algorithmic, perhaps even mostly bots?
+    1. Platform behavior: taking down
+
+
+
+
+
 Sora is dead. Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? *Can AI be creative at all?*
 
 I don't think so. But let's clarify terms.
