@@ -64,12 +64,6 @@ services:
     networks:
       - analytics_network
     command: ["./listmonk"]
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:9000/api/health || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
   # Caddy reverse proxy with automatic HTTPS
   caddy:
     image: caddy:2-alpine
