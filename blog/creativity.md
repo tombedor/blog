@@ -16,7 +16,7 @@ To go deeper, some definitions are in order.
 
 ## What defines creativity? What defines slop?
 
-The definition of creativity is a subject of academic debate, but the definition I'll use for our purposes comes from {FIRST NAME} Stein.
+The definition of creativity is a subject of academic debate, but the definition I'll use for our purposes comes from Morris Stein.
 
 In 1959's "Creativity and Culture", Stein wrote that to be creative, a work must be original, effective, and "accepted as tenable or useful or satisfying by a group at some point in time."
 
