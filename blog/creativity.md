@@ -6,7 +6,7 @@ draft: true
 
 Sora is dead. Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? *Can AI be creative at all?*
 
-The debate on this question usually centers on the quality of AI output in a vacuum, but if we take connection with an audience as a requirement, we must consider the supply and demand of "creative"[^1] work. In this framing, AI "artists" face structural headwinds: Any originality of their work can be instantly replicated by imitators.
+The debate on this question usually centers on the quality of AI output in a vacuum, but if we take connection with an audience as a requirement, we must consider the supply and demand of "creative"[^1] work. In this framing, AI artists face what I call the **instant imitator trap**: Any original AI work can be instantly replicated by other AI's, making audience recognition of the original impossible.
 
 [^1]: For simplicity I'll omit scare quotes from here on out, but note: I don't think AI can be an artist!
 
@@ -56,5 +56,10 @@ The instant replication means the "original work" is not well distinguished from
 
 
 ## Conclusion: Technological irony
+
+The instant imitator trap precludes creative recognition, *regardless of model capabilities*. It doesn't matter if models become 10x smarter or more technically adept. So long as work can be instantly generated and algorithmically distributed, recognition of originality (to the degree that any AI work can be said to be original) is impossible.
+
+This dynamic is why I'm bullish on the future of creativity. Humans may leverage AI in making creative work, just as they already employ sohpisticated software in creative fields. But the human touch will continue to be essential.
+
 
 
