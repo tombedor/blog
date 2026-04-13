@@ -8,8 +8,11 @@ Sora is dead, a blwo
 
 
 1. Define creativity (Stein)
+    1. algotihmic consumption does not count on it's own
     1. Define Slop:
-        1. creative work often produced in high volume, that, while technically adept, is devoid of intention or originality. Key point: the quantity is key
+        1. creative work often produced in high volume, that, while technically adept, is devoid of intention or originality.
+        1. Key point: the quantity is key. Example: Spice wasn't just important to Arrakis, it's the lifeblood of the economy.
+            1. future models will adapt, but then their tells will become the new slop markers
 1. Recognition takes time.
     1. Audiences value originality
     1. for unknown artists, there is a time lag
@@ -30,9 +33,35 @@ Sora is dead, a blwo
 
 Sora is dead. Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? *Can AI be creative at all?*
 
-I don't think so. But let's clarify terms.
+The debate on this question usually centers on the quality of AI output in a vacuum, but if we take connection with an audience as a requirement, we must consider the supply and demand of "creative"[^1] work. In this framing, AI "artists" face structural headwinds:
 
-## What defines creativity?
+[^1]: For simplicity I'll omit scare quotes from here on out, but note: I don't think AI can be an artist!
+
+[ai_dilemma](/diagrams/creativity/ai_dilemma.png)
+
+To go deeper, some definitions are in order.
+
+## What defines creativity? What defines slop?
+
+Academics have long debated what defines creativity.
+
+In 1959's "Creativity and Culture", {FIRST_NAME} Stein was more explicit about the role of an audenice. For him, a creative work must be "accepted as tenable or useful or satisfying by a group at some point in time."
+
+[definitions](/diagrams/creativity/definitions.png)
+
+As somoene who spent years playing in permanently obscure musical groups, this definition resonates. If there's no audience, a creative work cannot be said to be "effective" in any sense of the word.
+
+*Slop*, [Merriam Webster's word of the year for 2025](https://www.merriam-webster.com/wordplay/word-of-the-year), is defined as *"digital content of low quality that is produced usually in quantity by means of artificial intelligence."*
+
+I would remove the word *usually*. The *quantity* of generated work is crucial to the definition. In isolation, the stylistic tendencies of AI are not all that bad. It's when consumers are exposed to them algorithmically and ad nauseum that they become slop. We see this in the fad popularity of novel AI imagry like Studio Ghibli profile pictures: A burst of popularity as people have fun with a new tool, transitioning to inducing eye rolls.
+
+[repitition](/diagrams/creativity/reptition.png)
+
+## The time dimension of imitation
+
+Human art takes time to get recognized. An artist hones their craft in obscurity, before recognition:
+
+
 
 <!--
 Sources:
