@@ -1,6 +1,7 @@
 ---
 title: "Can AI be Creative?"
-date: 2025-12-12
+date: 2026-04-13
+draft: true
 ---
 
 Sora is dead. Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? *Can AI be creative at all?*
