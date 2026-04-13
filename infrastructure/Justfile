@@ -62,6 +62,9 @@ restart:
 
 # Update services to latest versions
 update:
+	@scp docker/docker-compose.yml root@{{host}}:/opt/analytics/docker-compose.yml
+	@ssh root@{{host}} 'mkdir -p /opt/analytics/caddy'
+	@scp docker/caddy/Caddyfile root@{{host}}:/opt/analytics/caddy/Caddyfile
 	@ssh root@{{host}} 'cd /opt/analytics && docker compose pull && docker compose up -d'
 
 # Backup PostgreSQL database

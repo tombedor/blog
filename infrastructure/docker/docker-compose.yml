@@ -63,7 +63,7 @@ services:
         condition: service_healthy
     networks:
       - analytics_network
-    command: ["./listmonk"]
+    command: ["sh", "-c", "./listmonk --install --idempotent --yes --config '' && ./listmonk --upgrade --yes --config '' && ./listmonk --config ''"]
   # Caddy reverse proxy with automatic HTTPS
   caddy:
     image: caddy:2-alpine
