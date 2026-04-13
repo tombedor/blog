@@ -13,7 +13,7 @@ The debate on this question usually centers on the quality of AI output in a vac
 
 To go deeper, some definitions are in order.
 
-## What defines creativity? What defines slop?
+## What defines creativity?
 
 The definition of creativity is a subject of academic debate, but the definition I'll use for our purposes comes from Morris Stein.
 
@@ -25,25 +25,27 @@ As somoene who spent years playing in permanently obscure musical groups, this d
 
 Note a crucial distinction: "audience acceptance" does *not* equate to passive algorithmic consumption. While exposure via algorithms does not detract from creative value in this framing, it is insufficient. There is not an active acceptance taking place when an audience consumes a work purely through algorithm. Thus the \{spotify citation Number\} of AI music listeners does not count, as they appear to have come mostly through automatd playlist generation.
 
+## What defines slop?
+
 *Slop*, [Merriam Webster's word of the year for 2025](https://www.merriam-webster.com/wordplay/word-of-the-year), is defined as *"digital content of low quality that is produced usually in quantity by means of artificial intelligence."*
 
 The inclusion of the word *usually* makes this definition flawed: the *quantity* of generated work is crucial. In isolation, the stylistic tendencies of AI are not all that bad. It's when consumers are exposed to them algorithmically and ad nauseum that they become slop. We see this in the fad popularity of novel AI imagry like Studio Ghibli profile pictures: A burst of popularity as people have fun with a new tool, transitioning to inducing eye rolls.
 
 ![repitition](/diagrams/creativity/repitition.png)
 
-## The time dimension of imitation[^2]
+## The time dimension of imitation and recognition[^2]
 
 [^2]: Disclaimer: Vibes based arguments follow!
 
-Recognition of great art and artists does not happen instantly. An innovative artist undiscovered must hone their craft in obscurity before audience recognition. Once initial works are popularized, audiences anticipate future work, making recognition for subsequent efforts more immediate:
+Recognition of great art and artists does not happen instantly. An innovative, new artist must hone their craft in obscurity before audience recognition. Once initial works are popularized, audiences anticipate future work, making recognition for subsequent efforts more immediate:
 
 ![recognition_1](/diagrams/creativity/recognition_1.png)
 
-Having gained recognition, an artists work draws imitators. Fortunatly for the innovator, this does not typically detract from the innovator's recognition - people prefer the work of the innovator.
+Having gained recognition, an artists work draws imitators. Fortunatly for the innovator, this does not typically detract from the innovator's recognition - people prefer the work of the innovator. Crucially, there is a _time delay_ for imitators of human artists to emerge. This window allows the reputation of the innovative artist to solidify.
 
 ![recognition_2](/diagrams/creativity/recognition_2.png)
 
-Crucially, there is a _time delay_ for imitators of human artists to emerge. This window allows the reputation of the innovative artist to solidify.
+
 
 Modern platforms like Spotify have shrunk this window. It's quite difficult for an audience to identify new original work in a boundlessly vast, instantly distributed catalog of art.
 
@@ -56,7 +58,7 @@ The instant replication means the "original work" is not well distinguished from
 
 ## Conclusion: Technological irony
 
-The instant imitator trap precludes creative recognition, *regardless of model capabilities*. It doesn't matter if models become 10x smarter or more technically adept. So long as work can be instantly generated and algorithmically distributed, recognition of originality (to the degree that any AI work can be said to be original) is impossible.
+The instant imitator trap precludes creative recognition, *regardless of model capabilities*. It doesn't matter if models become 10x smarter or more technically adept. So long as work can be instantly generated and algorithmically distributed, recognition of originality (to the degree that any AI work can be said to be original) is impossible. The story isn't entirely rosey for human creators. Algorithmic distribution of AI work can and does eat into human artist's market share, but this is a problem platforms are working to address. It's in their interest - people are not actively selecting AI generated work, as the death of Sora demonstrates.
 
-This dynamic is why I'm bullish on the future of creativity. Humans may leverage AI in making creative work, just as they already employ sohpisticated software in creative fields. But the human touch will continue to be essential.
+Overall, this dynamic is why I'm bullish on the future of creativity. Humans may leverage AI in making creative work, just as they already employ sohpisticated software in creative fields. But the human touch will continue to be essential.
 
