@@ -34,6 +34,7 @@ deploy-elroy-docs HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/elroy-
 	if [ -z "$host" ]; then
 		host="$(terraform -chdir=infrastructure/terraform output -raw reserved_ip 2>/dev/null || terraform -chdir=infrastructure/terraform output -raw droplet_ip)"
 	fi
+	host="$(printf '%s' "$host" | tr -d '\r\n[:space:]')"
 	if [ -z "$host" ]; then
 		echo "No host configured. Set HOST, HOST_IP in .env, or terraform outputs."
 		exit 1
@@ -61,7 +62,7 @@ deploy-elroy-docs HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/elroy-
 	echo "Elroy docs deployed to $host:{{DEST_PATH}}"
 
 # Preview the deployed Elroy docs over the droplet IP using the Host header Caddy expects
-preview-elroy-docs HOST="" PATH="/" SHOW_HEADERS="false":
+preview-elroy-docs HOST="" REQUEST_PATH="/" SHOW_HEADERS="false":
 	#!/usr/bin/env bash
 	set -euo pipefail
 
@@ -72,20 +73,21 @@ preview-elroy-docs HOST="" PATH="/" SHOW_HEADERS="false":
 	if [ -z "$host" ]; then
 		host="$(terraform -chdir=infrastructure/terraform output -raw reserved_ip 2>/dev/null || terraform -chdir=infrastructure/terraform output -raw droplet_ip)"
 	fi
+	host="$(printf '%s' "$host" | tr -d '\r\n[:space:]')"
 	if [ -z "$host" ]; then
 		echo "No host configured. Set HOST, HOST_IP in .env, or terraform outputs."
 		exit 1
 	fi
 
-	path="{{PATH}}"
+	path="{{REQUEST_PATH}}"
 	if [ -z "$path" ]; then
 		path="/"
 	fi
 
 	if [ "{{SHOW_HEADERS}}" = "true" ]; then
-		curl -i -H 'Host: elroy.bot' "http://$host$path"
+		curl -k -i --resolve "elroy.bot:443:$host" "https://elroy.bot$path"
 	else
-		curl -L -H 'Host: elroy.bot' "http://$host$path"
+		curl -k -L --resolve "elroy.bot:443:$host" "https://elroy.bot$path"
 	fi
 
 # Dual publish blog posts to elroy project
