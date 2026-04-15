@@ -13,6 +13,8 @@ In this framing, AI artists face what I'll call the **instant imitator trap**: A
 
 ![ai_dilemma](/diagrams/creativity/ai_dilemma.png)
 
+<!-- truncate -->
+
 To go deeper, some definitions are in order.
 
 ## What defines creativity?
