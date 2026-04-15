@@ -4,11 +4,54 @@
         <title>Tom Bedor's Blog</title>
         <link>https://tombedor.dev/</link>
         <description>Thoughts on software, AI, and building things</description>
-        <lastBuildDate>Sat, 21 Mar 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 15 Apr 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>Copyright © 2026 Tom Bedor</copyright>
+        <item>
+            <title><![CDATA[Can AI be Creative?]]></title>
+            <link>https://tombedor.dev/creativity/</link>
+            <guid>https://tombedor.dev/creativity/</guid>
+            <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Sora is dead. Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? Can AI be creative at all?]]></description>
+            <content:encoded><![CDATA[<p><a href="https://techcrunch.com/2026/03/29/why-openai-really-shut-down-sora/" target="_blank" rel="noopener noreferrer">Sora is dead</a>. Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? <em>Can AI be creative at all?</em></p>
+<p>The debate on this question usually centers on the quality of AI output in a vacuum, but if we take connection with an audience as a requirement, we must consider the supply and demand of "creative"<sup><a href="https://tombedor.dev/creativity/#user-content-fn-1-7fb133" id="user-content-fnref-1-7fb133" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">1</a></sup> work.</p>
+<p>In this framing, AI artists face what I'll call the <strong>instant imitator trap</strong>: Any original AI work can be instantly replicated by other AIs, making audience recognition of the original impossible.</p>
+<p><img decoding="async" loading="lazy" alt="ai_dilemma" src="https://tombedor.dev/assets/images/ai_dilemma-5de66843b4a5b1f6ae5c08ff006e668f.png" width="1820" height="691" class="img_ev3q"></p>
+<p>To go deeper, some definitions are in order.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-defines-creativity">What defines creativity?<a href="https://tombedor.dev/creativity/#what-defines-creativity" class="hash-link" aria-label="Direct link to What defines creativity?" title="Direct link to What defines creativity?" translate="no">​</a></h2>
+<p>The definition of creativity is a subject of academic debate, but the definition I'll use for our purposes comes from Morris Stein.</p>
+<p>In 1959's <a href="https://psycnet.apa.org/record/1954-04069-001" target="_blank" rel="noopener noreferrer">"Creativity and Culture"</a>, Stein wrote that to be creative, a work must be original, effective, and "accepted as tenable or useful or satisfying by a group at some point in time."</p>
+<img src="https://tombedor.dev/diagrams/creativity/definitions.png" alt="definitions" style="width:80%;display:block;margin:0 auto">
+<p>As someone who spent years playing in permanently obscure musical groups, this definition resonates. If there's no audience, a creative work cannot be said to be "effective" in any sense of the word.</p>
+<p>Note a crucial distinction: "audience acceptance" does <em>not</em> equate to passive algorithmic consumption. While exposure via algorithms does not detract from creative value, it is insufficient in defining it. There is not an active acceptance taking place when an audience consumes a work purely through algorithm.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-defines-slop">What defines slop?<a href="https://tombedor.dev/creativity/#what-defines-slop" class="hash-link" aria-label="Direct link to What defines slop?" title="Direct link to What defines slop?" translate="no">​</a></h2>
+<p><em>Slop</em>, <a href="https://www.merriam-webster.com/wordplay/word-of-the-year" target="_blank" rel="noopener noreferrer">Merriam Webster's word of the year for 2025</a>, is defined as <em>"digital content of low quality that is produced usually in quantity by means of artificial intelligence."</em></p>
+<p>The inclusion of the word <em>usually</em> makes this definition flawed: the <em>quantity</em> of generated work is crucial. In isolation, the stylistic tendencies of AI are not all that bad. It's when consumers are exposed to them algorithmically and ad nauseam that they become slop. We see this in the fad popularity of novel AI imagery like Studio Ghibli profile pictures: A burst of popularity as people have fun with a new tool, before giving way to eye rolls.</p>
+<img src="https://tombedor.dev/diagrams/creativity/repetition.png" alt="repetition" style="width:80%;display:block;margin:0 auto">
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-time-dimension-of-imitation-and-recognition">The time dimension of imitation and recognition<a href="https://tombedor.dev/creativity/#the-time-dimension-of-imitation-and-recognition" class="hash-link" aria-label="Direct link to The time dimension of imitation and recognition" title="Direct link to The time dimension of imitation and recognition" translate="no">​</a></h2>
+<p>Recognition of great art and artists does not happen instantly. An innovative, new artist must hone their craft in obscurity before audience recognition. Once initial works are popularized, audiences anticipate future work, making recognition for subsequent efforts more immediate:</p>
+<p><img decoding="async" loading="lazy" alt="recognition_1" src="https://tombedor.dev/assets/images/recognition_1-b72050d0a9a30cad5b3f7eca892d8736.png" width="2209" height="799" class="img_ev3q"></p>
+<p>Having gained recognition, an artist's work draws imitators. Fortunately for the innovator, this does not typically detract from the innovator's recognition - people prefer the work of the innovator. Crucially, there is a <em>time delay</em> for imitators of human artists to emerge. This window allows the reputation of the innovative artist to solidify.</p>
+<img src="https://tombedor.dev/diagrams/creativity/recognition_2.png" alt="recognition_2" style="width:80%;display:block;margin:0 auto">
+<p>Modern platforms like Spotify have shrunk this window. It's quite difficult for an audience to identify new original work in a boundlessly vast, instantly distributed catalog of art.</p>
+<p>What's difficult for humans is impossible for AI. AI artists compete against the same vast catalogue, but have the added hurdle of instant <em>generation</em>. If I instantly generate a creative work via simple AI prompting, <em>so can anyone else</em>. Algorithmic success might come for my work, but as soon as that success begins to happen, other AI artists can replicate whatever property my work had that made it successful.</p>
+<img src="https://tombedor.dev/diagrams/creativity/recognition_3.png" alt="recognition_3" style="width:80%;display:block;margin:0 auto">
+<p>The instant replication and lack of an "author" means the original work cannot be distinguished from its imitators. The flood of imitation attempting to gain algorithmic distribution numbs the audience to whatever made the original good in the first place. Imitator and original alike become slop.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion-technological-irony">Conclusion: Technological irony<a href="https://tombedor.dev/creativity/#conclusion-technological-irony" class="hash-link" aria-label="Direct link to Conclusion: Technological irony" title="Direct link to Conclusion: Technological irony" translate="no">​</a></h2>
+<p>The instant imitator trap precludes creative recognition, <em>regardless of model capabilities</em>. It doesn't matter if models become 10x smarter or more technically adept. So long as work can be instantly generated and algorithmically distributed, recognition of originality (to the degree that any AI work can be said to be original) is impossible.</p>
+<p>The story isn't entirely rosy for human creators. Algorithmic distribution of AI work can and does eat into human artists' market share, but this is a problem platforms are working to address. It's in their interest - people are not actively selecting AI-generated work, as the death of Sora demonstrates.</p>
+<p>Overall, this dynamic is why I'm bullish on the future of creativity. Humans may leverage AI in making creative work, just as they already employ sophisticated software in creative fields. But the human touch will continue to be essential.</p>
+<!-- -->
+<section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="https://tombedor.dev/creativity/#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes" translate="no">​</a></h2>
+<ol>
+<li id="user-content-fn-1-7fb133">
+<p>For simplicity I'll omit scare quotes from here on out, but note: I don't think AI can be an artist! <a href="https://tombedor.dev/creativity/#user-content-fnref-1-7fb133" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[The design of AI memory systems]]></title>
             <link>https://tombedor.dev/approaches-to-agent-memory/</link>
