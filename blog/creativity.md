@@ -7,7 +7,7 @@ date: 2026-04-15
 
 The debate on this question usually centers on the quality of AI output in a vacuum, but if we take connection with an audience as a requirement, we must consider the supply and demand of "creative"[^1] work.
 
-In this framing, AI artists face what I'll call the **instant imitator trap**: Any original AI work can be instantly replicated by other AI's, making audience recognition of the original impossible.
+In this framing, AI artists face what I'll call the **instant imitator trap**: Any original AI work can be instantly replicated by other AIs, making audience recognition of the original impossible.
 
 [^1]: For simplicity I'll omit scare quotes from here on out, but note: I don't think AI can be an artist!
 
@@ -19,7 +19,7 @@ To go deeper, some definitions are in order.
 
 The definition of creativity is a subject of academic debate, but the definition I'll use for our purposes comes from Morris Stein.
 
-In 1959's "Creativity and Culture", Stein wrote that to be creative, a work must be original, effective, and "accepted as tenable or useful or satisfying by a group at some point in time."
+In 1959's ["Creativity and Culture"](https://psycnet.apa.org/record/1954-04069-001), Stein wrote that to be creative, a work must be original, effective, and "accepted as tenable or useful or satisfying by a group at some point in time."
 
 <img src="/diagrams/creativity/definitions.png" alt="definitions" style={{width:'80%', display:'block', margin:'0 auto'}} />
 
@@ -31,13 +31,13 @@ Note a crucial distinction: "audience acceptance" does *not* equate to passive a
 
 *Slop*, [Merriam Webster's word of the year for 2025](https://www.merriam-webster.com/wordplay/word-of-the-year), is defined as *"digital content of low quality that is produced usually in quantity by means of artificial intelligence."*
 
-The inclusion of the word *usually* makes this definition flawed: the *quantity* of generated work is crucial. In isolation, the stylistic tendencies of AI are not all that bad. It's when consumers are exposed to them algorithmically and ad nauseum that they become slop. We see this in the fad popularity of novel AI imagery like Studio Ghibli profile pictures: A burst of popularity as people have fun with a new tool, before giving way to eye rolls.
+The inclusion of the word *usually* makes this definition flawed: the *quantity* of generated work is crucial. In isolation, the stylistic tendencies of AI are not all that bad. It's when consumers are exposed to them algorithmically and ad nauseam that they become slop. We see this in the fad popularity of novel AI imagery like Studio Ghibli profile pictures: A burst of popularity as people have fun with a new tool, before giving way to eye rolls.
 
 <img src="/diagrams/creativity/repetition.png" alt="repetition" style={{width:'80%', display:'block', margin:'0 auto'}} />
 
 ## The time dimension of imitation and recognition[^2]
 
-[^2]: Disclaimer: Vibes based arguments follow!
+[^2]: Disclaimer: Vibes-based arguments follow!
 
 Recognition of great art and artists does not happen instantly. An innovative, new artist must hone their craft in obscurity before audience recognition. Once initial works are popularized, audiences anticipate future work, making recognition for subsequent efforts more immediate:
 
@@ -61,6 +61,6 @@ The instant replication and lack of an "author" means the original work cannot b
 
 The instant imitator trap precludes creative recognition, *regardless of model capabilities*. It doesn't matter if models become 10x smarter or more technically adept. So long as work can be instantly generated and algorithmically distributed, recognition of originality (to the degree that any AI work can be said to be original) is impossible.
 
-The story isn't entirely rosy for human creators. Algorithmic distribution of AI work can and does eat into human artist's market share, but this is a problem platforms are working to address. It's in their interest - people are not actively selecting AI generated work, as the death of Sora demonstrates.
+The story isn't entirely rosy for human creators. Algorithmic distribution of AI work can and does eat into human artists' market share, but this is a problem platforms are working to address. It's in their interest - people are not actively selecting AI-generated work, as the death of Sora demonstrates.
 
 Overall, this dynamic is why I'm bullish on the future of creativity. Humans may leverage AI in making creative work, just as they already employ sophisticated software in creative fields. But the human touch will continue to be essential.
