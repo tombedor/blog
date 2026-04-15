@@ -4,9 +4,11 @@ date: 2026-04-13
 draft: true
 ---
 
-Sora is dead. Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? *Can AI be creative at all?*
+[Sora is dead](https://techcrunch.com/2026/03/29/why-openai-really-shut-down-sora/). Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? *Can AI be creative at all?*
 
-The debate on this question usually centers on the quality of AI output in a vacuum, but if we take connection with an audience as a requirement, we must consider the supply and demand of "creative"[^1] work. In this framing, AI artists face what I call the **instant imitator trap**: Any original AI work can be instantly replicated by other AI's, making audience recognition of the original impossible.
+The debate on this question usually centers on the quality of AI output in a vacuum, but if we take connection with an audience as a requirement, we must consider the supply and demand of "creative"[^1] work.
+
+In this framing, AI artists face what I'll call the **instant imitator trap**: Any original AI work can be instantly replicated by other AI's, making audience recognition of the original impossible.
 
 [^1]: For simplicity I'll omit scare quotes from here on out, but note: I don't think AI can be an artist!
 
@@ -24,7 +26,7 @@ In 1959's "Creativity and Culture", Stein wrote that to be creative, a work must
 
 As someone who spent years playing in permanently obscure musical groups, this definition resonates. If there's no audience, a creative work cannot be said to be "effective" in any sense of the word.
 
-Note a crucial distinction: "audience acceptance" does *not* equate to passive algorithmic consumption. While exposure via algorithms does not detract from creative value in this framing, it is insufficient. There is not an active acceptance taking place when an audience consumes a work purely through algorithm. Thus the \{spotify citation Number\} of AI music listeners does not count, as they appear to have come mostly through automated playlist generation.
+Note a crucial distinction: "audience acceptance" does *not* equate to passive algorithmic consumption. While exposure via algorithms does not detract from creative value, it is insufficient in defining it. There is not an active acceptance taking place when an audience consumes a work purely through algorithm.
 
 ## What defines slop?
 
