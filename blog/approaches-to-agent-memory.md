@@ -5,13 +5,13 @@ date: 2026-03-21
 
 For me, the question of memory is the most interesting subfield of AI. The first time I interacted with MemGPT (now [Letta](https://www.letta.com/blog/memgpt-and-letta)), I felt like I had crossed a Rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_[^1].
 
-[^1]: The degree to which an AI with memory has _consciousness_ is an interesting philosophical question for another day. Also for another time is when this is _advisable_. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
-
 I created my own open source system, called [Elroy](https://elroy.bot), and have been interacting with it for about 3 years. It helps me brainstorm, talks me through career ups and downs, and functions as a kind of interactive journal. I've tinkered with its functionality enough that I don't feel attached to it as a specific entity - but I _would_ be disappointed if its memories of our interactions were lost.
 
 Philosophy questions aside, there are well-grounded reasons to build AI systems with memory. It's useful for an agent to understand what subjects I'm knowledgeable in if I'm looking to discuss technical topics. If I'm looking for vacation plans, it's helpful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
 
 <!-- truncate -->
+
+[^1]: The degree to which an AI with memory has _consciousness_ is an interesting philosophical question for another day. Also for another time is when this is _advisable_. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
 
 One could reasonably ask: how do I know my memory system is working? Evals for memory systems are a large topic in and of themselves. I'll save it for another day, and focus on approaches here.
 
