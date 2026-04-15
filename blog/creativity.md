@@ -35,9 +35,7 @@ The inclusion of the word *usually* makes this definition flawed: the *quantity*
 
 <img src="/diagrams/creativity/repetition.png" alt="repetition" style={{width:'80%', display:'block', margin:'0 auto'}} />
 
-## The time dimension of imitation and recognition[^2]
-
-[^2]: Disclaimer: Vibes-based arguments follow!
+## The time dimension of imitation and recognition
 
 Recognition of great art and artists does not happen instantly. An innovative, new artist must hone their craft in obscurity before audience recognition. Once initial works are popularized, audiences anticipate future work, making recognition for subsequent efforts more immediate:
 
