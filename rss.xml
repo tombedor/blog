@@ -10,15 +10,15 @@
         <language>en</language>
         <copyright>Copyright © 2026 Tom Bedor</copyright>
         <item>
-            <title><![CDATA[The Instant Copy Trap Makes AI Creativity Impossible]]></title>
+            <title><![CDATA[AI Creativity and the Instant Imitator Trap]]></title>
             <link>https://tombedor.dev/creativity/</link>
             <guid>https://tombedor.dev/creativity/</guid>
             <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
             <description><![CDATA[Sora is dead. Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? Can AI be creative at all?]]></description>
             <content:encoded><![CDATA[<p><a href="https://techcrunch.com/2026/03/29/why-openai-really-shut-down-sora/" target="_blank" rel="noopener noreferrer">Sora is dead</a>. Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? <em>Can AI be creative at all?</em></p>
 <p>The debate on this question usually centers on the quality of AI output in a vacuum, but if we take connection with an audience as a requirement, we must consider the supply and demand of "creative"<sup><a href="https://tombedor.dev/creativity/#user-content-fn-1-7fb133" id="user-content-fnref-1-7fb133" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">1</a></sup> work.</p>
-<p>In this framing, AI artists face what I'll call the <strong>instant copy trap</strong>: Any original AI work can be instantly replicated by other AIs, making audience recognition of the original impossible.</p>
-<p><img decoding="async" loading="lazy" alt="ai_dilemma" src="https://tombedor.dev/assets/images/ai_dilemma-8145f48c1fdc969ab9a38c3809eb4279.png" width="1820" height="691" class="img_ev3q"></p>
+<p>In this framing, AI artists face what I'll call the <strong>instant imitator trap</strong>: Any original AI work can be instantly replicated by other AIs, making audience recognition of the original impossible.</p>
+<p><img decoding="async" loading="lazy" alt="ai_dilemma" src="https://tombedor.dev/assets/images/ai_dilemma-5de66843b4a5b1f6ae5c08ff006e668f.png" width="1820" height="691" class="img_ev3q"></p>
 <p>To go deeper, some definitions are in order.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-defines-creativity">What defines creativity?<a href="https://tombedor.dev/creativity/#what-defines-creativity" class="hash-link" aria-label="Direct link to What defines creativity?" title="Direct link to What defines creativity?" translate="no">​</a></h2>
 <p>The definition of creativity is a subject of academic debate, but the definition I'll use for our purposes comes from Morris Stein.</p>
@@ -40,7 +40,7 @@
 <img src="https://tombedor.dev/diagrams/creativity/recognition_3.png" alt="recognition_3" style="width:80%;display:block;margin:0 auto">
 <p>The instant replication and lack of an "author" means the original work cannot be distinguished from its imitators. The flood of imitation attempting to gain algorithmic distribution numbs the audience to whatever made the original good in the first place. Imitator and original alike become slop.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion-technological-irony">Conclusion: Technological irony<a href="https://tombedor.dev/creativity/#conclusion-technological-irony" class="hash-link" aria-label="Direct link to Conclusion: Technological irony" title="Direct link to Conclusion: Technological irony" translate="no">​</a></h2>
-<p>The instant copy trap precludes creative recognition, <em>regardless of model capabilities</em>. It doesn't matter if models become 10x smarter or more technically adept. So long as work can be instantly generated and algorithmically distributed, recognition of originality (to the degree that any AI work can be said to be original) is impossible.</p>
+<p>The instant imitator trap precludes creative recognition, <em>regardless of model capabilities</em>. It doesn't matter if models become 10x smarter or more technically adept. So long as work can be instantly generated and algorithmically distributed, recognition of originality (to the degree that any AI work can be said to be original) is impossible.</p>
 <p>The story isn't entirely rosy for human creators. Algorithmic distribution of AI work can and does eat into human artists' market share, but this is a problem platforms are working to address. It's in their interest - people are not actively selecting AI-generated work, as the death of Sora demonstrates.</p>
 <p>Overall, this dynamic is why I'm bullish on the future of creativity. Humans may leverage AI in making creative work, just as they already employ sophisticated software in creative fields. But the human touch will continue to be essential.</p>
 <!-- -->
