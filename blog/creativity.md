@@ -1,5 +1,5 @@
 ---
-title: The Instant Copy Trap Makes AI Creativity Impossible
+title: AI Creativity and the Instant Imitator Trap
 date: 2026-04-15
 ---
 
@@ -7,7 +7,7 @@ date: 2026-04-15
 
 The debate on this question usually centers on the quality of AI output in a vacuum, but if we take connection with an audience as a requirement, we must consider the supply and demand of "creative"[^1] work.
 
-In this framing, AI artists face what I'll call the **instant copy trap**: Any original AI work can be instantly replicated by other AIs, making audience recognition of the original impossible.
+In this framing, AI artists face what I'll call the **instant imitator trap**: Any original AI work can be instantly replicated by other AIs, making audience recognition of the original impossible.
 
 ![ai_dilemma](/diagrams/creativity/ai_dilemma.png)
 
@@ -59,7 +59,7 @@ The instant replication and lack of an "author" means the original work cannot b
 
 ## Conclusion: Technological irony
 
-The instant copy trap precludes creative recognition, *regardless of model capabilities*. It doesn't matter if models become 10x smarter or more technically adept. So long as work can be instantly generated and algorithmically distributed, recognition of originality (to the degree that any AI work can be said to be original) is impossible.
+The instant imitator trap precludes creative recognition, *regardless of model capabilities*. It doesn't matter if models become 10x smarter or more technically adept. So long as work can be instantly generated and algorithmically distributed, recognition of originality (to the degree that any AI work can be said to be original) is impossible.
 
 The story isn't entirely rosy for human creators. Algorithmic distribution of AI work can and does eat into human artists' market share, but this is a problem platforms are working to address. It's in their interest - people are not actively selecting AI-generated work, as the death of Sora demonstrates.
 
