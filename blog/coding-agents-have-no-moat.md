@@ -6,7 +6,7 @@ draft: true
 
 It's been a rough few months for Anthropic.
 
-It started out well. Their new model, according to them, was so powerful that they had concerns about releasing it, due to it's hacking ability.
+It started out well. Their new model, according to them, was so powerful that they had concerns about releasing it, due to its hacking ability.
 
 This narrative was undermined by several very clumsy mistakes. First, they leaked the [entire source code of Claude Code](https://www.zscaler.com/blogs/security-research/anthropic-claude-code-leak). Then, some users were able to [access Mythos early by successfully guessing an API URL](https://www.wsj.com/tech/ai/anthropic-probes-possible-unauthorized-access-to-mythos-ai-model-3da1ee20). Sophisticated attacks these were not, and it begged the question: if Mythos is so powerful for finding software exploits, why wasn't Anthropic able to avoid very simple mistakes?
 
@@ -22,18 +22,18 @@ None of these incidents made me _mad_, but I have been increasingly hit with Cla
 
 OpenAI appears to have seen the no-moat problem first, as evidenced by efforts to shift usage away from the interoperable Chat Completions API. First, there was the [Assistants API](https://openai.com/index/new-models-and-developer-products-announced-at-devday/), which shifted responsibility for storing chat messages onto OpenAI rather than the caller. When that didn't work, they announced the [Responses API](https://community.openai.com/t/introducing-the-responses-api/1140929). Neither appears to have gained much traction.
 
-Anthropic has sought to make its workflow product more unique by offering more work-oriented features. But these don't represent a real moat: the user still owns the code and data. Workflow convenience features can be quickly replicated, both by rival commercial operators and by open source - it's worth noting that Claude Code itself works very similarly to a still-active open source project that preceded it, [Aider](https://aider.chat/).
+Anthropic has sought to make Claude more unique by offering more workflow enhancement features like [Cowork](https://support.claude.com/en/articles/13947068-assign-tasks-from-anywhere-in-claude-cowork). But these don't represent a real moat: the user still owns the code and data. Workflow convenience features can be quickly replicated, both by rival commercial operators and by open source - it's worth noting that Claude Code itself works very similarly to a still-active open source project that preceded it, [Aider](https://aider.chat/).
 
-These tools are, at the end of the day, code editors, a category of software that has always had robust open source competition. Commercial vendors like Eclipse and JetBrains have made a living selling professional licenses, but they have done so by adding sophisticated tools for power users. The nature of coding agents undermines this strategy, since the entire value add is that a complex interface is no longer necessary. All you need is to tell the agent what you want the program to do, in plain language!
+These tools are, at the end of the day, code editors, a category of software that has always had robust open source competition. Commercial vendors like Eclipse and JetBrains have made a living selling professional licenses, but they have done so by adding sophisticated tools for power users. The nature of coding agents undermines this strategy, since the entire value-add is that a complex interface is no longer necessary. All you need is to tell the agent what you want the program to do, in plain language!
 
 
-## How to future proof
+## How to future-proof
 
 If you are still worried about LLM vendor lock-in, I think the best way to guard against it is to [_optimize for humans_](/make-it-easy-for-humans/).
 
 ![humans](/diagrams/coding-agents-have-no-moat/humans.png)
 
-If an agent can run a script or access a doc, organize your repos so that humans can do so just as easily. I think this strategy is the most efficient way for humans to leverage agents: the agent should conform to the human, not the other way around. This also provides future proofing: if a human can access your LLM-facing scripts and documentation, it'll likely be quite easy to have a new coding agent enter the mix.
+If an agent can run a script or access a doc, organize your repos so that humans can do so just as easily. I think this strategy is the most efficient way for humans to leverage agents: the agent should conform to the human, not the other way around. This also provides future-proofing: if a human can access your LLM-facing scripts and documentation, it'll likely be quite easy to have a new coding agent enter the mix.
 
 
 &nbsp;
