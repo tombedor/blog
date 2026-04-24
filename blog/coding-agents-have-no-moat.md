@@ -19,6 +19,8 @@ Anthropic's [response](https://x.com/TheAmolAvasare/status/2046724659039932830?s
 
 None of these incidents made me _mad_, but I have been increasingly hit with Claude Code rate limits. I've responded by switching the bulk of my work to Codex. It's striking how little I had to change about my workflow. I lost some conveniences like dispatching a coding-agent session from my phone, but overall it only took a *minor inconvenience* for me to switch providers, with no adjustments to how I used the tools.
 
+<!-- truncate -->
+
 OpenAI appears to have seen the no-moat problem first, as evidenced by efforts to shift usage away from the interoperable Chat Completions API. First, there was the [Assistants API](https://openai.com/index/new-models-and-developer-products-announced-at-devday/), which shifted responsibility for storing chat messages onto OpenAI rather than the caller. When that didn't work, they announced the [Responses API](https://community.openai.com/t/introducing-the-responses-api/1140929). Neither appears to have gained much traction.
 
 Anthropic has sought to make Claude more unique by offering more workflow enhancement features like [Cowork](https://support.claude.com/en/articles/13947068-assign-tasks-from-anywhere-in-claude-cowork). But these don't represent a real moat: the user still owns the code and data. Workflow convenience features can be quickly replicated, both by rival commercial operators and by open source - it's worth noting that Claude Code itself works very similarly to a still-active open source project that preceded it, [Aider](https://aider.chat/).
