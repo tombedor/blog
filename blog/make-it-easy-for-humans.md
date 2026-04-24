@@ -1,5 +1,5 @@
 ---
-title: "Don't Write Docs Twice"
+title: "Optimize for Humans"
 date: 2025-11-26
 ---
 
