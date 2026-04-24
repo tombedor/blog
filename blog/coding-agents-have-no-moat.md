@@ -26,6 +26,8 @@ Anthropic has sought to make their workflow product more unique by offering more
 
 ## How to future proof
 
+![humans](/diagrams/coding-agents-have-no-moat/humans.png)
+
 I think the best way guard against vendor lockin for LLM's is to _optimize for humans_ (optimize for humans post). If an agent can run a script or access a doc, can a human do it just as easily? I think this strategy is the most efficient way for humans to leverage agents: the agent should conform to the human, not the other way around. This also provides future proofing: if a human can access your LLM facing scripts and documentation, it'll likely be quite easy to having a new coding agent enter the mix.
 
 
