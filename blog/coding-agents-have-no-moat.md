@@ -1,7 +1,6 @@
 ---
 title: Coding agents have no moat
 date: 2026-04-24
-draft: true
 ---
 
 It's been a rough few months for Anthropic.
