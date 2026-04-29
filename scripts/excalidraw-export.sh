@@ -211,6 +211,7 @@ for INPUT_FILE in "${FILES[@]}"; do
         --output "$OUTPUT_FILE" \
         --format png \
         --scale 2 \
+        --background true \
         2>&1 | grep -v "Warning:" | grep -v "deprecated"; then
         echo -e "${GREEN}✓ Exported: $OUTPUT_FILE${NC}"
         save_hash "$INPUT_FILE"
