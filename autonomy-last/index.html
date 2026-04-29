@@ -10,7 +10,7 @@
 
 
 <script src="https://analytics.tombedor.dev/script.js" data-website-id="8694de38-6514-4d57-a9bd-7c62b89c008d" defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.27c053b9.css">
-<script src="/assets/js/runtime~main.7ec27d7b.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a76ec85b.js" defer="defer"></script>
 <script src="/assets/js/main.e5d3ba23.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -21,7 +21,7 @@
 <p>Too much, and the program <a href="https://www.anthropic.com/research/project-vend-1" target="_blank" rel="noopener noreferrer">loses track of what it&#x27;s supposed to be doing</a>. Too little, and the program feels a bit too, well, <em>ordinary</em><sup><a href="#user-content-fn-1-37c1e6" id="user-content-fnref-1-37c1e6" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">1</a></sup>.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="autonomy-first-vs-autonomy-last">Autonomy first vs autonomy last<a href="#autonomy-first-vs-autonomy-last" class="hash-link" aria-label="Direct link to Autonomy first vs autonomy last" title="Direct link to Autonomy first vs autonomy last" translate="no">​</a></h2>
 <p>An implicit strategy question when building with LLMs is <em>autonomy first</em> or <em>autonomy last</em>:</p>
-<p><img decoding="async" loading="lazy" alt="autonomy_first_vs_last" src="/assets/images/autonomy_first_vs_last-f5ba9e7e23469f0e1bf5086f467f7203.png" width="2202" height="1658" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="autonomy_first_vs_last" src="/assets/images/autonomy_first_vs_last-f2c00cce48ad233146e414a72e430646.png" width="2202" height="1658" class="img_ev3q"></p>
 <p>All of the major LLM-specific programming techniques are firmly <em>autonomy first</em> strategies:</p>
 <ul>
 <li><em>MCP</em> surfaces a wide variety of functionality the program can have, and lets the LLM decide which to use</li>
@@ -45,10 +45,10 @@
 <p>I wanted to build an LLM assistant with memory abilities, called <a href="https://github.com/elroy-bot/elroy" target="_blank" rel="noopener noreferrer">Elroy</a>. My goal was to make a <em>program</em> that could chat in human text. My ideal users are technical, capable and interested in customizing their software, but not necessarily interested in LLMs for their own sake.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="approach-1-agent-with-tools">Approach #1: &quot;Agent&quot; with tools<a href="#approach-1-agent-with-tools" class="hash-link" aria-label="Direct link to Approach #1: &quot;Agent&quot; with tools" title="Direct link to Approach #1: &quot;Agent&quot; with tools" translate="no">​</a></h3>
 <p>The first solution I turned to, which many people have done, is build an agent loop with access to custom for creating and reading memories:</p>
-<p><img decoding="async" loading="lazy" alt="tool_based_agent" src="/assets/images/Agent-aac0aad1ba35227097d2acd01287e7a3.png" width="1216" height="659" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="tool_based_agent" src="/assets/images/Agent-e7cd9f66f8d2585ad3779e9683acba7b.png" width="1216" height="659" class="img_ev3q"></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="approach-2-model-context-protocol-mcp">Approach #2: Model Context Protocol (MCP)<a href="#approach-2-model-context-protocol-mcp" class="hash-link" aria-label="Direct link to Approach #2: Model Context Protocol (MCP)" title="Direct link to Approach #2: Model Context Protocol (MCP)" translate="no">​</a></h3>
 <p>There&#x27;s now a handly tool for builders like this: <a href="https://modelcontextprotocol.io/introduction" target="_blank" rel="noopener noreferrer">MCP</a>. There are many implementations of my memory tools available via MCP, in fact <a href="https://smithery.ai/" target="_blank" rel="noopener noreferrer">smithery.ai</a> lists one from Mem0 on it&#x27;s homepage:</p>
-<p><img decoding="async" loading="lazy" alt="smithery" src="/assets/images/smithery-81ea98f47a3b243d1bd83b96a46858c3.png" width="1654" height="744" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="smithery" src="/assets/images/smithery-75751750b82a4c01a97d128aafdb2bfe.png" width="1654" height="744" class="img_ev3q"></p>
 <p>Now, an (in theory) lightweight abstraction sits between my program and it&#x27;s tools:</p>
 <p><img decoding="async" loading="lazy" alt="mcp" src="/assets/images/mcp-fab7c0a8ba0a8776163c73aada0cfbdc.png" width="560" height="411" class="img_ev3q"></p>
 <p>This suggests extending my application via picking from a library of MCP&#x27;s:</p>
@@ -56,10 +56,10 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="agentic-trouble">Agentic trouble<a href="#agentic-trouble" class="hash-link" aria-label="Direct link to Agentic trouble" title="Direct link to Agentic trouble" translate="no">​</a></h3>
 <p>I got my memory program working pretty well on gpt-4. At first it wasn&#x27;t creating or referencing memories enough, but I was able to fix this with careful prompting.</p>
 <p>Then, I wanted to see how Sonnet would do, and I had a problem<sup><a href="#user-content-fn-2-37c1e6" id="user-content-fnref-2-37c1e6" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">2</a></sup>: the program&#x27;s behavior completely changed! Now, it was creating a memory on almost every message, and searching memories for even trivial responses:</p>
-<p><img decoding="async" loading="lazy" alt="tool_usage" src="/assets/images/tool_usage_rate-922eff4fee59395ad8cbac49dc83f255.png" width="2405" height="1762" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="tool_usage" src="/assets/images/tool_usage_rate-4347a93762a46ea1b13ca2edb60bd839.png" width="2405" height="1762" class="img_ev3q"></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="approach-3-autonomy-last">Approach #3: Autonomy Last<a href="#approach-3-autonomy-last" class="hash-link" aria-label="Direct link to Approach #3: Autonomy Last" title="Direct link to Approach #3: Autonomy Last" translate="no">​</a></h3>
 <p>My solution was to remove the timing of recall and memory creation from the agent&#x27;s control. Upon receiving a message, the memories are automatically searched, with relevant ones being added to context. Every n messages, a memory is created<sup><a href="#user-content-fn-3-37c1e6" id="user-content-fnref-3-37c1e6" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">3</a></sup>:</p>
-<p><img decoding="async" loading="lazy" alt="tool_usage" src="/assets/images/elroy-073765875d8570515c5f5e589e0f296b.png" width="839" height="1378" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="tool_usage" src="/assets/images/elroy-0ff7af93aa884a0f0093a0c03048bb18.png" width="839" height="1378" class="img_ev3q"></p>
 <p>This made much more of the behavior of my program deterministic, and made it easier to reason about and optimize.</p>
 <h1>Autonomy Last</h1>
 <p>The &quot;autonomy last&quot; approach trades some of the magic of fully autonomous LLMs for predictable, reliable behavior that scales as your program grows in complexity. While my evidence is, (as I should have stated from the outset), <em>vibes</em>, I think this approach will lead to more maintainable and robust applications.</p>
