@@ -4,6 +4,8 @@ date: 2026-05-12
 draft: true
 ---
 
+# ai is more like an industrial revolution, social media was like the printing press
+
 # how it's going to work
 local
 
@@ -29,8 +31,19 @@ things that ai can do will be abundant, the premium skill will be things that ai
 
 
 # failure modes
+ecosystem
+
 it is enourmously tempting to delegate all thought to ai. there will be many people who cease to actually *learn* anything at all.
 
 it is also very tempting to fall for ai's tendency to flatter.
 - this flattery is the new clickbait, the tugging of neurons that help control a user's behavior.
+
+# programming languages
+
+- code is cheap, languages that provide correctness rise
+    - also a factor with security
+- robust ecosystem less important: code is cheap!
+
+
+virtuous cycle: make a change, observe against ground truth, react to feedback
 
