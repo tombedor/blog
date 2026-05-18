@@ -10,3 +10,5 @@ results:
 
 autoresearch
 
+drift over the long haul, right sizing the goal is important
+
