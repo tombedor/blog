@@ -76,10 +76,25 @@
   - https://www.deloitte.com/us/en/insights/industry/technology/technology-media-and-telecom-predictions/2026/saas-ai-agents.html
   - https://www.mindstudio.ai/blog/saas-pricing-ai-agent-era
 
-**Market signal:** Public SaaS EV/Revenue fell from 18–19x pandemic peak to 5.1x (March 2026); >$1T market cap erased
+**Market signal:** Public SaaS EV/Revenue fell from 18–19x pandemic peak to 5.1x (March 2026); IGV software ETF down ~30% from Sep 2025 peak; ~$2T in market cap erased
+- https://www.saastr.com/the-saas-rout-of-2026-is-even-worse-than-you-think-for-the-first-time-ever-software-now-trades-at-a-discount-to-the-sp-500/
 
-**Key structural difference from prior disruptions:** SaaS incumbents are software companies — can embed AI and become the AI product. Microsoft/SAP/Oracle survived cloud transition via same playbook.
+**SaaSpocalypse company scorecard** — see `saaspocalypse-companies.md` for full price history:
+
+| Company | Peak | May 2026 | Δ | Threat |
+|---|---|---|---|---|
+| Asana (ASAN) | $145 (Nov 2021) | ~$7 | **−95%** | High — task tracking assumes human workers |
+| Monday.com (MNDY) | ~$450 (Nov 2021) | ~$84 | **~−81%** | High — same |
+| HubSpot (HUBS) | $852 (Nov 2021) | $221 | **−74%** | High — horizontal CRM/marketing |
+| Workday (WDAY) | $307 (Feb 2024) | $128 | **−58%** | Medium — HR/finance has compliance moat |
+| Salesforce (CRM) | $364 (Dec 2024) | $176 | **−52%** | Medium — data moat + Agentforce bet |
+| ServiceNow (NOW) | — | down ~33% from 2025 high | mixed | Adapting — pivoting to outcome-based pricing, 21% revenue growth |
+
+**2025 bifurcation (SaaStr data):** Palantir +142%, Cloudflare +80%, MongoDB +70% vs. HubSpot −51%, Monday.com −36%, Salesforce −31% — infrastructure and AI-native won; horizontal seat-based lost
+- https://www.saastr.com/the-performing-major-b2b-stocks-of-2025-what-the-ai-divide-tells-us-about-the-future-of-saas/
+
+**Key structural difference from prior disruptions:** SaaS incumbents are software companies — can embed AI and become the AI product. Microsoft/SAP/Oracle survived cloud transition via same playbook. ServiceNow is the clearest "adapting incumbent" analog.
 - https://www.bain.com/insights/will-agentic-ai-disrupt-saas-technology-report-2025/
 - https://insights.flagshipadvisorypartners.com/will-ai-kill-the-b2b-software-industry
 
-**Most exposed:** Rules-based workflow tools (project management, simple CRM). **Most protected:** ERP/financial/compliance systems with deterministic/regulatory moats.
+**Most exposed:** Horizontal workflow tools (task tracking, generic CRM, marketing automation). **Most protected:** ERP/financial/compliance systems with deterministic/regulatory moats; infrastructure (Stripe, Twilio, Snowflake).
