@@ -5,7 +5,6 @@ draft: true
 ---
 
 
-
 - Internet vs AI
     - disrupted by dramatically reducing costs of the value that incumbent business provided
     - it also changed the "tech stack" employed by these firms. there were winners and losers:
@@ -69,6 +68,6 @@ draft: true
     - pre-AI -> AI
         - form factor of engaging with customers has not changed (i am skeptical that chat bots will win here, and even if they do incumbents can easily build them)
         - data is still within walled gardens - despite MCP etc the incentives around this have not changed
-        - while the *quantity* of staff expertise might decline, the *nature of the expertise* has not. 
+        - while the *quantity* of staff expertise might decline, the *nature of the expertise* has not.
 
 

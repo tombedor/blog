@@ -1,5 +1,7 @@
 # Blog Architecture
 
+AGENTS.md and CLAUDE.md are duplicates. Keep them in sync whenever either file changes.
+
 This is a personal blog built with [Docusaurus](https://docusaurus.io/) v3.9.1, deployed to GitHub Pages at [tombedor.dev](https://tombedor.dev).
 
 ## Tech Stack
