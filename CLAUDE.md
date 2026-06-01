@@ -117,6 +117,8 @@ When sources contain especially useful wording, capture short pull quotes in the
 
 Blog diagrams are created with Excalidraw and stored in `static/diagrams/{post-name}/`. The directory structure follows blog post slugs (e.g., diagrams for `ai-is-a-floor-raiser.md` go in `static/diagrams/ai-is-a-floor-raiser/`).
 
+When creating charts, use the [ExcaliCharts](https://github.com/tombedor/excalicharts) workflow by default. Author a small Vega-Lite-style `chart.json` plus `data.csv`, render it to an editable `.excalidraw` scene, then export the chart to PNG if the post needs an image. Keep the source `chart.json`, `data.csv`, and generated `.excalidraw` in the post's diagram directory so the chart can be revised later. If ExcaliCharts lacks a needed chart capability, update the local library at `../excalicharts` rather than switching to a different charting library.
+
 Diagrams are exported to PNG using `scripts/excalidraw-export.sh`, which uses hash-based caching to skip unchanged files. The export process:
 1. Computes SHA-256 hash of each `.excalidraw` file
 2. Stores hashes in `static/diagrams/.diagram_hashes/` (gitignored)
