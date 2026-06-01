@@ -95,9 +95,11 @@ Research for blog posts is stored in `research/{post-name}/`. The directory name
 Each post's research directory contains:
 - `brief.md` — the main research brief: fact-checks of post claims, source summaries, and counterarguments
 - Individual source files (e.g., `hn-thread.md`, `paper-notes.md`) — detailed notes on specific sources
+- `../TEMPLATE.md` — reusable research brief template
 
 When asked to do research for a post:
 - Update or create `research/{post-name}/brief.md` with findings
+- Use `research/TEMPLATE.md` as the default structure for new briefs, adapting headings to the actual research question
 - Add separate source files for substantial individual sources
 - Maintain a sources section in `brief.md` linking to source files
 - Do NOT edit the actual blog post file — research output goes only in `research/`
