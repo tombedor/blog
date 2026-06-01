@@ -4,6 +4,20 @@ date: 2026-05-30
 draft: true
 ---
 
+
+
+- Internet vs AI
+    - Internet: reduced the cost of finding and contacting people, and lowered the cost of accessing information. it did so by removing geographic barriers to doing these tasks
+    - AI:
+        - reduces the cost of *synthesizing information*
+        - reduces the cost of coding
+        - reduces the cost of some human cognitive labor
+
+
+
+
+
+
 - pre-SaaS vs Internet
     - travel agent's moat:
         - personal relationship with clients
