@@ -28,7 +28,7 @@ draft: true
 - case studies
     - internet:
         - travel agents
-            - <!-- chart: airline commissions, starting in 1995, superimposed over the introduction of expedia / travelocity / priceline (maybe combined traffic to those sites?) -->
+            - ![Airline commissions fell before online travel scaled](/diagrams/ai-favors-software-incumbents/airline-commissions/chart.png)
             - moat:
                 - personal relationship with clients
                 - personal relationship with destination operators
@@ -36,18 +36,18 @@ draft: true
             - technology: the phone
 
         - classified ads
-            - <!-- chart: classified ad revenue, 1990 - 2012, superimposed over Craigslist introduction. (maybe numbers on volume of classified ads to craigslist) -->
+            - ![Classifieds were the newspaper profit pool](/diagrams/ai-favors-software-incumbents/classified-revenue/chart.png)
             - technology: printed paper
             - moat:
                 - geographic distribution
         - cab drivers
-            <!-- chart: uber rides vs cab rides in NYC -->
-            <!-- chart: price of uber ride vs cab ride in NYC -->
+            ![Uber overtook yellow taxis in NYC](/diagrams/ai-favors-software-incumbents/nyc-rides/chart.png)
+            ![Ride-hail did not stay the cheap option](/diagrams/ai-favors-software-incumbents/nyc-fares/chart.png)
             - technology: radio dispatch networks, local knowledge of cab drivers of streets
             - moat: medallion system
                 - (caveat that medallion prices were inflated)
         - stock brokers
-            <!-- chart: etrade volume vs average trade fees, mid-late 90s until no-fee trades -->
+            ![Online brokerage scaled as fees compressed](/diagrams/ai-favors-software-incumbents/online-brokerage/chart.png)
         - internal call centers
     -  AI
         - travelocity
@@ -69,5 +69,4 @@ draft: true
         - form factor of engaging with customers has not changed (i am skeptical that chat bots will win here, and even if they do incumbents can easily build them)
         - data is still within walled gardens - despite MCP etc the incentives around this have not changed
         - while the *quantity* of staff expertise might decline, the *nature of the expertise* has not.
-
 
