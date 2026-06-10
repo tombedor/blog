@@ -176,7 +176,7 @@
     {
       "id": "text-2507",
       "type": "text",
-      "x": 119,
+      "x": 140,
       "y": 495,
       "width": 139,
       "height": 25,
@@ -334,7 +334,7 @@
       "type": "text",
       "x": 250,
       "y": 614,
-      "width": 31,
+      "width": 10,
       "height": 23,
       "angle": 0,
       "strokeColor": "#6a655d",
@@ -355,13 +355,13 @@
       "updated": 1710000000170,
       "link": null,
       "locked": false,
-      "text": "3.9",
+      "text": "4",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "3.9",
+      "originalText": "4",
       "baseline": 18,
       "lineHeight": 1.25
     },
@@ -412,7 +412,7 @@
       "type": "text",
       "x": 250,
       "y": 528,
-      "width": 31,
+      "width": 10,
       "height": 23,
       "angle": 0,
       "strokeColor": "#6a655d",
@@ -433,13 +433,13 @@
       "updated": 1710000000204,
       "link": null,
       "locked": false,
-      "text": "7.8",
+      "text": "8",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "7.8",
+      "originalText": "8",
       "baseline": 18,
       "lineHeight": 1.25
     },
@@ -447,7 +447,7 @@
       "id": "line-4425",
       "type": "line",
       "x": 320,
-      "y": 451.99999999999994,
+      "y": 452,
       "width": 980,
       "height": 0,
       "angle": 0,
@@ -489,8 +489,8 @@
       "id": "text-4699",
       "type": "text",
       "x": 250,
-      "y": 441.99999999999994,
-      "width": 42,
+      "y": 442,
+      "width": 21,
       "height": 23,
       "angle": 0,
       "strokeColor": "#6a655d",
@@ -511,13 +511,13 @@
       "updated": 1710000000238,
       "link": null,
       "locked": false,
-      "text": "11.8",
+      "text": "12",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "11.8",
+      "originalText": "12",
       "baseline": 18,
       "lineHeight": 1.25
     },
@@ -568,7 +568,7 @@
       "type": "text",
       "x": 250,
       "y": 356,
-      "width": 42,
+      "width": 21,
       "height": 23,
       "angle": 0,
       "strokeColor": "#6a655d",
@@ -589,13 +589,13 @@
       "updated": 1710000000272,
       "link": null,
       "locked": false,
-      "text": "15.7",
+      "text": "16",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "15.7",
+      "originalText": "16",
       "baseline": 18,
       "lineHeight": 1.25
     },
@@ -646,7 +646,7 @@
       "type": "text",
       "x": 250,
       "y": 270,
-      "width": 42,
+      "width": 21,
       "height": 23,
       "angle": 0,
       "strokeColor": "#6a655d",
@@ -667,13 +667,13 @@
       "updated": 1710000000306,
       "link": null,
       "locked": false,
-      "text": "19.6",
+      "text": "20",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "19.6",
+      "originalText": "20",
       "baseline": 18,
       "lineHeight": 1.25
     },
@@ -1385,7 +1385,7 @@
       "x": 320,
       "y": 280,
       "width": 980,
-      "height": 329.0816326530612,
+      "height": 322.50000000000006,
       "angle": 0,
       "strokeColor": "#245aa4",
       "backgroundColor": "transparent",
@@ -1408,35 +1408,35 @@
       "points": [
         [
           0,
-          177.70408163265313
+          182.75
         ],
         [
           140,
-          21.93877551020404
+          30.099999999999966
         ],
         [
           280,
-          0
+          8.599999999999966
         ],
         [
           420,
-          50.4591836734694
+          58.05000000000001
         ],
         [
           560,
-          118.4693877551021
+          124.69999999999999
         ],
         [
           700,
-          293.9795918367347
+          296.70000000000005
         ],
         [
           840,
-          320.30612244897964
+          322.5
         ],
         [
           980,
-          329.0816326530612
+          331.1
         ]
       ],
       "lastCommittedPoint": null,
@@ -1449,7 +1449,7 @@
       "id": "ellipse-11275",
       "type": "ellipse",
       "x": 315,
-      "y": 452.70408163265313,
+      "y": 457.75,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1476,7 +1476,7 @@
       "id": "ellipse-11549",
       "type": "ellipse",
       "x": 455,
-      "y": 296.93877551020404,
+      "y": 305.09999999999997,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1503,7 +1503,7 @@
       "id": "ellipse-11823",
       "type": "ellipse",
       "x": 595,
-      "y": 275,
+      "y": 283.59999999999997,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1530,7 +1530,7 @@
       "id": "ellipse-12097",
       "type": "ellipse",
       "x": 735,
-      "y": 325.4591836734694,
+      "y": 333.05,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1557,7 +1557,7 @@
       "id": "ellipse-12371",
       "type": "ellipse",
       "x": 875,
-      "y": 393.4693877551021,
+      "y": 399.7,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1584,7 +1584,7 @@
       "id": "ellipse-12645",
       "type": "ellipse",
       "x": 1015,
-      "y": 568.9795918367347,
+      "y": 571.7,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1611,7 +1611,7 @@
       "id": "ellipse-12919",
       "type": "ellipse",
       "x": 1155,
-      "y": 595.3061224489796,
+      "y": 597.5,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1638,7 +1638,7 @@
       "id": "ellipse-13193",
       "type": "ellipse",
       "x": 1295,
-      "y": 604.0816326530612,
+      "y": 606.1,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1706,8 +1706,8 @@
     {
       "id": "text-13741",
       "type": "text",
-      "x": 550.7272727272727,
-      "y": 208,
+      "x": 448.72727272727275,
+      "y": 224,
       "width": 188,
       "height": 23,
       "angle": 0,
@@ -1784,8 +1784,8 @@
     {
       "id": "text-14289",
       "type": "text",
-      "x": 818,
-      "y": 174,
+      "x": 780,
+      "y": 224,
       "width": 188,
       "height": 45,
       "angle": 0,

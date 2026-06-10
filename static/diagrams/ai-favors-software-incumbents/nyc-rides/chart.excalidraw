@@ -302,7 +302,7 @@
     {
       "id": "text-3603",
       "type": "text",
-      "x": 92,
+      "x": 113,
       "y": 495,
       "width": 151,
       "height": 25,
@@ -460,7 +460,7 @@
       "type": "text",
       "x": 250,
       "y": 614,
-      "width": 52,
+      "width": 42,
       "height": 23,
       "angle": 0,
       "strokeColor": "#6a655d",
@@ -481,13 +481,13 @@
       "updated": 1710000000238,
       "link": null,
       "locked": false,
-      "text": "99.2K",
+      "text": "100K",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "99.2K",
+      "originalText": "100K",
       "baseline": 18,
       "lineHeight": 1.25
     },
@@ -538,7 +538,7 @@
       "type": "text",
       "x": 250,
       "y": 528,
-      "width": 63,
+      "width": 42,
       "height": 23,
       "angle": 0,
       "strokeColor": "#6a655d",
@@ -559,13 +559,13 @@
       "updated": 1710000000272,
       "link": null,
       "locked": false,
-      "text": "198.3K",
+      "text": "200K",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "198.3K",
+      "originalText": "200K",
       "baseline": 18,
       "lineHeight": 1.25
     },
@@ -616,7 +616,7 @@
       "type": "text",
       "x": 250,
       "y": 442,
-      "width": 63,
+      "width": 42,
       "height": 23,
       "angle": 0,
       "strokeColor": "#6a655d",
@@ -637,13 +637,13 @@
       "updated": 1710000000306,
       "link": null,
       "locked": false,
-      "text": "297.5K",
+      "text": "300K",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "297.5K",
+      "originalText": "300K",
       "baseline": 18,
       "lineHeight": 1.25
     },
@@ -694,7 +694,7 @@
       "type": "text",
       "x": 250,
       "y": 356,
-      "width": 63,
+      "width": 42,
       "height": 23,
       "angle": 0,
       "strokeColor": "#6a655d",
@@ -715,13 +715,13 @@
       "updated": 1710000000340,
       "link": null,
       "locked": false,
-      "text": "396.7K",
+      "text": "400K",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "396.7K",
+      "originalText": "400K",
       "baseline": 18,
       "lineHeight": 1.25
     },
@@ -772,7 +772,7 @@
       "type": "text",
       "x": 250,
       "y": 270,
-      "width": 63,
+      "width": 42,
       "height": 23,
       "angle": 0,
       "strokeColor": "#6a655d",
@@ -793,13 +793,13 @@
       "updated": 1710000000374,
       "link": null,
       "locked": false,
-      "text": "495.9K",
+      "text": "500K",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "495.9K",
+      "originalText": "500K",
       "baseline": 18,
       "lineHeight": 1.25
     },
@@ -1277,7 +1277,7 @@
       "x": 320,
       "y": 280,
       "width": 980,
-      "height": 147.37517897836125,
+      "height": 146.15785999999997,
       "angle": 0,
       "strokeColor": "#245aa4",
       "backgroundColor": "transparent",
@@ -1300,23 +1300,23 @@
       "points": [
         [
           0,
-          82.57817573154256
+          85.44788
         ],
         [
           245,
-          119.0102849537177
+          121.57906000000003
         ],
         [
           490,
-          160.20398491540118
+          162.4325
         ],
         [
           735,
-          185.63093149414158
+          187.64941999999996
         ],
         [
           980,
-          229.9533547099038
+          231.60573999999997
         ]
       ],
       "lastCommittedPoint": null,
@@ -1329,7 +1329,7 @@
       "id": "ellipse-10727",
       "type": "ellipse",
       "x": 315,
-      "y": 357.57817573154256,
+      "y": 360.44788,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1356,7 +1356,7 @@
       "id": "ellipse-11001",
       "type": "ellipse",
       "x": 560,
-      "y": 394.0102849537177,
+      "y": 396.57906,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1383,7 +1383,7 @@
       "id": "ellipse-11275",
       "type": "ellipse",
       "x": 805,
-      "y": 435.2039849154012,
+      "y": 437.4325,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1410,7 +1410,7 @@
       "id": "ellipse-11549",
       "type": "ellipse",
       "x": 1050,
-      "y": 460.6309314941416,
+      "y": 462.64941999999996,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1437,7 +1437,7 @@
       "id": "ellipse-11823",
       "type": "ellipse",
       "x": 1295,
-      "y": 504.9533547099038,
+      "y": 506.60573999999997,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1466,7 +1466,7 @@
       "x": 320,
       "y": 280,
       "width": 980,
-      "height": 343.8846673523302,
+      "height": 341.04418000000004,
       "angle": 0,
       "strokeColor": "#cc5c27",
       "backgroundColor": "transparent",
@@ -1489,23 +1489,23 @@
       "points": [
         [
           0,
-          343.8846673523302
+          344.59598000000005
         ],
         [
           245,
-          264.03111702664
+          265.40202
         ],
         [
           490,
-          169.7063544880715
+          171.85638
         ],
         [
           735,
-          42.63752596446648
+          45.83713999999998
         ],
         [
           980,
-          0
+          3.5518000000000143
         ]
       ],
       "lastCommittedPoint": null,
@@ -1518,7 +1518,7 @@
       "id": "ellipse-12371",
       "type": "ellipse",
       "x": 315,
-      "y": 618.8846673523302,
+      "y": 619.59598,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1545,7 +1545,7 @@
       "id": "ellipse-12645",
       "type": "ellipse",
       "x": 560,
-      "y": 539.03111702664,
+      "y": 540.40202,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1572,7 +1572,7 @@
       "id": "ellipse-12919",
       "type": "ellipse",
       "x": 805,
-      "y": 444.7063544880715,
+      "y": 446.85638,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1599,7 +1599,7 @@
       "id": "ellipse-13193",
       "type": "ellipse",
       "x": 1050,
-      "y": 317.6375259644665,
+      "y": 320.83714,
       "width": 10,
       "height": 10,
       "angle": 0,
@@ -1626,7 +1626,7 @@
       "id": "ellipse-13467",
       "type": "ellipse",
       "x": 1295,
-      "y": 275,
+      "y": 278.5518,
       "width": 10,
       "height": 10,
       "angle": 0,

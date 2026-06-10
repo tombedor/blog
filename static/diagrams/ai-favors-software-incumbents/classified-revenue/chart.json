@@ -8,7 +8,7 @@
   },
   "annotations": [
     { "x": "1995", "label": "Craigslist founded" },
-    { "x": "2001", "label": "Craigslist expands beyond SF" }
+    { "x": "2001", "label": "Craigslist expands beyond SF", "dx": -30 }
   ],
   "encoding": {
     "x": { "field": "year", "type": "ordinal", "title": "Year" },

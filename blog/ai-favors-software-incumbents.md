@@ -28,7 +28,7 @@ draft: true
 - case studies
     - internet:
         - travel agents
-            - ![Airline commissions fell before online travel scaled](/diagrams/ai-favors-software-incumbents/airline-commissions/chart.png)
+            ![Airline commissions fell before online travel scaled](/diagrams/ai-favors-software-incumbents/airline-commissions/chart.png)
             - moat:
                 - personal relationship with clients
                 - personal relationship with destination operators
@@ -36,7 +36,7 @@ draft: true
             - technology: the phone
 
         - classified ads
-            - ![Classifieds were the newspaper profit pool](/diagrams/ai-favors-software-incumbents/classified-revenue/chart.png)
+            ![Classifieds were the newspaper profit pool](/diagrams/ai-favors-software-incumbents/classified-revenue/chart.png)
             - technology: printed paper
             - moat:
                 - geographic distribution
@@ -54,6 +54,7 @@ draft: true
         - craigslist
         - robinhood
         - uber
+            - moat: network effects (intact)
         - zendesk
 
 
@@ -67,6 +68,7 @@ draft: true
         - the tech stack overhaul meant that the institutional knowledge of incumbent firms didn't help much - if the profile of a typical employee necessary to win business completely changes, startups are on equal playing field with incumbents
     - pre-AI -> AI
         - form factor of engaging with customers has not changed (i am skeptical that chat bots will win here, and even if they do incumbents can easily build them)
+        - the investment in data pipelines and internal software is not going to waste, AI is a new interface on top of it.
+        - there are new decisiosn for incumbents to make: before, just needed to decide on how much to spend on software engineers. now, there's probably at least some of that spend that should go to ai tokens (or overall amount of spend needs to change) - but they are at not disadvantage relative to startups
         - data is still within walled gardens - despite MCP etc the incentives around this have not changed
         - while the *quantity* of staff expertise might decline, the *nature of the expertise* has not.
-

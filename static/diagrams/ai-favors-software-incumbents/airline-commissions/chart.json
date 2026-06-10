@@ -9,7 +9,7 @@
   "annotations": [
     { "x": "1996", "label": "Travelocity + Expedia" },
     { "x": "1998", "label": "Priceline" },
-    { "x": "2002", "label": "Base commissions go to zero" }
+    { "x": "2002", "label": "Base commissions go to zero", "dx": -130 }
   ],
   "encoding": {
     "x": { "field": "year", "type": "ordinal", "title": "Year" },
