@@ -7,7 +7,7 @@ build:
 
 # Starts the development server
 serve:
-	pnpm start
+	npm start
 
 # Creates a new blog post with frontmatter and diagram directory
 new-post title:

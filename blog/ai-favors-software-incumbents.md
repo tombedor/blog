@@ -37,15 +37,10 @@ draft: true
 
         - classified ads
             ![Classifieds were the newspaper profit pool](/diagrams/ai-favors-software-incumbents/classified-revenue/chart.png)
+            ![Craigslist overtook and vastly expanded classified ad volume](/diagrams/ai-favors-software-incumbents/classified-volume/chart.png)
             - technology: printed paper
             - moat:
                 - geographic distribution
-        - cab drivers
-            ![Uber overtook yellow taxis in NYC](/diagrams/ai-favors-software-incumbents/nyc-rides/chart.png)
-            ![Ride-hail did not stay the cheap option](/diagrams/ai-favors-software-incumbents/nyc-fares/chart.png)
-            - technology: radio dispatch networks, local knowledge of cab drivers of streets
-            - moat: medallion system
-                - (caveat that medallion prices were inflated)
         - stock brokers
             ![Online brokerage scaled as fees compressed](/diagrams/ai-favors-software-incumbents/online-brokerage/chart.png)
         - internal call centers
@@ -53,8 +48,6 @@ draft: true
         - travelocity
         - craigslist
         - robinhood
-        - uber
-            - moat: network effects (intact)
         - zendesk
 
 
