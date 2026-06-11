@@ -1,0 +1,23 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "./data.csv", "format": "csv" },
+  "mark": "line",
+  "title": {
+    "text": "Classifieds Were the Newspaper Profit Pool",
+    "subtitle": "U.S. newspaper classified ad revenue, nominal dollars; sparse points from cited NAA-based sources."
+  },
+  "annotations": [
+    { "x": "1995", "label": "Craigslist founded" },
+    { "x": "2001", "label": "Craigslist expands beyond SF", "dx": -30 }
+  ],
+  "encoding": {
+    "x": { "field": "year", "type": "ordinal", "title": "Year" },
+    "y": { "field": "value", "type": "quantitative", "title": "Revenue ($B)" },
+    "color": {
+      "field": "metric",
+      "type": "nominal",
+      "legend": null,
+      "scale": { "domain": ["Newspaper classified ad revenue"] }
+    }
+  }
+}

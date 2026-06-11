@@ -2,12 +2,35 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://tombedor.dev/</id>
     <title>Tom Bedor's Blog</title>
-    <updated>2026-04-24T00:00:00.000Z</updated>
+    <updated>2026-06-11T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tombedor.dev/"/>
     <subtitle>Thoughts on software, AI, and building things</subtitle>
     <icon>https://tombedor.dev/img/logo.svg</icon>
     <rights>Copyright © 2026 Tom Bedor</rights>
+    <entry>
+        <title type="html"><![CDATA[If You are Asking for Human Attention, Demonstrate Human Effort]]></title>
+        <id>https://tombedor.dev/human-attention-and-human-effort/</id>
+        <link href="https://tombedor.dev/human-attention-and-human-effort/"/>
+        <updated>2026-06-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[An ever-increasing volume of debug investigations, document writing, and code is written by robots. This has created a new etiquette question when working with a team - when is it OK to forward the output of an AI to another human to read?]]></summary>
+        <content type="html"><![CDATA[<p>An ever-increasing volume of debug investigations, document writing, and code is written by robots. This has created a new etiquette question when working with a team - when is it OK to forward the output of an AI to another human to read?</p>
+<p>On one hand, an AI with robust integration to internal code bases and documentation often produces genuinely<sup><a href="https://tombedor.dev/human-attention-and-human-effort/#user-content-fn-1-57b299" id="user-content-fnref-1-57b299" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">1</a></sup> useful output.</p>
+<p>On the other, as an increasing amount of a software engineer's day is spent reading AI text, a fatigue sets in. <em>If I can have a robot say something, so can you</em>. It reads as inconsiderate to post un-digested AI output as though it's your own writing.</p>
+<p>I remember the first time I experienced this annoyance. I proposed a design, and a teammate prompted an AI to critique it. The teammate sent an AI document to me, with the disclaimer: "I didn't read this, so it might not be entirely accurate". My thought was, _if reading this wasn't worth your time, why is it worth mine?"</p>
+<p>Therefore, I've adopted this principle in my work:</p>
+<p><strong><em>If you are requesting human attention, demonstrate human effort.</em></strong></p>
+<p>If useful, I send AI generated content to teammates. But when doing so, I take care to clearly label what is AI generated, and I add my own commentary alongside it. For human code review requests, I <em>always</em> review my AI-generated code first.</p>
+<p><a href="https://tombedor.dev/how-to-write-good-short-docs/#optimize-for-short-attention-spans">Attention was already a scarce resource</a> before AI, and it is even more so now. Keeping AI generated content clearly labeled and demonstrating human effort helps show consideration for teammates, and keeps a touch of humanity alive in our work.</p>
+<!-- -->
+<section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="https://tombedor.dev/human-attention-and-human-effort/#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes" translate="no">​</a></h2>
+<ol>
+<li id="user-content-fn-1-57b299">
+<p>I promise I wrote this (and all the words in this post) with my meat fingers! <a href="https://tombedor.dev/human-attention-and-human-effort/#user-content-fnref-1-57b299" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Coding agents have no moat]]></title>
         <id>https://tombedor.dev/coding-agents-have-no-moat/</id>

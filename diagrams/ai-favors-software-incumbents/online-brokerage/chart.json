@@ -1,0 +1,18 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "./data.csv", "format": "csv" },
+  "mark": "line",
+  "title": {
+    "text": "Online Brokerage Scaled as Fees Compressed",
+    "subtitle": "E*TRADE daily average trades vs. typical online stock-trade commission; 1996 = 100."
+  },
+  "encoding": {
+    "x": { "field": "year", "type": "ordinal", "title": "Year" },
+    "y": { "field": "value", "type": "quantitative", "title": "Index (1996 = 100)" },
+    "color": {
+      "field": "metric",
+      "type": "nominal",
+      "scale": { "domain": ["E*TRADE daily average trades index", "Typical online commission index"] }
+    }
+  }
+}

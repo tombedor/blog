@@ -1,0 +1,18 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "./data.csv", "format": "csv" },
+  "mark": "line",
+  "title": {
+    "text": "Craigslist Overtook and Vastly Expanded Classified Ad Volume",
+    "subtitle": "New classified ads/month (millions). Newspaper volume estimated from NAA revenue ÷ ~$60/ad. Craigslist gaps interpolated."
+  },
+  "encoding": {
+    "x": { "field": "year", "type": "ordinal", "title": "Year" },
+    "y": { "field": "value", "type": "quantitative", "title": "New Ads / Month (millions)" },
+    "color": {
+      "field": "metric",
+      "type": "nominal",
+      "legend": { "title": null, "orient": "bottom-left" }
+    }
+  }
+}

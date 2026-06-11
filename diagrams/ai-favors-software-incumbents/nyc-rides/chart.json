@@ -1,0 +1,18 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "./data.csv", "format": "csv" },
+  "mark": "line",
+  "title": {
+    "text": "Uber Overtook Yellow Taxis in NYC",
+    "subtitle": "Average trips per day, annualized from TLC monthly data via Todd Schneider's dashboard API."
+  },
+  "encoding": {
+    "x": { "field": "year", "type": "ordinal", "title": "Year" },
+    "y": { "field": "trips_per_day", "type": "quantitative", "title": "Trips per day" },
+    "color": {
+      "field": "service",
+      "type": "nominal",
+      "scale": { "domain": ["Yellow taxi", "Uber"] }
+    }
+  }
+}
