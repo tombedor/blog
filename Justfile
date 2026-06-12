@@ -98,10 +98,37 @@ dual-publish:
 export-diagrams:
 	./scripts/excalidraw-export.sh -r static/diagrams
 
-# Send a test newsletter for a specific post to the configured test list
+# Create a draft test newsletter for a specific post
 newsletter-test post:
 	node ./scripts/send-newsletter.mjs test "{{post}}"
 
-# Send a newsletter for a specific post to subscribers
+# Create a draft newsletter for a specific post
 newsletter-send post:
 	node ./scripts/send-newsletter.mjs send "{{post}}"
+
+# Create a draft newsletter filtered to subscribers who joined before a given date (YYYY-MM-DD)
+newsletter-send-before post date:
+	node ./scripts/send-newsletter.mjs send-before "{{post}}" "{{date}}"
+
+# Run a SQL query against the production Listmonk database
+listmonk-sql query:
+	#!/usr/bin/env bash
+	set -euo pipefail
+
+	host="${HOST_IP:-}"
+	if [ -z "$host" ]; then
+		host="$(terraform -chdir=infrastructure/terraform output -raw reserved_ip 2>/dev/null || terraform -chdir=infrastructure/terraform output -raw droplet_ip)"
+	fi
+	host="$(printf '%s' "$host" | tr -d '\r\n[:space:]')"
+	if [ -z "$host" ]; then
+		echo "No host configured. Set HOST_IP in .env or restore the Terraform outputs."
+		exit 1
+	fi
+
+	pg="$(ssh "root@$host" "docker ps -q --filter label=com.docker.compose.service=postgres | head -1")"
+	if [ -z "$pg" ]; then
+		echo "No running PostgreSQL Compose service found on $host."
+		exit 1
+	fi
+
+	printf '%s' {{quote(query)}} | ssh "root@$host" "docker exec -i '$pg' psql -v ON_ERROR_STOP=1 -U postgres -d listmonk"

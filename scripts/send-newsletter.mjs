@@ -13,30 +13,41 @@ function usage() {
   console.error(`Usage:
   node scripts/send-newsletter.mjs test <post>
   node scripts/send-newsletter.mjs send <post>
+  node scripts/send-newsletter.mjs send-before <post> <date>
 
 Arguments:
   <post>     Blog post path, filename, or slug (for example: approaches-to-agent-memory)
+  <date>     ISO date (YYYY-MM-DD) — send only to subscribers who joined before this date
 
 Required environment:
   LISTMONK_URL
   LISTMONK_API_USER
   LISTMONK_API_TOKEN
   For "test": LISTMONK_TEST_LIST_ID or LISTMONK_TEST_LIST_UUID
-  For "send": LISTMONK_PROD_LIST_ID or LISTMONK_PROD_LIST_UUID
+  For "send"/"send-before": LISTMONK_PROD_LIST_ID or LISTMONK_PROD_LIST_UUID
 
 Optional environment:
   LISTMONK_TEST_EMAILS Default test recipients for "test" mode
   SITE_URL             Defaults to the Docusaurus site URL or https://tombedor.dev
+
+Campaigns are created as drafts and must be started from Listmonk after review.
 `);
 }
 
 function parseArgs(argv) {
-  const [mode, postArg] = argv;
-  if (!mode || !postArg || !['test', 'send'].includes(mode)) {
+  const [mode, postArg, dateArg] = argv;
+  if (!mode || !postArg || !['test', 'send', 'send-before'].includes(mode)) {
     usage();
     process.exit(1);
   }
-  return {mode, postArg};
+  if (mode === 'send-before') {
+    if (!dateArg || !/^\d{4}-\d{2}-\d{2}$/.test(dateArg)) {
+      console.error('send-before requires a date argument in YYYY-MM-DD format');
+      usage();
+      process.exit(1);
+    }
+  }
+  return {mode, postArg, beforeDate: dateArg || null};
 }
 
 async function readFileIfExists(filePath) {
@@ -395,7 +406,7 @@ async function resolveListId(baseUrl, headers, mode) {
 
 async function main() {
   await loadDotEnv();
-  const {mode, postArg} = parseArgs(process.argv.slice(2));
+  const {mode, postArg, beforeDate} = parseArgs(process.argv.slice(2));
   const rawListmonkUrl = process.env.LISTMONK_URL;
   if (!rawListmonkUrl) {
     throw new Error('LISTMONK_URL is required');
@@ -410,7 +421,7 @@ async function main() {
     throw new Error(`Missing title in frontmatter for ${postPath}`);
   }
 
-  if (mode === 'send' && frontmatter.draft === true) {
+  if ((mode === 'send' || mode === 'send-before') && frontmatter.draft === true) {
     throw new Error('Refusing to send a subscriber newsletter for a draft post');
   }
 
@@ -421,7 +432,8 @@ async function main() {
   if (!newsletterBody) {
     throw new Error('Could not derive newsletter body from post');
   }
-  const listId = await resolveListId(baseUrl, headers, mode);
+  const effectiveMode = mode === 'send-before' ? 'send' : mode;
+  const listId = await resolveListId(baseUrl, headers, effectiveMode);
 
   const campaignPayload = {
     name: `Blog post: ${frontmatter.title}`,
@@ -433,6 +445,7 @@ async function main() {
     altbody: buildAltBody({title: String(frontmatter.title), body: newsletterBody, postUrl}),
     messenger: 'email',
     tags: ['blog-post', slug],
+    ...(beforeDate && {query: `subscribers.created_at < '${beforeDate} 00:00:00'`}),
   };
 
   const created = await requestJson(`${baseUrl}/api/campaigns`, {
@@ -446,18 +459,16 @@ async function main() {
     throw new Error('Listmonk did not return a campaign ID');
   }
 
-  await requestJson(`${baseUrl}/api/campaigns/${campaignId}/status`, {
-    method: 'PUT',
-    headers,
-    body: JSON.stringify({status: 'running'}),
-  });
-
   if (mode === 'test') {
-    console.log(`Started test-list newsletter for "${frontmatter.title}" (campaign ${campaignId}).`);
+    console.log(`Created draft test-list newsletter for "${frontmatter.title}" (campaign ${campaignId}).`);
     return;
   }
 
-  console.log(`Started subscriber newsletter for "${frontmatter.title}" (campaign ${campaignId}).`);
+  if (mode === 'send-before') {
+    console.log(`Created draft subscriber newsletter for "${frontmatter.title}" (campaign ${campaignId}), filtered to subscribers before ${beforeDate}.`);
+  } else {
+    console.log(`Created draft subscriber newsletter for "${frontmatter.title}" (campaign ${campaignId}).`);
+  }
 }
 
 main().catch((error) => {
