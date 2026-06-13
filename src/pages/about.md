@@ -6,7 +6,7 @@ title: About
 
 I'm an engineering manager based in Los Angeles, CA. I'm the author of [elroy.bot](https://elroy.bot), an AI CLI with long term memory.
 
-Feel free to reach out at [hello@tombedor.dev](mailto:hello@tombedor.dev)
+Feel free to reach out at [hello@tombedor.dev](mailto:hello@tombedor.dev) or find me on [X / Twitter](https://x.com/middleagedc0der)
 
 ---
 
