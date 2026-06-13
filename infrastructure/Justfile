@@ -72,6 +72,10 @@ backup:
 	@ssh root@{{host}} "docker exec postgres pg_dumpall -U postgres" > backup_$(date +%Y%m%d_%H%M%S).sql && \
 		echo "Backup saved to: backup_$(date +%Y%m%d_%H%M%S).sql"
 
+# Interactively migrate PostgreSQL from its Docker volume to attached block storage
+migrate-postgres-volume *args:
+	./scripts/migrate-postgres-to-volume.sh {{args}}
+
 # Test local docker-compose setup (without Terraform)
 test-local:
 	cd docker && docker compose up
@@ -112,6 +116,8 @@ help:
 	@echo "  just restart        - Restart all services"
 	@echo "  just update         - Update services to latest versions"
 	@echo "  just backup         - Backup PostgreSQL database"
+	@echo "  just migrate-postgres-volume --preflight - Validate a mounted block volume"
+	@echo "  just migrate-postgres-volume - Run the interactive PostgreSQL migration"
 	@echo ""
 	@echo "Cleanup:"
 	@echo "  just destroy        - Destroy all infrastructure"
