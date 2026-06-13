@@ -157,6 +157,29 @@ ssh root@<droplet-ip>
 docker exec postgres pg_dumpall -U postgres > backup_$(date +%Y%m%d).sql
 ```
 
+### Migrate PostgreSQL to Block Storage
+
+After creating, attaching, and mounting a DigitalOcean Block Storage volume,
+run the migration preflight from `infrastructure/`:
+
+```bash
+just migrate-postgres-volume --preflight
+```
+
+When the preflight succeeds, run the interactive migration:
+
+```bash
+just migrate-postgres-volume
+```
+
+The script creates a logical backup, stops PostgreSQL and its dependent
+services, copies the data, installs a Compose override for the new bind mount,
+and restarts and verifies the services. It pauses for confirmation after the
+backup is verified, after the data copy is verified, and after PostgreSQL is
+healthy on the new mount. Cancelling after services have stopped triggers the
+rollback path. The original Docker volume remains in place for rollback. The
+script does not create, format, attach, or mount the DigitalOcean volume.
+
 ## 🌐 Integrating with Your Blog
 
 ### Umami Analytics
