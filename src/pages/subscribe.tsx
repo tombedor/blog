@@ -16,7 +16,7 @@ export default function Subscribe(): React.JSX.Element {
           <NewsletterSignup />
         </section>
 
-        <section>
+        <section style={{marginBottom: '2.5rem'}}>
           <h2 style={{fontSize: '1.2rem'}}>RSS / Atom</h2>
           <p style={{color: 'var(--ifm-color-emphasis-700)', marginBottom: '0.75rem'}}>
             Subscribe in your feed reader of choice.
@@ -29,6 +29,21 @@ export default function Subscribe(): React.JSX.Element {
               <a href="/atom.xml" data-umami-event="rss-subscribe">Atom feed</a>
             </li>
           </ul>
+        </section>
+
+        <section>
+          <h2 style={{fontSize: '1.2rem'}}>Twitter</h2>
+          <p style={{color: 'var(--ifm-color-emphasis-700)'}}>
+            You can also{' '}
+            <a
+              href="https://x.com/middleagedc0der"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-umami-event="twitter-follow">
+              follow me on Twitter
+            </a>
+            .
+          </p>
         </section>
       </main>
     </Layout>
