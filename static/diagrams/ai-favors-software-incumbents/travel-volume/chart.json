@@ -1,0 +1,27 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "./data.csv", "format": "csv" },
+  "mark": "bar",
+  "title": {
+    "text": "American Express Travel Remained at Scale",
+    "subtitle": "Gross travel sales / TTV in 2025 dollars. 1995 includes corporate and consumer travel; later years are GBT."
+  },
+  "encoding": {
+    "x": {
+      "field": "period",
+      "type": "ordinal",
+      "title": "Year"
+    },
+    "y": {
+      "field": "volume",
+      "type": "quantitative",
+      "title": "Travel sales / TTV ($B, 2025 dollars)",
+      "scale": { "domain": [0, 40] }
+    },
+    "color": {
+      "field": "scope",
+      "type": "nominal",
+      "title": null
+    }
+  }
+}

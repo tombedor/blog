@@ -23,6 +23,6 @@ draft: true
     - evals:
         - also async, built into the tool itself. this is available to the user, so you can see how and whether yaaml is helping your agent in real time. but the evals also impact recall: recalled memories shown to have poor relevance are downweighted for future iterations.
 
-
+- personal machine performance
 
 -

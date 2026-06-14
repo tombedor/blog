@@ -1,13 +1,17 @@
 # Source Note: Chart Data
 
-## Travel Booking Channel
+## American Express Travel Volume
 
-- The 1999 and 2002 points are the online share of U.S. airline bookings reported by GAO. "Non-digital" is the remainder and includes traditional travel agencies and airline direct channels.
-- The 2025 point is Amex GBT's own booking-channel mix: 83% digital and 17% agent-facilitated. It is a modern corporate-travel endpoint, not a directly continuous market-wide series.
-- Amex GBT reported approximately $36.3B in total transaction value and 96% client retention in 2025.
+- The chart compares gross travel sales / total transaction value rather than revenue. A continuous revenue series would be misleading because the pre-2014 business was reported inside American Express's broader Travel Related Services segment, then moved into a joint venture and later acquired other travel-management companies.
+- 1995: American Express reported $15.1B of travel sales. CPI-U annual averages of 152.4 in 1995 and 321.943 in 2025 convert this to $31.9B in 2025 dollars.
+- 2019: Legacy GBT reported $27.7B of TTV, excluding the later Egencia and Ovation acquisitions. CPI-U of 255.657 converts this to $34.9B in 2025 dollars.
+- 2025: Amex GBT reported approximately $36.3B of TTV. This includes a changed reporting perimeter, including acquired businesses.
+- Scope caveat: the 1995 American Express "travel sales" figure covered its broader corporate and consumer travel operation; 2019 and 2025 GBT figures are business travel. The comparison supports survival at similar real scale, not organic growth or a like-for-like revenue trend.
 - Sources:
-  - https://www.govinfo.gov/content/pkg/GAOREPORTS-GAO-03-749/html/GAOREPORTS-GAO-03-749.htm
+  - https://www.sec.gov/Archives/edgar/data/4962/0000004962-96-000013.txt
+  - https://www.sec.gov/Archives/edgar/data/1820872/000110465922080636/tm2216855-3_s1a.htm
   - https://www.sec.gov/Archives/edgar/data/1820872/000162828026015817/gbtg-20251231.htm
+  - https://www.bls.gov/cpi/data.htm
 
 ## Classified Revenue
 

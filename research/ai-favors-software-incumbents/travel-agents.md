@@ -63,6 +63,19 @@
 - https://www.sec.gov/Archives/edgar/data/1820872/000162828026015817/gbtg-20251231.htm
 - https://www.sec.gov/Archives/edgar/data/1639723/000162828025044812/navan-sx1a.htm
 
+**American Express's travel business survived at substantial scale.**
+
+- A continuous pre-internet-to-present revenue series is not defensible. Before the 2014 GBT joint venture, travel commissions and fees were reported within American Express's broader Travel Related Services segment; the later standalone company also changed scope through acquisitions.
+- Gross booking volume provides a more comparable, though still imperfect, survival measure. American Express reported **$15.1B** of travel sales in 1995, equal to **$31.9B in 2025 dollars**.
+- Legacy GBT generated **$27.7B** of TTV in 2019, equal to **$34.9B in 2025 dollars**, before its acquisitions of Egencia and Ovation.
+- Amex GBT generated **$36.3B** of TTV in 2025. The near-flat real values support the claim that the incumbent lineage remained a large intermediary; they do not establish organic growth.
+- The scope is not identical: the 1995 figure includes American Express corporate and consumer travel, while the later GBT figures are business travel. The 2014 joint venture and subsequent acquisitions also prevent treating this as a continuous same-company series.
+- GBT described itself as the world's leading B2B travel platform by 2019 TTV, while noting that larger consumer platforms such as Trip.com, Expedia, and Booking existed. "Largest corporate travel management company" is more precise than "largest travel agent."
+- https://www.sec.gov/Archives/edgar/data/4962/0000004962-96-000013.txt
+- https://www.sec.gov/Archives/edgar/data/1820872/000110465922080636/tm2216855-3_s1a.htm
+- https://www.sec.gov/Archives/edgar/data/1820872/000162828026015817/gbtg-20251231.htm
+- https://www.bls.gov/cpi/data.htm
+
 **Software incumbents still face adaptation costs.**
 
 - Research on AI as a general-purpose technology stresses that complementary assets must be reorganized with business processes, management practices, and distribution. Existing software and data do not make adaptation automatic.
@@ -77,8 +90,8 @@
 - Historical chart, using the GAO report:
   - Online share of airline bookings: **7% in 1999 -> 30% in 2002**.
   - Air-sales index, 1995 to 2002: **small agencies 100 -> 68; very large agencies 100 -> nearly 200**.
-- Modern endpoint:
-  - Amex GBT bookings in 2025: **83% digital, 17% agent-facilitated**.
-  - Annotate **$36.3B transaction value** and **96% client retention**.
-- Together these show three stages: small agencies lose commodity leisure booking; scaled agencies retain corporate relationships; corporate booking becomes overwhelmingly self-service inside software-led TMCs.
-- Implemented chart: `static/diagrams/ai-favors-software-incumbents/travel-booking-channel/`.
+- Survival chart:
+  - Inflation-adjusted gross travel sales / TTV: **$31.9B in 1995, $34.9B in 2019, and $36.3B in 2025**.
+  - Label the reporting scopes and explicitly warn that this is not a like-for-like revenue series.
+- Together the evidence shows three stages: small agencies lose commodity leisure booking; a scaled corporate incumbent remains large; its booking workflow becomes overwhelmingly self-service inside a software-led TMC.
+- Implemented chart: `static/diagrams/ai-favors-software-incumbents/travel-volume/`.

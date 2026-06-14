@@ -17,10 +17,15 @@
 - Online airline bookings rose **7% -> 30% from 1999 to 2002**; small-agency air sales fell **32% from 1995 to 2002**.
 - This was not uniform incumbent failure: very large agency sales nearly doubled as corporate travel, scale, and service fees retained value.
 - Corporate customers later abandoned routine agent-assisted booking, not managed travel itself. Amex GBT processed **$36.3B** in 2025 travel with **96%** client retention, but **83%** of its bookings were digital.
-- The chart shows the channel transition: digital bookings rose from **7% in 1999** to **30% in 2002** across U.S. airlines, then to **83% in 2025** within Amex GBT's transformed corporate-travel platform.
+- No defensible pre-internet-to-present revenue series exists: pre-2014 travel revenue was mixed into American Express's broader Travel Related Services segment, and the later GBT reporting perimeter changed through the 2014 joint venture and acquisitions.
+- Gross booking volume does show survival at scale. In 2025 dollars, American Express reported **$31.9B** of travel sales in 1995; Legacy GBT generated **$34.9B** of TTV in 2019; Amex GBT generated **$36.3B** in 2025. The 1995 figure includes consumer travel, while later figures are business travel, so this is directional rather than a like-for-like growth series.
 - Traditional agents already used CRS/GDS software. The defensible distinction is customer interface, channel economics, scale, and complementary assets, not "phones/fax versus computers."
 - AI more directly complements assets held by software incumbents: ICT skills, digital workflows, proprietary data, infrastructure, and integrations. Those assets improve the odds of adaptation but do not eliminate organizational inertia or AI-native interface risk.
 - https://www.govinfo.gov/content/pkg/GAOREPORTS-GAO-03-749/html/GAOREPORTS-GAO-03-749.htm
+- https://www.sec.gov/Archives/edgar/data/4962/0000004962-96-000013.txt
+- https://www.sec.gov/Archives/edgar/data/1820872/000110465922080636/tm2216855-3_s1a.htm
+- https://www.sec.gov/Archives/edgar/data/1820872/000162828026015817/gbtg-20251231.htm
+- https://www.bls.gov/cpi/data.htm
 - https://www.oecd.org/en/publications/a-portrait-of-ai-adopters-across-countries_0fb79bb9-en.html
 - https://www.nber.org/system/files/working_papers/w31222/w31222.pdf
 - [Detailed source note and chart recommendation](travel-agents.md)
