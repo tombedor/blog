@@ -5,7 +5,8 @@
 **Bottom line:**
 - Travel agents support an interface-shift argument, but not a simple analog-to-digital argument: agencies already used computerized reservation systems, and large agencies adapted better than small agencies.
 - Classifieds and taxis show different incumbent moats: bundled distribution and regulatory scarcity.
-- The most controversial claim is that AI disruption is structurally different because software incumbents already own the workflow/data layer that AI needs.
+- Technology transitions sort incumbents rather than uniformly replacing them. Adaptable technology, data, customer relationships, and scale helped large travel agencies survive the internet transition.
+- AI disruption is structurally different because software incumbents already own more of the workflow/data layer that AI needs, although that advantage does not guarantee they retain the customer interface.
 
 ---
 
@@ -16,6 +17,7 @@
 - Online airline bookings rose **7% -> 30% from 1999 to 2002**; small-agency air sales fell **32% from 1995 to 2002**.
 - This was not uniform incumbent failure: very large agency sales nearly doubled as corporate travel, scale, and service fees retained value.
 - Corporate customers later abandoned routine agent-assisted booking, not managed travel itself. Amex GBT processed **$36.3B** in 2025 travel with **96%** client retention, but **83%** of its bookings were digital.
+- The chart shows the channel transition: digital bookings rose from **7% in 1999** to **30% in 2002** across U.S. airlines, then to **83% in 2025** within Amex GBT's transformed corporate-travel platform.
 - Traditional agents already used CRS/GDS software. The defensible distinction is customer interface, channel economics, scale, and complementary assets, not "phones/fax versus computers."
 - AI more directly complements assets held by software incumbents: ICT skills, digital workflows, proprietary data, infrastructure, and integrations. Those assets improve the odds of adaptation but do not eliminate organizational inertia or AI-native interface risk.
 - https://www.govinfo.gov/content/pkg/GAOREPORTS-GAO-03-749/html/GAOREPORTS-GAO-03-749.htm

@@ -1,5 +1,14 @@
 # Source Note: Chart Data
 
+## Travel Booking Channel
+
+- The 1999 and 2002 points are the online share of U.S. airline bookings reported by GAO. "Non-digital" is the remainder and includes traditional travel agencies and airline direct channels.
+- The 2025 point is Amex GBT's own booking-channel mix: 83% digital and 17% agent-facilitated. It is a modern corporate-travel endpoint, not a directly continuous market-wide series.
+- Amex GBT reported approximately $36.3B in total transaction value and 96% client retention in 2025.
+- Sources:
+  - https://www.govinfo.gov/content/pkg/GAOREPORTS-GAO-03-749/html/GAOREPORTS-GAO-03-749.htm
+  - https://www.sec.gov/Archives/edgar/data/1820872/000162828026015817/gbtg-20251231.htm
+
 ## Classified Revenue
 
 - Sparse nominal revenue points from NAA-based sources; use as historical shape, not a complete annual series.

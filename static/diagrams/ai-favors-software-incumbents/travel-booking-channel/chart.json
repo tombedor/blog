@@ -1,0 +1,18 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "./data.csv", "format": "csv" },
+  "mark": "bar",
+  "title": {
+    "text": "Corporate Travel Survived by Becoming Software-Led",
+    "subtitle": "1999-2002: U.S. airline bookings. 2025: Amex GBT bookings; 96% client retention and $36.3B transaction value."
+  },
+  "encoding": {
+    "x": { "field": "period", "type": "ordinal", "title": "Booking market" },
+    "y": { "field": "share", "type": "quantitative", "title": "Share of bookings (%)", "stack": true },
+    "color": {
+      "field": "channel",
+      "type": "nominal",
+      "scale": { "domain": ["Digital", "Non-digital / agent-facilitated"] }
+    }
+  }
+}

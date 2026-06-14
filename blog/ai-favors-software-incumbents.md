@@ -7,11 +7,9 @@ draft: true
 
 - Internet vs AI
     - disrupted by dramatically reducing costs of the value that incumbent business provided
-    - it also changed the "tech stack" employed by these firms. there were winners and losers:
-        - pre-internet - internet: the phone, in person interaction, paper
-        - pre-ai - ai: hasn't changed the tech stack as much. in most cases, ai access information the same way human incumbents do, doing conceptually simple tasks much more quickly.
-
+    - technological transitions did not uniformly kill incumbents. firms with adaptable technology, customer relationships, data, and scale could move into the new interface; firms whose value depended on labor-intensive distribution were more exposed.
     - Internet: reduced the cost of finding and contacting people, and lowered the cost of accessing information. it did so by removing geographic barriers to doing these tasks. While overall demand for software expertise might fall, AI does not require incumbent labor to completely discard their previous experience.
+    - internet dramatically changed the interface to customers. personal relationships decreased in value, the interface became a generic website.
 
     - AI:
         - reduces the cost of *synthesizing information*
@@ -27,6 +25,13 @@ draft: true
 
 - case studies
     - internet:
+        - travel agents
+            ![Corporate travel survived by becoming software-led](/diagrams/ai-favors-software-incumbents/travel-booking-channel/chart.png)
+            - routine leisure booking moved from agents to customer self-service
+            - small agencies lost volume, while large corporate agencies initially retained customers through scale and service
+            - corporate travel agencies ultimately survived by becoming software platforms: 83% of Amex GBT bookings were digital in 2025
+            - technology: agents already used computerized reservation systems; the internet changed who controlled the customer interface
+            - moat: corporate relationships, negotiated inventory, policy, reporting, duty of care, and exception support
         - classified ads
             ![Classifieds were the newspaper profit pool](/diagrams/ai-favors-software-incumbents/classified-revenue/chart.png)
             ![Craigslist overtook and vastly expanded classified ad volume](/diagrams/ai-favors-software-incumbents/classified-volume/chart.png)
@@ -44,18 +49,21 @@ draft: true
         - travel agents
             - before and after, revenue of big corporate travel agencies.
                 - small, consumer facing agencies did die
-                - but larger ones were able to adapt. 
+                - but larger ones were able to adapt.
+                - relationship was already impersonal
     -  AI
         - craigslist
         - uber
             - moat: network effects (intact)
-        - zendesk
+        - google
+            - well capable of supporting ai as an interface
 
 
 - scenarios of ai
     - interface becomes ai
         - chatgpt super-apps become interface
-        -
+    - demand for SaaS evaporates?
+        - task tracking, seat based pricing
 
 
 
@@ -70,11 +78,12 @@ draft: true
     -
     - pre-internet -> internet:
         - software disrupters had a completely different tech stack than incumbents
-        - incumbent staff did not have any advantages over newcomers
+        - incumbent staff did not always have advantages over newcomers in the new customer interface
         - startups had low fixed costs, incumbents lack levers to match
         - startups low marginal cost of delivering product.
         - form factor of how business engaged with customers completely changed, customers were thus willing to switch
-        - the tech stack overhaul meant that the institutional knowledge of incumbent firms didn't help much - if the profile of a typical employee necessary to win business completely changes, startups are on equal playing field with incumbents
+        - incumbents with scalable technology, customer relationships, or operational assets could adapt; those whose moat was routine intermediary labor or physical distribution struggled
+        - the transition was most destructive when the profile of the employee and the channel necessary to win business completely changed
     - pre-AI -> AI
         - form factor of engaging with customers has not changed (i am skeptical that chat bots will win here, and even if they do incumbents can easily build them)
         - the investment in data pipelines and internal software is not going to waste, AI is a new interface on top of it.

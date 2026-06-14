@@ -81,3 +81,4 @@
   - Amex GBT bookings in 2025: **83% digital, 17% agent-facilitated**.
   - Annotate **$36.3B transaction value** and **96% client retention**.
 - Together these show three stages: small agencies lose commodity leisure booking; scaled agencies retain corporate relationships; corporate booking becomes overwhelmingly self-service inside software-led TMCs.
+- Implemented chart: `static/diagrams/ai-favors-software-incumbents/travel-booking-channel/`.
