@@ -41,7 +41,10 @@ draft: true
             - technology: radio dispatch networks, local knowledge of cab drivers of streets
             - moat: medallion system
                 - caveat that medallion prices were inflated
-        - internal call centers
+        - travel agents
+            - before and after, revenue of big corporate travel agencies.
+                - small, consumer facing agencies did die
+                - but larger ones were able to adapt. 
     -  AI
         - craigslist
         - uber
@@ -62,6 +65,8 @@ draft: true
 - conclusion
     - internet became the interface to physical goods and
     - internet changed the interface to information, ai is the interface to information
+![Interet vs AI](/diagrams/ai-favors-software-incumbents/internet_vs_ai.png)
+
     -
     - pre-internet -> internet:
         - software disrupters had a completely different tech stack than incumbents
