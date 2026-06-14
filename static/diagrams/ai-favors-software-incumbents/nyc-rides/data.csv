@@ -1,11 +1,37 @@
-year,service,trips_per_day
-2015,Yellow taxi,400642
-2015,Uber,99307
-2016,Yellow taxi,358629
-2016,Uber,191393
-2017,Yellow taxi,311125
-2017,Uber,300167
-2018,Yellow taxi,281803
-2018,Uber,446701
-2019,Yellow taxi,230691
-2019,Uber,495870
+year,service,daily_trips_per_1000
+2015,Yellow taxi,47.34
+2015,Uber,11.73
+2015,Total,59.07
+2016,Yellow taxi,42.35
+2016,Uber,22.60
+2016,Total,64.95
+2017,Yellow taxi,36.87
+2017,Uber,35.58
+2017,Total,72.45
+2018,Yellow taxi,33.59
+2018,Uber,53.24
+2018,Total,86.83
+2019,Yellow taxi,27.67
+2019,Uber,59.48
+2019,Total,87.15
+2020,Yellow taxi,7.74
+2020,Uber,32.29
+2020,Total,40.03
+2021,Yellow taxi,9.98
+2021,Uber,40.88
+2021,Total,50.86
+2022,Yellow taxi,12.96
+2022,Uber,50.40
+2022,Total,63.36
+2023,Yellow taxi,12.38
+2023,Uber,54.32
+2023,Total,66.70
+2024,Yellow taxi,12.94
+2024,Uber,56.94
+2024,Total,69.88
+2025,Yellow taxi,15.28
+2025,Uber,56.19
+2025,Total,71.47
+2026 YTD,Yellow taxi,13.94
+2026 YTD,Uber,58.97
+2026 YTD,Total,72.91

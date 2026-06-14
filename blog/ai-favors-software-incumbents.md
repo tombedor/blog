@@ -27,31 +27,42 @@ draft: true
 
 - case studies
     - internet:
-        - travel agents
-            ![Airline commissions fell before online travel scaled](/diagrams/ai-favors-software-incumbents/airline-commissions/chart.png)
-            - moat:
-                - personal relationship with clients
-                - personal relationship with destination operators
-                - knowledge of difficult to access information about destinations
-            - technology: the phone
-
         - classified ads
             ![Classifieds were the newspaper profit pool](/diagrams/ai-favors-software-incumbents/classified-revenue/chart.png)
             ![Craigslist overtook and vastly expanded classified ad volume](/diagrams/ai-favors-software-incumbents/classified-volume/chart.png)
             - technology: printed paper
             - moat:
                 - geographic distribution
-        - stock brokers
-            ![Online brokerage scaled as fees compressed](/diagrams/ai-favors-software-incumbents/online-brokerage/chart.png)
+        - cab drivers
+            ![Uber expanded NYC ride volume per capita](/diagrams/ai-favors-software-incumbents/nyc-rides/chart.png)
+            - Uber dramatically improved the customer interface: on-demand dispatch, live location, stored payment, and ratings
+            - the easier interface initially expanded total ride volume
+            - as the market matured, Uber became a more convenient interface to the same underlying ride market rather than a permanently cheaper product
+            - technology: radio dispatch networks, local knowledge of cab drivers of streets
+            - moat: medallion system
+                - caveat that medallion prices were inflated
         - internal call centers
     -  AI
-        - travelocity
         - craigslist
-        - robinhood
+        - uber
+            - moat: network effects (intact)
         - zendesk
 
 
+- scenarios of ai
+    - interface becomes ai
+        - chatgpt super-apps become interface
+        -
+
+
+
+
+
+
 - conclusion
+    - internet became the interface to physical goods and
+    - internet changed the interface to information, ai is the interface to information
+    -
     - pre-internet -> internet:
         - software disrupters had a completely different tech stack than incumbents
         - incumbent staff did not have any advantages over newcomers

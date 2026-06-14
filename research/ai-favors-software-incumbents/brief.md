@@ -3,64 +3,8 @@
 **Scope:** Compare pre-internet incumbents with internet/software disruptors, then test whether the analogy carries over to AI attacking software incumbents.
 
 **Bottom line:**
-- The travel-agent commission cuts began as airline cost-cutting, not as a direct internet response; the internet later made disintermediation durable.
-- Classifieds, taxis, and brokerage each show a different incumbent moat: bundled distribution, regulatory scarcity, and transaction gatekeeping.
+- Classifieds and taxis show different incumbent moats: bundled distribution and regulatory scarcity.
 - The most controversial claim is that AI disruption is structurally different because software incumbents already own the workflow/data layer that AI needs.
-
----
-
-## Travel Agents
-
-### Background
-
-**Pre-internet incumbent position:** Agents controlled practical access to fare search and booking through CRS/GDS terminals, phone relationships, paper ticketing, and local storefront trust. Airlines still depended on agents: ~80-85% of U.S. airline tickets were booked through agencies in 1995.
-- https://www.latimes.com/archives/la-xpm-1995-04-05-fi-51205-story.html
-- https://www.upi.com/Archives/1995/02/17/Travel-agents-fighting-commission-cap/8953792997200/
-
-**Commission decline chronology:**
-- 1995: Delta cut commissions 10% -> 5% (Feb. 9, 1995), capped at $50 round trip / $25 one way; other airlines followed.
-- 1996-98: Travelocity, Expedia, Priceline launched/scaled direct-to-consumer booking.
-- March 2002: 8 of 10 largest airlines cut base commissions to zero.
-- TravelPulse says commissions were 60% of average agency revenue before caps; retail agency establishments fell 23,000 (1997) -> under 10,000 (2013), a 59% decline.
-- BLS 2024 employment: ~65,700 travel agents; sources conflict on dot-com peak employment.
-- https://www.travelpulse.com/voices/opinions/twenty-years-after-the-commission-caps
-- https://knowledge.wharton.upenn.edu/article/will-commission-cuts-kill-the-small-travel-agent/
-- https://news.microsoft.com/1996/10/22/microsoft-expedia-travel-services-debuts-on-the-web/
-- https://www.wired.com/1998/03/name-your-price-airline-tickets/
-- https://www.bls.gov/ooh/sales/travel-agents.htm
-- https://www.stripeeconomics.com/p/the-decline-of-travel-agents
-- Pull quote: "Retail travel agency establishments fell 59% between 1997 and 2013." (TravelPulse)
-
-### Claims
-
-**Claim: The 1995 airline commission cuts were mostly not caused by the internet.**
-
-Supporting evidence:
-- Delta was trying to cut $2B in operating costs by 1997, including $400M from marketing; commissions were a major airline expense.
-- Online booking had negligible consumer scale: Internet Travel Network launched in 1995; in 1996, less than 1% of airline tickets were sold online.
-- https://www.deseret.com/1995/2/10/19158434/delta-slaps-lid-on-ticket-commissions/
-- https://www.washingtonpost.com/archive/business/1995/02/11/american-northwest-join-deltas-commission-cap/9afc36b3-d850-4a27-8290-d8ec65bb2dca/
-- https://www.gsb.stanford.edu/faculty-research/case-studies/speeding-tickets-internet-distribution-travel-industry
-- Pull quotes:
-  - "lower operating costs and stem its three-year flow of red ink" (Deseret News)
-  - "third-largest expense for U.S. carriers, behind payroll and fuel" (Washington Post)
-
-Contradicting / complicating evidence:
-- Airlines already had strategic reasons to reduce agency dependence; early online distribution made a direct channel visible even before it had scale.
-- The 2002 zero-commission move is harder to separate from online booking, airline websites, and OTA adoption.
-
-**Claim: The internet was the accelerant that made agent disintermediation stick.**
-
-Supporting evidence:
-- Airline websites cost less because they avoided travel-agent commissions, CRS/GDS booking fees, and reservation-agent labor.
-- GAO: in 2002 airlines lost almost $10B and still spent over $7B distributing tickets.
-- https://www.gao.gov/products/gao-03-749
-- https://www.oig.dot.gov/sites/default/files/cr2000111.pdf
-- Pull quote: "they paid over $7 billion to distribute tickets to consumers" (GAO)
-
-Contradicting / complicating evidence:
-- The commission decline started before online travel mattered; travel agents were already vulnerable to airline cost pressure.
-- Survivor agencies pivoted to luxury/complex travel, membership fees, and consortia like Virtuoso: different product, different customer.
 
 ---
 
@@ -150,59 +94,17 @@ Contradicting / complicating evidence:
 Supporting evidence:
 - Uber's advantage was mobile software more than generic "internet": GPS, maps, app dispatch, stored payments, two-sided ratings, and price/supply matching.
 - Non-medallion drivers could compete with taxis on convenience even without the street-hail right.
+- Per-capita NYC trip data through April 2026 shows Uber overtaking yellow taxis while combined ride volume expanded.
+- The durable product was a better interface to the existing ride market.
+- https://toddwschneider.com/dashboards/nyc-taxi-ridehailing-uber-lyft-data/
 - https://time.com/3609114/taxi-medallion-prices-decline-uber-uber-lyft/
 - https://arstechnica.com/tech-policy/2015/11/cab-medallion-owners-sue-nyc-blame-uber-for-ruining-business/
+- [Other-city comparison](other-cities.md)
 
 Contradicting / complicating evidence:
 - Do not over-attribute the medallion crash to Uber alone. NYC's Task Force and later reporting point to inflated prices, aggressive lending, and city revenue incentives.
 - Better framing: software exposed and bypassed a fragile regulatory scarcity model.
 - https://hrlr.law.columbia.edu/hrlr-online/distressed-drivers-solving-the-new-york-city-taxi-medallion-debt-crisis/
-
----
-
-## Stockbrokers
-
-### Background
-
-**Pre-internet incumbent position:** Consumers accessed markets through human brokers by phone. Execution, research, advice, account access, and trust were bundled; commission pricing made small or frequent trades expensive.
-
-**Online brokerage chronology:**
-- E*TRADE began online trading in 1991; Schwab launched online in 1995.
-- By the early 2000s, there were 18M online brokerage accounts in the U.S.; online equity trades were ~25% of industry-wide volume.
-- https://www.bls.gov/opub/mlr/2005/12/art2full.pdf
-- https://peterjdesilva.com/a-short-history-of-the-discount-brokerage-industry/
-
-### Claims
-
-**Claim: Online brokerage commoditized execution, forcing full-service brokers toward advice/wealth management.**
-
-Supporting evidence:
-- Full-service trades commonly ran **$100-$300** in the late 1990s; online/discount brokers pushed the execution component toward $10 or less.
-- https://www.cbsnews.com/news/how-to-be-an-e-trader/
-- https://biz.libretexts.org/Bookshelves/Finance/Introduction_to_Investments_%28Paiano%29/New_Page/Chapter_18%3A_Brokerages_Account_Types_and_Annuities/15.01%3A_New_Page
-- Pull quotes:
-  - "The answer is simple: cost." (CBS News)
-  - "between $100 and $300 per trade" (CBS News)
-  - "Full-service firms continually lost market share to these upstart firms and have never fully recovered." (Peter J. de Silva)
-
-Contradicting / complicating evidence:
-- Full-service brokers did not disappear; the surviving product became advice, planning, and relationship management for higher-value clients.
-- Brokerage disruption was helped by prior deregulation and discount brokerage, not only the web.
-
-**Claim: Robinhood is a continuation of software-driven fee compression, not the original disruption.**
-
-Supporting evidence:
-- Robinhood pushed the already-commoditized execution layer to zero-commission mobile trading.
-- Schwab cut U.S. stock/ETF/options online commissions from $4.95 to $0 in Oct. 2019, pressuring the rest of the brokerage market.
-- https://www.cnbc.com/2019/10/01/charles-schwab-is-eliminating-online-commissions-for-trading-in-us-stocks-and-etfs.html
-- https://content.schwab.com/web/retail/public/about-schwab/schwab_annual_report_2019.pdf
-- Pull quotes:
-  - "So we removed that barrier." (Schwab 2019 annual report)
-  - "from $4.95 to $0.00" (Schwab 2019 annual report)
-
-Contradicting / complicating evidence:
-- Zero-commission trading depends on payment for order flow, interest income, securities lending, and other business-model shifts; "free" execution does not mean costless brokerage.
-- This is closer to software attacking software-enabled incumbents than to the original human-broker-to-web shift.
 
 ---
 
@@ -272,5 +174,5 @@ Supporting evidence:
 
 Contradicting / complicating evidence:
 - Owning the workflow does not guarantee owning the new interface; AI-native entrants can sit above incumbent systems.
-- Horizontal workflow tools with weak data moats may be more like travel agents or classifieds than like Microsoft/SAP/Oracle.
+- Horizontal workflow tools with weak data moats may be more like classifieds than like Microsoft/SAP/Oracle.
 - Most exposed: horizontal workflow tools (task tracking, generic CRM, marketing automation). Most protected: ERP/financial/compliance systems and infrastructure (Stripe, Twilio, Snowflake).

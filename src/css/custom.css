@@ -28,3 +28,18 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+#__blog-post-container {
+  container-type: inline-size;
+}
+
+@media (min-width: 997px) {
+  #__blog-post-container img[src*='/assets/images/chart-'] {
+    display: block;
+    position: relative;
+    left: calc(100% - 50cqi);
+    width: min(1100px, calc(100vw - 4rem));
+    max-width: none;
+    transform: translateX(-50%);
+  }
+}
