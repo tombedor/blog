@@ -19,9 +19,9 @@
       "scale": { "domain": [0, 40] }
     },
     "color": {
-      "field": "scope",
+      "field": "series",
       "type": "nominal",
-      "title": null
+      "title": "Metric"
     }
   }
 }

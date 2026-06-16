@@ -1,4 +1,4 @@
-period,volume,scope
-1995,31.9,American Express travel sales
-2019,34.9,Legacy GBT TTV
-2025,36.3,Amex GBT TTV
+period,volume,series
+1995,31.9,Travel volume
+2019,34.9,Travel volume
+2025,36.3,Travel volume

@@ -76,8 +76,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/icon-1024.png',
+    image: 'img/social-card.jpg',
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
