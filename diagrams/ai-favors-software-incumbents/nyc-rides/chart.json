@@ -3,16 +3,16 @@
   "data": { "url": "./data.csv", "format": "csv" },
   "mark": "line",
   "title": {
-    "text": "Uber Overtook Yellow Taxis in NYC",
-    "subtitle": "Average trips per day, annualized from TLC monthly data via Todd Schneider's dashboard API."
+    "text": "Uber Expanded NYC Ride Volume",
+    "subtitle": "Daily trips per 1,000 residents. TLC trip data and Census population estimates; 2026 through April."
   },
   "encoding": {
     "x": { "field": "year", "type": "ordinal", "title": "Year" },
-    "y": { "field": "trips_per_day", "type": "quantitative", "title": "Trips per day" },
+    "y": { "field": "daily_trips_per_1000", "type": "quantitative", "title": "Daily trips per 1,000 residents" },
     "color": {
       "field": "service",
       "type": "nominal",
-      "scale": { "domain": ["Yellow taxi", "Uber"] }
+      "scale": { "domain": ["Yellow taxi", "Uber", "Total"] }
     }
   }
 }
