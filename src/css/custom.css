@@ -43,3 +43,36 @@
     transform: translateX(-50%);
   }
 }
+
+.screenshot-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.screenshot-gallery a {
+  display: block;
+}
+
+.screenshot-gallery img {
+  display: block;
+  width: 100%;
+  height: 360px;
+  object-fit: contain;
+  object-position: top center;
+  background: #111;
+  border-radius: 8px;
+}
+
+.screenshot-single {
+  display: block;
+  max-width: min(100%, 440px);
+  margin: 1.5rem auto;
+}
+
+.screenshot-single img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
