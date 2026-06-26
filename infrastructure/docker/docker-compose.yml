@@ -1,7 +1,7 @@
 services:
   # PostgreSQL database for both Umami and Listmonk
   postgres:
-    image: postgres:15-alpine
+    image: postgres@sha256:fceb6f86328c36f2438fae3b851b0cc57c4a7e69a58c866d9ce24281f2cf0c9c
     container_name: postgres
     restart: unless-stopped
     environment:
@@ -21,7 +21,7 @@ services:
 
   # Umami Analytics
   umami:
-    image: ghcr.io/umami-software/umami:postgresql-latest
+    image: ghcr.io/umami-software/umami@sha256:28f263fe06f79ebffa5a6a6e9bd33b7a278e9342a88e0bdac812416c9f9e4361
     container_name: umami
     restart: unless-stopped
     environment:
@@ -41,7 +41,7 @@ services:
 
   # Listmonk Newsletter
   listmonk:
-    image: listmonk/listmonk:latest
+    image: listmonk/listmonk@sha256:179d00d9553c371b6fe88c9b145095d651e275bdd66db46b2e0b79daff316b6f
     container_name: listmonk
     restart: unless-stopped
     environment:
@@ -66,9 +66,12 @@ services:
     command: ["sh", "-c", "./listmonk --install --idempotent --yes --config '' && ./listmonk --upgrade --yes --config '' && ./listmonk --config ''"]
   # Caddy reverse proxy with automatic HTTPS
   caddy:
-    image: caddy:2-alpine
+    image: caddy@sha256:fce4f15aad23222c0ac78a1220adf63bae7b94355d5ea28eee53910624acedfa
     container_name: caddy
     restart: unless-stopped
+    environment:
+      CADDY_ADMIN_USER: ${CADDY_ADMIN_USER:-admin}
+      CADDY_ADMIN_PASSWORD_HASH: ${CADDY_ADMIN_PASSWORD_HASH}
     ports:
       - "80:80"
       - "443:443"
