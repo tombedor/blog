@@ -4,6 +4,8 @@ date: 2026-06-26
 draft: true
 ---
 
+import ScreenshotCarousel from '@site/src/components/ScreenshotCarousel';
+
 I had my first encounter with a political spambot this week: A polite robot named Emma texted me wanting to talk about Israel.
 
 <a className="screenshot-single" href="/diagrams/political-spam/spam-00.png">
@@ -22,20 +24,26 @@ At this point I decided to have a little fun. I turned the conversation towards 
 
 [^1]: Disclosure: I am not, and have never been, a member of a polycule.
 
-<div className="screenshot-gallery">
-  <a href="/diagrams/political-spam/spam-02.png">
-    <img src="/diagrams/political-spam/spam-02.png" alt="Emma redirects questions about polyamory back to the U.S.-Israel relationship." />
-  </a>
-  <a href="/diagrams/political-spam/spam-03.png">
-    <img src="/diagrams/political-spam/spam-03.png" alt="Emma responds to a polyamory argument by returning to Iran and U.S.-Israel security." />
-  </a>
-  <a href="/diagrams/political-spam/spam-04.png">
-    <img src="/diagrams/political-spam/spam-04.png" alt="Emma responds politely to a profession of love and asks for an email address." />
-  </a>
-  <a href="/diagrams/political-spam/spam-05.png">
-    <img src="/diagrams/political-spam/spam-05.png" alt="Emma refuses further personal conversation and again asks for an email address." />
-  </a>
-</div>
+<ScreenshotCarousel
+  images={[
+    {
+      src: '/diagrams/political-spam/spam-02.png',
+      alt: 'Emma redirects questions about polyamory back to the U.S.-Israel relationship.',
+    },
+    {
+      src: '/diagrams/political-spam/spam-03.png',
+      alt: 'Emma responds to a polyamory argument by returning to Iran and U.S.-Israel security.',
+    },
+    {
+      src: '/diagrams/political-spam/spam-04.png',
+      alt: 'Emma responds politely to a profession of love and asks for an email address.',
+    },
+    {
+      src: '/diagrams/political-spam/spam-05.png',
+      alt: 'Emma refuses further personal conversation and again asks for an email address.',
+    },
+  ]}
+/>
 
 The convo seemed to be hitting a dead end, so I changed personas to a confused grandparent, which got better engagement from Emma.
 
@@ -75,6 +83,5 @@ Emma didn't exaclty _deny_ she was an LLM, but as of yet she has not responded t
 ## Is this _good_?
 
 I'll leave this to the reader. But polycule recruiters shouldn't hold their breath.
-
 
 
