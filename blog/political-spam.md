@@ -32,7 +32,7 @@ _This material is distributed by Clock Tower X LLC on behalf of the State of Isr
 
 Entities doing political outreach on behalf of foreign governments must register as a foreign agent under [Foreign Agents Registration Act](https://www.justice.gov/nsd-fara). Clock Tower X LLC's [registration statement](https://efile.fara.gov/docs/7649-Registration-Statement-20250918-1.pdf) discloses it is controlled by Bradley Parscale, and working on behalf of a [Havas Media](https://havasmedianetwork.com/), media and communications agency. _Havas_ is disclosed to be working on behalf of the state of Israel. It's pretty confusing!
 
-<!-- web -->
+![web](/diagrams/political-spam/web.png)
 
 Havas is huge: [It has 23,000 employees and operates in 100+ countries](https://www.havas.com/who-we-are/our-mission/), and had €2.8B of revenue in 2025. It advertises LLM capabilities in [research](https://havasmedianetwork.com/news/why-the-future-of-ai-in-agencies-depends-on-culture-not-code/) and [media buying](https://pubmatic.com/news/pubmatic-havas-telefonica-launch-the-first-agentic-campaign/), and lists [AI chatbot development](https://lon.havas.com/inviqa/) as a capability.
 
