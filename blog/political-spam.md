@@ -20,7 +20,7 @@ When I asked who she was, she at first said she was with a group called "Friends
 
 ## Testing spambot nonsense tolerance
 
-At this point I decided to have a little fun. I turned the conversation towards polyamory, invited Emma to join my polycule[^1], and professed my love for her. Emma was not amused.
+At this point I decided to have a little fun. I turned the conversation towards polyamory, invited Emma to join my polycule[^1], and professed my love for her. Emma was not receptive!
 
 [^1]: Disclosure: I am not, and have never been, a member of a polycule.
 
@@ -57,14 +57,15 @@ I couldn't find any online presence for "Friends for Peace". Allyvia's site gave
 
 _This material is distributed by Clock Tower X LLC on behalf of the State of Israel. Additional information is available at the Department of Justice, Washington, DC._
 
-Entities doing political outreach on behalf of foreign governments must register as a foreign agent under [Foreign Agents Registration Act](https://www.justice.gov/nsd-fara). Clock Tower X LLC's [registration statement](https://efile.fara.gov/docs/7649-Registration-Statement-20250918-1.pdf) discloses it is controlled by Bradley Parscale, and working on behalf of a [Havas Media](https://havasmedianetwork.com/), media and communications agency. _Havas_ is disclosed to be working on behalf of the state of Israel. It's pretty confusing!
-
-![web](/diagrams/political-spam/web.png)
+Entities doing political outreach on behalf of foreign governments must register as a foreign agent under [Foreign Agents Registration Act](https://www.justice.gov/nsd-fara). Clock Tower X LLC's [registration statement](https://efile.fara.gov/docs/7649-Registration-Statement-20250918-1.pdf) discloses it is controlled by [Bradley Parscale](https://en.wikipedia.org/wiki/Brad_Parscale) and working on behalf of a [Havas Media](https://havasmedianetwork.com/), media and communications agency. Havas is disclosed to be working on behalf of the state of Israel.
 
 Havas is huge: [It has 23,000 employees and operates in 100+ countries](https://www.havas.com/who-we-are/our-mission/), and had €2.8B of revenue in 2025. It advertises LLM capabilities in [research](https://havasmedianetwork.com/news/why-the-future-of-ai-in-agencies-depends-on-culture-not-code/) and [media buying](https://pubmatic.com/news/pubmatic-havas-telefonica-launch-the-first-agentic-campaign/), and lists [AI chatbot development](https://lon.havas.com/inviqa/) as a capability.
 
-[Brad Parscale](https://en.wikipedia.org/wiki/Brad_Parscale) is a major MAGA figure: in 2016 he was the digital director for the Trump campaign, which infamously hired [Cambridge Analytica](https://en.wikipedia.org/wiki/Cambridge_Analytica). He was [named Donald Trump's 2020 campaign manager in February 2018](https://www.wired.com/story/brad-parscale-campaign-manger-trump-2020/), and was [replaced in July 2020](https://www.pbs.org/newshour/politics/trump-replaces-campaign-manager-amid-sinking-poll-numbers).
+Brad Parscale is (or was) a major MAGA figure: in 2016 he was the digital director for the Trump campaign, which infamously hired [Cambridge Analytica](https://en.wikipedia.org/wiki/Cambridge_Analytica). He was [named Donald Trump's 2020 campaign manager in February 2018](https://www.wired.com/story/brad-parscale-campaign-manger-trump-2020/), before being [fired in July 2020](https://www.pbs.org/newshour/politics/trump-replaces-campaign-manager-amid-sinking-poll-numbers).
 
+It's all pretty confusing!
+
+![web](/diagrams/political-spam/web.png)
 
 ## Is this legal?[^2]
 
