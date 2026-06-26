@@ -43,7 +43,7 @@ Havas is huge: [It has 23,000 employees and operates in 100+ countries](https://
 
 [^2]: Disclosure heavy LLM-based amateur lawyering ahead!
 
-Under [TCPA](link), cold-texts and require prior consent if automated. If the text is auto-generated, cold-text are legal so long as a human actually [pushes the send button](https://docs.fcc.gov/public/attachments/DA-20-670A1.pdf).
+Under [TCPA](link), cold-texts require prior consent if automated. If the text is auto-generated, cold-text are legal so long as a human actually [pushes the send button](https://docs.fcc.gov/public/attachments/DA-20-670A1.pdf).
 
 I think Emma's text were being sent in this way. Her responses were sporadic - sometimes coming quickly, sometimes taking several hours.
 
