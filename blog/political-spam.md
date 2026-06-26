@@ -30,20 +30,20 @@ I couldn't find any online presence for "Friends for Peace". Allyvia's site gave
 
 _This material is distributed by Clock Tower X LLC on behalf of the State of Israel. Additional information is available at the Department of Justice, Washington, DC._
 
-Entities doing political outreach on behalf of foreign governments must register as a foreign agent under [Foreign Agents Registration Act](https://www.justice.gov/nsd-fara). Clock Tower X LLC's [filing](https://efile.fara.gov/docs/7649-Exhibit-AB-20250918-1.pdf) discloses it is controlled by Bradley Parscale, and working on behalf of a [Havas Media](https://havasmedianetwork.com/), a German PR firm. _Havas_ is disclosed to be working on behalf of the state of Israel. It's pretty confusing!
+Entities doing political outreach on behalf of foreign governments must register as a foreign agent under [Foreign Agents Registration Act](https://www.justice.gov/nsd-fara). Clock Tower X LLC's [registration statement](https://efile.fara.gov/docs/7649-Registration-Statement-20250918-1.pdf) discloses it is controlled by Bradley Parscale, and working on behalf of a [Havas Media](https://havasmedianetwork.com/), media and communications agency. _Havas_ is disclosed to be working on behalf of the state of Israel. It's pretty confusing!
 
 <!-- web -->
 
 Havas is huge: [It has 23,000 employees and operates in 100+ countries](https://www.havas.com/who-we-are/our-mission/), and had €2.8B of revenue in 2025. It advertises LLM capabilities in [research](https://havasmedianetwork.com/news/why-the-future-of-ai-in-agencies-depends-on-culture-not-code/) and [media buying](https://pubmatic.com/news/pubmatic-havas-telefonica-launch-the-first-agentic-campaign/), and lists [AI chatbot development](https://lon.havas.com/inviqa/) as a capability.
 
-[Brad Parscale](https://en.wikipedia.org/wiki/Brad_Parscale) is a major MAGA figure: in 2016 he was the digital director for the Trump campaign, which infamously hired[Cambridge Analytica](https://en.wikipedia.org/wiki/Cambridge_Analytica). He was [Donald Trump's 2020 campaign manager](https://www.wired.com/story/brad-parscale-campaign-manger-trump-2020/), but lasted only about 5 months before being [fired](https://www.pbs.org/newshour/politics/trump-replaces-campaign-manager-amid-sinking-poll-numbers).
+[Brad Parscale](https://en.wikipedia.org/wiki/Brad_Parscale) is a major MAGA figure: in 2016 he was the digital director for the Trump campaign, which infamously hired[Cambridge Analytica](https://en.wikipedia.org/wiki/Cambridge_Analytica). He was [named Donald Trump's 2020 campaign manager in February 2018](https://www.wired.com/story/brad-parscale-campaign-manger-trump-2020/), and was [replaced in July 2020](https://www.pbs.org/newshour/politics/trump-replaces-campaign-manager-amid-sinking-poll-numbers).
 
 
 ## Is this legal?[^2]
 
 [^2]: Disclosure heavy LLM-based amateur lawyering ahead!
 
-Under [TCPA](link), cold-texts must include opt out, and require prior consent if automated. If the text is auto-generated, cold-text are legal so long as a human actually [pushes the send button](https://docs.fcc.gov/public/attachments/DA-20-670A1.pdf).
+Under [TCPA](link), cold-texts and require prior consent if automated. If the text is auto-generated, cold-text are legal so long as a human actually [pushes the send button](https://docs.fcc.gov/public/attachments/DA-20-670A1.pdf).
 
 I think Emma's text were being sent in this way. Her responses were sporadic - sometimes coming quickly, sometimes taking several hours.
 
@@ -52,7 +52,6 @@ The use of AI is a new element. There doesn't appear to be any federal laws arou
 In 2025 it passed [SB 243](https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB243), which requires clear disclosure when a reasonable person interacting with a companion chatbot could be misled into thinking it is human. However this is more aimed at digital companions than marketing outreach.
 
 Emma didn't exaclty _deny_ she was an LLM, but as of yet she has not responded to direct questions about whether she is an LLM.
-
 
 
 
