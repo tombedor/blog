@@ -2,12 +2,55 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://tombedor.dev/</id>
     <title>Tom Bedor's Blog</title>
-    <updated>2026-06-11T00:00:00.000Z</updated>
+    <updated>2026-06-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tombedor.dev/"/>
     <subtitle>Thoughts on software, AI, and building things</subtitle>
     <icon>https://tombedor.dev/img/logo.svg</icon>
     <rights>Copyright © 2026 Tom Bedor</rights>
+    <entry>
+        <title type="html"><![CDATA[My First Encounter With a Political Spambot]]></title>
+        <id>https://tombedor.dev/political-spam/</id>
+        <link href="https://tombedor.dev/political-spam/"/>
+        <updated>2026-06-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[I had my first encounter with a political spambot this week: a polite robot named Emma texted me wanting to talk about Israel.]]></summary>
+        <content type="html"><![CDATA[<p>I had my first encounter with a political spambot this week: a polite robot named Emma texted me wanting to talk about Israel.</p>
+<a class="screenshot-single" href="https://tombedor.dev/diagrams/political-spam/spam-00.png"><img src="https://tombedor.dev/diagrams/political-spam/spam-00.png" alt="Initial text from Emma asking to chat about U.S. and Israel efforts to reach peace with Iran."></a>
+<p>When I asked who she was, she first said she was with a group called "Friends for Peace," but her group's <a href="https://allyvia.org/" target="_blank" rel="noopener noreferrer">website</a> is for an organization called Allyvia.</p>
+<a class="screenshot-single" href="https://tombedor.dev/diagrams/political-spam/spam-01.png"><img src="https://tombedor.dev/diagrams/political-spam/spam-01.png" alt="Emma says she is with Friends for Peace and links to Allyvia."></a>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="testing-spambot-nonsense-tolerance">Testing spambot nonsense tolerance<a href="https://tombedor.dev/political-spam/#testing-spambot-nonsense-tolerance" class="hash-link" aria-label="Direct link to Testing spambot nonsense tolerance" title="Direct link to Testing spambot nonsense tolerance" translate="no">​</a></h2>
+<p>At this point I decided to have a little fun. I turned the conversation towards polyamory, invited Emma to join my polycule<sup><a href="https://tombedor.dev/political-spam/#user-content-fn-1-724885" id="user-content-fnref-1-724885" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">1</a></sup>, and professed my love for her. Emma was not receptive!</p>
+<figure class="screenshot-carousel"><div class="screenshot-carousel__frame"><button type="button" class="screenshot-carousel__button screenshot-carousel__button--previous" aria-label="Previous screenshot">‹</button><a href="https://tombedor.dev/diagrams/political-spam/spam-02.png"><img src="https://tombedor.dev/diagrams/political-spam/spam-02.png" alt="Emma redirects questions about polyamory back to the U.S.-Israel relationship."></a><button type="button" class="screenshot-carousel__button screenshot-carousel__button--next" aria-label="Next screenshot">›</button></div><figcaption class="screenshot-carousel__caption">1<!-- --> / <!-- -->4</figcaption></figure>
+<p>The convo seemed to be hitting a dead end, so I changed personas to a confused grandparent, which got better engagement from Emma.</p>
+<a class="screenshot-single" href="https://tombedor.dev/diagrams/political-spam/spam-06.png"><img src="https://tombedor.dev/diagrams/political-spam/spam-06.png" alt="Emma responds literally to confusion about Israel, Slytherin, and Hogwarts."></a>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="who-is-friends-for-peace--allyvia">Who is Friends for Peace / Allyvia?<a href="https://tombedor.dev/political-spam/#who-is-friends-for-peace--allyvia" class="hash-link" aria-label="Direct link to Who is Friends for Peace / Allyvia?" title="Direct link to Who is Friends for Peace / Allyvia?" translate="no">​</a></h2>
+<p>I couldn't find any online presence for "Friends for Peace". Allyvia's site gave some hints though:</p>
+<p><em>This material is distributed by Clock Tower X LLC on behalf of the State of Israel. Additional information is available at the Department of Justice, Washington, DC.</em></p>
+<p>Entities doing political outreach on behalf of foreign governments must register as a foreign agent under <a href="https://www.justice.gov/nsd-fara" target="_blank" rel="noopener noreferrer">Foreign Agents Registration Act</a>. Clock Tower X LLC's <a href="https://efile.fara.gov/docs/7649-Registration-Statement-20250918-1.pdf" target="_blank" rel="noopener noreferrer">registration statement</a> discloses it is controlled by <a href="https://en.wikipedia.org/wiki/Brad_Parscale" target="_blank" rel="noopener noreferrer">Bradley Parscale</a> and working on behalf of <a href="https://havasmedianetwork.com/" target="_blank" rel="noopener noreferrer">Havas Media</a>, a media and communications agency. Havas is disclosed to be working on behalf of the State of Israel.</p>
+<p>Havas is huge: <a href="https://www.havas.com/who-we-are/our-mission/" target="_blank" rel="noopener noreferrer">It has 23,000 employees and operates in 100+ countries</a>, and had €2.8B in revenue in 2025. It advertises LLM capabilities in <a href="https://havasmedianetwork.com/news/why-the-future-of-ai-in-agencies-depends-on-culture-not-code/" target="_blank" rel="noopener noreferrer">research</a> and <a href="https://pubmatic.com/news/pubmatic-havas-telefonica-launch-the-first-agentic-campaign/" target="_blank" rel="noopener noreferrer">media buying</a>, and lists <a href="https://lon.havas.com/inviqa/" target="_blank" rel="noopener noreferrer">AI chatbot development</a> as a capability.</p>
+<p>Brad Parscale is (or was) a major MAGA figure: in 2016 he was the digital director for the Trump campaign, which infamously hired <a href="https://en.wikipedia.org/wiki/Cambridge_Analytica" target="_blank" rel="noopener noreferrer">Cambridge Analytica</a>. He was <a href="https://www.wired.com/story/brad-parscale-campaign-manger-trump-2020/" target="_blank" rel="noopener noreferrer">named Donald Trump's 2020 campaign manager in February 2018</a>, before being <a href="https://www.pbs.org/newshour/politics/trump-replaces-campaign-manager-amid-sinking-poll-numbers" target="_blank" rel="noopener noreferrer">fired in July 2020</a>.</p>
+<p>It's all pretty confusing!</p>
+<p><img decoding="async" loading="lazy" alt="web" src="https://tombedor.dev/assets/images/web-912c1d85f26cffed37020da2cd6a0815.png" width="1703" height="1401" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="is-this-legal">Is this legal?<sup><a href="https://tombedor.dev/political-spam/#user-content-fn-2-724885" id="user-content-fnref-2-724885" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">2</a></sup><a href="https://tombedor.dev/political-spam/#is-this-legal" class="hash-link" aria-label="Direct link to is-this-legal" title="Direct link to is-this-legal" translate="no">​</a></h2>
+<p>Under <a href="https://www.law.cornell.edu/uscode/text/47/227" target="_blank" rel="noopener noreferrer">TCPA</a>, cold texts require prior consent if automated. If the text is auto-generated, cold texts are allowed by TCPA so long as a human actually <a href="https://docs.fcc.gov/public/attachments/DA-20-670A1.pdf" target="_blank" rel="noopener noreferrer">pushes the send button</a>.</p>
+<p>I think Emma's texts were being sent in this way. Her responses were sporadic - sometimes coming quickly, sometimes taking several hours.</p>
+<p>The use of AI is a new element. There doesn't appear to be any federal laws around using LLMs to generate cold-text content. California, where I live, has stronger rules. The <a href="https://law.justia.com/codes/california/code-bpc/division-7/part-3/chapter-6/section-17941/" target="_blank" rel="noopener noreferrer">Business &amp; Professions Code § 17941</a> bans chatbots that pretend to be human to incentivize commercial transactions or influence elections.</p>
+<p>In 2025 California passed <a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB243" target="_blank" rel="noopener noreferrer">SB 243</a>, which requires clear disclosure when a reasonable person interacting with a companion chatbot could be misled into thinking it is human. However, this is more aimed at digital companions than marketing outreach.</p>
+<p>Emma didn't exactly <em>deny</em> she was an LLM, but so far she has not responded to direct questions about whether she is an LLM.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="is-this-good">Is this <em>good</em>?<a href="https://tombedor.dev/political-spam/#is-this-good" class="hash-link" aria-label="Direct link to is-this-good" title="Direct link to is-this-good" translate="no">​</a></h2>
+<p>I'll leave this to the reader. But polycule recruiters shouldn't hold their breath.</p>
+<!-- -->
+<section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="https://tombedor.dev/political-spam/#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes" translate="no">​</a></h2>
+<ol>
+<li id="user-content-fn-1-724885">
+<p>Disclosure: I am not, and have never been, a member of a polycule. <a href="https://tombedor.dev/political-spam/#user-content-fnref-1-724885" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-2-724885">
+<p>Disclosure: heavy LLM-based amateur lawyering ahead! <a href="https://tombedor.dev/political-spam/#user-content-fnref-2-724885" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[If You are Asking for Human Attention, Demonstrate Human Effort]]></title>
         <id>https://tombedor.dev/human-attention-and-human-effort/</id>
