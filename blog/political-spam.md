@@ -13,6 +13,8 @@ I had my first encounter with a political spambot this week: a polite robot name
 
 When I asked who she was, she first said she was with a group called "Friends for Peace," but her group's [website](https://allyvia.org/) is for an organization called Allyvia.
 
+<!-- truncate -->
+
 <a className="screenshot-single" href="/diagrams/political-spam/spam-01.png">
   <img src="/diagrams/political-spam/spam-01.png" alt="Emma says she is with Friends for Peace and links to Allyvia." />
 </a>

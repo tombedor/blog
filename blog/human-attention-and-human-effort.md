@@ -7,6 +7,8 @@ An ever-increasing volume of debug investigations, document writing, and code is
 
 On one hand, an AI with robust integration to internal code bases and documentation often produces genuinely[^1] useful output.
 
+<!-- truncate -->
+
 On the other, as an increasing amount of a software engineer's day is spent reading AI text, a fatigue sets in. _If I can have a robot say something, so can you_. It reads as inconsiderate to post un-digested AI output as though it's your own writing.
 
 I remember the first time I experienced this annoyance. I proposed a design, and a teammate prompted an AI to critique it. The teammate sent an AI document to me, with the disclaimer: "I didn't read this, so it might not be entirely accurate". My thought was, _if reading this wasn't worth your time, why is it worth mine?_"
