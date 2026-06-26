@@ -1,5 +1,5 @@
 ---
-title: political-spam
+title: My First Encounter With A Political Spambot
 date: 2026-06-26
 draft: true
 ---
@@ -47,14 +47,9 @@ Under [TCPA](link), cold-texts must include opt out, and require prior consent i
 
 I think Emma's text were being sent in this way. Her responses were sporadic - sometimes coming quickly, sometimes taking several hours.
 
-The use of AI is a new element. There doesn't appear to be any federal laws around using LLM's to generate cold-text content. California, where I live, has stronger rules. The [Business & Professions Code § 17941](https://law.justia.com/codes/california/code-bpc/division-7/part-3/chapter-6/section-17941/) says that:
+The use of AI is a new element. There doesn't appear to be any federal laws around using LLM's to generate cold-text content. California, where I live, has stronger rules. The [Business & Professions Code § 17941](https://law.justia.com/codes/california/code-bpc/division-7/part-3/chapter-6/section-17941/) bans chatbots that pretend to be human to incentivicze commercial transactions or influence elections.
 
->>> it is unlawful to use a bot to communicate with a person in California online with intent to mislead them about the bot’s artificial identity for the purpose of knowingly deceiving them about the content of the communication to either:
->>>
->>> - incentivize a commercial transaction, or
->>>  - influence a vote in an election.
-
-In 2025 it passed [SB 243](https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB243), which requires clear disclosure when a reasonable person interacting with a companion chatbot could be misled into thinking it is human.
+In 2025 it passed [SB 243](https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB243), which requires clear disclosure when a reasonable person interacting with a companion chatbot could be misled into thinking it is human. However this is more aimed at digital companions than marketing outreach.
 
 Emma didn't exaclty _deny_ she was an LLM, but as of yet she has not responded to direct questions about whether she is an LLM.
 
