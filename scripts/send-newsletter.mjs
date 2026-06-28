@@ -30,6 +30,10 @@ Optional environment:
   LISTMONK_TEST_EMAILS Default test recipients for "test" mode
   SITE_URL             Defaults to the Docusaurus site URL or https://tombedor.dev
 
+Optional frontmatter:
+  newsletter: truncate  Send only the content before <!-- truncate -->.
+                        Omit this field to send the full post.
+
 Campaigns are created as drafts and must be started from Listmonk after review.
 `);
 }
@@ -157,8 +161,30 @@ async function resolvePostPath(postArg) {
   throw new Error(`Could not find post: ${postArg}`);
 }
 
-function sanitizePostBody(markdown, siteUrl) {
-  const sanitized = normalizeMdxImageTags(markdown)
+function getNewsletterMode(frontmatter) {
+  const mode = String(frontmatter.newsletter || 'full').trim().toLowerCase();
+  if (!['full', 'truncate'].includes(mode)) {
+    throw new Error(`Unsupported newsletter frontmatter value: ${frontmatter.newsletter}`);
+  }
+  return mode;
+}
+
+function getNewsletterMarkdown(markdown, newsletterMode) {
+  if (newsletterMode !== 'truncate') {
+    return markdown;
+  }
+
+  const parts = markdown.split(/<!--\s*truncate\s*-->/i);
+  if (parts.length < 2) {
+    throw new Error('Post has newsletter: truncate but no <!-- truncate --> marker');
+  }
+
+  return parts[0];
+}
+
+function sanitizePostBody(markdown, siteUrl, {newsletterMode = 'full'} = {}) {
+  const newsletterMarkdown = getNewsletterMarkdown(markdown, newsletterMode);
+  const sanitized = normalizeMdxImageTags(newsletterMarkdown)
     .split(/\r?\n/)
     .filter((line) => {
       const trimmed = line.trim();
@@ -296,20 +322,32 @@ function buildPostUrl(siteUrl, slug) {
   return `${siteUrl}/${slug.replace(/^\/+|\/+$/g, '')}/`;
 }
 
-function buildCampaignBody({title, body, postUrl}) {
-  return `# ${title}
+function buildReadMoreCta(postUrl) {
+  return `---
 
-[Read online instead](${postUrl})
-
-${body}`;
+**[Continue reading at tombedor.dev](${postUrl})**`;
 }
 
-function buildAltBody({title, body, postUrl}) {
+function buildCampaignBody({title, body, postUrl, newsletterMode = 'full'}) {
+  const cta = newsletterMode === 'truncate' ? `\n\n${buildReadMoreCta(postUrl)}` : '';
+  const readOnline = newsletterMode === 'truncate' ? '' : `\n\n[Read online instead](${postUrl})`;
+
+  return `# ${title}
+
+${readOnline}
+
+${body}${cta}`;
+}
+
+function buildAltBody({title, body, postUrl, newsletterMode = 'full'}) {
+  const cta = newsletterMode === 'truncate' ? `\n\nContinue reading at tombedor.dev: ${postUrl}` : '';
+  const readOnline = newsletterMode === 'truncate' ? '' : `\n\nRead online instead: ${postUrl}`;
+
   return `${title}
 
-Read online instead: ${postUrl}
+${readOnline}
 
-${body}`;
+${body}${cta}`;
 }
 
 function getAuthHeaders() {
@@ -428,7 +466,8 @@ async function main() {
   const slug = String(frontmatter.slug || path.basename(postPath).replace(/\.(md|mdx)$/, ''));
   const siteUrl = await getSiteUrl();
   const postUrl = buildPostUrl(siteUrl, slug);
-  const newsletterBody = sanitizePostBody(body, siteUrl);
+  const newsletterMode = getNewsletterMode(frontmatter);
+  const newsletterBody = sanitizePostBody(body, siteUrl, {newsletterMode});
   if (!newsletterBody) {
     throw new Error('Could not derive newsletter body from post');
   }
@@ -441,8 +480,18 @@ async function main() {
     lists: [listId],
     type: 'regular',
     content_type: 'markdown',
-    body: buildCampaignBody({title: String(frontmatter.title), body: newsletterBody, postUrl}),
-    altbody: buildAltBody({title: String(frontmatter.title), body: newsletterBody, postUrl}),
+    body: buildCampaignBody({
+      title: String(frontmatter.title),
+      body: newsletterBody,
+      postUrl,
+      newsletterMode,
+    }),
+    altbody: buildAltBody({
+      title: String(frontmatter.title),
+      body: newsletterBody,
+      postUrl,
+      newsletterMode,
+    }),
     messenger: 'email',
     tags: ['blog-post', slug],
     ...(beforeDate && {query: `subscribers.created_at < '${beforeDate} 00:00:00'`}),

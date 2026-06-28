@@ -1,6 +1,7 @@
 ---
 title: My First Encounter With a Political Spambot
 date: 2026-06-26
+newsletter: truncate
 ---
 
 import ScreenshotCarousel from '@site/src/components/ScreenshotCarousel';
