@@ -307,6 +307,9 @@ rm -f "$source_manifest" "$dest_manifest"
 trap - EXIT
 confirm_checkpoint "Data copy verified. Install the Compose override and start PostgreSQL from block storage?"
 
+echo "Removing the stopped PostgreSQL container before recreating it..."
+docker compose rm -sf postgres
+
 cat > "$override_path" <<EOF
 services:
   postgres:

@@ -34,6 +34,16 @@ analytics.tombedor.dev {
 		reverse_proxy umami:3000
 	}
 
+	@public_assets path /_next/* /favicon.ico /favicon-*.png /apple-touch-icon.png /site.webmanifest /safari-pinned-tab.svg
+	handle @public_assets {
+		reverse_proxy umami:3000
+	}
+
+	@umami_api path /api/*
+	handle @umami_api {
+		reverse_proxy umami:3000
+	}
+
 	handle {
 		basic_auth {
 			{$CADDY_ADMIN_USER} {$CADDY_ADMIN_PASSWORD_HASH}

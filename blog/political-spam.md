@@ -48,9 +48,20 @@ At this point I decided to have a little fun. I turned the conversation towards 
 
 The convo seemed to be hitting a dead end, so I changed personas to a confused grandparent, which got better engagement from Emma.
 
-<a className="screenshot-single" href="/diagrams/political-spam/spam-06.png">
-  <img src="/diagrams/political-spam/spam-06.png" alt="Emma responds literally to confusion about Israel, Slytherin, and Hogwarts." />
-</a>
+<ScreenshotCarousel
+  images={[
+    {
+      src: '/diagrams/political-spam/spam-06.png',
+      alt: 'Emma responds literally to confusion about Israel, Slytherin, and Hogwarts.',
+    },
+    {
+      src: '/diagrams/political-spam/spam-07.png',
+      alt: 'Emma continues responding literally to confusion about Israel and fictional places.',
+    },
+  ]}
+/>
+
+I can't, of course, _prove_ that the responses here were LLM-generated. But the repetitive phrasing ("I'm here to listen"), guardrail behavior, and credulous responses to absurd personas give me high confidence that I've been chatting with an LLM.
 
 ## Who is Friends for Peace / Allyvia?
 
