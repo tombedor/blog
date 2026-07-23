@@ -60,12 +60,12 @@ There's an assumption baked into the open source AI debate that open source mode
 
      > It’s striking the extent to which Claude Code and Codex are proving to be quite sticky; whichever harness you start working with is likely to be the one you stick with
 
-     Claude Code and Codex are sticky in the way that Coke and Pepsi are sticky: once you choose one, there's not much reason to switch. But this assumes similar cost and quality. In reality, coding agents have no moat (MAKE THIS A LINK TO MY POST ABOUT NO MOAT). It takes a very small inconvenience to motivate users to switch agents, whether that be price difference, model quality, or reliability issues.
+     Claude Code and Codex are sticky in the way that Coke and Pepsi are sticky: once you choose one, there's not much reason to switch. But this assumes similar cost and quality. In reality, [coding agents have no moat](/coding-agents-have-no-moat/). It takes a very small inconvenience to motivate users to switch agents, whether that be price difference, model quality, or reliability issues.
 
 [^3]: Ok, it cares a _little_ - the ocean of capital going to train frontier models is certainly a good thing for Nvidia. But in the long run, if commercial token demand is replaced by demand for open source tokens, Nvidia still wins.
 
 
-### The "AI race" is... What exactly is the AI race, exactly?
+### The "AI race" is... what, exactly?
 
 Much of the angst around China's models center on "losing the AI race". But what's the goal of this race? Is it to develop the best model? To sell the most tokens? To destroy humanity first?
 
