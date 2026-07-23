@@ -89,7 +89,7 @@ It's not unreasonable to assume that Chinese models will be shipped with a pro-C
 
 ### They will add backdoors!
 
-Finding and patching software vulnerabilities is a cat and mouse game that will never end. AI does not change the basic market for vulnerabilities: responsible actors patch them, attackers exploit them. Limiting tools for responsible actors only serves attackers.
+AI does not change the basic market for vulnerabilities: responsible actors patch them, attackers exploit them. Limiting tools for responsible actors only serves attackers.
 
 It's theoretically possible for a bad actor to embed hidden adversarial behavior in a model. But if this happens, it serves the interests of responsible actors to find these exploits as soon as possible, and the best way to do this is to let anyone who wants to inspect them.
 
