@@ -4,7 +4,7 @@ date: 2026-07-21
 draft: true
 ---
 
-The release of Kimi K3 has opened a fresh round of angst and confused discourse. There's a loud cohort of journalists, business leaders, and politicians arguing that open source AI is a dangerous threat. [OpenAI's Dean Ball](https://x.com/deanwball/status/2078133895766114412):
+The release of Kimi K3 has opened a fresh round of angst and confused discourse. There's a loud cohort of journalists, business leaders, and politicians arguing that open source AI is a dangerous threat. OpenAI's Dean Ball:
 
 > One probable outcome of an open-weight-model-dominant world is full AI communism... rather than a market product, AI is a "public good"
 
@@ -22,7 +22,7 @@ Open source software is counterintuitive to people outside of the software indus
 
 A brief primer: A software program is a stack of programs, with each layer built on top of another. To build Uber, you need programming language frameworks, software to send and recieve web traffic, data analysis tools, and countless other components. Most of these are not differentiators for a commercial enterprise, so it serves commercial actors to share lower components and compete on the pieces that actual differentiate their product.
 
-<!-- diagram: stack -->
+![software stack](/diagrams/arguments-against-open-source-ai-are-very-bad/stack.png)
 
 Frontier labs would _very much_ like AI models to _not_ fall into the category of "so commonplace that it doesn't make sense to compete on". Whether this will be the case remains to be the case.
 

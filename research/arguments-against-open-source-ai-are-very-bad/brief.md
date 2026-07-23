@@ -1,6 +1,6 @@
 # Research Brief: "The Arguments Against Open Source AI are Very Bad"
 
-**Post:** `blog/the-case-for-banning-chinese-ai-makes-no-sense.md`  
+**Post:** `blog/arguments-against-open-source-ai-are-very-bad.md`  
 **Research date:** 2026-07-23  
 **Purpose:** Fact-check claims and collect evidence/pull quotes for an argument against banning Chinese/open-weight AI models.
 

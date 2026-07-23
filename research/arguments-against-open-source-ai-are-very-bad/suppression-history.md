@@ -1,6 +1,6 @@
 # Suppression History: Open Software Analogies
 
-**Purpose:** Notes for the "open source software is difficult to regulate" section of `blog/the-case-for-banning-chinese-ai-makes-no-sense.md`.
+**Purpose:** Notes for the "open source software is difficult to suppress" section of `blog/arguments-against-open-source-ai-are-very-bad.md`.
 
 ## Takeaway
 
