@@ -82,7 +82,7 @@ newsletter.tombedor.dev {
 		reverse_proxy listmonk:9000
 	}
 
-	@admin path /admin /admin/* /api/*
+	@admin path /admin /admin/*
 	handle @admin {
 		basic_auth {
 			{$CADDY_ADMIN_USER} {$CADDY_ADMIN_PASSWORD_HASH}
