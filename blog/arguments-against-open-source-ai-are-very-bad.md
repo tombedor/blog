@@ -32,11 +32,11 @@ Frontier labs would _very much_ like AI models to _not_ fall into the category o
 
 In reality, the argument about suppressing open source models is irrelevant. History tells us that suppression of open source software is _extremely_ difficult, and attempting to do so only serves to weaken comapnies against international competitors. A brief history of encryption is illustrative:
 
-Today, **PGP** is a commonplace tool anyone can use, and most devs are at least familiar with. But when Phil Zimmermann invented it in 1991, the U.S. government considered encryption a "weapon of war". A criminal investigation was opened against Zimmermann.
+Today, **PGP** is a commonplace tool anyone can use, and most devs are at least familiar with. But when Phil Zimmermann invented it in 1991, the U.S. government [considered encryption a "weapon of war"](TODO: add citation link). A [criminal investigation was opened](TODO: add citation link) against Zimmermann.
 
-When Netscape created **SSL**, the U.S. government allowed it to only release a weakened version of it internationally. These controls backfired: it was much easier to acquire the weakened, "international" version, so even most Americans used it.
+When Netscape created **SSL**, the U.S. government allowed it to only release a weakened version of it internationally. These controls backfired: it was much easier to acquire the weakened, "international" version, [so even most Americans used it](TODO: add citation link).
 
-Export controls did not succeed in limiting encryption as the government wished. SSL, PGP, and similar tools were readily available throughout the world, and the controls disadvantaged Americans. Eventually, Zimmermann's release of PGP was ruled to be protected speech, and the U.S. government relaxed encryption export controls.
+Export controls did not succeed in limiting encryption as the government wished. SSL, PGP, and similar tools were readily available throughout the world, and the controls disadvantaged Americans. Eventually, Zimmermann's release of PGP was ruled to be protected speech, and the U.S. government [relaxed encryption export controls](TODO: add citation link).
 
 ---
 
@@ -47,8 +47,8 @@ Narrowing suppression to "Chinese" models won't make things easier. What, exactl
 
 There's an assumption baked into the open source AI debate that open source models is something that only the Chinese government has an incentive to develop. In reality there are many commercial actors with ample incentive to develop open source AI:
 
-- **Chip makers**: Nvidia CEO Jensen Huang has described what Nvidia is building as “token factories”[^2]. Nvidia doesn't care if its chips are used to run frontier models or cheap open source models[^3] - it just wants to produce and generate demand for as many tokens as possible. And indeed Nvidia has itself released a suite of open source models.
-- **American Startups**: Thinking Machines Labs recently released a frontier-grade open source model. They and others are betting that models will be commoditized, and a defensible moat can be built around auxilery services that complement or customize models.
+- **Chip makers**: Nvidia CEO Jensen Huang has described what Nvidia is building as “token factories”[^2]. Nvidia doesn't care if its chips are used to run frontier models or cheap open source models[^3] - it just wants to produce and generate demand for as many tokens as possible. And indeed Nvidia has itself released a suite of [open source models](TODO: link to nvidia models).
+- **American Startups**: Thinking Machines Labs recently released a [frontier-grade open source model](TODO: link to thinking labs page). They and others are betting that models will be commoditized, and a defensible moat can be built around auxilery services that complement or customize models.
 - **Enterprises AI users**: Frontier model customers aren't currently all that active in open source AI development, but they will be. They will want lower-cost models for low-complexity tasks, and more fine grained control over customer facing features.
 - **BigCo's**: You can be sure that Google and Meta are watching OpenAI's new [ad product](https://ads.openai.com/) closely. Should frontier model ad products gain traction, it would be well worth it for these behemouths to commoditize ad-free, open source models to squash ad competition.
 
