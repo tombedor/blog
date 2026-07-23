@@ -22,41 +22,41 @@ Ball's framing strolls past the fact that _open source software is the foundatio
 
 Open source software is counterintuitive to people outside of the software industry. Why work hard on a product, and give it away for free?
 
-A software program is a stack of programs, with each layer built on top of another. To build Uber, you need programming language frameworks, software to send and recieve web traffic, data analysis tools, and countless other components. Most of these are not differentiators for a commercial enterprise, so it serves commercial actors to cooperate on lower components in the stack and compete on the higher level pieces that actual differentiate their products.
+A software program is a stack of programs, with each layer built on top of another. To build Uber, you need programming language frameworks, software to send and receive web traffic, data analysis tools, and countless other components. Most of these are not differentiators for a commercial enterprise, so it serves commercial actors to cooperate on lower components in the stack and compete on the higher level pieces that actually differentiate their products.
 
 ![software stack](/diagrams/arguments-against-open-source-ai-are-very-bad/stack.png)
 
-Frontier labs would _very much_ like AI models to _not_ fall into the category of "so commonplace that it doesn't make sense to compete on". Whether this will be the case remains to be the case.
+Frontier labs would _very much_ like AI models to _not_ fall into the category of "so commonplace that it doesn't make sense to compete on". Whether that happens remains to be seen.
 
 ### Open source software is very difficult to suppress
 
-In reality, the argument about suppressing open source models is irrelevant. History tells us that suppression of open source software is _extremely_ difficult, and attempting to do so only serves to weaken comapnies against international competitors. A brief history of encryption is illustrative:
+In reality, the argument about suppressing open source models is mostly beside the point. History tells us that suppression of open source software is _extremely_ difficult, and attempting to do so only serves to weaken companies against international competitors. A brief history of encryption is illustrative:
 
-Today, **PGP** is a commonplace tool anyone can use, and most devs are at least familiar with. But when Phil Zimmermann invented it in 1991, the U.S. government [considered encryption to be miliatry technology](https://www.eff.org/deeplinks/2019/08/us-export-controls-and-published-encryption-source-code-explained). A [criminal investigation was opened](https://philzimmermann.com/EN/essays/BookPreface.html) against Zimmermann.
+Today, **PGP** is a commonplace tool anyone can use, and most devs are at least familiar with. But when Phil Zimmermann invented it in 1991, the U.S. government [considered encryption to be military technology](https://www.eff.org/deeplinks/2019/08/us-export-controls-and-published-encryption-source-code-explained). A [criminal investigation was opened](https://philzimmermann.com/EN/essays/BookPreface.html) against Zimmermann.
 
 When Netscape created **SSL**, the U.S. government allowed it to only release a weakened version of it internationally. These controls backfired: it was much easier to acquire the weakened, "international" version, [so even many Americans used it](https://en.wikipedia.org/wiki/Export_of_cryptography_from_the_United_States#PC_era).
 
-Export controls did not succeed in limiting encryption as the government wished. SSL, PGP, and similar tools were readily available throughout the world, and the controls disadvantaged Americans. Eventually, courts rules that releasing encryption source code is protected speech, and the U.S. government [relaxed encryption export controls](https://www.eff.org/deeplinks/2019/08/us-export-controls-and-published-encryption-source-code-explained).
+Export controls did not succeed in limiting encryption as the government wished. SSL, PGP, and similar tools were readily available throughout the world, and the controls disadvantaged Americans. Eventually, courts ruled that releasing encryption source code is protected speech, and the U.S. government [relaxed encryption export controls](https://www.eff.org/deeplinks/2019/08/us-export-controls-and-published-encryption-source-code-explained).
 
 ---
 
-Narrowing suppression to "Chinese" models won't make things easier. What, exactly, makes an AI model Chinese? Is it Chinese if, as frontier models alledge, it was distilled from American models? What about if an American fine-tunes a Chinese model? At best, regulating AI in this way will (temporarily) encumber Americans with red tape and diminished AI access relative to the rest of the world.
+Narrowing suppression to "Chinese" models won't make things easier. What, exactly, makes an AI model Chinese? Is it Chinese if, as frontier models allege, it was distilled from American models? What about if an American fine-tunes a Chinese model? At best, regulating AI in this way will (temporarily) encumber Americans with red tape and diminished AI access relative to the rest of the world.
 
 
 ### Open source AI is not just a Chinese phenomenon
 
-There's an assumption baked into the open source AI debate that open source models is something that only the Chinese government has an incentive to develop. In reality there are many commercial actors with ample incentive to develop open source AI:
+There's an assumption baked into the open source AI debate that open source models are something that only the Chinese government has an incentive to develop. In reality there are many commercial actors with ample incentive to develop open source AI:
 
 - **Chip makers**: Nvidia CEO Jensen Huang has described what Nvidia is building as “token factories”[^2]. Nvidia doesn't care if its chips are used to run frontier models or cheap open source models[^3] - it just wants to produce and generate demand for as many tokens as possible. And indeed Nvidia has itself released a suite of [open source models](https://www.nvidia.com/en-us/ai-data-science/foundation-models/nemotron/).
-- **American Startups**: Thinking Machines Labs recently released a [powerful open source model](https://thinkingmachines.ai/news/introducing-inkling/). They and others are betting that models will be commoditized, and a defensible moat can be built around auxilery services that complement or customize models.
-- **Enterprises AI users**: Frontier model customers aren't currently all that active in open source AI development, but they will be. They will want lower-cost models for low-complexity tasks, and more fine grained control over customer facing features.
-- **BigCo's**: You can be sure that Google and Meta are watching OpenAI's new [ad product](https://ads.openai.com/) closely. Should frontier model ad products gain traction, it would be well worth it for these behemouths to commoditize ad-free, open source models to squash ad competition.
+- **American Startups**: Thinking Machines Lab recently released a [powerful open source model](https://thinkingmachines.ai/news/introducing-inkling/). They and others are betting that models will be commoditized, and a defensible moat can be built around auxiliary services that complement or customize models.
+- **Enterprise AI users**: Frontier model customers aren't currently all that active in open source AI development, but they will be. They will want lower-cost models for low-complexity tasks, and more fine-grained control over customer-facing features.
+- **BigCos**: You can be sure that Google and Meta are watching OpenAI's new [ad product](https://ads.openai.com/) closely. Should frontier model ad products gain traction, it would be well worth it for these behemoths to commoditize ad-free, open source models to squash ad competition.
 
 
 [^2]: Quote taken from Derek Thompson's recent [article](https://stratechery.com/2026/whos-afraid-of-chinese-models/) on Chinese AI. Which, while we're here, gets a few things wrong:
     > whoever is on the frontier is the best placed to dominate non-frontier markets as well, which are just the frontier minus n-months, i.e. months in which the frontier model makers have been optimizing their cost of serving.
 
-     It's unclear why this should be the case. Their access to massive capital does not advantage them as much in the development of small models, and they lack incentive to do so rather than push users to their more expensive models.
+     It's unclear why this should be the case. Their access to massive capital matters less for small-model development, and they lack incentive to do so rather than push users to their more expensive models.
 
      > It’s striking the extent to which Claude Code and Codex are proving to be quite sticky; whichever harness you start working with is likely to be the one you stick with
 
@@ -67,9 +67,9 @@ There's an assumption baked into the open source AI debate that open source mode
 
 ### The "AI race" is... what, exactly?
 
-Much of the angst around China's models center on "losing the AI race". But what's the goal of this race? Is it to develop the best model? To sell the most tokens? To destroy humanity first?
+Much of the angst around China's models centers on "losing the AI race". But what's the goal of this race? Is it to develop the best model? To sell the most tokens? To destroy humanity first?
 
-Talking about an "AI Race" doesn't make more sense than talking about an "Internet Race". We're not competing to be the first to send a rocket to the moon, we're reacting to a new, transformational technology. To the extent there's a race between nations, it's to abosrb this transition and grow economies. In this framing, free AI models are a boon, not a threat.
+Talking about an "AI Race" doesn't make more sense than talking about an "Internet Race". We're not competing to be the first to send a rocket to the moon, we're reacting to a new, transformational technology. To the extent there's a race between nations, it's to absorb this transition and grow economies. In this framing, free AI models are a boon, not a threat.
 
 ## Bad arguments to fear Chinese AI models
 
@@ -79,19 +79,19 @@ Talking about an "AI Race" doesn't make more sense than talking about an "Intern
 
 >  This is what China did to solar panels, steel, EVs, and batteries. First, they match Western quality, or they don't even match it. 89%. Close. Actually, match it with cars, they've matched it, but go ahead. Then they cut the price by two thirds, then they own the market.
 
-But apart from chips, AI isn't a physical good. Solar panels and steel require physical supply chains, each link of which cannot easily exist on it's own. If no one is manufactoring solar panels in your country, it's difficult to build a business selling solar-grade silicon wafers.
+But apart from chips, AI isn't a physical good. Solar panels and steel require physical supply chains, each link of which cannot easily exist on its own. If no one is manufacturing solar panels in your country, it's difficult to build a business selling solar-grade silicon wafers.
 
 Software isn't like that. An open source model coming from China doesn't prevent a fine-tuning business from succeeding in the US - quite the opposite!
 
 ### They will spread propaganda!
 
-It's not unreasonable to assume that Chinese models will be shipped with a pro-China point of view. But this is not a reason to suppress them. _The models are open source!_ If any American has an issue with the political slant of Chinese AI models, they are free to change and release an "Americanized" one. At least within the U.S., it's difficult to forsee a model seen as having a distorted pro-China bias outcompeting a substantially similar model with a distorted pro-U.S. bias.
+It's not unreasonable to assume that Chinese models will be shipped with a pro-China point of view. But this is not a reason to suppress them. _The models are open source!_ If any American has an issue with the political slant of Chinese AI models, they are free to change and release an "Americanized" one. At least within the U.S., it's difficult to foresee a model seen as having a distorted pro-China bias outcompeting a substantially similar model with a distorted pro-U.S. bias.
 
 ### They will add backdoors!
 
-The finding and patching of software vulnerabilities is a cat and mouse game that will never end. AI does not change the basic market for vulnerabilities: responsible actors patch them, attackers exploit them. Limiting tools for responsible actors only serves attackers.
+Finding and patching software vulnerabilities is a cat and mouse game that will never end. AI does not change the basic market for vulnerabilities: responsible actors patch them, attackers exploit them. Limiting tools for responsible actors only serves attackers.
 
-It's theoretically possible for a bad actor to embed hidden adversarial behavior in a model. But if this happens, it serves the interest of responsible actors to find these exploits as soon as possible, and the best way to do this is to let anyone who wants to inspect them.
+It's theoretically possible for a bad actor to embed hidden adversarial behavior in a model. But if this happens, it serves the interests of responsible actors to find these exploits as soon as possible, and the best way to do this is to let anyone who wants to inspect them.
 
 ## Open source AI is coming
 
