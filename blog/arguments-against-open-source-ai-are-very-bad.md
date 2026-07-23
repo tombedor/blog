@@ -47,13 +47,13 @@ Narrowing suppression to "Chinese" models won't make things easier. What, exactl
 
 There's an assumption baked into the open source AI debate that open source models is something that only the Chinese government has an incentive to develop. In reality there are many commercial actors with ample incentive to develop open source AI:
 
-- **Chip makers**: Nvidia CEO Jensen Huang has described what Nvidia is building as “token factories”[^1]. Nvidia doesn't care if its chips are used to run frontier models or cheap open source models[^2] - it just wants to produce and generate demand for as many tokens as possible. And indeed Nvidia has itself released a suite of open source models.
-- **American Startups**: (American company) Thinking Machines Labs recently released a frontier-grade open source model. They and others are betting that models will be commoditized, and a defensible moat can be built around auxilery services that complement or customize models.
+- **Chip makers**: Nvidia CEO Jensen Huang has described what Nvidia is building as “token factories”[^2]. Nvidia doesn't care if its chips are used to run frontier models or cheap open source models[^3] - it just wants to produce and generate demand for as many tokens as possible. And indeed Nvidia has itself released a suite of open source models.
+- **American Startups**: Thinking Machines Labs recently released a frontier-grade open source model. They and others are betting that models will be commoditized, and a defensible moat can be built around auxilery services that complement or customize models.
 - **Enterprises AI users**: Frontier model customers aren't currently all that active in open source AI development, but they will be. They will want lower-cost models for low-complexity tasks, and more fine grained control over customer facing features.
 - **BigCo's**: You can be sure that Google and Meta are watching OpenAI's new [ad product](https://ads.openai.com/) closely. Should frontier model ad products gain traction, it would be well worth it for these behemouths to commoditize ad-free, open source models to squash ad competition.
 
 
-[^1]: Quote taken from Derek Thompson's recent [article](https://stratechery.com/2026/whos-afraid-of-chinese-models/) on Chinese AI. Which, while we're here, gets a few things wrong:
+[^2]: Quote taken from Derek Thompson's recent [article](https://stratechery.com/2026/whos-afraid-of-chinese-models/) on Chinese AI. Which, while we're here, gets a few things wrong:
     > whoever is on the frontier is the best placed to dominate non-frontier markets as well, which are just the frontier minus n-months, i.e. months in which the frontier model makers have been optimizing their cost of serving.
 
      It's unclear why this should be the case. Their access to massive capital does not advantage them as much in the development of small models, and they lack incentive to do so rather than push users to their more expensive models.
@@ -62,7 +62,7 @@ There's an assumption baked into the open source AI debate that open source mode
 
      Claude Code and Codex are sticky in the way that Coke and Pepsi are sticky: once you choose one, there's not much reason to switch. But this assumes similar cost and quality. In reality, coding agents have no moat (MAKE THIS A LINK TO MY POST ABOUT NO MOAT). It takes a very small inconvenience to motivate users to switch agents, whether that be price difference, model quality, or reliability issues.
 
-[^2]: Ok, it cares a _little_ - the ocean of capital going to train frontier models is certainly a good thing for Nvidia. But in the long run, if commercial token demand is replaced by demand for open source tokens, Nvidia still wins.
+[^3]: Ok, it cares a _little_ - the ocean of capital going to train frontier models is certainly a good thing for Nvidia. But in the long run, if commercial token demand is replaced by demand for open source tokens, Nvidia still wins.
 
 
 ### The "AI race" is... What exactly is the AI race, exactly?
@@ -79,17 +79,17 @@ Talking about an "AI Race" doesn't make more sense than talking about an "Intern
 
 >  This is what China did to solar panels, steel, EVs, and batteries. First, they match Western quality, or they don't even match it. 89%. Close. Actually, match it with cars, they've matched it, but go ahead. Then they cut the price by two thirds, then they own the market.
 
-But apart from chips, AI isn't a physical good. Solar panels and steel require capital heavy supply chains, each link of which cannot easily exist on it's own. If no one is manufactoring solar panels in your country, it's difficult to develop a business selling solar-grade silicon wafers.
+But apart from chips, AI isn't a physical good. Solar panels and steel require physical supply chains, each link of which cannot easily exist on it's own. If no one is manufactoring solar panels in your country, it's difficult to develop a business selling solar-grade silicon wafers.
 
 Software isn't like that. An open source model coming from China doesn't prevent a fine-tuning business from succeeding in the US - quite the opposite!
 
 ### They will spread propaganda!
 
-It's not unreasonable to assume that Chinese models will be shipped with a pro-China point of view. But this is not a reason to suppress them. _The models are open source_! If any American has an issue with the political slant of Chinese AI models, they are perfectly free to change the models themselves. At least within the U.S., it's difficult to forsee a model seen as having a distorted pro-China bias outcompeting a substantially similar model with a distorted pro-U.S. bias.
+It's not unreasonable to assume that Chinese models will be shipped with a pro-China point of view. But this is not a reason to suppress them. _The models are open source!_ If any American has an issue with the political slant of Chinese AI models, they are free to change and release an "Americanized" one. At least within the U.S., it's difficult to forsee a model seen as having a distorted pro-China bias outcompeting a substantially similar model with a distorted pro-U.S. bias.
 
 ### They will add backdoors!
 
-The finding and patching of software vulnerabilities is a cat and mouse game that will never end. AI does not change the basic market for vulnerabilities: responsible actors deploy their best tools to patch them, attackers use their best tools to exploit them. Limiting tools for responsible actors only serves attackers.
+The finding and patching of software vulnerabilities is a cat and mouse game that will never end. AI does not change the basic market for vulnerabilities: responsible actors patch them, attackers exploit them. Limiting tools for responsible actors only serves attackers.
 
 It's theoretically possible for a bad actor to embed hidden adversarial behavior in a model. But if this happens, it serves the interest of responsible actors to find these exploits as soon as possible, and the best way to do this is to let anyone who wants to inspect them.
 
