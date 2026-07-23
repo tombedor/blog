@@ -53,14 +53,7 @@ There's an assumption baked into the open source AI debate that open source mode
 - BigCo's: You can be sure that Google and Meta are watching OpenAI's new [ad product](https://ads.openai.com/) closely. Should frontier model ad products gain traction, it would be well worth it for these behemouths to commoditize ad-free, open source models to squash ad competition.
 
 
-[^1]: Quote taken from Derek Thompson's recent [article](https://stratechery.com/2026/whos-afraid-of-chinese-models/) on Chinese AI. Which gets a few things wrong:
-[^2]: Ok, it cares a _little_ - the ocean of capital going to train frontier models is certainly a good thing for Nvidia. But in the long run, if commercial token demand is replaced by demand for open source tokens, Nvidia still wins.
-
-## The open source threat to frontier labs is real
-
-Derek Thompson's [article](https://stratechery.com/2026/whos-afraid-of-chinese-models/) gets a few things backwards about the frontier labs' position with respect to open soure models:
-
- > whoever is on the frontier is the best placed to dominate non-frontier markets as well, which are just the frontier minus n-months, i.e. months in which the frontier model makers have been optimizing their cost of serving.
+[^1]: Quote taken from Derek Thompson's recent [article](https://stratechery.com/2026/whos-afraid-of-chinese-models/) on Chinese AI. Which, while we're here, gets a few things wrong:  > whoever is on the frontier is the best placed to dominate non-frontier markets as well, which are just the frontier minus n-months, i.e. months in which the frontier model makers have been optimizing their cost of serving.
 
  It's highly unclear why this should be the case.
 
@@ -70,55 +63,37 @@ Derek Thompson's [article](https://stratechery.com/2026/whos-afraid-of-chinese-m
 
  If a cheaper, good-enough model comes, users will switch to it, and changing model harness will not be a major impediment.
 
+[^2]: Ok, it cares a _little_ - the ocean of capital going to train frontier models is certainly a good thing for Nvidia. But in the long run, if commercial token demand is replaced by demand for open source tokens, Nvidia still wins.
+
+
 ## The "AI race" is... What exactly is the AI race, exactly?
 
-Much of the angst around China's models center on "losing the AI race". But what's the goal of this race? Is it to develop the best model? To sell the most tokens?
+Much of the angst around China's models center on "losing the AI race". But what's the goal of this race? Is it to develop the best model? To sell the most tokens? To destroy humanity first?
 
-In reality, talking about the "AI Race" doesn't make more sense than talking about the "Internet Race". We're not competing to be the first to send a rocket to the moon, we're reacting to a new, transformational technology. To the extent there's a race between nations, it's to abosrb this transition and grow economies. In this framing, free AI models are a boon, not a threat.
+Talking about an "AI Race" doesn't make more sense than talking about an "Internet Race". We're not competing to be the first to send a rocket to the moon, we're reacting to a new, transformational technology. To the extent there's a race between nations, it's to abosrb this transition and grow economies. In this framing, free AI models are a boon, not a threat.
 
 # Bad arguments to fear Chinese AI models
 
-## They're "AI dumping"
+## China is "AI dumping!"
 
 Scott Galloway has argued that free Chinese AI is an attempt to eliminate competitors in the long run:
 
 >  This is what China did to solar panels, steel, EVs, and batteries. First, they match Western quality, or they don't even match it. 89%. Close. Actually, match it with cars, they've matched it, but go ahead. Then they cut the price by two thirds, then they own the market.
 
-But apart from chips, AI isn't a physical good. Solar panels and steel require capital heavy supply chains, each link of which cannot easily exist on it's own. If no one is manufactoring solar panels in your country, it's difficult to develop a business selling <!-- some example component of solar panels -->
+But apart from chips, AI isn't a physical good. Solar panels and steel require capital heavy supply chains, each link of which cannot easily exist on it's own. If no one is manufactoring solar panels in your country, it's difficult to develop a business selling solar-grade silicon wafers.
 
-<!-- diagram: software vs solar panels -->
+Software isn't like that. An open source model coming from China doesn't prevent a fine-tuning business from succeeding in the US - quite the opposite!
 
-Software isn't like that. An open source model coming from China doesn't prevent a fine-tuning business from succeeding in the US - quite the opposite.
+## They will spread propaganda!
 
-## They will spread propaganda
+It's not unreasonable to assume that Chinese models will be shipped with a pro-China point of view. But this is not a reason to suppress them. For one thing, the predominant use of AI models isn't to inform one's ideology. But even so, _the models are open source_! If any American has an issue with the political slant of Chinese AI models, they are perfectly free to change the models themselves. At least within the U.S., it's difficult to forsee a model seen as having a distorted pro-China bias outcompeting a substantially similar model with a distorted pro-U.S. bias.
 
-## They will add backdoors
+## They will add backdoors!
 
-- Asymmetry of vulnerabilities (irony of openai having to use open source ai models)
-- easy inspection and customization of open source models
-- pandora's box
+The finding and patching of software vulnerabilities is a cat and mouse game that will never end. AI does not change the basic market for vulnerabilities: responsible actors deploy their best tools to patch them, attackers use their best tools to exploit them. Limiting tools for responsible actors only serves attackers.
+
+It's theoretically possible for a bad actor to embed hidden adversarial behavior in a model. But if this happens, it serves the interest of responsible actors to find these exploits as soon as possible, and the best way to do this is to let anyone who wants to inspect them.
 
 # Open source AI is coming
 
 It doesn't matter much what policy makers or business leaders want: open source AI is too powerful, and too difficult to control. It's coming, and attempts to squash it will not amount to anything more than noise along the way.
-
-
-
-
-- efforts to regulate open source cryptography
-
-
-
-- ai communism
-    > “One probable outcome of an open-weight-model-dominant world is full AI communism, which is precisely what China proposes: rather than a market product, AI is a ‘public good’ which will ultimately be provided by the state as a kind of ‘digital public infrastructure,’” Dean Ball, OpenAI’s head of strategic futures, said in an X post Friday.
-- "AI dumping" galloway quote on chinese
-
-- derek thompson
-    - > whoever is on the frontier is the best placed to dominate non-frontier markets as well, which are just the frontier minus n-months, i.e. months in which the frontier model makers have been optimizing their cost of serving.
-    - quote about stickiness
-- "AI communism!"
-    - some trump guy made this quote
-- "They will corner the market"
-- "They will spread propaganda"
-- "They will add backdoors"
-
