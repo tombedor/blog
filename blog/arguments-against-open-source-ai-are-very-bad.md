@@ -51,15 +51,14 @@ There's an assumption baked into the open source AI debate that open source mode
 - **BigCo's**: You can be sure that Google and Meta are watching OpenAI's new [ad product](https://ads.openai.com/) closely. Should frontier model ad products gain traction, it would be well worth it for these behemouths to commoditize ad-free, open source models to squash ad competition.
 
 
-[^1]: Quote taken from Derek Thompson's recent [article](https://stratechery.com/2026/whos-afraid-of-chinese-models/) on Chinese AI. Which, while we're here, gets a few things wrong:  > whoever is on the frontier is the best placed to dominate non-frontier markets as well, which are just the frontier minus n-months, i.e. months in which the frontier model makers have been optimizing their cost of serving.
+[^1]: Quote taken from Derek Thompson's recent [article](https://stratechery.com/2026/whos-afraid-of-chinese-models/) on Chinese AI. Which, while we're here, gets a few things wrong:
+    > whoever is on the frontier is the best placed to dominate non-frontier markets as well, which are just the frontier minus n-months, i.e. months in which the frontier model makers have been optimizing their cost of serving.
 
- It's highly unclear why this should be the case.
+     It's unclear why this should be the case. Their access to massive capital does not advantage them as much in the development of small models, and they lack incentive to do so rather than push users to their more expensive models.
 
- > It’s striking the extent to which Claude Code and Codex are proving to be quite sticky; whichever harness you start working with is likely to be the one you stick with
+     > It’s striking the extent to which Claude Code and Codex are proving to be quite sticky; whichever harness you start working with is likely to be the one you stick with
 
- It's unclear where he's getting this information. Claude Code and Codex are sticky in the way that Coke and Pepsi are sticky: once you choose one, there's not much reason to switch. But this assumes similar cost and quality. In reality, coding agents have no moat (link to my post). It takes a very small inconvenience to motivate users to switch agents, whether that be price difference, model quality, or reliability issues.
-
- If a cheaper, good-enough model comes, users will switch to it, and changing model harness will not be a major impediment.
+     Claude Code and Codex are sticky in the way that Coke and Pepsi are sticky: once you choose one, there's not much reason to switch. But this assumes similar cost and quality. In reality, coding agents have no moat (MAKE THIS A LINK TO MY POST ABOUT NO MOAT). It takes a very small inconvenience to motivate users to switch agents, whether that be price difference, model quality, or reliability issues.
 
 [^2]: Ok, it cares a _little_ - the ocean of capital going to train frontier models is certainly a good thing for Nvidia. But in the long run, if commercial token demand is replaced by demand for open source tokens, Nvidia still wins.
 
