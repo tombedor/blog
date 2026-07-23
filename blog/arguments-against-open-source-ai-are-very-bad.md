@@ -1,7 +1,6 @@
 ---
 title: The Arguments Against Open Source AI are Very Bad
-date: 2026-07-21
-draft: true
+date: 2026-07-23
 ---
 
 The release of Kimi K3 has opened a fresh round of angst and confused discourse. There's a loud cohort of journalists, business leaders, and politicians arguing that open source AI is a dangerous threat. OpenAI's [Dean Ball](https://x.com/deanwball/status/2078133895766114412):
