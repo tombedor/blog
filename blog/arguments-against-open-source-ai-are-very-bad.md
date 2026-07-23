@@ -4,13 +4,13 @@ date: 2026-07-21
 draft: true
 ---
 
-The release of Kimi K3 has opened a fresh round of angst and confused discourse. There's a loud cohort of journalists, business leaders, and politicians arguing that open source AI is a dangerous threat. OpenAI's Dean Ball:
+The release of Kimi K3 has opened a fresh round of angst and confused discourse. There's a loud cohort of journalists, business leaders, and politicians arguing that open source AI is a dangerous threat. OpenAI's [Dean Ball](https://x.com/deanwball/status/2078133895766114412):
 
 > One probable outcome of an open-weight-model-dominant world is full AI communism... rather than a market product, AI is a "public good"
 
 Freely available AI for anyone? The horror!
 
-Frontier labs' case against open source AI is essentially: Open source models are dangerous (and/or un-American?). We should open the AI Pandora's Box, but only with responsible gatekeepers (aka toll collectors) (aka, us!). Only trusted users (aka our most profitable customers).
+Frontier labs' case against open source AI is essentially: Open source models are dangerous (_and un-American!_). We should open the AI Pandora's Box, but only with responsible gatekeepers (_toll collectors, preferably us!_). Only trusted users (_our most profitable customers_) should be able to use it.
 
 I want to address some bad arguments against open source AI, but some corrections on how the argument is being framed are in order:
 
@@ -20,7 +20,7 @@ Ball's framing strolls past the fact that _open source software is the foundatio
 
 Open source software is counterintuitive to people outside of the software industry. Why work hard on a product, and give it away for free?
 
-A brief primer: A software program is a stack of programs, with each layer built on top of another. To build Uber, you need programming language frameworks, software to send and recieve web traffic, data analysis tools, and countless other components. Most of these are not differentiators for a commercial enterprise, so it serves commercial actors to share lower components and compete on the pieces that actual differentiate their product.
+A software program is a stack of programs, with each layer built on top of another. To build Uber, you need programming language frameworks, software to send and recieve web traffic, data analysis tools, and countless other components. Most of these are not differentiators for a commercial enterprise, so it serves commercial actors to cooperate on lower components in the stack and compete on the higher level pieces that actual differentiate their products.
 
 ![software stack](/diagrams/arguments-against-open-source-ai-are-very-bad/stack.png)
 
@@ -30,11 +30,11 @@ Frontier labs would _very much_ like AI models to _not_ fall into the category o
 
 In reality, the argument about suppressing open source models is irrelevant. History tells us that suppression of open source software is _extremely_ difficult, and attempting to do so only serves to weaken comapnies against international competitors. A brief history of encryption is illustrative:
 
-Today, *PGP* is a commonplace tool anyone can use, and most devs are at least familiar with. But when Phil Zimmermann invented it in 1991, the U.S. government considered encryption a "weapon of war". A criminal investigation was opened against Zimmermann.
+Today, **PGP** is a commonplace tool anyone can use, and most devs are at least familiar with. But when Phil Zimmermann invented it in 1991, the U.S. government considered encryption a "weapon of war". A criminal investigation was opened against Zimmermann.
 
-When Netscape created *SSL*, the U.S. government allowed it to only release a weakened version of it internationally. These controls backfired: it was much easier to acquire the weakened, "international" version, so even most Americans used it.
+When Netscape created **SSL**, the U.S. government allowed it to only release a weakened version of it internationally. These controls backfired: it was much easier to acquire the weakened, "international" version, so even most Americans used it.
 
-Export controls did not succeed in limiting encryption as the government wished. Both SSL and PGP were readily available throughout the world, and the controls disadvantaged American companies and users. Eventually, Zimmermann's release of PGP was ruled to be protected speech, and the U.S. government relaxed encryption export controls.
+Export controls did not succeed in limiting encryption as the government wished. SSL, PGP, and similar tools were readily available throughout the world, and the controls disadvantaged Americans. Eventually, Zimmermann's release of PGP was ruled to be protected speech, and the U.S. government relaxed encryption export controls.
 
 ---
 
@@ -45,12 +45,10 @@ Narrowing suppression to "Chinese" models won't make things easier. What, exactl
 
 There's an assumption baked into the open source AI debate that open source models is something that only the Chinese government has an incentive to develop. In reality there are many commercial actors with ample incentive to develop open source AI:
 
-- Chip makers: Nvidia CEO Jensen Huang has described what Nvidia is building as “token factories”[^1]. Nvidia doesn't care if its chips are used to run frontier models or cheap open source models[^2] - it just wants to produce and generate demand for as many tokens as possible. And indeed Nvidia has itself released a suite of open source models.
-- Startups: (American company) Thinking Machines Labs recently released a frontier-grade open source model. They and others are betting that models will be commoditized, and a defensible moat can be built around auxilery services that complement or customize models.
-- Non-AI enterprises: Frontier model customers aren't currently all that active in open source AI development, but they will be. They'll be motivated by:
-    - Cost: Enterprise spending management on AI is currently in it's infancy, in general limited to crude spending caps. These customers are already working on cost controls via intelligent routing based on task complexity. In the future, it will serve them to customize open source models to handle bespoke, low complexity tasks cheaply
-    - Control: Anyone maintaining an actively running, customer facing AI product has a problem: the product's behavior can change wildly if the underlying model changes. These companies will be motivated to develop customized models they fully control.
-- BigCo's: You can be sure that Google and Meta are watching OpenAI's new [ad product](https://ads.openai.com/) closely. Should frontier model ad products gain traction, it would be well worth it for these behemouths to commoditize ad-free, open source models to squash ad competition.
+- **Chip makers**: Nvidia CEO Jensen Huang has described what Nvidia is building as “token factories”[^1]. Nvidia doesn't care if its chips are used to run frontier models or cheap open source models[^2] - it just wants to produce and generate demand for as many tokens as possible. And indeed Nvidia has itself released a suite of open source models.
+- **American Startups**: (American company) Thinking Machines Labs recently released a frontier-grade open source model. They and others are betting that models will be commoditized, and a defensible moat can be built around auxilery services that complement or customize models.
+- **Enterprises AI users**: Frontier model customers aren't currently all that active in open source AI development, but they will be. They will want lower-cost models for low-complexity tasks, and more fine grained control over customer facing features.
+- **BigCo's**: You can be sure that Google and Meta are watching OpenAI's new [ad product](https://ads.openai.com/) closely. Should frontier model ad products gain traction, it would be well worth it for these behemouths to commoditize ad-free, open source models to squash ad competition.
 
 
 [^1]: Quote taken from Derek Thompson's recent [article](https://stratechery.com/2026/whos-afraid-of-chinese-models/) on Chinese AI. Which, while we're here, gets a few things wrong:  > whoever is on the frontier is the best placed to dominate non-frontier markets as well, which are just the frontier minus n-months, i.e. months in which the frontier model makers have been optimizing their cost of serving.
