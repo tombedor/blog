@@ -10,11 +10,13 @@ The release of Kimi K3 has opened a fresh round of angst and confused discourse.
 
 Freely available AI for anyone? The horror!
 
-Frontier labs' case against open source AI is essentially: Open source models are dangerous (_and un-American!_). We should open the AI Pandora's Box, but only with responsible gatekeepers (_toll collectors, preferably us!_). Only trusted users (_our most profitable customers_) should be able to use it.
+Frontier labs' case against open source AI is essentially: Open source models[^1] are dangerous (_and un-American!_). We should open the AI Pandora's Box, but only with responsible gatekeepers (_toll collectors, preferably us!_). Only trusted users (_our most profitable customers_) should be able to use it.
+
+[^1]: I'll use the terms "open source model" as in, "open weights model".
 
 I want to address some bad arguments against open source AI, but some corrections on how the argument is being framed are in order:
 
-## Open source software is the foundation on which commercial software is built
+### Open source software is the foundation for commercial software
 
 Ball's framing strolls past the fact that _open source software is the foundation of all proprietary software._ This includes frontier models, which at the end of the day are software products.
 
@@ -26,7 +28,7 @@ A software program is a stack of programs, with each layer built on top of anoth
 
 Frontier labs would _very much_ like AI models to _not_ fall into the category of "so commonplace that it doesn't make sense to compete on". Whether this will be the case remains to be the case.
 
-## Open source software is very difficult to suppress
+### Open source software is very difficult to suppress
 
 In reality, the argument about suppressing open source models is irrelevant. History tells us that suppression of open source software is _extremely_ difficult, and attempting to do so only serves to weaken comapnies against international competitors. A brief history of encryption is illustrative:
 
@@ -41,7 +43,7 @@ Export controls did not succeed in limiting encryption as the government wished.
 Narrowing suppression to "Chinese" models won't make things easier. What, exactly, makes an AI model Chinese? Is it Chinese if, as frontier models alledge, it was distilled from American models? What about if an American fine-tunes a Chinese model? At best, regulating AI in this way will (temporarily) encumber Americans with red tape and diminished AI access relative to the rest of the world.
 
 
-## Open source AI is not just a Chinese phenomenon
+### Open source AI is not just a Chinese phenomenon
 
 There's an assumption baked into the open source AI debate that open source models is something that only the Chinese government has an incentive to develop. In reality there are many commercial actors with ample incentive to develop open source AI:
 
@@ -63,17 +65,17 @@ There's an assumption baked into the open source AI debate that open source mode
 [^2]: Ok, it cares a _little_ - the ocean of capital going to train frontier models is certainly a good thing for Nvidia. But in the long run, if commercial token demand is replaced by demand for open source tokens, Nvidia still wins.
 
 
-## The "AI race" is... What exactly is the AI race, exactly?
+### The "AI race" is... What exactly is the AI race, exactly?
 
 Much of the angst around China's models center on "losing the AI race". But what's the goal of this race? Is it to develop the best model? To sell the most tokens? To destroy humanity first?
 
 Talking about an "AI Race" doesn't make more sense than talking about an "Internet Race". We're not competing to be the first to send a rocket to the moon, we're reacting to a new, transformational technology. To the extent there's a race between nations, it's to abosrb this transition and grow economies. In this framing, free AI models are a boon, not a threat.
 
-# Bad arguments to fear Chinese AI models
+## Bad arguments to fear Chinese AI models
 
-## China is "AI dumping!"
+### China is "AI dumping!"
 
-Scott Galloway has argued that free Chinese AI is an attempt to eliminate competitors in the long run:
+[Scott Galloway has argued](https://open.spotify.com/episode/2ulNXWCIYUNx6yE97kmrIC?si=19b6242c57ad49fa) that free Chinese AI is an attempt to eliminate competitors in the long run:
 
 >  This is what China did to solar panels, steel, EVs, and batteries. First, they match Western quality, or they don't even match it. 89%. Close. Actually, match it with cars, they've matched it, but go ahead. Then they cut the price by two thirds, then they own the market.
 
@@ -81,16 +83,16 @@ But apart from chips, AI isn't a physical good. Solar panels and steel require c
 
 Software isn't like that. An open source model coming from China doesn't prevent a fine-tuning business from succeeding in the US - quite the opposite!
 
-## They will spread propaganda!
+### They will spread propaganda!
 
-It's not unreasonable to assume that Chinese models will be shipped with a pro-China point of view. But this is not a reason to suppress them. For one thing, the predominant use of AI models isn't to inform one's ideology. But even so, _the models are open source_! If any American has an issue with the political slant of Chinese AI models, they are perfectly free to change the models themselves. At least within the U.S., it's difficult to forsee a model seen as having a distorted pro-China bias outcompeting a substantially similar model with a distorted pro-U.S. bias.
+It's not unreasonable to assume that Chinese models will be shipped with a pro-China point of view. But this is not a reason to suppress them. _The models are open source_! If any American has an issue with the political slant of Chinese AI models, they are perfectly free to change the models themselves. At least within the U.S., it's difficult to forsee a model seen as having a distorted pro-China bias outcompeting a substantially similar model with a distorted pro-U.S. bias.
 
-## They will add backdoors!
+### They will add backdoors!
 
 The finding and patching of software vulnerabilities is a cat and mouse game that will never end. AI does not change the basic market for vulnerabilities: responsible actors deploy their best tools to patch them, attackers use their best tools to exploit them. Limiting tools for responsible actors only serves attackers.
 
 It's theoretically possible for a bad actor to embed hidden adversarial behavior in a model. But if this happens, it serves the interest of responsible actors to find these exploits as soon as possible, and the best way to do this is to let anyone who wants to inspect them.
 
-# Open source AI is coming
+## Open source AI is coming
 
 It doesn't matter much what policy makers or business leaders want: open source AI is too powerful, and too difficult to control. It's coming, and attempts to squash it will not amount to anything more than noise along the way.
