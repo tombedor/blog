@@ -9,6 +9,8 @@ The release of Kimi K3 has opened a fresh round of angst and confused discourse.
 
 Freely available AI for anyone? The horror!
 
+<!-- truncate -->
+
 Frontier labs' case against open source AI is essentially: Open source models[^1] are dangerous (_and un-American!_). We should open the AI Pandora's Box, but only with responsible gatekeepers (_toll collectors, preferably us!_). Only trusted users (_our most profitable customers_) should be able to use it.
 
 [^1]: I'll use the terms "open source model" as in, "open weights model".
