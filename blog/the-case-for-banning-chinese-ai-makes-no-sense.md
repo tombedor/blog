@@ -10,31 +10,36 @@ The release of Kimi K3 has opened a fresh round of angst and confused discourse.
 
 Freely available AI for anyone? The horror!
 
-I want to address some bad arguments against open source AI, but some corrections on how the argument is being framed are in order.
+Frontier labs' case against open source AI is essentially: Open source models are dangerous (and/or un-American?). We should open the AI Pandora's Box, but only with responsible gatekeepers (aka toll collectors) (aka, us!). Only trusted users (aka our most profitable customers).
 
-# Things talking heads are missing
+I want to address some bad arguments against open source AI, but some corrections on how the argument is being framed are in order:
 
 ## Open source software is the foundation on which commercial software is built
 
-AI models are, at the end of the day, _software_. In Ball's framing, there's a dichotomy between free (Communist! Bad!) AI and proprietary (Capitalist! America! Good!) software. The reality is that proprietary software is built on top of open source, given away by maintainers for free. This isn't charity!
+Ball's framing strolls past the fact that _open source software is the foundation of all proprietary software._ This includes frontier models, which at the end of the day are software products.
 
-<!-- stack of programs diagram -->
+Open source software is counterintuitive to people outside of the software industry. Why work hard on a product, and give it away for free?
 
-A software program is a stack of programs. To build Uber, you need programming language frameworks, software to send and recieve web traffic, data analysis tools, and countless other components. Most of these are not differentiators for a commercial enterprise, so it serves commercial actors to share lower components and compete on the pieces that actual differentiate their product.
+A brief primer: A software program is a stack of programs, with each layer built on top of another. To build Uber, you need programming language frameworks, software to send and recieve web traffic, data analysis tools, and countless other components. Most of these are not differentiators for a commercial enterprise, so it serves commercial actors to share lower components and compete on the pieces that actual differentiate their product.
+
+<!-- diagram: stack -->
 
 Frontier labs would _very much_ like AI models to _not_ fall into the category of "so commonplace that it doesn't make sense to compete on". Whether this will be the case remains to be the case.
 
-## Open source software is very difficult to regulate
+## Open source software is very difficult to suppress
 
-David Sack's accurately characterized advocay of open source AI as an attempt to regulatory capture. Frontier providers are arguing that we should open the AI Pandora's Box, but only a little, and with responsible gatekeepers (aka, toll collectors) (aka, them).
+In reality, the argument about suppressing open source models is irrelevant. History tells us that suppression of open source software is _extremely_ difficult, and attempting to do so only serves to weaken comapnies against international competitors. A brief history of encryption is illustrative:
 
-Even if we accept the premise that open source AI should be banned, my message to regulators is: Good luck! Open source software is _very resilient_ to regulatory suppression, especially when it's use does not need network access..
+Today, *PGP* is a commonplace tool anyone can use, and most devs are at least familiar with. But when Phil Zimmermann invented it in 1991, the U.S. government considered encryption a "weapon of war". A criminal investigation was opened against Zimmermann.
 
-Cryptographyy, bittorrent
+When Netscape created *SSL*, the U.S. government allowed it to only release a weakened version of it internationally. These controls backfired: it was much easier to acquire the weakened, "international" version, so even most Americans used it.
 
-Even if we narrow the regulatory target to "Chinese" models, regulators will have a difficult time. What, exactly, makes an AI model Chinese?
+Export controls did not succeed in limiting encryption as the government wished. Both SSL and PGP were readily available throughout the world, and the controls disadvantaged American companies and users. Eventually, Zimmermann's release of PGP was ruled to be protected speech, and the U.S. government relaxed encryption export controls.
 
-<!-- whats a chinese model? -->
+---
+
+Narrowing suppression to "Chinese" models won't make things easier. What, exactly, makes an AI model Chinese? Is it Chinese if, as frontier models alledge, it was distilled from American models? What about if an American fine-tunes a Chinese model? At best, regulating AI in this way will (temporarily) encumber Americans with red tape and diminished AI access relative to the rest of the world.
+
 
 ## Open source AI is not just a Chinese phenomenon
 

@@ -1,7 +1,7 @@
 # Research Brief: "The Arguments Against Open Source AI are Very Bad"
 
 **Post:** `blog/the-case-for-banning-chinese-ai-makes-no-sense.md`  
-**Research date:** 2026-07-22  
+**Research date:** 2026-07-23  
 **Purpose:** Fact-check claims and collect evidence/pull quotes for an argument against banning Chinese/open-weight AI models.
 
 ---
@@ -9,6 +9,7 @@
 ## Bottom Line
 
 - **Best-supported distinction:** banning Chinese AI apps/APIs on government devices has a conventional data-security rationale; banning open weights is much harder because weights can be copied, mirrored, fine-tuned, quantized, and run offline.
+- **Historical analogies point the same way:** encryption export controls, DeCSS/DVD circumvention code, AACS keys, P2P services, and Tor/circumvention tools show that suppression bites hardest at centralized chokepoints, not at already-public code or protocols.
 - **"Chinese model" is a weak policy category.** Real models mix weights, recipes, datasets, contributors, cloud hosts, fine-tunes, distillations, and deployment layers across borders.
 - **Open models are not just a China strategy.** The U.S. government, Meta, OpenAI, NVIDIA, Mistral, IBM/Red Hat, and many startups all have explicit open-model incentives.
 - **Propaganda/censorship risk is real for hosted Chinese services, but weaker for local open weights.** The strongest argument is not "no risk"; it is that open weights are easier to inspect, benchmark, modify, and route around than a closed hosted service.
@@ -56,6 +57,32 @@
 
 **Caveats / counterpoints:**
 - Governments can still pressure cloud providers, app stores, payment rails, chip exports, enterprise procurement, and official-device use. The claim should be "hard to suppress completely," not "impossible to affect."
+
+---
+
+## Suppression History: Software, Keys, and Protocols
+
+[Source note](suppression-history.md) | [EFF Bernstein](https://www.eff.org/cases/bernstein-v-us-dept-justice) | [EFF DMCA consequences](https://www.eff.org/pages/unintended-consequences-fifteen-years-under-dmca) | [Napster opinion](https://law.justia.com/cases/federal/appellate-courts/F3/239/1004/636120/) | [Grokster opinion](https://supreme.justia.com/cases/federal/us/545/913/) | [Tor circumvention docs](https://support.torproject.org/tor-browser/circumvention/unblocking-tor/)
+
+**Claim / question:** Besides BitTorrent and encryption, what historical attempts to suppress open or widely distributed software are useful analogies for open-weight AI?
+
+**Finding:** The best examples are crypto export controls, DeCSS/DVD decryption code, AACS/HD-DVD key takedowns, DMCA threats against security research, P2P file-sharing services, and censorship-circumvention tools. They mostly show partial, chokepoint-based control rather than durable suppression.
+
+**Evidence:**
+- **Encryption / PGP / Bernstein / Junger:** U.S. export rules treated strong crypto software as controlled technology; litigation and publishing workarounds helped establish the "code as speech" frame and pushed policy toward allowing published encryption source code.
+- **DeCSS and AACS keys:** DMCA anti-circumvention claims targeted DVD/HD-DVD decryption software, links, and even a short hexadecimal processing key; takedowns created mirrors, code poems/images, and the classic Streisand-effect lesson.
+- **Felten / SDMI and ElcomSoft:** DMCA threats and prosecution chilled publication of security research and circumvention tools, but also generated backlash and did not make the underlying technical knowledge disappear.
+- **Napster / Grokster / LimeWire / BitTorrent:** courts and raids could shut down companies, trackers, domains, and inducement-heavy services; the technical pattern shifted toward decentralized clients, DHT, magnet links, mirrors, and replacement services.
+- **Tor / VPNs / pluggable transports:** censoring states can block known relays, app stores, domains, and traffic fingerprints; open circumvention projects respond with bridges and transport obfuscation.
+
+**Pull quotes:**
+- "source code is speech" (EFF on Bernstein)
+- "providing a circumvention device" (EFF Felten FAQ)
+- "pluggable transports" (Tor support docs)
+
+**Caveats / counterpoints:**
+- These are not perfect analogies. Copyright and encryption cases involve U.S. constitutional/DMCA/export-control law; Chinese AI restrictions may use procurement, sanctions, cloud rules, model-host liability, or national-security authorities instead.
+- Suppression can still change markets even if it fails technically: it can scare enterprises, delist apps, block government use, raise compliance costs, and concentrate distribution in large firms.
 
 ---
 
