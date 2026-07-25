@@ -6,7 +6,7 @@
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tombedor.dev/"/>
     <subtitle>Thoughts on software, AI, and building things</subtitle>
-    <icon>https://tombedor.dev/img/logo.svg</icon>
+    <icon>https://tombedor.dev/img/favicon.png</icon>
     <rights>Copyright © 2026 Tom Bedor</rights>
     <entry>
         <title type="html"><![CDATA[The Arguments Against Open Source AI are Very Bad]]></title>
