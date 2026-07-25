@@ -71,6 +71,24 @@ nav[aria-label='Blog recent posts navigation'] {
   max-width: 82%;
 }
 
+/* List-view post titles (the blog feed / home page cards) render as h2 at
+   Infima's full heading size, which reads oversized repeated down a long
+   feed. The individual post page's own h1 title is untouched — this only
+   targets the list-only excerpt container (the theme only adds
+   margin-bottom--xl to it when not on the post page itself). */
+article.margin-bottom--xl header h2 {
+  font-size: 1.5rem;
+}
+
+/* Markdown footnotes render as a bare "Footnotes" heading with no visual
+   break from the article body above it. Add a rule generically so every
+   post gets it without touching individual post files. */
+.footnotes {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+
 /* Diagrams are white-background PNG exports from Excalidraw. In dark mode,
    give them a light card so they read as intentional figures rather than
    glaring white rectangles against the dark page. */
