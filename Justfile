@@ -90,6 +90,47 @@ preview-elroy-docs HOST="" REQUEST_PATH="/" SHOW_HEADERS="false":
 		curl -k -L --resolve "elroy.bot:443:$host" "https://elroy.bot$path"
 	fi
 
+# Build and deploy a preview of the blog to preview.tombedor.dev
+preview HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/blog-preview":
+	#!/usr/bin/env bash
+	set -euo pipefail
+
+	host="{{HOST}}"
+	if [ -z "$host" ]; then
+		host="${HOST_IP:-}"
+	fi
+	if [ -z "$host" ]; then
+		host="$(terraform -chdir=infrastructure/terraform output -raw reserved_ip 2>/dev/null || terraform -chdir=infrastructure/terraform output -raw droplet_ip)"
+	fi
+	host="$(printf '%s' "$host" | tr -d '\r\n[:space:]')"
+	if [ -z "$host" ]; then
+		echo "No host configured. Set HOST, HOST_IP in .env, or terraform outputs."
+		exit 1
+	fi
+
+	echo "Building preview site..."
+	npm run build
+
+	echo "Uploading to $host:{{DEST_PATH}}..."
+	tar -C build -czf - . | ssh -p "{{PORT}}" "{{USER}}@$host" "
+		set -euo pipefail
+		DEST_PATH='{{DEST_PATH}}'
+		TMP_PATH=\"\${DEST_PATH}.incoming\"
+		rm -rf \"\$TMP_PATH\"
+		mkdir -p \"\$TMP_PATH\" \"\$DEST_PATH\"
+		tar -xzf - -C \"\$TMP_PATH\"
+		find \"\$DEST_PATH\" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+		cp -a \"\$TMP_PATH\"/. \"\$DEST_PATH\"/
+		rm -rf \"\$TMP_PATH\"
+	"
+
+	echo "Applying Caddy config..."
+	scp -P "{{PORT}}" infrastructure/docker/caddy/Caddyfile "{{USER}}@$host:/opt/analytics/caddy/Caddyfile"
+	scp -P "{{PORT}}" infrastructure/docker/docker-compose.yml "{{USER}}@$host:/opt/analytics/docker-compose.yml"
+	ssh -p "{{PORT}}" "{{USER}}@$host" "cd /opt/analytics && docker compose up -d --no-deps caddy"
+
+	echo "Preview deployed → https://preview.tombedor.dev"
+
 # Dual publish blog posts to elroy project
 dual-publish:
 	npm run dual-publish

@@ -28,6 +28,18 @@ elroy.bot {
 	}
 }
 
+preview.tombedor.dev {
+	root * /srv/blog-preview
+	file_server
+	encode gzip zstd
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Frame-Options "SAMEORIGIN"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+}
+
 analytics.tombedor.dev {
 	@public_tracking path /script.js /api/send
 	handle @public_tracking {
