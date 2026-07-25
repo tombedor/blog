@@ -134,12 +134,14 @@ See the `Justfile` for common development and deployment commands:
 - `just deploy` - Deploy to GitHub Pages
 - `just dual-publish` - Sync blog posts to Elroy project
 - `just export-diagrams` - Export all excalidraw diagrams to PNG (with caching)
+- `just screenshots` - Build, serve, and screenshot every page (desktop + mobile) to `screenshots/` for design review
 
 You can also use npm scripts directly:
 - `npm start` - Start development server
 - `npm run build` - Build for production
 - `npm run typecheck` - Run TypeScript type checking
 - `npm run dual-publish` - Sync blog posts to Elroy project
+- `npm run screenshots` - Same as `just screenshots`
 
 Diagram export script usage:
 - `./scripts/excalidraw-export.sh -r static/diagrams` - Export all diagrams (skips unchanged)

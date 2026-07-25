@@ -98,6 +98,10 @@ dual-publish:
 export-diagrams:
 	./scripts/excalidraw-export.sh -r static/diagrams
 
+# Build, serve, and screenshot every page (desktop + mobile) to screenshots/ for design review
+screenshots:
+	node scripts/screenshot-pages.mjs
+
 # Create a draft test newsletter for a specific post
 newsletter-test post:
 	node ./scripts/send-newsletter.mjs test "{{post}}"

@@ -14,7 +14,7 @@ const config: Config = {
   ],
   title: 'Tom Bedor\'s Blog',
   tagline: 'Thoughts on software, AI, and building things',
-  favicon: 'img/logo.svg',
+  favicon: 'img/favicon.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -79,8 +79,12 @@ const config: Config = {
     image: 'img/social-card.jpg',
     colorMode: {
       defaultMode: 'light',
-      disableSwitch: true,
-      respectPrefersColorScheme: false,
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 3,
     },
     navbar: {
       title: 'Tom Bedor\'s Blog',
