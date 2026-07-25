@@ -47,28 +47,32 @@ nav[aria-label='Blog recent posts navigation'] {
    especially now that it's sticky and stays on screen the whole time.
    Narrow it and give the freed width to the article/feed column. Scoped
    via :has() to rows containing the blog sidebar specifically, so this
-   doesn't affect the generic .col--N grid classes used elsewhere. */
-.row:has(nav[aria-label='Blog recent posts navigation']) > aside.col--3 {
-  flex: 0 0 18%;
-  max-width: 18%;
-}
+   doesn't affect the generic .col--N grid classes used elsewhere.
+   Media-queried to match Docusaurus's sidebar breakpoint so these overrides
+   don't fight the responsive layout on mobile and cause a content shift. */
+@media (min-width: 997px) {
+  .row:has(nav[aria-label='Blog recent posts navigation']) > aside.col--3 {
+    flex: 0 0 18%;
+    max-width: 18%;
+  }
 
-/* Post pages: sidebar + article + page TOC (3 columns) */
-.row:has(nav[aria-label='Blog recent posts navigation']):has(> .col--2) > main.col--7 {
-  flex: 0 0 65%;
-  max-width: 65%;
-}
-.row:has(nav[aria-label='Blog recent posts navigation']) > .col--2 {
-  flex: 0 0 17%;
-  max-width: 17%;
-}
+  /* Post pages: sidebar + article + page TOC (3 columns) */
+  .row:has(nav[aria-label='Blog recent posts navigation']):has(> .col--2) > main.col--7 {
+    flex: 0 0 65%;
+    max-width: 65%;
+  }
+  .row:has(nav[aria-label='Blog recent posts navigation']) > .col--2 {
+    flex: 0 0 17%;
+    max-width: 17%;
+  }
 
-/* Blog list / archive pages: sidebar + feed only (2 columns) — let the feed
-   fill the rest instead of leaving a quarter of the row empty. */
-.row:has(nav[aria-label='Blog recent posts navigation']):not(:has(> .col--2))
-  > main.col--7 {
-  flex: 0 0 82%;
-  max-width: 82%;
+  /* Blog list / archive pages: sidebar + feed only (2 columns) — let the feed
+     fill the rest instead of leaving a quarter of the row empty. */
+  .row:has(nav[aria-label='Blog recent posts navigation']):not(:has(> .col--2))
+    > main.col--7 {
+    flex: 0 0 82%;
+    max-width: 82%;
+  }
 }
 
 /* List-view post titles (the blog feed / home page cards) render as h2 at
