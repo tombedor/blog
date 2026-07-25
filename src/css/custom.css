@@ -80,6 +80,26 @@ article.margin-bottom--xl header h2 {
   font-size: 1.5rem;
 }
 
+/* Footnote reference popover (see footnotePopovers.ts) — shows the footnote
+   text near the marker instead of jumping to the bottom of the post. */
+.footnote-popover {
+  position: absolute;
+  z-index: 1000;
+  max-width: min(360px, calc(100vw - 2rem));
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  box-shadow: var(--ifm-global-shadow-md);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.footnote-popover p {
+  margin: 0;
+}
+
 /* Markdown footnotes render as a bare "Footnotes" heading with no visual
    break from the article body above it. Add a rule generically so every
    post gets it without touching individual post files. */

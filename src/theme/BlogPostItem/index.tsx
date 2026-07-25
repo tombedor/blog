@@ -3,6 +3,7 @@ import OriginalBlogPostItem from '@theme-original/BlogPostItem';
 import type BlogPostItemType from '@theme/BlogPostItem';
 import type {WrapperProps} from '@docusaurus/types';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
+import {initFootnotePopovers} from './footnotePopovers';
 
 type Props = WrapperProps<typeof BlogPostItemType>;
 
@@ -63,8 +64,22 @@ function useReadDepthTracking(enabled: boolean, slug: string | undefined) {
   }, [enabled, slug]);
 }
 
+function useFootnotePopovers(enabled: boolean) {
+  useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+    const article = document.querySelector<HTMLElement>('.markdown');
+    if (!article) {
+      return;
+    }
+    return initFootnotePopovers(article);
+  }, [enabled]);
+}
+
 export default function BlogPostItemWrapper(props: Props): React.JSX.Element {
   const {isBlogPostPage, metadata} = useBlogPost();
   useReadDepthTracking(isBlogPostPage, metadata.permalink);
+  useFootnotePopovers(isBlogPostPage);
   return <OriginalBlogPostItem {...props} />;
 }
