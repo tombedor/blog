@@ -64,7 +64,7 @@ function useReadDepthTracking(enabled: boolean, slug: string | undefined) {
   }, [enabled, slug]);
 }
 
-function useFootnotePopovers(enabled: boolean) {
+function useFootnotePopovers(enabled: boolean, slug: string | undefined) {
   useEffect(() => {
     if (!enabled) {
       return;
@@ -73,13 +73,13 @@ function useFootnotePopovers(enabled: boolean) {
     if (!article) {
       return;
     }
-    return initFootnotePopovers(article);
-  }, [enabled]);
+    return initFootnotePopovers(article, slug);
+  }, [enabled, slug]);
 }
 
 export default function BlogPostItemWrapper(props: Props): React.JSX.Element {
   const {isBlogPostPage, metadata} = useBlogPost();
   useReadDepthTracking(isBlogPostPage, metadata.permalink);
-  useFootnotePopovers(isBlogPostPage);
+  useFootnotePopovers(isBlogPostPage, metadata.permalink);
   return <OriginalBlogPostItem {...props} />;
 }
