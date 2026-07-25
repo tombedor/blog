@@ -102,6 +102,10 @@ export-diagrams:
 screenshots:
 	node scripts/screenshot-pages.mjs
 
+# Build and run the Playwright test suite
+test:
+	npm test
+
 # Create a draft test newsletter for a specific post
 newsletter-test post:
 	node ./scripts/send-newsletter.mjs test "{{post}}"

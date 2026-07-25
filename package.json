@@ -14,7 +14,9 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "dual-publish": "node dual-publish.js",
-    "screenshots": "node scripts/screenshot-pages.mjs"
+    "screenshots": "node scripts/screenshot-pages.mjs",
+    "pretest": "npm run build",
+    "test": "playwright test"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.1",
@@ -30,6 +32,7 @@
     "@docusaurus/module-type-aliases": "3.9.1",
     "@docusaurus/tsconfig": "3.9.1",
     "@docusaurus/types": "3.9.1",
+    "@playwright/test": "^1.48.0",
     "baseline-browser-mapping": "^2.10.33",
     "playwright": "^1.48.0",
     "typescript": "~5.6.2"
