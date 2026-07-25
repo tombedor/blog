@@ -10,6 +10,7 @@ import {
   Dot,
 } from 'recharts';
 import { parseCsv } from './csv';
+import useChartColors from './useChartColors';
 
 type Row = {
   frontier: string;
@@ -25,6 +26,7 @@ const CustomTooltip = ({ active, payload }: any) => {
       <div
         style={{
           background: '#fff',
+          color: '#212529',
           border: '1px solid #dee2e6',
           borderRadius: 6,
           padding: '10px 14px',
@@ -53,6 +55,7 @@ function formatReleaseLabel(dateStr: string): string {
 }
 
 export default function ParityLagOverTimeChart() {
+  const colors = useChartColors();
   const [data, setData] = useState<Row[]>([]);
 
   useEffect(() => {
@@ -85,26 +88,26 @@ export default function ParityLagOverTimeChart() {
   }, []);
 
   if (data.length === 0) {
-    return <div style={{ margin: '2rem 0', color: '#868e96' }}>Loading chart…</div>;
+    return <div style={{ margin: '2rem 0', color: colors.axisLabel }}>Loading chart…</div>;
   }
 
   return (
     <div style={{ margin: '2rem 0' }}>
       <ResponsiveContainer width="100%" height={320}>
         <LineChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 40 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={colors.grid} />
           <XAxis
             dataKey="release"
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: colors.axisLabel }}
             interval={0}
           />
           <YAxis
-            label={{ value: 'Months to parity', angle: -90, position: 'insideLeft', offset: 10, style: { fontSize: 12, fill: '#868e96' } }}
+            label={{ value: 'Months to parity', angle: -90, position: 'insideLeft', offset: 10, style: { fontSize: 12, fill: colors.axisLabel } }}
             domain={[0, 18]}
             ticks={[0, 4, 8, 12, 16]}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: colors.axisLabel }}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ced4da' }} />
+          <Tooltip content={<CustomTooltip />} cursor={{ stroke: colors.cursor }} />
           <Line
             type="monotone"
             dataKey="months"

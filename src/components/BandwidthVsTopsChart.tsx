@@ -10,6 +10,7 @@ import {
   Legend,
 } from 'recharts';
 import { parseCsv } from './csv';
+import useChartColors from './useChartColors';
 
 type Row = {
   year: number;
@@ -34,6 +35,7 @@ const CustomTooltip = ({ active, payload }: any) => {
       <div
         style={{
           background: '#fff',
+          color: '#212529',
           border: '1px solid #dee2e6',
           borderRadius: 6,
           padding: '10px 14px',
@@ -51,6 +53,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 };
 
 export default function BandwidthVsTopsChart() {
+  const colors = useChartColors();
   const [data, setData] = useState<Row[]>([]);
 
   useEffect(() => {
@@ -84,32 +87,32 @@ export default function BandwidthVsTopsChart() {
   }, []);
 
   if (data.length === 0) {
-    return <div style={{ margin: '2rem 0', color: '#868e96' }}>Loading chart…</div>;
+    return <div style={{ margin: '2rem 0', color: colors.axisLabel }}>Loading chart…</div>;
   }
 
   return (
     <div style={{ margin: '2rem 0' }}>
       <ResponsiveContainer width="100%" height={320}>
         <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 40 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
-          <XAxis dataKey="year" tick={{ fontSize: 12 }} interval={0} />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={colors.grid} />
+          <XAxis dataKey="year" tick={{ fontSize: 12, fill: colors.axisLabel }} interval={0} />
           <YAxis
             yAxisId="left"
-            label={{ value: 'Memory bandwidth (GB/s)', angle: -90, position: 'insideLeft', offset: 10, style: { fontSize: 12, fill: '#868e96' } }}
+            label={{ value: 'Memory bandwidth (GB/s)', angle: -90, position: 'insideLeft', offset: 10, style: { fontSize: 12, fill: colors.axisLabel } }}
             domain={[0, 70]}
             ticks={[0, 20, 40, 60]}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: colors.axisLabel }}
           />
           <YAxis
             yAxisId="right"
             orientation="right"
-            label={{ value: 'Neural Engine TOPS', angle: 90, position: 'insideRight', offset: 10, style: { fontSize: 12, fill: '#868e96' } }}
+            label={{ value: 'Neural Engine TOPS', angle: 90, position: 'insideRight', offset: 10, style: { fontSize: 12, fill: colors.axisLabel } }}
             domain={[0, 20]}
             ticks={[0, 5, 10, 15, 20]}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: colors.axisLabel }}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ced4da' }} />
-          <Legend verticalAlign="top" height={24} />
+          <Tooltip content={<CustomTooltip />} cursor={{ stroke: colors.cursor }} />
+          <Legend verticalAlign="top" height={24} wrapperStyle={{ color: colors.muted }} />
           <Line yAxisId="left" type="monotone" dataKey="bandwidth" stroke="#2f9e44" strokeWidth={2} dot={{ r: 3 }} name="Bandwidth" />
           <Line yAxisId="right" type="monotone" dataKey="tops" stroke="#f59f00" strokeWidth={2} dot={{ r: 3 }} name="Neural Engine TOPS" />
         </LineChart>
