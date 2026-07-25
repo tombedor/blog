@@ -33,6 +33,31 @@
   container-type: inline-size;
 }
 
+/* Keep the "Recent posts" list in view instead of scrolling out and leaving
+   the rest of the column empty on long posts / the paginated list. */
+nav[aria-label='Blog recent posts navigation'] {
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 2rem);
+  max-height: calc(100vh - var(--ifm-navbar-height) - 4rem);
+  overflow-y: auto;
+}
+
+/* Diagrams are white-background PNG exports from Excalidraw. In dark mode,
+   give them a light card so they read as intentional figures rather than
+   glaring white rectangles against the dark page. */
+[data-theme='dark'] .markdown img {
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+[data-theme='dark'] .screenshot-carousel img,
+[data-theme='dark'] .screenshot-single img {
+  background: none;
+  border-radius: 8px;
+  padding: 0;
+}
+
 @media (min-width: 997px) {
   #__blog-post-container img[src*='/assets/images/chart-'] {
     display: block;
