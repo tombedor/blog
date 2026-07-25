@@ -3,7 +3,7 @@
 // on them and show the footnote text in a small popover near the marker
 // instead — the link's href/id stay intact, so this degrades gracefully to
 // the normal jump-to-anchor behavior if JS doesn't run.
-export function initFootnotePopovers(root: ParentNode): () => void {
+export function initFootnotePopovers(root: ParentNode, slug?: string): () => void {
   const refs = Array.from(
     root.querySelectorAll<HTMLAnchorElement>('a[data-footnote-ref="true"]'),
   );
@@ -57,6 +57,11 @@ export function initFootnotePopovers(root: ParentNode): () => void {
     ref.setAttribute('aria-expanded', 'true');
     activePopover = popover;
     activeRef = ref;
+
+    window.umami?.track('footnote-click', {
+      slug: slug ?? '',
+      footnote: ref.textContent?.trim() ?? '',
+    });
   }
 
   function onRefClick(event: MouseEvent) {

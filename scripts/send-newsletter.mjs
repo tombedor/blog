@@ -318,8 +318,13 @@ async function getSiteUrl() {
   return 'https://tombedor.dev';
 }
 
-function buildPostUrl(siteUrl, slug) {
-  return `${siteUrl}/${slug.replace(/^\/+|\/+$/g, '')}/`;
+function buildPostUrl(siteUrl, slug, utmParams) {
+  const url = `${siteUrl}/${slug.replace(/^\/+|\/+$/g, '')}/`;
+  if (!utmParams) {
+    return url;
+  }
+  const query = new URLSearchParams(utmParams).toString();
+  return `${url}?${query}`;
 }
 
 function buildReadMoreCta(postUrl) {
@@ -465,7 +470,14 @@ async function main() {
 
   const slug = String(frontmatter.slug || path.basename(postPath).replace(/\.(md|mdx)$/, ''));
   const siteUrl = await getSiteUrl();
-  const postUrl = buildPostUrl(siteUrl, slug);
+  // Tags click-throughs so Umami can attribute the resulting site visit to
+  // this newsletter campaign (Umami parses utm_* params automatically —
+  // no site-side changes needed to pick these up).
+  const postUrl = buildPostUrl(siteUrl, slug, {
+    utm_source: 'newsletter',
+    utm_medium: 'email',
+    utm_campaign: slug,
+  });
   const newsletterMode = getNewsletterMode(frontmatter);
   const newsletterBody = sanitizePostBody(body, siteUrl, {newsletterMode});
   if (!newsletterBody) {

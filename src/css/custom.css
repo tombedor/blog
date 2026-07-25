@@ -100,12 +100,35 @@ article.margin-bottom--xl header h2 {
   margin: 0;
 }
 
-/* Markdown footnotes render as a bare "Footnotes" heading with no visual
-   break from the article body above it. Add a rule generically so every
-   post gets it without touching individual post files. */
+/* Footnotes now show in a popover near the reference (footnotePopovers.ts),
+   so the numbered list at the bottom of the post is redundant for readers
+   with JS enabled. Visually hide it by default — but footnotePopovers.ts
+   still reads its content, and this stays a working fallback: if JS
+   doesn't run, the reference link's normal href jump lands on a footnote
+   here and :has(:target) reveals the whole section so the jump is
+   actually visible instead of landing on invisible content. */
 .footnotes {
-  margin-top: 3rem;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.footnotes:has(:target) {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 3rem 0 0;
   padding-top: 1.5rem;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  border: 0;
   border-top: 1px solid var(--ifm-color-emphasis-300);
 }
 
