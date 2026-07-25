@@ -135,6 +135,7 @@ See the `Justfile` for common development and deployment commands:
 - `just dual-publish` - Sync blog posts to Elroy project
 - `just export-diagrams` - Export all excalidraw diagrams to PNG (with caching)
 - `just screenshots` - Build, serve, and screenshot every page (desktop + mobile) to `screenshots/` for design review
+- `just test` - Build and run the Playwright test suite (`tests/`)
 
 You can also use npm scripts directly:
 - `npm start` - Start development server
@@ -142,6 +143,7 @@ You can also use npm scripts directly:
 - `npm run typecheck` - Run TypeScript type checking
 - `npm run dual-publish` - Sync blog posts to Elroy project
 - `npm run screenshots` - Same as `just screenshots`
+- `npm test` - Same as `just test`. Set `CHROMIUM_PATH` to an existing Chromium/Chrome binary if `npx playwright install chromium` hasn't been run.
 
 Diagram export script usage:
 - `./scripts/excalidraw-export.sh -r static/diagrams` - Export all diagrams (skips unchanged)
