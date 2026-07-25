@@ -84,6 +84,12 @@ article.margin-bottom--xl header h2 {
   font-size: 1.5rem;
 }
 
+article.margin-bottom--xl {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  margin-bottom: 2rem !important;
+}
+
 /* Footnote reference popover (see footnotePopovers.ts) — shows the footnote
    text near the marker instead of jumping to the bottom of the post. */
 .footnote-popover {
