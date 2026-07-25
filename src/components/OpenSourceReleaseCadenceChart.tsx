@@ -11,6 +11,7 @@ import {
   LabelList,
 } from 'recharts';
 import { parseCsv } from './csv';
+import useChartColors from './useChartColors';
 
 type Row = {
   model: string;
@@ -44,6 +45,7 @@ const CustomTooltip = ({ active, payload }: any) => {
     <div
       style={{
         background: '#fff',
+        color: '#212529',
         border: '1px solid #dee2e6',
         borderRadius: 6,
         padding: '10px 14px',
@@ -82,6 +84,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 
 // Rotated label rendered above each bar
 const BarLabel = (props: any) => {
+  const colors = useChartColors();
   const { x, y, width, value } = props;
   const cx = x + width / 2;
   const cy = y - 6;
@@ -92,7 +95,7 @@ const BarLabel = (props: any) => {
       transform={`rotate(-70, ${cx}, ${cy})`}
       textAnchor="start"
       fontSize={10}
-      fill="#495057"
+      fill={colors.muted}
     >
       {value}
     </text>
@@ -100,6 +103,7 @@ const BarLabel = (props: any) => {
 };
 
 export default function OpenSourceReleaseCadenceChart() {
+  const colors = useChartColors();
   const [data, setData] = useState<Row[]>([]);
 
   useEffect(() => {
@@ -136,7 +140,7 @@ export default function OpenSourceReleaseCadenceChart() {
   }, []);
 
   if (data.length === 0) {
-    return <div style={{ margin: '2rem 0', color: '#868e96' }}>Loading chart…</div>;
+    return <div style={{ margin: '2rem 0', color: colors.axisLabel }}>Loading chart…</div>;
   }
 
   const labs = [...new Set(data.map((d) => d.lab))];
@@ -145,7 +149,7 @@ export default function OpenSourceReleaseCadenceChart() {
     <div style={{ margin: '2rem 0' }}>
       <ResponsiveContainer width="100%" height={420}>
         <BarChart data={data} margin={{ top: 100, right: 30, left: 0, bottom: 10 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={colors.grid} />
           <XAxis
             dataKey="date"
             type="number"
@@ -156,7 +160,7 @@ export default function OpenSourceReleaseCadenceChart() {
             ]}
             ticks={YEAR_TICKS}
             tickFormatter={(v) => new Date(v).getFullYear().toString()}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: colors.axisLabel }}
           />
           <YAxis
             label={{
@@ -164,13 +168,13 @@ export default function OpenSourceReleaseCadenceChart() {
               angle: -90,
               position: 'insideLeft',
               offset: 10,
-              style: { fontSize: 12, fill: '#868e96' },
+              style: { fontSize: 12, fill: colors.axisLabel },
             }}
             domain={[0, 700]}
             ticks={[0, 100, 200, 300, 400, 500, 600, 700]}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: colors.axisLabel }}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(128,128,128,0.15)' }} />
           <Bar dataKey="parametersTotal" barSize={14} radius={[3, 3, 0, 0]}>
             {data.map((entry, i) => (
               <Cell key={i} fill={LAB_COLORS[entry.lab] ?? '#868e96'} />
@@ -192,7 +196,7 @@ export default function OpenSourceReleaseCadenceChart() {
         {labs.map((lab) => (
           <span
             key={lab}
-            style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#495057' }}
+            style={{ display: 'flex', alignItems: 'center', gap: 5, color: colors.muted }}
           >
             <span
               style={{

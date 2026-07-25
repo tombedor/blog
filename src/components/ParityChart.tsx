@@ -11,6 +11,7 @@ import {
   LabelList,
   ResponsiveContainer,
 } from 'recharts';
+import useChartColors from './useChartColors';
 
 const data = [
   { model: 'GPT-3.5', provider: 'OpenAI', months: 9, osModel: 'Llama 2 70B', date: 'Nov 2022' },
@@ -32,6 +33,7 @@ const CustomTooltip = ({ active, payload }: any) => {
     return (
       <div style={{
         background: '#fff',
+        color: '#212529',
         border: '1px solid #dee2e6',
         borderRadius: 6,
         padding: '10px 14px',
@@ -48,42 +50,46 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-const CustomLabel = ({ x, y, width, value }: any) => (
-  <text
-    x={x + width / 2}
-    y={y - 6}
-    fill="#868e96"
-    textAnchor="middle"
-    fontSize={11}
-  >
-    {value}
-  </text>
-);
+const CustomLabel = ({ x, y, width, value }: any) => {
+  const colors = useChartColors();
+  return (
+    <text
+      x={x + width / 2}
+      y={y - 6}
+      fill={colors.axisLabel}
+      textAnchor="middle"
+      fontSize={11}
+    >
+      {value}
+    </text>
+  );
+};
 
 export default function ParityChart() {
+  const colors = useChartColors();
   return (
     <div style={{ margin: '2rem 0' }}>
-      <div style={{ textAlign: 'center', fontWeight: 600, fontSize: 14, marginBottom: 8, color: '#212529' }}>
+      <div style={{ textAlign: 'center', fontWeight: 600, fontSize: 14, marginBottom: 8, color: colors.text }}>
         Months to open source parity with frontier models
       </div>
       <ResponsiveContainer width="100%" height={380}>
         <BarChart data={data} margin={{ top: 30, right: 20, left: 0, bottom: 60 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={colors.grid} />
           <XAxis
             dataKey="model"
-            tick={{ fontSize: 13, dy: 17 }}
+            tick={{ fontSize: 13, dy: 17, fill: colors.axisLabel }}
             interval={0}
             angle={-25}
             textAnchor="end"
             height={70}
           />
           <YAxis
-            label={{ value: 'Months to parity', angle: -90, position: 'insideLeft', dy: 30, offset: 10, style: { fontSize: 12, fill: '#868e96' } }}
+            label={{ value: 'Months to parity', angle: -90, position: 'insideLeft', dy: 30, offset: 10, style: { fontSize: 12, fill: colors.axisLabel } }}
             domain={[0, 18]}
             ticks={[0, 4, 8, 12, 16]}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: colors.axisLabel }}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.04)' }} />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(128,128,128,0.15)' }} />
           <Bar dataKey="months" radius={[3, 3, 0, 0]}>
             <LabelList dataKey="osModel" content={<CustomLabel />} />
             {data.map((entry, index) => (
@@ -92,7 +98,7 @@ export default function ParityChart() {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-      <div style={{ display: 'flex', gap: 20, justifyContent: 'center', fontSize: 13, color: '#495057' }}>
+      <div style={{ display: 'flex', gap: 20, justifyContent: 'center', fontSize: 13, color: colors.muted }}>
         <span><span style={{ display: 'inline-block', width: 12, height: 12, background: COLORS.OpenAI, borderRadius: 2, marginRight: 5, verticalAlign: 'middle' }} />OpenAI</span>
         <span><span style={{ display: 'inline-block', width: 12, height: 12, background: COLORS.Anthropic, borderRadius: 2, marginRight: 5, verticalAlign: 'middle' }} />Anthropic</span>
       </div>

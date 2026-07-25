@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { parseCsv } from './csv';
+import useChartColors from './useChartColors';
 
 type Row = {
   deviceModel: string;
@@ -39,8 +40,10 @@ const LegendItem = ({
   color: string;
   label: string;
   dashed?: boolean;
-}) => (
-  <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#495057' }}>
+}) => {
+  const colors = useChartColors();
+  return (
+  <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: colors.muted }}>
     <svg width="24" height="14">
       <line
         x1="0"
@@ -58,7 +61,8 @@ const LegendItem = ({
     </svg>
     {label}
   </span>
-);
+  );
+};
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
@@ -74,6 +78,7 @@ const CustomTooltip = ({ active, payload }: any) => {
     <div
       style={{
         background: '#fff',
+        color: '#212529',
         border: '1px solid #dee2e6',
         borderRadius: 6,
         padding: '10px 14px',
@@ -100,6 +105,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 };
 
 export default function MaxUsableModelChart() {
+  const colors = useChartColors();
   const [chartData, setChartData] = useState<ChartPoint[]>([]);
 
   useEffect(() => {
@@ -164,18 +170,18 @@ export default function MaxUsableModelChart() {
   }, []);
 
   if (chartData.length === 0) {
-    return <div style={{ margin: '2rem 0', color: '#868e96' }}>Loading chart…</div>;
+    return <div style={{ margin: '2rem 0', color: colors.axisLabel }}>Loading chart…</div>;
   }
 
   return (
     <div style={{ margin: '2rem 0' }}>
-      <div style={{ textAlign: 'center', fontWeight: 600, fontSize: 14, marginBottom: 8, color: '#212529' }}>
+      <div style={{ textAlign: 'center', fontWeight: 600, fontSize: 14, marginBottom: 8, color: colors.text }}>
         Max usable model by device
       </div>
       <ResponsiveContainer width="100%" height={360}>
         <LineChart data={chartData} margin={{ top: 20, right: 20, left: 0, bottom: 40 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
-          <XAxis dataKey="year" tick={{ fontSize: 12 }} interval={0} />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={colors.grid} />
+          <XAxis dataKey="year" tick={{ fontSize: 12, fill: colors.axisLabel }} interval={0} />
           <YAxis
             label={{
               value: 'Max usable model (B params)',
@@ -183,13 +189,13 @@ export default function MaxUsableModelChart() {
               position: 'insideLeft',
               dy: 75,
               offset: 10,
-              style: { fontSize: 12, fill: '#868e96' },
+              style: { fontSize: 12, fill: colors.axisLabel },
             }}
             domain={[0, 140]}
             ticks={[0, 10, 20, 30, 40, 50, 60, 80, 100, 120, 140]}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: colors.axisLabel }}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ced4da' }} />
+          <Tooltip content={<CustomTooltip />} cursor={{ stroke: colors.cursor }} />
           <Line
             type="monotone"
             dataKey="macbookConfirmed"
