@@ -79,6 +79,7 @@ services:
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./elroy-docs:/srv/elroy-docs:ro
+      - ./blog-preview:/srv/blog-preview:ro
       - caddy_data:/data
       - caddy_config:/config
     networks:
