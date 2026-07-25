@@ -85,9 +85,9 @@ article.margin-bottom--xl header h2 {
 }
 
 article.margin-bottom--xl {
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
-  margin-bottom: 2rem !important;
+  margin-bottom: 1.5rem !important;
 }
 
 /* Footnote reference popover (see footnotePopovers.ts) — shows the footnote
