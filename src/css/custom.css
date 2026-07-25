@@ -42,6 +42,35 @@ nav[aria-label='Blog recent posts navigation'] {
   overflow-y: auto;
 }
 
+/* The "Recent posts" sidebar uses Infima's 3/12-column grid, sized for a
+   docs-style layout. That's more width than a list of post titles needs,
+   especially now that it's sticky and stays on screen the whole time.
+   Narrow it and give the freed width to the article/feed column. Scoped
+   via :has() to rows containing the blog sidebar specifically, so this
+   doesn't affect the generic .col--N grid classes used elsewhere. */
+.row:has(nav[aria-label='Blog recent posts navigation']) > aside.col--3 {
+  flex: 0 0 18%;
+  max-width: 18%;
+}
+
+/* Post pages: sidebar + article + page TOC (3 columns) */
+.row:has(nav[aria-label='Blog recent posts navigation']):has(> .col--2) > main.col--7 {
+  flex: 0 0 65%;
+  max-width: 65%;
+}
+.row:has(nav[aria-label='Blog recent posts navigation']) > .col--2 {
+  flex: 0 0 17%;
+  max-width: 17%;
+}
+
+/* Blog list / archive pages: sidebar + feed only (2 columns) — let the feed
+   fill the rest instead of leaving a quarter of the row empty. */
+.row:has(nav[aria-label='Blog recent posts navigation']):not(:has(> .col--2))
+  > main.col--7 {
+  flex: 0 0 82%;
+  max-width: 82%;
+}
+
 /* Diagrams are white-background PNG exports from Excalidraw. In dark mode,
    give them a light card so they read as intentional figures rather than
    glaring white rectangles against the dark page. */

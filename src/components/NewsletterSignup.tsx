@@ -7,9 +7,17 @@ const LIST_UUID = '0e2a0310-73c6-4ad5-97e8-75611a164bc7';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
-export default function NewsletterSignup(): React.JSX.Element {
+type Props = {
+  // Lighter-weight presentation for contexts where the form repeats often
+  // (e.g. the bottom of every post) rather than being the point of the page
+  // (e.g. /subscribe, /about).
+  compact?: boolean;
+};
+
+export default function NewsletterSignup({compact = false}: Props): React.JSX.Element {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<Status>('idle');
+  const s = compact ? compactStyles : styles;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,16 +47,16 @@ export default function NewsletterSignup(): React.JSX.Element {
 
   if (status === 'success') {
     return (
-      <div style={styles.container}>
-        <p style={styles.heading}>You're subscribed!</p>
+      <div style={s.container}>
+        <p style={s.heading}>You're subscribed!</p>
       </div>
     );
   }
 
   return (
-    <div style={styles.container}>
-      <p style={styles.heading}>Get new posts by email</p>
-      <form onSubmit={handleSubmit} style={styles.form}>
+    <div style={s.container}>
+      <p style={s.heading}>Get new posts by email</p>
+      <form onSubmit={handleSubmit} style={s.form}>
         <input
           type="email"
           value={email}
@@ -56,14 +64,14 @@ export default function NewsletterSignup(): React.JSX.Element {
           placeholder="you@example.com"
           required
           disabled={status === 'loading'}
-          style={styles.input}
+          style={s.input}
         />
-        <button type="submit" disabled={status === 'loading'} style={styles.button}>
+        <button type="submit" disabled={status === 'loading'} style={s.button}>
           {status === 'loading' ? 'Subscribing…' : 'Subscribe'}
         </button>
       </form>
       {status === 'error' && (
-        <p style={styles.error}>Something went wrong — please try again.</p>
+        <p style={s.error}>Something went wrong — please try again.</p>
       )}
     </div>
   );
@@ -108,5 +116,20 @@ const styles: Record<string, React.CSSProperties> = {
     marginTop: '0.5rem',
     color: 'var(--ifm-color-danger)',
     fontSize: '0.9rem',
+  },
+};
+
+const compactStyles: Record<string, React.CSSProperties> = {
+  ...styles,
+  container: {
+    padding: '0',
+    border: 'none',
+    background: 'none',
+  },
+  heading: {
+    margin: '0 0 0.5rem',
+    fontWeight: 600,
+    fontSize: '0.95rem',
+    color: 'var(--ifm-color-emphasis-700)',
   },
 };

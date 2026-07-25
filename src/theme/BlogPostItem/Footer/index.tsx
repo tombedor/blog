@@ -15,8 +15,8 @@ export default function FooterWrapper(props: Props): React.JSX.Element {
   return (
     <>
       {isBlogPostPage && (
-        <div style={{marginBottom: '2.5rem'}}>
-          <NewsletterSignup />
+        <div style={{marginBottom: '1.5rem'}}>
+          <NewsletterSignup compact />
         </div>
       )}
       <Footer {...props} />
