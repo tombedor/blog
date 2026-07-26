@@ -1,3 +1,5 @@
+import {track} from '@site/src/analytics';
+
 // Footnote references normally jump the page to an anchor at the very
 // bottom of the post, which loses your reading position. Intercept clicks
 // on them and show the footnote text in a small popover near the marker
@@ -58,7 +60,7 @@ export function initFootnotePopovers(root: ParentNode, slug?: string): () => voi
     activePopover = popover;
     activeRef = ref;
 
-    window.umami?.track('footnote-click', {
+    track('footnote-click', {
       slug: slug ?? '',
       footnote: ref.textContent?.trim() ?? '',
     });

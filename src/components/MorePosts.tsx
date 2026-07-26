@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {usePluginData} from '@docusaurus/useGlobalData';
+import {track} from '@site/src/analytics';
 
 type SidebarItem = {title: string; permalink: string; unlisted: boolean};
 type BlogSidebarData = {items: SidebarItem[]};
@@ -27,7 +28,7 @@ export default function MorePosts({currentPermalink}: {currentPermalink: string}
   useEffect(() => {
     if (picks.length === 0) return;
     picks.forEach((post, i) => {
-      window.umami?.track('post-suggestion-shown', {
+      track('post-suggestion-shown', {
         source: currentPermalink,
         slug: post.permalink,
         position: i + 1,
@@ -46,7 +47,7 @@ export default function MorePosts({currentPermalink}: {currentPermalink: string}
             <a
               href={post.permalink}
               onClick={() => {
-                window.umami?.track('post-suggestion-click', {
+                track('post-suggestion-click', {
                   source: currentPermalink,
                   slug: post.permalink,
                   position: i + 1,

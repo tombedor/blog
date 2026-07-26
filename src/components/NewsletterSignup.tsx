@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {track} from '@site/src/analytics';
 
 // After setting up Listmonk, get the list UUID from:
 // Settings → Lists → your list → copy the UUID
@@ -36,7 +37,7 @@ export default function NewsletterSignup({compact = false}: Props): React.JSX.El
       if (res.ok) {
         setStatus('success');
         setEmail('');
-        window.umami?.track('email-subscribe');
+        track('email-subscribe');
       } else {
         setStatus('error');
       }
