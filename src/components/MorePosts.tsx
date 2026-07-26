@@ -15,7 +15,9 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 export default function MorePosts({currentPermalink}: {currentPermalink: string}): React.JSX.Element | null {
-  const {items} = usePluginData('docusaurus-plugin-content-blog') as BlogSidebarData;
+  // usePluginData returns undefined during SSR — picks are populated client-side anyway
+  const data = usePluginData('docusaurus-plugin-content-blog') as BlogSidebarData | undefined;
+  const items = data?.items ?? [];
   const [picks, setPicks] = useState<SidebarItem[]>([]);
 
   // Randomize client-side only to avoid SSR hydration mismatch
