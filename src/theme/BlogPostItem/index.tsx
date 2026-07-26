@@ -4,6 +4,7 @@ import type BlogPostItemType from '@theme/BlogPostItem';
 import type {WrapperProps} from '@docusaurus/types';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
 import {initFootnotePopovers} from './footnotePopovers';
+import {track} from '@site/src/analytics';
 
 type Props = WrapperProps<typeof BlogPostItemType>;
 
@@ -38,7 +39,7 @@ function useReadDepthTracking(enabled: boolean, slug: string | undefined) {
       for (const threshold of READ_THRESHOLDS) {
         if (percent >= threshold && !fired.has(threshold)) {
           fired.add(threshold);
-          window.umami?.track('post-read', {percent: threshold, slug});
+          track('post-read', {percent: threshold, slug});
         }
       }
 
