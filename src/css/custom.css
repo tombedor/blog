@@ -75,6 +75,14 @@ nav[aria-label='Blog recent posts navigation'] {
   }
 }
 
+/* On post pages the sidebar is hidden, so Docusaurus widens the article to
+   col--9 (~75% of container). Cap the prose at a comfortable line length. */
+@media (min-width: 997px) {
+  .col--9.col--offset-1 .markdown {
+    max-width: 72ch;
+  }
+}
+
 /* List-view post titles (the blog feed / home page cards) render as h2 at
    Infima's full heading size, which reads oversized repeated down a long
    feed. The individual post page's own h1 title is untouched — this only
