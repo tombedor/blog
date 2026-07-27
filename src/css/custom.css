@@ -76,9 +76,10 @@ nav[aria-label='Blog recent posts navigation'] {
 }
 
 /* On post pages the sidebar is hidden, so Docusaurus widens the article to
-   col--9 (~75% of container). Cap the prose at a comfortable line length. */
+   col--9 (~75% of container). Cap the whole article at a comfortable line
+   length so title and body are consistently narrow. */
 @media (min-width: 997px) {
-  .col--9.col--offset-1 .markdown {
+  .col--9.col--offset-1 article {
     max-width: 72ch;
   }
 }
