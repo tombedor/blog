@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {usePluginData} from '@docusaurus/useGlobalData';
+import {useBlogSidebarItems} from '@site/src/BlogSidebarContext';
 import {track} from '@site/src/analytics';
 
-type SidebarItem = {title: string; permalink: string; unlisted: boolean};
-type BlogSidebarData = {items: SidebarItem[]};
+type SidebarItem = {title: string; permalink: string};
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -15,14 +14,12 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 export default function MorePosts({currentPermalink}: {currentPermalink: string}): React.JSX.Element | null {
-  // usePluginData returns undefined during SSR — picks are populated client-side anyway
-  const data = usePluginData('docusaurus-plugin-content-blog') as BlogSidebarData | undefined;
-  const items = data?.items ?? [];
+  const items = useBlogSidebarItems();
   const [picks, setPicks] = useState<SidebarItem[]>([]);
 
   // Randomize client-side only to avoid SSR hydration mismatch
   useEffect(() => {
-    const eligible = items.filter(p => !p.unlisted && p.permalink !== currentPermalink);
+    const eligible = items.filter(p => p.permalink !== currentPermalink);
     setPicks(shuffle(eligible).slice(0, 3));
   }, [items, currentPermalink]);
 
