@@ -10,8 +10,8 @@ if ! git rev-parse --git-dir > /dev/null 2>&1; then
     exit 1
 fi
 
-if ! git rev-parse --verify gh-pages > /dev/null 2>&1; then
-    echo -e "${YELLOW}Warning: gh-pages branch not found. Cannot detect new posts.${NC}"
+if ! git fetch origin gh-pages --quiet 2>/dev/null; then
+    echo -e "${YELLOW}Warning: could not fetch gh-pages. Cannot detect new posts.${NC}"
     echo "Proceeding with deployment..."
     exit 0
 fi
@@ -20,8 +20,9 @@ fi
 CURRENT_POSTS=$(git ls-files 'blog/*.md' 'blog/*.mdx' 2>/dev/null | sort)
 
 # gh-pages stores built HTML, not markdown. Each post is deployed as
-# <slug>/index.html at the root. Collect those slugs to detect what's live.
-DEPLOYED_SLUGS=$(git ls-tree -r --name-only gh-pages 2>/dev/null \
+# <slug>/index.html at the root. Use origin/gh-pages so we always
+# compare against what is actually live, not a stale local ref.
+DEPLOYED_SLUGS=$(git ls-tree -r --name-only origin/gh-pages 2>/dev/null \
     | grep -E '^[^/]+/index\.html$' \
     | sed 's|/index\.html$||' \
     | sort)
