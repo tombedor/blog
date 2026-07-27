@@ -8,11 +8,15 @@ import {BlogSidebarContext} from '@site/src/BlogSidebarContext';
 type Props = WrapperProps<typeof BlogLayoutType>;
 
 export default function BlogLayoutWrapper(props: Props): React.JSX.Element {
-  const {sidebar} = props as BlogLayoutProps;
-  const sidebarValue = sidebar ?? {items: [], title: ''};
+  const {sidebar, toc} = props as BlogLayoutProps;
+  const sidebarData = sidebar ?? {items: [], title: ''};
+  // Hide the sidebar on post pages (identified by presence of a TOC).
+  // MorePosts at the bottom handles cross-post discovery there.
+  // Always pass full data to context so MorePosts can still pick from all posts.
+  const displaySidebar = toc ? {items: [], title: ''} : sidebarData;
   return (
-    <BlogSidebarContext.Provider value={sidebarValue}>
-      <BlogLayout {...props} />
+    <BlogSidebarContext.Provider value={sidebarData}>
+      <BlogLayout {...props} sidebar={displaySidebar} />
     </BlogSidebarContext.Provider>
   );
 }
