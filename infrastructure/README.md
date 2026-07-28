@@ -103,7 +103,7 @@ If **NOT** using DigitalOcean DNS, manually create A records:
 1. Visit `https://newsletter.yourdomain.com`
 2. Complete the setup wizard
 3. Configure SMTP settings (see SMTP Setup below)
-4. Configure public production lists as double opt-in. The public subscription API is intentionally unauthenticated, so confirmation protects recipients and list quality from scripted submissions.
+4. Confirm the list's subscription policy. This blog intentionally uses a public single-opt-in list, so monitor submissions and list quality for automated abuse.
 
 ## 📧 SMTP Setup for Listmonk
 
