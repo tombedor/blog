@@ -28,9 +28,24 @@ variable "droplet_size" {
 }
 
 variable "ssh_allowed_ips" {
-  description = "Explicit CIDR ranges allowed to SSH; keep empty to expose no public SSH rule"
+  description = "Required, explicit CIDR ranges allowed to SSH"
   type        = list(string)
-  default     = []
+  nullable    = false
+
+  validation {
+    condition = (
+      length(var.ssh_allowed_ips) > 0 &&
+      alltrue([for cidr in var.ssh_allowed_ips : can(cidrhost(cidr, 0))])
+    )
+    error_message = "ssh_allowed_ips must contain at least one valid IPv4 or IPv6 CIDR so bootstrap access is not disabled."
+  }
+
+  validation {
+    condition = alltrue([
+      for cidr in var.ssh_allowed_ips : !contains(["0.0.0.0/0", "::/0"], cidr)
+    ])
+    error_message = "ssh_allowed_ips must not expose SSH globally; use explicit administrative CIDRs such as your current IP with /32."
+  }
 }
 
 variable "tags" {

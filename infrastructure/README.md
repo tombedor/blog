@@ -291,7 +291,7 @@ terraform destroy
 ## 🔒 Security Notes
 
 - The `.env` and `terraform.tfvars` files contain secrets and are gitignored
-- SSH has no allowed source by default; set `ssh_allowed_ips` to an explicit `/32` CIDR before deployment
+- Terraform requires at least one explicit `ssh_allowed_ips` CIDR and rejects global SSH rules, preventing both accidental lockout and public exposure
 - Change default Umami password immediately after deployment
 - Consider enabling DigitalOcean backups for production
 - Caddy automatically handles SSL certificate renewal
