@@ -105,12 +105,6 @@ article.margin-bottom--xl {
   display: none;
 }
 
-.blog-list-signup {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-300);
-}
-
 /* Footnote reference popover (see footnotePopovers.ts) — shows the footnote
    text near the marker instead of jumping to the bottom of the post. */
 .footnote-popover {

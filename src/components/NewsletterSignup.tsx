@@ -13,7 +13,7 @@ type Props = {
   // (e.g. the bottom of every post) rather than being the point of the page
   // (e.g. /subscribe, /about).
   compact?: boolean;
-  placement: 'about-page' | 'home-page' | 'post-footer' | 'subscribe-page';
+  placement: 'about-page' | 'post-footer' | 'subscribe-page';
 };
 
 export default function NewsletterSignup({compact = false, placement}: Props): React.JSX.Element {
