@@ -1,6 +1,8 @@
 ---
 title: My First Encounter With a Political Spambot
 date: 2026-06-26
+authors: [tom]
+image: /diagrams/political-spam/web.png
 newsletter: truncate
 ---
 
@@ -14,7 +16,7 @@ I had my first encounter with a political spambot this week: a polite robot name
 
 When I asked who she was, she first said she was with a group called "Friends for Peace," but her group's [website](https://allyvia.org/) is for an organization called Allyvia.
 
-<!-- truncate -->
+{/* truncate */}
 
 <a className="screenshot-single" href="/diagrams/political-spam/spam-01.png">
   <img src="/diagrams/political-spam/spam-01.png" alt="Emma says she is with Friends for Peace and links to Allyvia." />
@@ -78,7 +80,7 @@ Brad Parscale is (or was) a major MAGA figure: in 2016 he was the digital direct
 
 It's all pretty confusing!
 
-![web](/diagrams/political-spam/web.png)
+![Network of organizations and domains connected to the political text campaign](/diagrams/political-spam/web.png)
 
 ## Is this legal?[^2]
 

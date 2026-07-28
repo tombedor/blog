@@ -1,6 +1,8 @@
 ---
 title: The Arguments Against Open Source AI are Very Bad
 date: 2026-07-23
+authors: [tom]
+image: /diagrams/arguments-against-open-source-ai-are-very-bad/stack.png
 ---
 
 The release of Kimi K3 has opened a fresh round of angst and confused discourse. There's a loud cohort of journalists, business leaders, and politicians arguing that open source AI is a dangerous threat. OpenAI's [Dean Ball](https://x.com/deanwball/status/2078133895766114412):
@@ -9,7 +11,7 @@ The release of Kimi K3 has opened a fresh round of angst and confused discourse.
 
 Freely available AI for anyone? The horror!
 
-<!-- truncate -->
+{/* truncate */}
 
 Frontier labs' case against open source AI is essentially: Open source models[^1] are dangerous (_and un-American!_). We should open the AI Pandora's Box, but only with responsible gatekeepers (_toll collectors, preferably us!_). Only trusted users (_our most profitable customers_) should be able to use it.
 
@@ -25,7 +27,7 @@ Open source software is counterintuitive to people outside of the software indus
 
 A software program is a stack of programs, with each layer built on top of another. To build Uber, you need programming language frameworks, software to send and receive web traffic, data analysis tools, and countless other components. Most of these are not differentiators for a commercial enterprise, so it serves commercial actors to cooperate on lower components in the stack and compete on the higher level pieces that actually differentiate their products.
 
-![software stack](/diagrams/arguments-against-open-source-ai-are-very-bad/stack.png)
+![Proprietary software built on several shared open-source layers](/diagrams/arguments-against-open-source-ai-are-very-bad/stack.png)
 
 Frontier labs would _very much_ like AI models to _not_ fall into the category of "so commonplace that it doesn't make sense to compete on". Whether that happens remains to be seen.
 

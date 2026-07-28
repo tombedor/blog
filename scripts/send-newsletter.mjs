@@ -3,6 +3,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import {pathToFileURL} from 'node:url';
 
 const ROOT = process.cwd();
 const BLOG_DIR = path.join(ROOT, 'blog');
@@ -31,7 +32,7 @@ Optional environment:
   SITE_URL             Defaults to the Docusaurus site URL or https://tombedor.dev
 
 Optional frontmatter:
-  newsletter: truncate  Send only the content before <!-- truncate -->.
+  newsletter: truncate  Send only the content before {/* truncate */}.
                         Omit this field to send the full post.
 
 Campaigns are created as drafts and must be started from Listmonk after review.
@@ -169,30 +170,29 @@ function getNewsletterMode(frontmatter) {
   return mode;
 }
 
-function getNewsletterMarkdown(markdown, newsletterMode) {
+export function getNewsletterMarkdown(markdown, newsletterMode) {
   if (newsletterMode !== 'truncate') {
     return markdown;
   }
 
-  const parts = markdown.split(/<!--\s*truncate\s*-->/i);
+  const parts = markdown.split(/(?:<!--\s*truncate\s*-->|\{\/\*\s*truncate\s*\*\/\})/i);
   if (parts.length < 2) {
-    throw new Error('Post has newsletter: truncate but no <!-- truncate --> marker');
+    throw new Error('Post has newsletter: truncate but no {/* truncate */} marker');
   }
 
   return parts[0];
 }
 
-function sanitizePostBody(markdown, siteUrl, {newsletterMode = 'full'} = {}) {
+export function sanitizePostBody(markdown, siteUrl, {newsletterMode = 'full'} = {}) {
   const newsletterMarkdown = getNewsletterMarkdown(markdown, newsletterMode);
   const sanitized = normalizeMdxImageTags(newsletterMarkdown)
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/\{\/\*[\s\S]*?\*\/\}/g, '')
     .split(/\r?\n/)
     .filter((line) => {
       const trimmed = line.trim();
       if (!trimmed) {
         return true;
-      }
-      if (trimmed === '<!-- truncate -->') {
-        return false;
       }
       if (trimmed.startsWith('import ') || trimmed.startsWith('export ')) {
         return false;
@@ -532,7 +532,9 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exit(1);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}

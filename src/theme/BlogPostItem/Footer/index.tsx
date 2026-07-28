@@ -24,7 +24,7 @@ export default function FooterWrapper(props: Props): React.JSX.Element {
             paddingTop: '1.5rem',
             borderTop: '1px solid var(--ifm-color-emphasis-300)',
           }}>
-            <NewsletterSignup compact />
+            <NewsletterSignup compact placement="post-footer" />
           </div>
         </>
       )}

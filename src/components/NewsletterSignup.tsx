@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useId, useRef, useState} from 'react';
 import {track} from '@site/src/analytics';
 
 // After setting up Listmonk, get the list UUID from:
@@ -13,16 +13,40 @@ type Props = {
   // (e.g. the bottom of every post) rather than being the point of the page
   // (e.g. /subscribe, /about).
   compact?: boolean;
+  placement: 'about-page' | 'home-page' | 'post-footer' | 'subscribe-page';
 };
 
-export default function NewsletterSignup({compact = false}: Props): React.JSX.Element {
+export default function NewsletterSignup({compact = false, placement}: Props): React.JSX.Element {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<Status>('idle');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputId = useId();
   const s = compact ? compactStyles : styles;
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        track('email-subscribe-view', {placement});
+        observer.disconnect();
+      },
+      {threshold: 0.5},
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [placement]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    track('email-subscribe-attempt', {placement});
 
     try {
       const res = await fetch(`${LISTMONK_URL}/api/public/subscription`, {
@@ -37,28 +61,31 @@ export default function NewsletterSignup({compact = false}: Props): React.JSX.El
       if (res.ok) {
         setStatus('success');
         setEmail('');
-        track('email-subscribe');
+        track('email-subscribe', {placement});
       } else {
         setStatus('error');
+        track('email-subscribe-error', {placement, status: res.status});
       }
     } catch {
       setStatus('error');
+      track('email-subscribe-error', {placement, status: 'network'});
     }
   };
 
   if (status === 'success') {
     return (
-      <div style={s.container}>
+      <div ref={containerRef} style={s.container} role="status" aria-live="polite">
         <p style={s.heading}>You're subscribed!</p>
       </div>
     );
   }
 
   return (
-    <div style={s.container}>
-      <p style={s.heading}>Get new posts by email</p>
+    <div ref={containerRef} style={s.container}>
+      <label htmlFor={inputId} style={s.heading}>Get new posts by email</label>
       <form onSubmit={handleSubmit} style={s.form}>
         <input
+          id={inputId}
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -72,7 +99,7 @@ export default function NewsletterSignup({compact = false}: Props): React.JSX.El
         </button>
       </form>
       {status === 'error' && (
-        <p style={s.error}>Something went wrong — please try again.</p>
+        <p style={s.error} role="alert">Something went wrong — please try again.</p>
       )}
     </div>
   );
@@ -86,6 +113,7 @@ const styles: Record<string, React.CSSProperties> = {
     background: 'var(--ifm-background-surface-color)',
   },
   heading: {
+    display: 'block',
     margin: '0 0 0.75rem',
     fontWeight: 600,
   },

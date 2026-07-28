@@ -1,6 +1,7 @@
 ---
 title: "Advice for New Grads"
 date: 2024-02-02
+authors: [tom]
 dualPublish: false
 ---
 
@@ -12,7 +13,7 @@ As is the case with lots of tech writing, my advice will be skewed towards worki
 
 Other engineers with similar levels of experience as mine will disagree with some or all of it.
 
-<!-- truncate -->
+{/* truncate */}
 
 # The software jobs market
 The intention of this post is to be evergreen. The tech[^1] jobs market is more volitile than the rest of the economy, with higher highs and lower lows.

@@ -13,7 +13,7 @@ export default function Subscribe(): React.JSX.Element {
           <p style={{color: 'var(--ifm-color-emphasis-700)', marginBottom: '1rem'}}>
             New posts to your inbox. 2-3 posts per month.
           </p>
-          <NewsletterSignup />
+          <NewsletterSignup placement="subscribe-page" />
         </section>
 
         <section style={{marginBottom: '2.5rem'}}>

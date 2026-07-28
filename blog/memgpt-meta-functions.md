@@ -1,6 +1,7 @@
 ---
 title: "MemGPT Meta-Functions"
 date: 2024-01-02
+authors: [tom]
 dualPublish: false
 ---
 
@@ -10,7 +11,7 @@ dualPublish: false
 
 In trying to extend the agent with functions of my own, I found that the agent was reluctant to give me information about the functions I was making available to it, so I wrote a set of meta-functions which enable the agent to view source code, set debugger lines, and create functions. You can view the source code [here](https://github.com/tombedor/MemGPT-Functions/tree/main/meta_functions). Note that running this requires some edits I made to MemGPT to enable dynamic function reloading ([PR](https://github.com/cpacker/MemGPT/pull/734)).
 
-<!-- truncate -->
+{/* truncate */}
 
 ### The Good
 

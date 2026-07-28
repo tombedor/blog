@@ -1,6 +1,7 @@
 ---
 title: "The Questionable Value of the OpenAI GPT Store"
 date: 2024-01-13
+authors: [tom]
 dualPublish: false
 ---
 
@@ -10,7 +11,7 @@ OpenAI launched its [GPT Store](https://openai.com/blog/introducing-the-gpt-stor
 
 I am skeptical of the value. For brands, this feels like the AI equivalent of a service that sends postcards in response to an email. The access pattern and interface are more or less exactly the same as traditional apps or sites, only via a GPT. It's a neat trick, but I think users will quickly lose interest.
 
-<!-- truncate -->
+{/* truncate */}
 
 ### Branded GPT's
 

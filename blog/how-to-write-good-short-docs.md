@@ -1,6 +1,8 @@
 ---
 title: "How to Write Good (Short) Docs"
 date: 2026-02-04
+authors: [tom]
+image: /diagrams/how-to-write-good-short-docs/prehistory.png
 ---
 
 > _"I would have written a shorter letter, but I did not have the time."_
@@ -19,7 +21,7 @@ A one pager might be written to:
 - explain the current state of a system or systems
 - announce or document a decision
 
-<!-- truncate -->
+{/* truncate */}
 
 This is also distinct from user-facing documentation. Some but not all of what we're talking about applies to those styles of writing[^2].
 
@@ -31,18 +33,18 @@ Prior to computers, short memos were a primary tool for intra-office communicati
 
 They often needed to be re-typed and/or printed, so they needed to be short!
 
-![prehistory](/diagrams/how-to-write-good-short-docs/prehistory.png)
+![Short office memos before computers required retyping and physical distribution](/diagrams/how-to-write-good-short-docs/prehistory.png)
 
 
 Fast forward to the introduction of Slack and similar tools. Now, writing messages to your teammates no longer costs money. The new constraint is _attention bandwidth_:
 
-![slack](/diagrams/how-to-write-good-short-docs/slack.png)
+![Digital communication removes printing costs but consumes attention](/diagrams/how-to-write-good-short-docs/slack.png)
 
 ## Why writing is a worthwhile skill to develop in the age of AI
 
 With the advent of AI coding agents, coding is somewhat lessened as a differentiating skill. However, you have a major advantage against AI in writing for teammates:
 
-![you-vs-bots](/diagrams/how-to-write-good-short-docs/you-vs-bots.png)
+![Human writers know their teammates and undocumented business context](/diagrams/how-to-write-good-short-docs/you-vs-bots.png)
 
 You know your teammates personally, and you have undocumented business context (if what you are writing about is already documented, there probably doesn't need to be a doc!)
 
@@ -61,7 +63,7 @@ The most important concern is to keep the limited attention budget of your teamm
 
 Different types of stakeholders will give a different amount of attention to your doc:
 
-![stakeholders](/diagrams/how-to-write-good-short-docs/stakeholders.png)
+![Different stakeholders give a document different amounts of attention](/diagrams/how-to-write-good-short-docs/stakeholders.png)
 
 So, in laying out your doc, consider:
 - If someone (e.g., a lead of leads) reads this for 5 seconds, do they get the right 5 seconds of context?
@@ -77,7 +79,7 @@ Tactics for this include:
 ### Diagrams
 A visual representation is an excellent way to quickly convey context. Here too, optimize for attention spans. For example, in a system diagram, sometimes it's helpful to omit some systems that aren't relevant to the discussion[^3].
 
- <img src="/diagrams/how-to-write-good-short-docs/diagrams.png" alt="diagrams" style={{width:'60%'}} />
+ <img src="/diagrams/how-to-write-good-short-docs/diagrams.png" alt="A focused diagram omits systems irrelevant to the discussion" style={{width:'60%'}} />
 
 [^3]: It felt wrong to have a diagram section without a diagram.
 
@@ -102,7 +104,7 @@ Linking related docs at the top of your doc is an easy step that is often missed
   - It helps elevate teammates who might be advocating something similar to what you're writing about
   - It makes your doc a useful vehicle for discovery of other docs
 
-![doc_graph](/diagrams/how-to-write-good-short-docs/doc_graph.png)
+![A document linked to related conversations, decisions, and reference material](/diagrams/how-to-write-good-short-docs/doc_graph.png)
 
 ### Build consensus offline
 

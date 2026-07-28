@@ -1,6 +1,8 @@
 ---
 title: Optimizing repos for AI
 date: 2025-10-28
+authors: [tom]
+image: /diagrams/optimizing-repos-for-ai/runtime-oops.png
 ---
 
 A colleague recently complained to me about the hassle of organizing information in `AGENTS.md` / `CLAUDE.md`. This is the mark of a real adopter - she has gone through the progression from being impressed by coding agents to being annoyed at the next bottleneck.
@@ -12,7 +14,7 @@ When I'm thinking about optimizing repos for agents, I'm looking to accomplish t
 - **Help the most [agentic agents of them all](https://en.wikipedia.org/wiki/Human)**: Humans and agents scan docs and code in very similar ways, so organizing information so it's easily understood by humans is a good rule of thumb for helping the agents anyways!
 
 
-<!-- truncate -->
+{/* truncate */}
 
 ## Strategies[^2]
 
@@ -20,7 +22,7 @@ When I'm thinking about optimizing repos for agents, I'm looking to accomplish t
 
 Pushing detection of quality issues to compile time creates a virtuous cycle where the agent can quickly spot and correct mistakes:
 
-![runtime-oops](/diagrams/optimizing-repos-for-ai/runtime-oops.png)
+![An AI coding agent makes an incorrect runtime assumption](/diagrams/optimizing-repos-for-ai/runtime-oops.png)
 
 This implies strong, opinionated linters, and strong type checks for dynamically typed languages[^3].
 

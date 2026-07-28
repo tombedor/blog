@@ -23,7 +23,7 @@ resource "digitalocean_droplet" "analytics" {
   name   = var.droplet_name
   region = var.region
   size   = var.droplet_size
-  image  = "docker-20-04"  # Ubuntu 20.04 with Docker pre-installed
+  image  = "docker-20-04" # Ubuntu 20.04 with Docker pre-installed
 
   ssh_keys = [data.digitalocean_ssh_key.default.id]
 
@@ -31,7 +31,6 @@ resource "digitalocean_droplet" "analytics" {
   user_data = templatefile("${path.module}/cloud-init.yml", {
     docker_compose_content = filebase64("${path.module}/../docker/docker-compose.yml")
     caddyfile_content      = filebase64("${path.module}/../docker/caddy/Caddyfile")
-    env_content            = filebase64("${path.module}/../docker/.env")
   })
 
   tags = var.tags
@@ -100,7 +99,7 @@ resource "digitalocean_record" "analytics" {
   domain = var.domain
   type   = "A"
   name   = var.analytics_subdomain
-  value  = digitalocean_droplet.analytics.ipv4_address
+  value  = digitalocean_reserved_ip.analytics.ip_address
   ttl    = 300
 }
 
@@ -110,6 +109,6 @@ resource "digitalocean_record" "listmonk" {
   domain = var.domain
   type   = "A"
   name   = var.listmonk_subdomain
-  value  = digitalocean_droplet.analytics.ipv4_address
+  value  = digitalocean_reserved_ip.analytics.ip_address
   ttl    = 300
 }

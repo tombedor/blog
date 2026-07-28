@@ -13,8 +13,8 @@ region       = "nyc3"  # Options: nyc1, nyc3, sfo3, sgp1, lon1, fra1, tor1, blr1
 droplet_size = "s-1vcpu-2gb"  # $12/mo - sufficient for most blogs
 
 # Security: SSH Access Control
-# Restrict to your IP for better security, or use ["0.0.0.0/0", "::/0"] for anywhere
-ssh_allowed_ips = ["0.0.0.0/0", "::/0"]
+# Replace this example with your current public IP as a /32 CIDR.
+ssh_allowed_ips = ["203.0.113.10/32"]
 
 # Tags
 tags = ["analytics", "blog", "production"]

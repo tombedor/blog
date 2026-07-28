@@ -176,12 +176,12 @@ update_markdown_links() {
 
         # Create the image markdown
         local image_link="![${diagram_name}](/diagrams/${post_slug}/${diagram_name}.png)"
-        local comment_pattern="<!-- ${diagram_name} -->"
+        local comment_pattern="{/* ${diagram_name} */}"
 
         # Check if comment exists in the file
-        if grep -q "$comment_pattern" "$blog_file"; then
+        if grep -Fq "$comment_pattern" "$blog_file"; then
             # Replace comment with image link
-            sed -i '' "s|${comment_pattern}|${image_link}|g" "$blog_file"
+            sed -i '' "s|{/\* ${diagram_name} \*/}|${image_link}|g" "$blog_file"
             echo -e "${GREEN}  ↳ Updated link in $blog_file${NC}"
         fi
     fi

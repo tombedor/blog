@@ -57,6 +57,7 @@ cp terraform.tfvars.example terraform.tfvars
 Edit `terraform.tfvars` and set:
 - `do_token` - Your DigitalOcean API token
 - `ssh_key_name` - Name of your SSH key in DigitalOcean
+- `ssh_allowed_ips` - Your current public IP as a `/32` CIDR; do not expose SSH globally
 - `domain` - Your root domain (if using DigitalOcean DNS)
 - `analytics_subdomain` - Subdomain for analytics
 - `listmonk_subdomain` - Subdomain for newsletter
@@ -72,17 +73,23 @@ terraform init
 # Preview changes
 terraform plan
 
-# Deploy!
+# Create the host and networking
 terraform apply
+
+# Wait for cloud-init and SSH to become available (usually 2-3 minutes)
+
+# Upload docker/.env outside Terraform state and start the services
+cd ..
+just bootstrap
 ```
 
-Wait 2-3 minutes for services to start up.
+Allow another minute for the containers to become healthy, then run `just status`.
 
 ### Step 4: DNS Configuration
 
 If **NOT** using DigitalOcean DNS, manually create A records:
-- `analytics.yourdomain.com` → Droplet IP (shown in Terraform output)
-- `newsletter.yourdomain.com` → Droplet IP
+- `analytics.yourdomain.com` → Reserved IP (shown in Terraform output)
+- `newsletter.yourdomain.com` → Reserved IP
 
 ### Step 5: Initial Setup
 
@@ -96,6 +103,7 @@ If **NOT** using DigitalOcean DNS, manually create A records:
 1. Visit `https://newsletter.yourdomain.com`
 2. Complete the setup wizard
 3. Configure SMTP settings (see SMTP Setup below)
+4. Configure public production lists as double opt-in. The public subscription API is intentionally unauthenticated, so confirmation protects recipients and list quality from scripted submissions.
 
 ## 📧 SMTP Setup for Listmonk
 
@@ -283,7 +291,7 @@ terraform destroy
 ## 🔒 Security Notes
 
 - The `.env` and `terraform.tfvars` files contain secrets and are gitignored
-- SSH is open to all IPs by default - restrict `ssh_allowed_ips` in production
+- SSH has no allowed source by default; set `ssh_allowed_ips` to an explicit `/32` CIDR before deployment
 - Change default Umami password immediately after deployment
 - Consider enabling DigitalOcean backups for production
 - Caddy automatically handles SSL certificate renewal

@@ -1,7 +1,7 @@
 set shell := ["zsh", "-c"]
 set dotenv-load := true
 
-host := if env_var_or_default("HOST_IP", "") != "" { env_var("HOST_IP") } else { `terraform -chdir=terraform output -raw droplet_ip` }
+host := if env_var_or_default("HOST_IP", "") != "" { env_var("HOST_IP") } else { `terraform -chdir=terraform output -raw reserved_ip` }
 
 # Initialize Terraform
 init:
@@ -42,6 +42,13 @@ generate-secrets:
 # SSH into the droplet
 ssh:
 	@ssh root@{{host}}
+
+# Upload the secret environment after Terraform creates a new host, then start services
+bootstrap:
+	@test -f docker/.env || (echo "Missing infrastructure/docker/.env; run 'just setup' first" && exit 1)
+	@ssh root@{{host}} 'mkdir -p /opt/analytics && chmod 700 /opt/analytics'
+	@scp docker/.env root@{{host}}:/opt/analytics/.env
+	@ssh root@{{host}} 'chmod 600 /opt/analytics/.env && cd /opt/analytics && docker compose up -d'
 
 # View logs from all services
 logs:
@@ -95,7 +102,8 @@ setup:
 	@echo "2. Run 'just generate-secrets' for random values"
 	@echo "3. Edit terraform/terraform.tfvars with your DigitalOcean settings"
 	@echo "4. Run 'just init' to initialize Terraform"
-	@echo "5. Run 'just apply' to deploy"
+	@echo "5. Run 'just apply' to create the host"
+	@echo "6. Run 'just bootstrap' to upload secrets and start services"
 
 # Show next steps after deployment
 help:
@@ -106,6 +114,7 @@ help:
 	@echo "  just init           - Initialize Terraform"
 	@echo "  just plan           - Preview infrastructure changes"
 	@echo "  just apply          - Deploy infrastructure"
+	@echo "  just bootstrap      - Upload secrets and start a newly created host"
 	@echo "  just output         - Show deployment info (IPs, URLs)"
 	@echo ""
 	@echo "Server Management:"

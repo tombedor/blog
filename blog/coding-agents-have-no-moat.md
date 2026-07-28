@@ -1,6 +1,8 @@
 ---
 title: Coding agents have no moat
 date: 2026-04-24
+authors: [tom]
+image: /diagrams/coding-agents-have-no-moat/humans.png
 ---
 
 It's been a rough few months for Anthropic.
@@ -19,7 +21,7 @@ Anthropic's [response](https://x.com/TheAmolAvasare/status/2046724659039932830?s
 
 None of these incidents made me _mad_, but I have been increasingly hit with Claude Code rate limits. I've responded by switching the bulk of my work to Codex. It's striking how little I had to change about my workflow. I lost some conveniences like dispatching a coding-agent session from my phone, but overall it only took a *minor inconvenience* for me to switch providers, with no adjustments to how I used the tools.
 
-<!-- truncate -->
+{/* truncate */}
 
 OpenAI appears to have seen the no-moat problem first, as evidenced by efforts to shift usage away from the interoperable Chat Completions API. First, there was the [Assistants API](https://openai.com/index/new-models-and-developer-products-announced-at-devday/), which shifted responsibility for storing chat messages onto OpenAI rather than the caller. When that didn't work, they announced the [Responses API](https://community.openai.com/t/introducing-the-responses-api/1140929). Neither appears to have gained much traction.
 
@@ -32,7 +34,7 @@ These tools are, at the end of the day, code editors, a category of software tha
 
 If you are still worried about LLM vendor lock-in, I think the best way to guard against it is to [_optimize for humans_](/make-it-easy-for-humans/).
 
-![humans](/diagrams/coding-agents-have-no-moat/humans.png)
+![Coding agents remain dependent on human direction and review](/diagrams/coding-agents-have-no-moat/humans.png)
 
 If an agent can run a script or access a doc, organize your repos so that humans can do so just as easily. I think this strategy is the most efficient way for humans to leverage agents: the agent should conform to the human, not the other way around. This also provides future-proofing: if a human can access your LLM-facing scripts and documentation, it'll likely be quite easy to have a new coding agent enter the mix.
 

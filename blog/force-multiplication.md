@@ -6,7 +6,7 @@ draft: true
 
 ## Define platform
 
-<!-- need some setup for what we're talking about -->
+{/* need some setup for what we're talking about */}
 
 When a company first starts out, every engineer works on features that directly serve the end customer. As the company scales, it becomes worthwhile to invest in abstracting certain repetitive and/or complex internal development and maintenance tasks away. Thus _internal platform teams_ are born
 
@@ -21,11 +21,11 @@ Platform engineers have some big disadvantages!
 
 - High upfront costs: In the long run, saving teammates from repetitive work makes the company more efficient. But there's often quite a bit of upfront work to get there, so the "break even" point can be months or even years in the future
 
-<!-- long term bets framing -->
+{/* long term bets framing */}
 
 - Platforms can introduce abstractions that internal customers need to understand. Whereas before teammates can reference external or open source documentation, now they must rely on internally generated documentation.
 - The need to support many use cases tends to make platform software less agile. One platform often supports many different use cases, so platform feature requests can be hard to prioritize.
-<!-- Platforms increase the cost of alternative approaches. maybe we speak to this later -->
+{/* Platforms increase the cost of alternative approaches. maybe we speak to this later */}
 
 With all these disadvantages, what is a platform's value? How do you know you're building the right thing?
 
@@ -42,17 +42,17 @@ The benefits of standardization depend on how good the standard is - it's very e
 #### Bad star #2: Centralization
 
 Centralization is similarly a valid strategy, but a poor goal in and of itself. Centralizing a workflow may or may not increase overall efficiency - the team or system absorbing the work could be slower or worse at the task than federated systems/teams
-<!-- Add 1-2 paragraph definition of centralization as a strategy -->
+{/* Add 1-2 paragraph definition of centralization as a strategy */}
 
 #### Good star #3: Force Multiplication
 
 Force multiplication is the real ultimate goal of a platform. Framing a platfrom in this way is user centric - the goal is to enable user to accomplish something faster or better than they could without the platform.
 
-<!-- Add 1-2 paragraph definition of force multiplication -->
+{/* Add 1-2 paragraph definition of force multiplication */}
 
-<!-- maybe add: Productivity gains should be exponential. As the platform handles more work, proportionally less work should be required of maintainers -->
+{/* maybe add: Productivity gains should be exponential. As the platform handles more work, proportionally less work should be required of maintainers */}
 
-<!-- maybe add exponential diagram here: ![exponential](/diagrams/force-multiplication/exponential.png) -->
+{/* maybe add exponential diagram here: ![exponential](/diagrams/force-multiplication/exponential.png) */}
 
 ### Example: The database platform team
 
@@ -80,7 +80,7 @@ This too can backfire if not correctly applied. The database team could declare 
 
 In a microservices architecture, one of the first things that warrants a platform team is managing application databases.
 
-<!-- ![database_platform](/diagrams/force-multiplication/database_platform.png) -->
+{/* ![database_platform](/diagrams/force-multiplication/database_platform.png) */}
 
 Why does this force multiply?
 - **Specialized knowledge**: Database operations require expertise in backups, replication, scaling, monitoring, security, and disaster recovery
@@ -241,4 +241,3 @@ Before digging into the question of how to build a good platform, why do we buil
 ― Steve McConnell, Code Complete
 
 What I like about this, is that if I’m unsure about a change, I can ask, “does this reduce complexity”. If the answer is yes, then we’re probably on the right track
-
