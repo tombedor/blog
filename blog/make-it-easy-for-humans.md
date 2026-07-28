@@ -2,7 +2,7 @@
 title: "Optimize for Humans"
 date: 2025-11-26
 authors: [tom]
-image: /diagrams/make-it-easy-for-humans/info.png
+image: /social-cards/make-it-easy-for-humans.png
 ---
 
 I recently wrote about [optimizing repos for AI](/optimizing-repos-for-ai), and since then I've been maintaining separate docs for humans (README, contributing guides) and AI agents (`.cursorrules`, `CLAUDE.md`, etc.). The problem? I keep writing the same information twice.

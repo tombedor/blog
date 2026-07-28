@@ -2,7 +2,7 @@
 title: Coding agents have no moat
 date: 2026-04-24
 authors: [tom]
-image: /diagrams/coding-agents-have-no-moat/humans.png
+image: /social-cards/coding-agents-have-no-moat.png
 ---
 
 It's been a rough few months for Anthropic.

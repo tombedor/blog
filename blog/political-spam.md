@@ -2,7 +2,7 @@
 title: My First Encounter With a Political Spambot
 date: 2026-06-26
 authors: [tom]
-image: /diagrams/political-spam/web.png
+image: /social-cards/political-spam.png
 newsletter: truncate
 ---
 

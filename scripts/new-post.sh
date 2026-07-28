@@ -36,6 +36,7 @@ cat > "$POST_FILE" << EOF
 title: $TITLE
 date: $DATE
 authors: [tom]
+image: /social-cards/$SLUG.png
 draft: true
 ---
 

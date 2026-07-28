@@ -2,7 +2,7 @@
 title: Optimizing repos for AI
 date: 2025-10-28
 authors: [tom]
-image: /diagrams/optimizing-repos-for-ai/runtime-oops.png
+image: /social-cards/optimizing-repos-for-ai.png
 ---
 
 A colleague recently complained to me about the hassle of organizing information in `AGENTS.md` / `CLAUDE.md`. This is the mark of a real adopter - she has gone through the progression from being impressed by coding agents to being annoyed at the next bottleneck.

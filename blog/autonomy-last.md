@@ -2,7 +2,7 @@
 title: Add Autonomy Last
 date: 2025-07-07
 authors: [tom]
-image: /diagrams/autonomy-last/autonomy_first_vs_last.png
+image: /social-cards/autonomy-last.png
 canonical_url: https://elroy.bot/blog/2025/07/07/add-autonomy-last.html
 ---
 

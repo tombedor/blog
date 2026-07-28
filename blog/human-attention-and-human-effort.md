@@ -2,6 +2,7 @@
 title: If You are Asking for Human Attention, Demonstrate Human Effort
 date: 2026-06-11
 authors: [tom]
+image: /social-cards/human-attention-and-human-effort.png
 ---
 
 An ever-increasing volume of debug investigations, document writing, and code is written by robots. This has created a new etiquette question when working with a team - when is it OK to forward the output of an AI to another human to read?

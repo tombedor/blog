@@ -2,6 +2,7 @@
 title: "The Questionable Value of the OpenAI GPT Store"
 date: 2024-01-13
 authors: [tom]
+image: /social-cards/gpt-store.png
 dualPublish: false
 ---
 

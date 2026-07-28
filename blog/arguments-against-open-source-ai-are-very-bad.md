@@ -2,7 +2,7 @@
 title: The Arguments Against Open Source AI are Very Bad
 date: 2026-07-23
 authors: [tom]
-image: /diagrams/arguments-against-open-source-ai-are-very-bad/stack.png
+image: /social-cards/arguments-against-open-source-ai-are-very-bad.png
 ---
 
 The release of Kimi K3 has opened a fresh round of angst and confused discourse. There's a loud cohort of journalists, business leaders, and politicians arguing that open source AI is a dangerous threat. OpenAI's [Dean Ball](https://x.com/deanwball/status/2078133895766114412):

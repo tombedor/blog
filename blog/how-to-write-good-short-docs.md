@@ -2,7 +2,7 @@
 title: "How to Write Good (Short) Docs"
 date: 2026-02-04
 authors: [tom]
-image: /diagrams/how-to-write-good-short-docs/prehistory.png
+image: /social-cards/how-to-write-good-short-docs.png
 ---
 
 > _"I would have written a shorter letter, but I did not have the time."_
