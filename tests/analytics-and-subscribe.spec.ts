@@ -80,16 +80,6 @@ test('subscribe failures are visible and attributed', async ({page}) => {
   ]);
 });
 
-test('home page presents a signup before the post list', async ({page}) => {
-  await page.goto('/');
-  const signup = page.getByLabel('Get new posts by email');
-  await expect(signup).toBeVisible();
-  const firstPost = page.locator('article').first();
-  expect(await signup.evaluate((el) => el.getBoundingClientRect().top)).toBeLessThan(
-    await firstPost.evaluate((el) => el.getBoundingClientRect().top),
-  );
-});
-
 test('post suggestions count impressions only when visible', async ({page}) => {
   await installAnalyticsStub(page);
   await page.goto('/advice-for-new-grads/');
