@@ -3,7 +3,7 @@ title: AI Bots Are Making Anonymity Untenable
 date: 2026-02-13
 authors: [tom]
 description: This set off some interesting observations, with feelings being a mix of amusement and dread.
-image: /diagrams/ai-threatens-privacy/pick-0.png
+image: /social-cards/ai-threatens-privacy.png
 ---
 
 

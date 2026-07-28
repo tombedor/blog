@@ -3,7 +3,7 @@ title: "MCP is a Fad"
 date: 2025-12-12
 authors: [tom]
 description: Model Context Protocol has taken off as the standardized platform for AI integrations, but this popularity will be short-lived.
-image: /diagrams/mcp-is-a-fad/function_calling_no_mcp.png
+image: /social-cards/mcp-is-a-fad.png
 ---
 
 ## Overview

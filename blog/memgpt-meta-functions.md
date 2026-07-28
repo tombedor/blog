@@ -2,6 +2,7 @@
 title: "MemGPT Meta-Functions"
 date: 2024-01-02
 authors: [tom]
+image: /social-cards/memgpt-meta-functions.png
 dualPublish: false
 ---
 

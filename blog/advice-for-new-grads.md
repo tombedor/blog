@@ -2,6 +2,7 @@
 title: "Advice for New Grads"
 date: 2024-02-02
 authors: [tom]
+image: /social-cards/advice-for-new-grads.png
 dualPublish: false
 ---
 

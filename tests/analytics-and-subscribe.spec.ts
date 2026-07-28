@@ -122,7 +122,7 @@ test('site metadata is descriptive and the starter route is absent', async ({pag
   await page.goto('/ai-threatens-privacy/');
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
     'content',
-    'https://tombedor.dev/diagrams/ai-threatens-privacy/pick-0.png',
+    'https://tombedor.dev/social-cards/ai-threatens-privacy.png',
   );
 
   const response = await page.goto('/markdown-page/');

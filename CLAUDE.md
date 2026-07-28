@@ -28,6 +28,7 @@ src/
 static/
   diagrams/        # Excalidraw diagrams organized by post name
     {post-name}/   # Each blog post has its own diagram directory
+  social-cards/    # Generated 1200x630 post cards, checked into Git
 docusaurus.config.ts  # Main Docusaurus configuration
 scripts/
   excalidraw-export.sh  # Export excalidraw files to PNG
@@ -131,7 +132,7 @@ See the `Justfile` for common development and deployment commands:
 
 - `just build` - Build the production bundle
 - `just serve` - Serve the production build locally
-- `just deploy` - Deploy to GitHub Pages
+- `just deploy` - Verify social cards, then deploy to GitHub Pages
 - `just dual-publish` - Sync blog posts to Elroy project
 - `just export-diagrams` - Export all excalidraw diagrams to PNG (with caching)
 - `just screenshots` - Build, serve, and screenshot every page (desktop + mobile) to `screenshots/` for design review
@@ -141,6 +142,8 @@ You can also use npm scripts directly:
 - `npm start` - Start development server
 - `npm run build` - Build for production
 - `npm run typecheck` - Run TypeScript type checking
+- `npm run generate:social-cards` - Regenerate social cards from post titles
+- `npm run check:social-cards` - Fail if generated social cards are missing or stale
 - `npm run dual-publish` - Sync blog posts to Elroy project
 - `npm run screenshots` - Same as `just screenshots`
 - `npm test` - Same as `just test`. Set `CHROMIUM_PATH` to an existing Chromium/Chrome binary if `npx playwright install chromium` hasn't been run.

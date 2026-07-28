@@ -9,6 +9,7 @@ The `dual-publish.js` script syncs:
   - Automatically rewrites absolute image paths (`/diagrams/` or `/blog/diagrams/`) to relative paths (`../diagrams/`) for MkDocs compatibility
   - Skips posts marked as `draft: true` or `dualPublish: false`
 - **Diagrams**: From `./static/diagrams/` to `../elroy/docs/blog/diagrams/`
+- **Social cards**: From `./static/social-cards/` to `../elroy/docs/blog/social-cards/`
 
 Both blogs use Markdown with YAML frontmatter, so no format conversion is needed.
 
@@ -30,6 +31,7 @@ Run the dual-publish script:
 - After adding a new blog post
 - After updating an existing blog post
 - After adding or modifying diagrams
+- After changing a post title or regenerating social cards
 
 The script will overwrite files in the Elroy blog, so any changes made there will be lost. This is a one-way sync from this blog to Elroy.
 
@@ -38,6 +40,7 @@ The script will overwrite files in the Elroy blog, so any changes made there wil
 - ✅ All `.md` files from `./blog/` (except drafts and excluded posts)
 - ✅ All files and subdirectories from `./static/diagrams/`
 - ✅ Preserves directory structure for diagrams
+- ✅ Generated social cards from `./static/social-cards/`
 
 ## Controlling What Gets Published
 
@@ -73,5 +76,6 @@ dualPublish: false
 - Image paths are automatically transformed during publishing:
   - In this blog (Docusaurus): Use `/diagrams/...` paths
   - In Elroy blog (MkDocs): Paths are automatically rewritten to relative `../diagrams/...` paths
+  - Social card frontmatter is rewritten from `/social-cards/...` to `../social-cards/...`
 - The script creates target directories if they don't exist
 - This is a one-way sync - changes made directly to the Elroy blog will be overwritten

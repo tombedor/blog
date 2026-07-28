@@ -4,7 +4,7 @@
  * Dual Publishing Script
  *
  * Syncs blog posts from ./blog/blog to ../elroy/docs/blog/posts
- * and diagrams from ./static/diagrams to ../elroy/docs/blog/diagrams
+ * plus diagrams and social cards to their corresponding Elroy asset directories
  */
 
 const fs = require('fs');
@@ -13,8 +13,10 @@ const path = require('path');
 // Configuration
 const SOURCE_BLOG_DIR = path.join(__dirname, 'blog');
 const SOURCE_DIAGRAMS_DIR = path.join(__dirname, 'static', 'diagrams');
+const SOURCE_SOCIAL_CARDS_DIR = path.join(__dirname, 'static', 'social-cards');
 const TARGET_BLOG_DIR = path.join(__dirname, '..', 'elroy', 'docs', 'blog', 'posts');
 const TARGET_DIAGRAMS_DIR = path.join(__dirname, '..', 'elroy', 'docs', 'blog', 'diagrams');
+const TARGET_SOCIAL_CARDS_DIR = path.join(__dirname, '..', 'elroy', 'docs', 'blog', 'social-cards');
 
 /**
  * Ensure a directory exists, creating it if necessary
@@ -70,7 +72,7 @@ function parseFrontmatter(content) {
 
 /**
  * Copy a markdown file and rewrite image paths for MkDocs
- * Transforms /diagrams/ and /blog/diagrams/ to relative ../diagrams/ for compatibility with MkDocs blog
+ * Transforms asset paths to relative paths for compatibility with MkDocs blog
  * Returns false if the file should be skipped (draft or dualPublish: false)
  */
 function copyAndRewriteMarkdown(source, dest) {
@@ -96,6 +98,8 @@ function copyAndRewriteMarkdown(source, dest) {
   content = content.replace(/!\[(.*?)\]\(\/blog\/diagrams\//g, '![$1](../diagrams/');
   // Transform /diagrams/ to ../diagrams/
   content = content.replace(/!\[(.*?)\]\(\/diagrams\//g, '![$1](../diagrams/');
+  // Transform social card frontmatter to the copied Elroy asset directory
+  content = content.replace(/^(image:\s*)\/social-cards\//m, '$1../social-cards/');
 
   fs.writeFileSync(dest, content, 'utf8');
   console.log(`✅ Copied and rewritten: ${path.basename(source)}`);
@@ -156,6 +160,7 @@ function dualPublish() {
   // Ensure target directories exist
   ensureDir(TARGET_BLOG_DIR);
   ensureDir(TARGET_DIAGRAMS_DIR);
+  ensureDir(TARGET_SOCIAL_CARDS_DIR);
 
   // Copy blog posts
   console.log('📝 Publishing blog posts...');
@@ -180,10 +185,14 @@ function dualPublish() {
   console.log('\n📊 Publishing diagrams...');
   copyDirectory(SOURCE_DIAGRAMS_DIR, TARGET_DIAGRAMS_DIR);
 
+  console.log('\n🖼️  Publishing social cards...');
+  copyDirectory(SOURCE_SOCIAL_CARDS_DIR, TARGET_SOCIAL_CARDS_DIR);
+
   console.log('\n✨ Dual publish complete!\n');
   console.log('📍 Published to:');
   console.log(`   Blog: ${TARGET_BLOG_DIR}`);
   console.log(`   Diagrams: ${TARGET_DIAGRAMS_DIR}`);
+  console.log(`   Social cards: ${TARGET_SOCIAL_CARDS_DIR}`);
 }
 
 // Run the script

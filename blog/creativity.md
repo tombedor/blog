@@ -2,7 +2,7 @@
 title: AI Creativity and the Instant Imitator Trap
 date: 2026-04-15
 authors: [tom]
-image: /diagrams/creativity/ai_dilemma.png
+image: /social-cards/creativity.png
 ---
 
 [Sora is dead](https://techcrunch.com/2026/03/29/why-openai-really-shut-down-sora/). Is this a temporary setback on the road to AI dominance of creative fields, or is there something more fundamental at play? *Can AI be creative at all?*
