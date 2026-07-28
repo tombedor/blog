@@ -99,9 +99,10 @@ article.margin-bottom--xl {
   margin-bottom: 0.75rem !important;
 }
 
-/* The author remains visible on individual posts and in structured data. On
-   this single-author blog, repeating it under every list item adds noise. */
-.blog-list-page article > header > .margin-top--md.margin-bottom--sm.row {
+/* Author metadata remains in structured data, but a repeated visual byline is
+   unnecessary on a single-author personal blog. */
+.blog-list-page article > header > .margin-top--md.margin-bottom--sm.row,
+.blog-post-page article > header > .margin-top--md.margin-bottom--sm.row {
   display: none;
 }
 
