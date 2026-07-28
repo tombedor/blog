@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useBlogSidebarItems} from '@site/src/BlogSidebarContext';
 import {track} from '@site/src/analytics';
 
@@ -16,6 +16,7 @@ function shuffle<T>(arr: T[]): T[] {
 export default function MorePosts({currentPermalink}: {currentPermalink: string}): React.JSX.Element | null {
   const items = useBlogSidebarItems();
   const [picks, setPicks] = useState<SidebarItem[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Randomize client-side only to avoid SSR hydration mismatch
   useEffect(() => {
@@ -23,22 +24,33 @@ export default function MorePosts({currentPermalink}: {currentPermalink: string}
     setPicks(shuffle(eligible).slice(0, 3));
   }, [items, currentPermalink]);
 
-  // Track impressions once picks are set
+  // Count an impression only after the recommendations are actually visible.
   useEffect(() => {
-    if (picks.length === 0) return;
-    picks.forEach((post, i) => {
-      track('post-suggestion-shown', {
-        source: currentPermalink,
-        slug: post.permalink,
-        position: i + 1,
-      });
-    });
+    const container = containerRef.current;
+    if (!container || picks.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        picks.forEach((post, i) => {
+          track('post-suggestion-shown', {
+            source: currentPermalink,
+            slug: post.permalink,
+            position: i + 1,
+          });
+        });
+        observer.disconnect();
+      },
+      {threshold: 0.5},
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
   }, [picks, currentPermalink]);
 
   if (picks.length === 0) return null;
 
   return (
-    <div style={{marginTop: '2rem'}}>
+    <div ref={containerRef} style={{marginTop: '2rem'}}>
       <strong style={{display: 'block', marginBottom: '0.75rem'}}>More posts</strong>
       <ul style={{listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
         {picks.map((post, i) => (

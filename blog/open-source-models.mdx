@@ -1,6 +1,8 @@
 ---
 title: Is the Future of AI Local?
 date: 2026-03-21
+authors: [tom]
+image: /diagrams/open-source-models/scenarios.png
 ---
 
 import ParityChart from '@site/src/components/ParityChart';
@@ -18,9 +20,9 @@ _Open source models running on local workstations dominate AI_
 
 There are a few reasons this could happen:
 
-![scenarios](/diagrams/open-source-models/scenarios.png)
+![Feedback loops between frontier providers, remote models, and local open-source models](/diagrams/open-source-models/scenarios.png)
 
-<!-- truncate -->
+{/* truncate */}
 
 ## Open source models keep up
 
@@ -76,7 +78,7 @@ If they can gain parity with hosted alternatives, local open source models have 
 
 ## Appendix
 
-### Open Source Parity Data {#open-source-parity-data}
+### Open Source Parity Data {/* #open-source-parity-data */}
 
 | Frontier Model | Provider | Release | Benchmark | Score | Open Source Match | OS Model | Months to Parity | Source |
 |---|---|---|---|---|---|---|---|---|
@@ -90,7 +92,7 @@ If they can gain parity with hosted alternatives, local open source models have 
 - **Epoch AI**: Average lag of best open-weight model behind best closed model is now ~3 months ([source](https://epoch.ai/data-insights/open-weights-vs-closed-weights-models))
 - **Stanford HAI**: Chatbot Arena Elo gap between closed and open models shrank from 8.04% to 1.70% between Jan 2024 and Feb 2025 ([source](https://hai.stanford.edu/ai-index/2025-ai-index-report/technical-performance))
 
-### On-Device Model Size {#on-device-model-size}
+### On-Device Model Size {/* #on-device-model-size */}
 
 **Definition:** "Max usable model" is the largest Q4-quantized model that fits in device RAM *and* runs at ≥8 tokens/second with an 8k context window — a threshold for a responsive conversational experience. It is `min(RAM-fit, speed-fit)`, where:
 

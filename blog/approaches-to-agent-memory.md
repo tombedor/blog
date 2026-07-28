@@ -1,6 +1,8 @@
 ---
 title: The design of AI memory systems
 date: 2026-03-21
+authors: [tom]
+image: /diagrams/approaches-to-agent-memory/general_architecture.png
 ---
 
 For me, the question of memory is the most interesting subfield of AI. The first time I interacted with MemGPT (now [Letta](https://www.letta.com/blog/memgpt-and-letta)), I felt like I had crossed a Rubicon: memory transformed a simple question and answer bot into (what appeared to be) a _being_[^1].
@@ -9,7 +11,7 @@ I created my own open source system, called [Elroy](https://elroy.bot), and have
 
 Philosophy questions aside, there are well-grounded reasons to build AI systems with memory. It's useful for an agent to understand what subjects I'm knowledgeable in if I'm looking to discuss technical topics. If I'm looking for vacation plans, it's helpful for it to know that I have a young child. An AI is not a person, but it interacts just like a person, and the more it can converse naturally the more functional it is. Having to restate basic facts over and over breaks that immersion.
 
-<!-- truncate -->
+{/* truncate */}
 
 [^1]: The degree to which an AI with memory has _consciousness_ is an interesting philosophical question for another day. Also for another time is when this is _advisable_. There are certainly unsavory use cases: one of the first interactions I had in AI open source was with someone looking to create AI girlfriends (on the blockchain, of course).
 
@@ -27,7 +29,7 @@ This behavior is intuitive. Lots of information in context implies a greater bur
 
 All memory systems can be broken into 4 general stages: _store_, _retrieve_, _inject_, _emit_.
 
-![general_architecture](/diagrams/approaches-to-agent-memory/general_architecture.png)
+![Four stages of an AI memory system: store, retrieve, inject, and emit](/diagrams/approaches-to-agent-memory/general_architecture.png)
 
 But details from there vary widely! Below I'll walk through how these stages are handled by different providers: [Zep](https://www.getzep.com/), [Letta](https://www.letta.com/), Claude Code, and my own program, [Elroy](https://elroy.bot).
 
@@ -49,7 +51,7 @@ Agent memory systems primarily make three kinds of errors:
 
 My own Claude memory summary makes all three of these errors!
 
-![problems](/diagrams/approaches-to-agent-memory/problems.png)
+![Examples of temporal, priority, and factual errors in generated memories](/diagrams/approaches-to-agent-memory/problems.png)
 
 Temporal errors can be prevented fairly easily by prompting the agent to always use absolute dates and times.
 
@@ -72,15 +74,15 @@ This is a big reason why I think the [future of AI is local and open source](/op
 
 After experimenting with database-backed memories, I landed on markdown files. Rather than focusing on a taxonomy of _what entities the agent remembers_, I've focused on the right taxonomy for what the agent should _do_ with memory. I've landed on the concept of an Agenda Item representing some longer running goal I have, including subtasks and reminder triggers. This makes memories _actionable_, rather than just generically informing conversations:
 
-![agenda_panel_screenshot](/diagrams/approaches-to-agent-memory/agenda_panel_screenshot.png)
+![Elroy agenda panel with actionable memory items](/diagrams/approaches-to-agent-memory/agenda_panel_screenshot.png)
 
 I am skeptical that a single taxonomy of _entities_ can work well for all users. In an early attempt, I tried to structure memories similar to a personal Wikipedia. But the agent struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
 
-<img src="/diagrams/approaches-to-agent-memory/wikipedia.png" alt="wikipedia" style={{width:'50%'}} />
+<img src="/diagrams/approaches-to-agent-memory/wikipedia.png" alt="Personal memories organized like Wikipedia entries" style={{width:'50%'}} />
 
 The challenge here is understandable. The appropriate scope for a given memory entry is in part defined by what other memory entries exist. This is why I let my agent create memories that could be redundant with existing entries, and rely on an asynchronous memory consolidation process to detect and rewrite clusters of highly similar memories.
 
-<img src="/diagrams/approaches-to-agent-memory/consolidation.png" alt="consolidation" style={{width:'50%'}} />
+<img src="/diagrams/approaches-to-agent-memory/consolidation.png" alt="Similar memory entries consolidated into a smaller set" style={{width:'50%'}} />
 
 For storage, markdown files make human review easier, improve portability, and provide an easier onramp for ingesting external files. I place my agent's memory files directly in my Obsidian Vault, where they feel like a natural extension of my other notes and documents.
 
@@ -126,7 +128,7 @@ Options include:
 
 Injecting memories into context presents a tradeoff: the most seamless experience is one in which recalled content is invisibly available to the agent. But in doing so, memory systems can obscure what has been exposed to the agent.
 
-![transparency](/diagrams/approaches-to-agent-memory/transparency.png)
+![Tradeoff between seamless memory recall and transparency to the user](/diagrams/approaches-to-agent-memory/transparency.png)
 
 Where correctness is highly important, memory systems can introduce subtle problems. Usually they are automatically generated and not deeply reviewed by humans, so a wrong assumption in an agent's memory store can be difficult to detect.
 
@@ -139,7 +141,7 @@ This is a more manual process than just spitballing about a project to an AI, bu
 
 I inject recalled memories via a "synthetic" tool call. That is, the memory is exposed via a tool call that the agent didn't actually make. This mostly works well, though sometimes the agent will redundantly call the "tool" that I surfaced the memory with. Elroy's UX also lists which memories have been recalled in a dismissible panel, available for user review:
 
-![memory_panel_screenshot](/diagrams/approaches-to-agent-memory/memory_panel_screenshot.png)
+![Elroy panel showing which memories were recalled](/diagrams/approaches-to-agent-memory/memory_panel_screenshot.png)
 
 ### Emit
 
@@ -153,7 +155,7 @@ I find tool calls do the majority of the heavy lifting here.
 
 I also emit memories during context compression. This is arguably obsolete with modern, 1m+ context windows, but I think they are still relevant. I also typically prune messages older than a day or so, and emit memories based on pruned text. This creates memories that could be redundant with agent-emitted memories, but async memory consolidation cleans that up.
 
-![consolidation_and_compression](/diagrams/approaches-to-agent-memory/consolidation_and_compression.png)
+![Memories emitted during context compression and later consolidated](/diagrams/approaches-to-agent-memory/consolidation_and_compression.png)
 
 
 ## Conclusion

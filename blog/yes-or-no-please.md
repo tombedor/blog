@@ -1,6 +1,7 @@
 ---
 title: "Yes or No, Please: Building Reliable Tests for Unreliable LLMs"
 date: 2025-03-04
+authors: [tom]
 canonical_url: https://elroy.bot/blog/2025/03/04/yes-or-no-please-building-reliable-tests-for-unreliable-llms.html
 ---
 
@@ -10,7 +11,7 @@ For LLM-based applications to be truly useful, they need **predictability**: Whi
 
 While AI has changed a lot about how I develop software, one crusty old technique still helps me: **tests**.
 
-<!-- truncate -->
+{/* truncate */}
 
 Here's what's worked well for me (and not!):
 

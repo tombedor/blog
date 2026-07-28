@@ -127,7 +127,7 @@ preview HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/blog-preview":
 	echo "Applying Caddy config..."
 	scp -P "{{PORT}}" infrastructure/docker/caddy/Caddyfile "{{USER}}@$host:/opt/analytics/caddy/Caddyfile"
 	scp -P "{{PORT}}" infrastructure/docker/docker-compose.yml "{{USER}}@$host:/opt/analytics/docker-compose.yml"
-	ssh -p "{{PORT}}" "{{USER}}@$host" "cd /opt/analytics && docker compose up -d --no-deps caddy"
+	ssh -p "{{PORT}}" "{{USER}}@$host" "cd /opt/analytics && docker compose up -d --no-deps caddy && docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile"
 
 	echo "Preview deployed → https://preview.tombedor.dev"
 

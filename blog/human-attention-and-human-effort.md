@@ -1,13 +1,14 @@
 ---
 title: If You are Asking for Human Attention, Demonstrate Human Effort
 date: 2026-06-11
+authors: [tom]
 ---
 
 An ever-increasing volume of debug investigations, document writing, and code is written by robots. This has created a new etiquette question when working with a team - when is it OK to forward the output of an AI to another human to read?
 
 On one hand, an AI with robust integration to internal code bases and documentation often produces genuinely[^1] useful output.
 
-<!-- truncate -->
+{/* truncate */}
 
 On the other, as an increasing amount of a software engineer's day is spent reading AI text, a fatigue sets in. _If I can have a robot say something, so can you_. It reads as inconsiderate to post un-digested AI output as though it's your own writing.
 

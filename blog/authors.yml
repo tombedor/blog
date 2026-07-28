@@ -1,0 +1,8 @@
+tom:
+  name: Tom Bedor
+  title: Software engineering leader
+  url: https://tombedor.dev/about/
+  image_url: https://tombedor.dev/img/logo.svg
+  socials:
+    github: tombedor
+    x: middleagedc0der

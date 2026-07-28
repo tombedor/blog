@@ -1,6 +1,8 @@
 ---
 title: Add Autonomy Last
 date: 2025-07-07
+authors: [tom]
+image: /diagrams/autonomy-last/autonomy_first_vs_last.png
 canonical_url: https://elroy.bot/blog/2025/07/07/add-autonomy-last.html
 ---
 
@@ -10,13 +12,13 @@ A core challenge of using LLM's to build reliable automation is calibrating how 
 
 Too much, and the program [loses track of what it's supposed to be doing](https://www.anthropic.com/research/project-vend-1). Too little, and the program feels a bit too, well, _ordinary_[^1].
 
-<!-- truncate -->
+{/* truncate */}
 
 ## Autonomy first vs autonomy last
 
 An implicit strategy question when building with LLMs is _autonomy first_ or _autonomy last_:
 
-![autonomy_first_vs_last](/diagrams/autonomy-last/autonomy_first_vs_last.png)
+![Autonomy-first development contrasted with autonomy-last development](/diagrams/autonomy-last/autonomy_first_vs_last.png)
 
 All of the major LLM-specific programming techniques are firmly _autonomy first_ strategies:
 
@@ -49,21 +51,21 @@ I wanted to build an LLM assistant with memory abilities, called [Elroy](https:/
 
 The first solution I turned to, which many people have done, is build an agent loop with access to custom for creating and reading memories:
 
-![tool_based_agent](/diagrams/autonomy-last/Agent.png)
+![An agent loop choosing when to create and search memories](/diagrams/autonomy-last/Agent.png)
 
 ### Approach #2: Model Context Protocol (MCP)
 
 There's now a handly tool for builders like this: [MCP](https://modelcontextprotocol.io/introduction). There are many implementations of my memory tools available via MCP, in fact [smithery.ai](https://smithery.ai/) lists one from Mem0 on it's homepage:
 
-![smithery](/diagrams/autonomy-last/smithery.png)
+![A memory MCP server listed in the Smithery catalog](/diagrams/autonomy-last/smithery.png)
 
 Now, an (in theory) lightweight abstraction sits between my program and it's tools:
 
-![mcp](/diagrams/autonomy-last/mcp.png)
+![An MCP layer between an agent and its memory tools](/diagrams/autonomy-last/mcp.png)
 
 This suggests extending my application via picking from a library of MCP's:
 
-![more_mcp](/diagrams/autonomy-last/more_mcp.png)
+![An agent extended with several independently packaged MCP servers](/diagrams/autonomy-last/more_mcp.png)
 
 
 ### Agentic trouble
@@ -72,13 +74,13 @@ I got my memory program working pretty well on gpt-4. At first it wasn't creatin
 
 Then, I wanted to see how Sonnet would do, and I had a problem[^2]: the program's behavior completely changed! Now, it was creating a memory on almost every message, and searching memories for even trivial responses:
 
-![tool_usage](/diagrams/autonomy-last/tool_usage_rate.png)
+![Memory tool usage changes when the same agent switches models](/diagrams/autonomy-last/tool_usage_rate.png)
 
 ### Approach #3: Autonomy Last
 
 My solution was to remove the timing of recall and memory creation from the agent's control. Upon receiving a message, the memories are automatically searched, with relevant ones being added to context. Every n messages, a memory is created[^3]:
 
-![tool_usage](/diagrams/autonomy-last/elroy.png)
+![Elroy handles memory recall and creation deterministically around the model](/diagrams/autonomy-last/elroy.png)
 
 This made much more of the behavior of my program deterministic, and made it easier to reason about and optimize.
 
@@ -96,5 +98,3 @@ The "autonomy last" approach trades some of the magic of fully autonomous LLMs f
 
 [^3]:
     Elroy also monitors for the context window being exceeded, and consolidates similar memories in the background.
-
-

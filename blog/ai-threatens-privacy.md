@@ -1,16 +1,19 @@
 ---
 title: AI Bots Are Making Anonymity Untenable
 date: 2026-02-13
+authors: [tom]
+description: This set off some interesting observations, with feelings being a mix of amusement and dread.
+image: /diagrams/ai-threatens-privacy/pick-0.png
 ---
 
 
-![pick-0](/diagrams/ai-threatens-privacy/pick-0.png)
+![Online anonymity compared with the difficulty of distinguishing humans from bots](/diagrams/ai-threatens-privacy/pick-0.png)
 
-<!-- truncate -->
+{/* truncate */}
 
 [This Twitter thread](https://x.com/callebtc/status/2022046669710491991?s=46) was an interesting read:
 
-![thread](/diagrams/ai-threatens-privacy/thread.png)
+![Social media discussion about an AI bot's rejected open-source contribution](/diagrams/ai-threatens-privacy/thread.png)
 
 The TLDR of the snafu is:
 1. OpenClaw bot makes [PR to matplotlib](https://github.com/matplotlib/matplotlib/pull/31132)

@@ -9,6 +9,7 @@ const config: Config = {
     {
       src: 'https://analytics.tombedor.dev/script.js',
       'data-website-id': '8694de38-6514-4d57-a9bd-7c62b89c008d',
+      'data-domains': 'tombedor.dev',
       defer: true,
     },
   ],
@@ -52,6 +53,8 @@ const config: Config = {
         docs: false, // Disable docs
         blog: {
           routeBasePath: '/', // Serve the blog at the site's root
+          blogTitle: 'Tom Bedor\'s Blog',
+          blogDescription: 'Thoughts on software, AI, and building things',
           showReadingTime: true,
           postsPerPage: 10, // Show all blog posts on the main page
           blogSidebarCount: 'ALL',

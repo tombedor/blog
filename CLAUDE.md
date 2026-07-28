@@ -2,11 +2,11 @@
 
 AGENTS.md and CLAUDE.md are duplicates. Keep them in sync whenever either file changes.
 
-This is a personal blog built with [Docusaurus](https://docusaurus.io/) v3.9.1, deployed to GitHub Pages at [tombedor.dev](https://tombedor.dev).
+This is a personal blog built with [Docusaurus](https://docusaurus.io/) v3.10.2, deployed to GitHub Pages at [tombedor.dev](https://tombedor.dev).
 
 ## Tech Stack
 
-- **Framework**: Docusaurus 3.9.1 (static site generator)
+- **Framework**: Docusaurus 3.10.2 (static site generator)
 - **Language**: TypeScript 5.6
 - **Runtime**: React 19
 - **Deployment**: GitHub Pages
@@ -52,7 +52,7 @@ These patterns are consistent across published posts and should inform suggestio
 **Structure**
 - Posts typically follow one of a few patterns: Problem→Analysis→Solution, Conceptual Framework→Examples, Advice by stage, or Narrative/Reflection
 - Length: 1,000–3,000 words; tightly scoped
-- `<!-- truncate -->` tag belongs ~100–200 words in, after an opening hook or framing paragraph
+- `{/* truncate */}` tag belongs ~100–200 words in, after an opening hook or framing paragraph
 - Sections use H2 headers; H3 used only for nested subsections in longer posts
 
 **Prose vs. lists**

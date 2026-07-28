@@ -1,6 +1,8 @@
 ---
 title: AI is a Floor Raiser, not a Ceiling Raiser
 date: 2025-07-29
+authors: [tom]
+image: /diagrams/ai-is-a-floor-raiser/ai_skills.png
 canonical_url: https://elroy.bot/blog/2025/07/29/ai-is-a-floor-raiser-not-a-ceiling-raiser.html
 ---
 
@@ -20,7 +22,7 @@ Roughly, acquiring mastery in a skill over time looks like this:
 
 ![Traditional learning curve](/diagrams/ai-is-a-floor-raiser/skills.png)
 
-<!-- truncate -->
+{/* truncate */}
 
 What makes learning with AI groundbreaking is that it can *meet you at your skill level*. Now an AI can directly address questions at your level of understanding, and even do rote work for you. This changes the learning curve:
 

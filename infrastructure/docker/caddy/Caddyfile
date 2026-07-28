@@ -36,6 +36,7 @@ preview.tombedor.dev {
 		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 		X-Frame-Options "SAMEORIGIN"
 		X-Content-Type-Options "nosniff"
+		X-Robots-Tag "noindex, nofollow"
 		Referrer-Policy "strict-origin-when-cross-origin"
 	}
 }

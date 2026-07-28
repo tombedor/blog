@@ -1,6 +1,9 @@
 ---
 title: "MCP is a Fad"
 date: 2025-12-12
+authors: [tom]
+description: Model Context Protocol has taken off as the standardized platform for AI integrations, but this popularity will be short-lived.
+image: /diagrams/mcp-is-a-fad/function_calling_no_mcp.png
 ---
 
 ## Overview
@@ -9,7 +12,7 @@ date: 2025-12-12
 
 Some of this popularity stems from misconceptions about what MCP uniquely accomplishes, but the majority is due to the fact that it's _very easy_ to add an MCP server. For a brief period, it seemed like adding an MCP server was a nice avenue for getting attention to your project, which is why so many projects have added support.
 
-<!-- truncate -->
+{/* truncate */}
 
 ## What is MCP?
 
@@ -19,7 +22,7 @@ MCP claims to solve the "NxM problem": with N agents and M toolsets, users would
 
 A common misconception is that MCP is _required_ for function calling. It's not. With tool-calling models, a list of available tools is provided to the LLM with each request. If the LLM wants to call a tool, it returns JSON-formatted parameters:
 
-![function_calling_no_mcp](/diagrams/mcp-is-a-fad/function_calling_no_mcp.png)
+![Function calling handled directly by an agent application](/diagrams/mcp-is-a-fad/function_calling_no_mcp.png)
 
 The application is responsible for providing tool schemas, parsing parameters, and executing calls. The problem arises when users want to reuse toolsets across different agents, since each has slightly different APIs.
 
@@ -58,7 +61,7 @@ This is the "NxM" problem. In theory, users must build N × M connectors. In pra
 
 MCP handles exposing and invoking tools via separate processes:
 
-![function_calling_mcp](/diagrams/mcp-is-a-fad/function_calling_mcp.png)
+![Function calling routed through separate MCP server processes](/diagrams/mcp-is-a-fad/function_calling_mcp.png)
 
 A JSON configuration controls which MCP servers to start. Each server runs in its own long-lived process, handling tool invocations independently. The application still orchestrates the agent loop and presents results to users.
 
@@ -68,7 +71,7 @@ This abstracts away schema generation and invocation, but at a cost. Tool logic 
 
 MCP also defines primitives for prompts and resources, but adoption of these is much smaller than tools[^1]:
 
-![code_references](/diagrams/mcp-is-a-fad/code_references.png)
+![Relative adoption of MCP tools, resources, and prompts](/diagrams/mcp-is-a-fad/code_references.png)
 
 Given this, the rest of this post focuses on tool calling, which is MCP's primary use case in practice.
 
@@ -76,7 +79,7 @@ Given this, the rest of this post focuses on tool calling, which is MCP's primar
 
 The convenience of MCP comes with a price, stemming from two architectural attributes of an MCP-driven application:
 
-![issues](/diagrams/mcp-is-a-fad/issues.png)
+![MCP creates incoherent toolsets and separate runtimes](/diagrams/mcp-is-a-fad/issues.png)
 
 Since tools are drawn from arbitrary sources, they are not aware of what other tools are available to the agent. Their instructions can't account for the rest of the toolbox.
 
@@ -88,7 +91,7 @@ The second issue stems from different toolsets having their own runtimes. This i
 
 Why does this happen? Consider a workflow in which an agent should send a notification after doing work:
 
-![confusion](/diagrams/mcp-is-a-fad/confusion.png)
+![An agent choosing between overlapping notification tools](/diagrams/mcp-is-a-fad/confusion.png)
 
 A tool's fit for a task depends not just on the job at hand, but also on what else is in the toolbox. Pliers can pull a nail, but if a hammer is available it's probably the better choice. When tools ship in isolation, their instructions can't say "use me only when you don't have a hammer," so agents don't get cohesive guidance.
 
@@ -96,11 +99,11 @@ If the toolset is controlled by the same authors as the application, they can ad
 
 Looking through #mcp channels of open source coding agents, you'll invariably find users who struggle to get the agent to use the tools in the way they want[^2]:
 
-![trouble](/diagrams/mcp-is-a-fad/screenshots/trouble.png)
+![Support discussion about difficulty getting an agent to use MCP tools](/diagrams/mcp-is-a-fad/screenshots/trouble.png)
 
 Or, users complaining of how many tokens are burned by tool instructions:
 
-![inefficient](/diagrams/mcp-is-a-fad/screenshots/inefficient.png)
+![User report about MCP tool instructions consuming context](/diagrams/mcp-is-a-fad/screenshots/inefficient.png)
 
 ### Arbitrary, separate runtimes
 
@@ -110,7 +113,7 @@ Even in the healthy state, this introduces a collection of processes that remain
 
 Users have these issues, if they are able to get the servers running at all: in support channels, the most common complaint is difficulty getting the servers to run:
 
-![connection_problems](/diagrams/mcp-is-a-fad/screenshots/connection_problem.png)
+![User report about MCP server connection problems](/diagrams/mcp-is-a-fad/screenshots/connection_problem.png)
 
 MCP offers no way for servers to declare their runtime/dependency needs. Some authors work around it by baking installation into the launch command (e.g., `uv run some_tool mcp`), which only succeeds if the user already has the right tooling installed.
 
@@ -153,7 +156,7 @@ This code _was_ a hassle to write, prior to the advent of coding agents. But the
 
 With these issues, it's fair to wonder why MCP has gained the popularity it has. It has had lots of support from Anthropic, and no trouble gaining traction with toolset publishers, agent providers, and enterprises. Why? It helps narratives:
 
-<!-- add narratives.png -->
+{/* add narratives.png */}
 
 ### Tool authors: A low overhead marketing channel
 
@@ -178,7 +181,7 @@ MCP's status as _the_ open standard for AI and the enterprise adoption greatly b
 
 There are a few different possible users who interact with MCP:
 
-![users](/diagrams/mcp-is-a-fad/users.png)
+![Technical users and developers who interact with MCP](/diagrams/mcp-is-a-fad/users.png)
 
 - _Technical end users_ want to create tools and share them between different agents they might want to use.
 
@@ -206,7 +209,7 @@ For each user type, there's a simpler approach that avoids MCP's overhead:
 
 For a technical user, letting an agent invoke scripts directly is very difficult to beat. Useful 50-100 line scripts are _extremely_ easy to write with AI coding agents. Care needs to be taken to filter output - raw build scripts can stream verbose logs into agent context, eating up tokens.
 
-![just](/diagrams/mcp-is-a-fad/just.png)
+![Agent command approval using a Justfile](/diagrams/mcp-is-a-fad/just.png)
 
 Robust security against agent actions going haywire can be achieved via command runners like [just](https://github.com/casey/just) or [make](https://en.wikipedia.org/wiki/Make_(software)). These tools provide everything that MCP does - command specifications, descriptions, arguments. Agents allow you to specify what command prefixes can be invoked without approval - put your agent commands in a `justfile`, and only auto-allow shell commands prefixed with `just`.
 

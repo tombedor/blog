@@ -1,17 +1,19 @@
 ---
 title: "Optimize for Humans"
 date: 2025-11-26
+authors: [tom]
+image: /diagrams/make-it-easy-for-humans/info.png
 ---
 
 I recently wrote about [optimizing repos for AI](/optimizing-repos-for-ai), and since then I've been maintaining separate docs for humans (README, contributing guides) and AI agents (`.cursorrules`, `CLAUDE.md`, etc.). The problem? I keep writing the same information twice.
 
-<!-- truncate -->
+{/* truncate */}
 
 ## The duplication problem
 
 ### You're documenting the same things in multiple places
 
-![info](/diagrams/make-it-easy-for-humans/info.png)
+![The same repository information duplicated for humans and AI agents](/diagrams/make-it-easy-for-humans/info.png)
 
 Nearly everything I put in agent-specific docs is also useful for human developers - architecture decisions, coding conventions, common pitfalls, useful commands. Without AI agents I might not document all of this, but once written, there's no reason it shouldn't serve both audiences.
 
@@ -19,7 +21,7 @@ Nearly everything I put in agent-specific docs is also useful for human develope
 
 Each coding agent uses its own configuration file pattern for repo-specific instructions:
 
-![fragmentation](/diagrams/make-it-easy-for-humans/fragmentation.png)
+![Agent-specific instruction files fragment repository documentation](/diagrams/make-it-easy-for-humans/fragmentation.png)
 
 
 This creates a hassle just keeping guidelines between agents consistent, much less making information available for humans.
@@ -28,7 +30,7 @@ This creates a hassle just keeping guidelines between agents consistent, much le
 
 Instead of duplicating content across agent configs, organize information for humans first and link to it from agent-specific files[^1]:
 
-![easy-for-humans](/diagrams/make-it-easy-for-humans/easy-for-humans.png)
+![Human-readable documentation linked from agent-specific files](/diagrams/make-it-easy-for-humans/easy-for-humans.png)
 
 This approach eliminates duplication - you write documentation once, and it serves both humans and AI. It's also more future-proof when agent file schemes inevitably change.
 

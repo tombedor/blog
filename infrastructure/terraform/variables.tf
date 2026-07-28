@@ -28,9 +28,9 @@ variable "droplet_size" {
 }
 
 variable "ssh_allowed_ips" {
-  description = "IP addresses allowed to SSH (use [\"0.0.0.0/0\", \"::/0\"] for anywhere)"
+  description = "Explicit CIDR ranges allowed to SSH; keep empty to expose no public SSH rule"
   type        = list(string)
-  default     = ["0.0.0.0/0", "::/0"]
+  default     = []
 }
 
 variable "tags" {

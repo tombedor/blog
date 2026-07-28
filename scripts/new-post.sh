@@ -35,6 +35,7 @@ cat > "$POST_FILE" << EOF
 ---
 title: $TITLE
 date: $DATE
+authors: [tom]
 draft: true
 ---
 

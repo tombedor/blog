@@ -19,15 +19,9 @@ runcmd:
   # Write Caddyfile
   - echo "${caddyfile_content}" | base64 -d > /opt/analytics/caddy/Caddyfile
 
-  # Write .env file
-  - echo "${env_content}" | base64 -d > /opt/analytics/.env
-
-  # Set permissions
-  - chmod 600 /opt/analytics/.env
+  # Secrets are uploaded separately with `just bootstrap`; keeping them out of
+  # user_data prevents Terraform state from storing the complete application environment.
   - chown -R root:root /opt/analytics
-
-  # Start services
-  - cd /opt/analytics && docker-compose up -d
 
   # Enable docker-compose service restart on boot
   - |
@@ -36,6 +30,7 @@ runcmd:
     Description=Analytics and Newsletter Services
     Requires=docker.service
     After=docker.service
+    ConditionPathExists=/opt/analytics/.env
 
     [Service]
     Type=oneshot
