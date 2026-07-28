@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog_temp=self.webpackChunkblog_temp||[]).push([["8126"],{4579(e){e.exports=JSON.parse('{"metadata":{"permalink":"/page/2","page":2,"postsPerPage":10,"totalPages":2,"totalCount":18,"previousPage":"/","blogDescription":"Thoughts on software, AI, and building things","blogTitle":"Tom Bedor\'s Blog"}}')}}]);
