@@ -40,19 +40,18 @@ I also just don't think AI writing is very good. It's editorial stance is watere
 
 when my posts rely on factual claims, i have the agent prepare a dedicated reaearch brief on specific wuestions .
 
-Being able to delegate research to AI is tremendously helpful, and expands the scope of what I can effectively write about.
+without careful prompting, agents tend to pull in copy from the main post and suggest watered down prose. to counter, i specify a narrow template:
 
-If a post has factual claims, I have an agent prepare a post-specific `BRIEFS.md` file. This also requires - the default behavior of agents is to typically mix in suggested copy or content from the actual post itself, whereas I'm more interested in simple facts I can draw from. Here's my prompt:
+<!-- embed template -->
+
+
 
 <!-- rendered prompt around BRIEF.md -->
 
-I don't usually read these in full, instead using it as a basis for Q/A with the agent about it's context. For example, for my last post, I had a discussion about the history of encryption litigation:
+### refine presentation
 
-<!-- transcript of encryption litigation discussion -->
 
-Writing every word myself[^1] also ensures that I can stand behind everything. I adopted this stance after writing [MCP is a Fad](link to post). I had completed the post, and felt I needed to comment on agent skills, which I didn't find entirely satisfying[^2]. I prompted the agent:
 
-<!-- transcript, if i have it -->
 
 and it made this edit:
 
