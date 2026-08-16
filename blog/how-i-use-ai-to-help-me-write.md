@@ -6,9 +6,13 @@ image: /social-cards/how-i-use-ai-to-help-me-write.png
 draft: true
 ---
 
-in the news (post on not using ai, controversy about novelist).
+AI is a tremendously helpful writing tool for me. without it, i probably wouldnt have gone through the trouble of setting up a blog. 
 
-Here I'm primarily going to discuss _writing for other humans_, which for me is this blog and technical work documentation. I'm not a creative writer, and feel that AI has minimal utility for creative work <!-- link to creativity post -->.
+however, theres a very thin line between using ai to generate slop and using it to get facts right and refine presentation. over time, the scope of writing tasks i give to ai has narrowed, and the boundaries have gotten stricter.
+
+
+
+<--move to footnote --> Here I'm primarily going to discuss _writing for other humans_, which for me is this blog and technical work documentation. I'm not a creative writer, and feel that AI has minimal utility for creative work <!-- link to creativity post -->.
 
 AI is a helpful writing tool when used to expand or augment my thinking, but it's very easy to slide into letting it _do the thinking for me_. Without careful boundries, a quick check for grammar or awkward phrasing can quickly turn into taking over authoring, degrading the work.
 
@@ -24,14 +28,17 @@ I maintain strict separation for content written by AI vs what I write. Most age
 
 <!-- link to agents.md, render text of relevant section -->
 
+even with these instructions, i meed to have the agent revert changes to copy.
 
-The goal of my writing is to convey information, and I don't have principled moral objections to having AI write content for me. But writing content myself is the best way I have for reasoning through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
+ I don't have principled moral objections to having AI write content for me. But writing content myself is the best way I have for reasoning through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
 
-I also just don't think AI writing is very good. It's editorial stance is usally very watered down and cautious.
+I also just don't think AI writing is very good. It's editorial stance is watered down and overly cautious.
 
 <!-- example of transcript where it suggested something -->
 
 ### Create agent-generated research briefs
+
+when my posts rely on factual claims, i have the agent prepare a dedicated reaearch brief on specific wuestions .
 
 Being able to delegate research to AI is tremendously helpful, and expands the scope of what I can effectively write about.
 
