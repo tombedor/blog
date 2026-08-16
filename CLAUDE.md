@@ -132,7 +132,7 @@ See the `Justfile` for common development and deployment commands:
 
 - `just build` - Build the production bundle
 - `just serve` - Serve the production build locally
-- `just deploy` - Verify social cards, then deploy to GitHub Pages
+- `just deploy` - Verify social cards, run the test suite, then deploy to GitHub Pages
 - `just dual-publish` - Sync blog posts to Elroy project
 - `just export-diagrams` - Export all excalidraw diagrams to PNG (with caching)
 - `just screenshots` - Build, serve, and screenshot every page (desktop + mobile) to `screenshots/` for design review
