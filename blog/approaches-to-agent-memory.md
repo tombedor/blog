@@ -78,11 +78,11 @@ After experimenting with database-backed memories, I landed on markdown files. R
 
 I am skeptical that a single taxonomy of _entities_ can work well for all users. In an early attempt, I tried to structure memories similar to a personal Wikipedia. But the agent struggled to maintain consistent scope, often stuffing details of related but distinct entities into an entry:
 
-<img src="/diagrams/approaches-to-agent-memory/wikipedia.png" alt="Personal memories organized like Wikipedia entries" style={{width:'50%'}} />
+<img src="/diagrams/approaches-to-agent-memory/wikipedia.png" alt="Personal memories organized like Wikipedia entries" style={{maxWidth:'350px', width:'100%'}} />
 
 The challenge here is understandable. The appropriate scope for a given memory entry is in part defined by what other memory entries exist. This is why I let my agent create memories that could be redundant with existing entries, and rely on an asynchronous memory consolidation process to detect and rewrite clusters of highly similar memories.
 
-<img src="/diagrams/approaches-to-agent-memory/consolidation.png" alt="Similar memory entries consolidated into a smaller set" style={{width:'50%'}} />
+<img src="/diagrams/approaches-to-agent-memory/consolidation.png" alt="Similar memory entries consolidated into a smaller set" style={{maxWidth:'350px', width:'100%'}} />
 
 For storage, markdown files make human review easier, improve portability, and provide an easier onramp for ingesting external files. I place my agent's memory files directly in my Obsidian Vault, where they feel like a natural extension of my other notes and documents.
 
