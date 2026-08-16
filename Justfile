@@ -15,7 +15,7 @@ new-post title:
 
 # Deploys the site to GitHub Pages
 deploy:
-	npm run check:social-cards && ./scripts/check-new-posts.sh && GIT_USER=tombedor npm run deploy
+	npm run check:social-cards && just test && ./scripts/check-new-posts.sh && GIT_USER=tombedor npm run deploy
 
 # Builds ../elroy docs and publishes them to the DigitalOcean host managed by infrastructure/terraform
 deploy-elroy-docs HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/elroy-docs":
