@@ -79,7 +79,7 @@ Tactics for this include:
 ### Diagrams
 A visual representation is an excellent way to quickly convey context. Here too, optimize for attention spans. For example, in a system diagram, sometimes it's helpful to omit some systems that aren't relevant to the discussion[^3].
 
- <img src="/diagrams/how-to-write-good-short-docs/diagrams.png" alt="A focused diagram omits systems irrelevant to the discussion" style={{width:'60%'}} />
+ <img src="/diagrams/how-to-write-good-short-docs/diagrams.png" alt="A focused diagram omits systems irrelevant to the discussion" style={{maxWidth:'420px', width:'100%'}} />
 
 [^3]: It felt wrong to have a diagram section without a diagram.
 
