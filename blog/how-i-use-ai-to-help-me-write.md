@@ -80,4 +80,11 @@ As an experiment, I built a [small tool](https://github.com/tombedor/hn_headline
 This didn't really work, and I've come to view post titles as a core element of writing, not a quick label slapped on a post. The posts I've struggled to put titles on are also those that don't have a clear thesis or theme - if I can't think of a good title, it's a strong signal that I don't have a well scoped topic to write about.
 
 
+### ask ffor general feedback
+
+I dont get much mileage out of general "is this good" style prompts. when prompted thos way, agemts tend to give you critiques sandwiched between compliments, which doesnt help me decide whether a post is worth publishing to my taste.
+
+### cleanup phrasing
+
+(quote about first draft is typing, editing is wroting). its very tempting to wrote a draft and ask an agent to cleanup awkward phrasing. but this is a poor substitute for rereading a draft and tightening up phrasong , and these edit suggestions ate a backdoor to injecting bland AI-isms into my posts
 
