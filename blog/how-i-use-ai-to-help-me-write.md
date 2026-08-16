@@ -84,7 +84,17 @@ This didn't really work, and I've come to view post titles as a core element of 
 
 I dont get much mileage out of general "is this good" style prompts. when prompted thos way, agemts tend to give you critiques sandwiched between compliments, which doesnt help me decide whether a post is worth publishing to my taste.
 
-### cleanup phrasing
+### cleanup phrasing or structure
 
-(quote about first draft is typing, editing is wroting). its very tempting to wrote a draft and ask an agent to cleanup awkward phrasing. but this is a poor substitute for rereading a draft and tightening up phrasong , and these edit suggestions ate a backdoor to injecting bland AI-isms into my posts
+(quote about first draft is typing, editing is wroting). its very tempting to wrote a draft and ask an agent to cleanup awkward phrasing. but this is a poor substitute for rereading a draft and tightening up phrasong , and these edit suggestions ate a backdoor to injecting bland AI-isms into my posts.
+
+i used to ask ai to evaluate post structure, and i find its analysis of writing strucutr to be quite insightful. but similar to titles, comingnup with a post structure is an integral piece of thenprocess, not a mechanical task o can delegate. if im struggling to come ip with a structure, is a smell that the argument im making is not ready to be wrotten yet.
+
+
+## when used thoughtfully, ai improves writing
+
+ai makes slop easy.the same tools tyat have produced a mountain of buggy vobe code have foxed a lotnfonbugs (chrome referenxe)
+
+similarly, the same tools that produce linkedin spam are also useful in improving writing
+
 
