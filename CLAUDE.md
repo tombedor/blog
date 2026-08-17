@@ -74,7 +74,7 @@ When asked to review a post, be sure to examine any images linked from the post.
 
 ## Content Editing Policy
 
-**The writing must come from the author.** Claude can help with suggestions but should not edit blog post files with content unless explicitly instructed.
+**The writing must come from the author.** AI agents can help with suggestions but should not edit blog post files with content unless explicitly instructed.
 
 When creating new blog posts:
 - Create the file with frontmatter (title, date, draft: true)
