@@ -21,8 +21,8 @@ However, there's a very thin line between delegating tasks that _support_ writin
 I maintain strict separation for content written by AI vs what I write. Most agents default to writing content for you, so I have strict instructions in AGENTS.md to _not_ do that:
 
 <SourceExcerpt
-  label="AGENTS.md · Content Editing Policy"
-  href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/AGENTS.md#L75-L88">
+  label="AGENTS.md"
+  href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/AGENTS.md?plain=1#L75-L88">
 {`## Content Editing Policy
 
 **The writing must come from the author.** AI agents can help with suggestions but should not edit blog post files with content unless explicitly instructed.
@@ -50,25 +50,9 @@ I also just don't think AI writing is very good. It's editorial stance is watere
 when my posts rely on factual claims, i have the agent prepare a dedicated reaearch brief on specific wuestions.
 
 <SourceExcerpt
-  label="AGENTS.md · Research briefs"
-  href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/AGENTS.md#L94-L115">
-{`## Research
-
-Research for blog posts is stored in \`research/{post-name}/\`. The directory name matches the blog post slug (e.g., research for \`open-source-models.mdx\` goes in \`research/open-source-models/\`).
-
-Each post's research directory contains:
-- \`brief.md\` — the main research brief: fact-checks of post claims, source summaries, and counterarguments
-- Individual source files (e.g., \`hn-thread.md\`, \`paper-notes.md\`) — detailed notes on specific sources
-- \`../TEMPLATE.md\` — reusable research brief template
-
-When asked to do research for a post:
-- Update or create \`research/{post-name}/brief.md\` with findings
-- Use \`research/TEMPLATE.md\` as the default structure for new briefs, adapting headings to the actual research question
-- Add separate source files for substantial individual sources
-- Maintain a sources section in \`brief.md\` linking to source files
-- Do NOT edit the actual blog post file — research output goes only in \`research/\`
-
-Research briefs should be ONE PAGE.
+  label="AGENTS.md"
+  href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/AGENTS.md?plain=1#L110-L115">
+{`Research briefs should be ONE PAGE.
 Research briefs should be information-dense and scan-friendly: prefer claim/evidence/source bullets over narrative prose.
 Put nuance and extended caveats in source-note files, not in the brief.
 Research briefs should be dry research memos, not post outlines: organize by research topic or by claim being supported/refuted.
@@ -79,8 +63,8 @@ When sources contain especially useful wording, capture short pull quotes in the
 without careful prompting, agents tend to pull in copy from my writing and suggest watered down prose. to counter, i specify a narrow template:
 
 <SourceExcerpt
-  label="research/TEMPLATE.md · Research brief structure"
-  href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/research/TEMPLATE.md#L1-L29">
+  label="research/TEMPLATE.md"
+  href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/research/TEMPLATE.md?plain=1#L1-L29">
 {`# Research Brief: {Post Title or Research Question}
 
 **Scope:** {One sentence on what this brief is trying to verify, explain, or compare.}

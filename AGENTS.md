@@ -103,12 +103,13 @@ When asked to do research for a post:
 - Maintain a sources section in `brief.md` linking to source files
 - Do NOT edit the actual blog post file — research output goes only in `research/`
 
-Research briefs should be ONE PAGE.
-Research briefs should be information-dense and scan-friendly: prefer claim/evidence/source bullets over narrative prose.
-Put nuance and extended caveats in source-note files, not in the brief.
-Research briefs should be dry research memos, not post outlines: organize by research topic or by claim being supported/refuted.
-In `brief.md`, put links directly under the relevant topic/claim heading instead of collecting advice about how to use the material in the post.
-When sources contain especially useful wording, capture short pull quotes in the brief where possible for later reuse.
+Content guidelines:
+- Research briefs should be ONE PAGE.
+- Research briefs should be information-dense and scan-friendly: prefer claim/evidence/source bullets over narrative prose.
+- Put nuance and extended caveats in source-note files, not in the brief.
+- Research briefs should be dry research memos, not post outlines: organize by research topic or by claim being supported/refuted.
+- Put links directly under the relevant topic/claim heading instead of collecting advice about how to use the material in the post.
+- When sources contain especially useful wording or quotes from individuals, capture short pull quotes in the brief where possible for later reuse.
 
 ## Diagrams
 
