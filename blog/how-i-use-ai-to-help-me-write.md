@@ -98,11 +98,9 @@ without careful prompting, agents tend to pull in copy from my writing and sugge
 
 When I'm done with a post, I ask an AI to run a fact check. Here, AI's general editorial cautiousness is useful, and I can draft a post with my best impression of the facts knowing I can cleanup misstatements later.
 
-For example, in my last post I originally had some inaccuracies about encryption litigation:
+For example, in my last post I originally had some inaccuracies about encryption litigation, and proposed a useful edit:
 
 {/* link to fact check on ai litigation, edit suggested by AI */}
-
-These prompts update my `BRIEF.md`, and I _sometimes_ accept proposed edits after discussion.
 
 ## What I used to do, but don't anymore
 
