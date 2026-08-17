@@ -13,11 +13,11 @@ AI is a helpful writing[^1] tool for me. Without it, I probably wouldn't have go
 
 However, there's a very thin line between delegating tasks that _support_ writing to AI and _letting AI think and write_ for me. Over time, the scope of tasks I give to it has narrowed, and the boundaries have gotten stricter.
 
-[^1]: Here I'm primarily going to discuss writing as in this blog and work-related technical docs. I'm not a creative writer and feel that AI has minimal utility for [creative work](/creativity/).
+[^1]: Here I'm primarily going to discuss writing for this blog and work-related technical docs. I'm not a creative writer and feel that AI has minimal utility for [creative work](/creativity/).
 
 ## What I do
 
-### Firewall AI and Human content
+### Firewall AI and human content
 
 I maintain a strict separation between content written by AI and what I write. Most agents default to writing content for you, so I have strict instructions in AGENTS.md to _not_ do that:
 
@@ -99,7 +99,7 @@ Without careful prompting, agents tend to pull in copy from my writing and sugge
 
 When I'm done with a post, I ask an AI to run a fact check. Here, AI's general editorial cautiousness is useful, and I can draft a post with my best impression of the facts knowing I can clean up misstatements later.
 
-For example, in my last post I originally had some inaccuracies about encryption litigation, and proposed a useful edit:
+For example, in my last post I originally had some inaccuracies about encryption litigation, and the agent proposed a useful edit:
 
 <EditDiff
   label="arguments-against-open-source-ai-are-very-bad.md"
@@ -112,14 +112,14 @@ For example, in my last post I originally had some inaccuracies about encryption
 
 ### Use AI to come up with titles
 
-As an experiment, I built a [small tool](https://github.com/tombedor/hn_headlines) that generated embeddings on HN posts, and compared proposed titles to my posts to those that did well on HN.
+As an experiment, I built a [small tool](https://github.com/tombedor/hn_headlines) that generated embeddings for HN posts and compared proposed titles for my posts with titles that did well on HN.
 
-This didn't really work, and I've come to view post titles as a core element of writing, not a quick label slapped on a post. The posts I've struggled to put titles on are also those that don't have a clear thesis - if I can't think of a good title, it's a strong signal that I don't have a well scoped topic to write about.
+This didn't really work, and I've come to view post titles as a core element of writing, not a quick label slapped on a post. The posts I've struggled to put titles on are also those that don't have a clear thesis—if I can't think of a good title, it's a strong signal that I don't have a well-scoped topic to write about.
 
 
 ### Ask for general feedback
 
-I dont get much mileage out of general "is this good" style prompts. when prompted this way, agemts tend to give you critiques sandwiched between compliments. This can be helpful, but it doesn't help me decide whether a post is worth publishing to my taste.
+I don't get much mileage out of general "is this good?"-style prompts. When prompted this way, agents tend to give you critiques sandwiched between compliments. This can be helpful, but it doesn't help me decide whether a post is worth publishing to my taste.
 
 I do still ask AI for counterpoints against my posts, but I keep the questions very specific.
 
@@ -129,10 +129,10 @@ I do still ask AI for counterpoints against my posts, but I keep the questions v
 >
 > — William Zinsser, [*On Writing Well*](https://books.google.com/books/about/On_Writing_Well_30th_Anniversary_Edition.html?id=mp16BDRDaYQC)
 
-Its very tempting to write a draft and ask an agent to cleanup awkward phrasing. This is a poor substitute for rereading a draft and tightening up phrasing myself. A poorly phrased sentence isn't just a mechanical mistake, it's a smell that some portion of an argument might need more thought. AI phrasing suggestions ate a backdoor to injecting bland AI-isms into my posts.
+It's very tempting to write a draft and ask an agent to clean up awkward phrasing. This is a poor substitute for rereading a draft and tightening up phrasing myself. A poorly phrased sentence isn't just a mechanical mistake; it's a smell that some portion of an argument might need more thought. AI phrasing suggestions are a backdoor for injecting bland AI-isms into my posts.
 
 i used to ask ai to evaluate post structure, and i find its analysis of writing strucutr to be quite insightful. but similar to titles, comingnup with a post structure is an integral piece of thenprocess, not a mechanical task o can delegate. if im struggling to come ip with a structure, is a smell that the argument im making is not ready to be wrotten yet.
 
 ## Don't let it think for me
 
-The boundry I've landed on is to keep tasks for myself that present opportunties to _think_ through the writing. What's left to AI is mechanical presentation configuration and facts based research. That's still a major benefit!
+The boundary I've landed on is to keep tasks for myself that present opportunities to _think_ through the writing. What's left to AI is mechanical presentation work and fact-based research. That's still a major benefit!
