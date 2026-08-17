@@ -133,6 +133,6 @@ It's very tempting to write a draft and ask an agent to clean up awkward phrasin
 
 I used to ask AI to evaluate post structure, and I find its analysis of writing structure quite insightful. But, as with titles, coming up with a post structure is an integral part of the process, not a mechanical task I can delegate. If I'm struggling to come up with a structure, it's a smell that the argument I'm making is not ready to be written yet.
 
-## Don't let it think for me
+## Don't let it think for me {* better heading /*}
 
 The boundary I've landed on is to keep tasks for myself that present opportunities to _think_ through the writing. What's left to AI is mechanical presentation work and fact-based research. That's still a major benefit!
