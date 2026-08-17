@@ -9,17 +9,17 @@ draft: true
 import SourceExcerpt from '@site/src/components/SourceExcerpt';
 import EditDiff from '@site/src/components/EditDiff';
 
-AI is a helpful writing[^1] tool for me. Without it, i probably wouldnt have gone through the trouble of setting up a blog.
+AI is a helpful writing[^1] tool for me. Without it, I probably wouldn't have gone through the trouble of setting up a blog.
 
-However, there's a very thin line between delegating tasks that _support_ writing to AI and _letting AI think and write_ for me. Over time, the scope of tasks i give to it has narrowed, and the boundaries have gotten stricter.
+However, there's a very thin line between delegating tasks that _support_ writing to AI and _letting AI think and write_ for me. Over time, the scope of tasks I give to it has narrowed, and the boundaries have gotten stricter.
 
-[^1]: Here I'm primarily going to discuss writing as in this blog and work-related technical docs. I'm not a creative writer, and feel that AI has minimal utility for [creative work](/creativity/).
+[^1]: Here I'm primarily going to discuss writing as in this blog and work-related technical docs. I'm not a creative writer and feel that AI has minimal utility for [creative work](/creativity/).
 
 ## What I do
 
 ### Firewall AI and Human content
 
-I maintain strict separation for content written by AI vs what I write. Most agents default to writing content for you, so I have strict instructions in AGENTS.md to _not_ do that:
+I maintain a strict separation between content written by AI and what I write. Most agents default to writing content for you, so I have strict instructions in AGENTS.md to _not_ do that:
 
 <SourceExcerpt
   label="AGENTS.md"
@@ -40,15 +40,15 @@ When asked for feedback or content suggestions:
 - The author will review suggestions and incorporate them manually`}
 </SourceExcerpt>
 
- I don't have principled moral objections to having AI write content for me. But writing content myself is the best way I have for reasoning through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
+I don't have principled moral objections to having AI write content for me. But writing content myself is the best way I have to reason through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
 
-I also just don't think AI writing is very good. It's editorial stance is watered down and overly cautious.
+I also just don't think AI writing is very good. Its editorial stance is watered down and overly cautious.
 
 {/* example of transcript where it suggested something */}
 
 ### Create agent-generated research briefs
 
-when my posts rely on factual claims, i have the agent prepare a dedicated reaearch brief on specific wuestions.
+When my posts rely on factual claims, I have the agent prepare a dedicated research brief on specific questions.
 
 <SourceExcerpt
   label="AGENTS.md"
@@ -61,7 +61,7 @@ In \`brief.md\`, put links directly under the relevant topic/claim heading inste
 When sources contain especially useful wording, capture short pull quotes in the brief where possible for later reuse.`}
 </SourceExcerpt>
 
-without careful prompting, agents tend to pull in copy from my writing and suggest watered down prose. to counter, i specify a narrow template:
+Without careful prompting, agents tend to pull in copy from my writing and suggest watered down prose. To counter, I specify a narrow template:
 
 <SourceExcerpt
   label="research/TEMPLATE.md"
@@ -97,7 +97,7 @@ without careful prompting, agents tend to pull in copy from my writing and sugge
 
 ### AI fact check
 
-When I'm done with a post, I ask an AI to run a fact check. Here, AI's general editorial cautiousness is useful, and I can draft a post with my best impression of the facts knowing I can cleanup misstatements later.
+When I'm done with a post, I ask an AI to run a fact check. Here, AI's general editorial cautiousness is useful, and I can draft a post with my best impression of the facts knowing I can clean up misstatements later.
 
 For example, in my last post I originally had some inaccuracies about encryption litigation, and proposed a useful edit:
 
