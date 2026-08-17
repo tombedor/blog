@@ -87,10 +87,6 @@ When asked for feedback or content suggestions:
 - Do NOT edit the actual blog post file with content unless explicitly told to do so
 - The author will review suggestions and incorporate them manually
 
-## Dual Publishing
-
-This blog is configured to dual-publish content to the Elroy project blog at `../elroy/docs/blog/`. Use `just dual-publish` or `npm run dual-publish` to sync blog posts and diagrams to the Elroy project. See `DUAL-PUBLISH.md` for details.
-
 ## Research
 
 Research for blog posts is stored in `research/{post-name}/`. The directory name matches the blog post slug (e.g., research for `open-source-models.mdx` goes in `research/open-source-models/`).
@@ -144,7 +140,6 @@ You can also use npm scripts directly:
 - `npm run typecheck` - Run TypeScript type checking
 - `npm run generate:social-cards` - Regenerate social cards from post titles
 - `npm run check:social-cards` - Fail if generated social cards are missing or stale
-- `npm run dual-publish` - Sync blog posts to Elroy project
 - `npm run screenshots` - Same as `just screenshots`
 - `npm test` - Same as `just test`. `npm install` and `npm ci` install Playwright's managed Chromium automatically; `CHROMIUM_PATH` can still select an existing browser explicitly.
 
