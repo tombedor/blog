@@ -150,6 +150,11 @@ You can also use npm scripts directly:
 - Do NOT run `npm run build`, `just build`, `npm test`, `just test`, or screenshot flows that invoke a production build until the user asks for final validation or indicates that the post is ready to publish.
 - Stop the development server before running final production validation. Development and production builds share `.docusaurus`; a production build excludes posts with `draft: true` and can cause a running development server to stop surfacing the WIP post.
 
+## Change Delivery
+
+- After completing and appropriately validating requested repository changes, commit and push them by default unless the user explicitly asks to leave them local or uncommitted.
+- Keep commits focused on the requested work and do not include unrelated user changes.
+
 Diagram export script usage:
 - `./scripts/excalidraw-export.sh -r static/diagrams` - Export all diagrams (skips unchanged)
 - `./scripts/excalidraw-export.sh -f -r static/diagrams` - Force re-export all diagrams
