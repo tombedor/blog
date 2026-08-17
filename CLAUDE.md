@@ -146,7 +146,7 @@ You can also use npm scripts directly:
 - `npm run check:social-cards` - Fail if generated social cards are missing or stale
 - `npm run dual-publish` - Sync blog posts to Elroy project
 - `npm run screenshots` - Same as `just screenshots`
-- `npm test` - Same as `just test`. Set `CHROMIUM_PATH` to an existing Chromium/Chrome binary if `npx playwright install chromium` hasn't been run.
+- `npm test` - Same as `just test`. `npm install` and `npm ci` install Playwright's managed Chromium automatically; `CHROMIUM_PATH` can still select an existing browser explicitly.
 
 Diagram export script usage:
 - `./scripts/excalidraw-export.sh -r static/diagrams` - Export all diagrams (skips unchanged)

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "playwright install chromium",
     "docusaurus": "docusaurus",
     "check:social-cards": "node scripts/generate-social-cards.mjs --check",
     "generate:social-cards": "node scripts/generate-social-cards.mjs",
