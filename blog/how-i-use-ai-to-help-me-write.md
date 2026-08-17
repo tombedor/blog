@@ -6,9 +6,9 @@ image: /social-cards/how-i-use-ai-to-help-me-write.png
 draft: true
 ---
 
-AI is a tremendously helpful writing tool for me. without it, i probably wouldnt have gone through the trouble of setting up a blog. 
+AI is a tremendously helpful writing tool for me. without it, i probably wouldnt have gone through the trouble of setting up a blog.
 
-however, theres a very thin line between using ai to generate slop and using it to get facts right and refine presentation. over time, the scope of writing tasks i give to ai has narrowed, and the boundaries have gotten stricter.
+however, theres a very thin line between using ai to generate slop and using it to get facts right and refine presentation. over time, the scope of writing tasks i give to ai has narrowed, and the boundaries have gotten stricter. <!-- common theme: things that i originally thought were companion tasks to writing, but became clear to be integral -->
 
 
 
@@ -90,6 +90,10 @@ I dont get much mileage out of general "is this good" style prompts. when prompt
 
 i used to ask ai to evaluate post structure, and i find its analysis of writing strucutr to be quite insightful. but similar to titles, comingnup with a post structure is an integral piece of thenprocess, not a mechanical task o can delegate. if im struggling to come ip with a structure, is a smell that the argument im making is not ready to be wrotten yet.
 
+### Generate charts
+
+wording on charts is usually bad
+
 
 ## when used thoughtfully, ai improves writing
 
@@ -97,4 +101,5 @@ ai makes slop easy.the same tools tyat have produced a mountain of buggy vobe co
 
 similarly, the same tools that produce linkedin spam are also useful in improving writing
 
+<!-- point about companioon tasks reveaing themselves to be integratl>
 
