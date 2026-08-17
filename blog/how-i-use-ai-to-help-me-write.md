@@ -7,12 +7,13 @@ draft: true
 ---
 
 import SourceExcerpt from '@site/src/components/SourceExcerpt';
+import EditDiff from '@site/src/components/EditDiff';
 
 AI is a helpful writing[^1] tool for me. Without it, i probably wouldnt have gone through the trouble of setting up a blog.
 
 However, there's a very thin line between delegating tasks that _support_ writing to AI and _letting AI think and write_ for me. Over time, the scope of tasks i give to it has narrowed, and the boundaries have gotten stricter.
 
-[^1]: Here I'm primarily going to discuss writing as in this blog and work-related technical docs. I'm not a creative writer, and feel that AI has minimal utility for creative work {/* link to creativity post */}.
+[^1]: Here I'm primarily going to discuss writing as in this blog and work-related technical docs. I'm not a creative writer, and feel that AI has minimal utility for [creative work](/creativity/).
 
 ## What I do
 
@@ -100,7 +101,12 @@ When I'm done with a post, I ask an AI to run a fact check. Here, AI's general e
 
 For example, in my last post I originally had some inaccuracies about encryption litigation, and proposed a useful edit:
 
-{/* link to fact check on ai litigation, edit suggested by AI */}
+<EditDiff
+  label="arguments-against-open-source-ai-are-very-bad.md"
+  href="https://github.com/tombedor/blog/commit/fd3021bfdc77b88df5f202c1b87812bb9a705dc3"
+  before={<>Eventually, <mark>Zimmermann's release of PGP was ruled to be</mark> protected speech, and the U.S. government relaxed encryption export controls.</>}
+  after={<>Eventually, <mark>courts ruled that releasing encryption source code is</mark> protected speech, and the U.S. government relaxed encryption export controls.</>}
+/>
 
 ## What I used to do, but don't anymore
 

@@ -1,0 +1,98 @@
+.diff {
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.82rem;
+}
+
+.caption {
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.caption code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+
+.caption a {
+  color: var(--ifm-color-primary-darkest);
+  text-decoration: none;
+}
+
+.caption a:hover {
+  text-decoration: underline;
+}
+
+.external {
+  margin-left: 0.35rem;
+}
+
+.line {
+  display: grid;
+  grid-template-columns: 1.2rem minmax(0, 1fr);
+  padding: 0.7rem 0.85rem 0.7rem 0.55rem;
+  line-height: 1.55;
+}
+
+.line + .line {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.removed {
+  background: color-mix(in srgb, #d1242f 10%, transparent);
+}
+
+.added {
+  background: color-mix(in srgb, #1a7f37 10%, transparent);
+}
+
+.marker {
+  font-weight: 700;
+  user-select: none;
+}
+
+.removed .marker {
+  color: #cf222e;
+}
+
+.added .marker {
+  color: #1a7f37;
+}
+
+.removed mark,
+.added mark {
+  padding: 0.08em 0.16em;
+  border-radius: 3px;
+  color: inherit;
+}
+
+.removed mark {
+  background: color-mix(in srgb, #ff8182 42%, transparent);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.added mark {
+  background: color-mix(in srgb, #56d364 38%, transparent);
+}
+
+[data-theme='dark'] .caption a {
+  color: var(--ifm-color-primary-lightest);
+}
+
+[data-theme='dark'] .removed .marker {
+  color: #ff7b72;
+}
+
+[data-theme='dark'] .added .marker {
+  color: #56d364;
+}
