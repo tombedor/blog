@@ -6,6 +6,8 @@ image: /social-cards/how-i-use-ai-to-help-me-write.png
 draft: true
 ---
 
+import SourceExcerpt from '@site/src/components/SourceExcerpt';
+
 AI is a helpful writing[^1] tool for me. Without it, i probably wouldnt have gone through the trouble of setting up a blog.
 
 However, there's a very thin line between delegating tasks that _support_ writing to AI and _letting AI think and write_ for me. Over time, the scope of tasks i give to it has narrowed, and the boundaries have gotten stricter.
@@ -18,7 +20,24 @@ However, there's a very thin line between delegating tasks that _support_ writin
 
 I maintain strict separation for content written by AI vs what I write. Most agents default to writing content for you, so I have strict instructions in AGENTS.md to _not_ do that:
 
-{/* link to agents.md, render text of relevant section */}
+<SourceExcerpt
+  label="AGENTS.md · Content Editing Policy"
+  href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/AGENTS.md#L75-L88">
+{`## Content Editing Policy
+
+**The writing must come from the author.** AI agents can help with suggestions but should not edit blog post files with content unless explicitly instructed.
+
+When creating new blog posts:
+- Create the file with frontmatter (title, date, draft: true)
+- Leave the body empty or with minimal placeholders (section headers only)
+- Do NOT write any actual content, paragraphs, or prose into the file
+
+When asked for feedback or content suggestions:
+- CAN write suggested content, paragraphs, or prose in the chat response
+- CAN propose specific edits and revisions
+- Do NOT edit the actual blog post file with content unless explicitly told to do so
+- The author will review suggestions and incorporate them manually`}
+</SourceExcerpt>
 
  I don't have principled moral objections to having AI write content for me. But writing content myself is the best way I have for reasoning through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
 
@@ -30,11 +49,66 @@ I also just don't think AI writing is very good. It's editorial stance is watere
 
 when my posts rely on factual claims, i have the agent prepare a dedicated reaearch brief on specific wuestions.
 
-{/* rendered prompt around BRIEF.md */}
+<SourceExcerpt
+  label="AGENTS.md · Research briefs"
+  href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/AGENTS.md#L94-L115">
+{`## Research
+
+Research for blog posts is stored in \`research/{post-name}/\`. The directory name matches the blog post slug (e.g., research for \`open-source-models.mdx\` goes in \`research/open-source-models/\`).
+
+Each post's research directory contains:
+- \`brief.md\` — the main research brief: fact-checks of post claims, source summaries, and counterarguments
+- Individual source files (e.g., \`hn-thread.md\`, \`paper-notes.md\`) — detailed notes on specific sources
+- \`../TEMPLATE.md\` — reusable research brief template
+
+When asked to do research for a post:
+- Update or create \`research/{post-name}/brief.md\` with findings
+- Use \`research/TEMPLATE.md\` as the default structure for new briefs, adapting headings to the actual research question
+- Add separate source files for substantial individual sources
+- Maintain a sources section in \`brief.md\` linking to source files
+- Do NOT edit the actual blog post file — research output goes only in \`research/\`
+
+Research briefs should be ONE PAGE.
+Research briefs should be information-dense and scan-friendly: prefer claim/evidence/source bullets over narrative prose.
+Put nuance and extended caveats in source-note files, not in the brief.
+Research briefs should be dry research memos, not post outlines: organize by research topic or by claim being supported/refuted.
+In \`brief.md\`, put links directly under the relevant topic/claim heading instead of collecting advice about how to use the material in the post.
+When sources contain especially useful wording, capture short pull quotes in the brief where possible for later reuse.`}
+</SourceExcerpt>
 
 without careful prompting, agents tend to pull in copy from my writing and suggest watered down prose. to counter, i specify a narrow template:
 
-{/* embed template */}
+<SourceExcerpt
+  label="research/TEMPLATE.md · Research brief structure"
+  href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/research/TEMPLATE.md#L1-L29">
+{`# Research Brief: {Post Title or Research Question}
+
+**Scope:** {One sentence on what this brief is trying to verify, explain, or compare.}
+
+**Bottom line:** {1-3 bullets with the highest-confidence takeaway.}
+- {Takeaway}
+- {Takeaway}
+
+---
+
+## {Claim or Topic}
+
+**Claim / question:** {The specific claim being checked or topic being researched.}
+
+**Finding:** {Short answer. Prefer one sentence.}
+
+**Evidence:**
+- {Evidence point with relevant number/date/context.}
+
+**Sources:**
+- {URL or local source note link}
+
+**Pull quotes:**
+- "{Short useful quote}" ({Source name})
+
+**Caveats / counterpoints:**
+- {Nuance, uncertainty, conflicting evidence, or scope limitation.}`}
+</SourceExcerpt>
 
 ### AI fact check
 

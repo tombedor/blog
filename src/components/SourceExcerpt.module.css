@@ -1,0 +1,59 @@
+.excerpt {
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-left: 3px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.caption {
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.caption code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+
+.caption a {
+  color: var(--ifm-color-primary-darkest);
+  text-decoration: none;
+}
+
+.caption a:hover {
+  text-decoration: underline;
+}
+
+.external {
+  margin-left: 0.35rem;
+}
+
+.code {
+  margin: 0;
+  padding: 0.9rem;
+  border-radius: 0;
+  background: var(--ifm-code-background);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.code code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  white-space: inherit;
+}
+
+[data-theme='dark'] .caption a {
+  color: var(--ifm-color-primary-lightest);
+}
