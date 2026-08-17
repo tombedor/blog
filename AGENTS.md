@@ -128,7 +128,7 @@ Diagrams are exported to PNG using `scripts/excalidraw-export.sh`, which uses ha
 See the `Justfile` for common development and deployment commands:
 
 - `just build` - Build the production bundle
-- `just serve` - Serve the production build locally
+- `just serve` - Start the development server
 - `just deploy` - Verify social cards, run the test suite, then deploy to GitHub Pages
 - `just dual-publish` - Sync blog posts to Elroy project
 - `just export-diagrams` - Export all excalidraw diagrams to PNG (with caching)
@@ -143,6 +143,12 @@ You can also use npm scripts directly:
 - `npm run check:social-cards` - Fail if generated social cards are missing or stale
 - `npm run screenshots` - Same as `just screenshots`
 - `npm test` - Same as `just test`. `npm install` and `npm ci` install Playwright's managed Chromium automatically; `CHROMIUM_PATH` can still select an existing browser explicitly.
+
+## Validation During Drafting
+
+- While a draft post is actively being edited, use `just serve` / `npm start` and targeted checks such as `npm run typecheck`.
+- Do NOT run `npm run build`, `just build`, `npm test`, `just test`, or screenshot flows that invoke a production build until the user asks for final validation or indicates that the post is ready to publish.
+- Stop the development server before running final production validation. Development and production builds share `.docusaurus`; a production build excludes posts with `draft: true` and can cause a running development server to stop surfacing the WIP post.
 
 Diagram export script usage:
 - `./scripts/excalidraw-export.sh -r static/diagrams` - Export all diagrams (skips unchanged)

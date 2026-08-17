@@ -126,28 +126,3 @@ i used to ask ai to evaluate post structure, and i find its analysis of writing 
 ## Don't let it think for me
 
 The boundry I've landed on is to keep tasks for myself that present opportunties to _think_ through the writing. What's left to AI is mechanical presentation configuration and facts based research. That's still a major benefit!
-
-
-
-
----
-
-## Cut content
-
-### Refine presentation
-
-One of the pleasures of writing a blog is having full control over appearance and presentation. I use [docusauraus](https://docusaurus.io/) to build my site, which is a nice framework that allows unbounded customizabaility.
-
-But actually learning in depth how to configure widgets just so isn't super interesting to me,
-
-
-
-
-and it made this edit:
-
-{/* edit saying skills are similarly overengineered */}
-
-Comments on the post (justifiably) jumped on that line - skills are just a markdown file, how could I call them overengineered?
-
-[^1]: With caveat below
-[^2]: I don't actually think this anymore. Skills strike quite a reasonable balance on adding just enough documentation for an agent to use a CLI, without incurring the process overhead of MCP.
