@@ -125,7 +125,11 @@ I do still ask AI for counterpoints against my posts, but I keep the questions v
 
 ### Clean up phrasing or structure
 
-(quote about first draft is typing, editing is wroting). its very tempting to write a draft and ask an agent to cleanup awkward phrasing. This is a poor substitute for rereading a draft and tightening up phrasing myself. A poorly phrased sentence isn't just a mechanical mistake, it's a smell that some portion of an argument might need more thought. AI phrasing suggestions ate a backdoor to injecting bland AI-isms into my posts.
+> “Rewriting is the essence of writing well: it’s where the game is won or lost.”
+>
+> — William Zinsser, [*On Writing Well*](https://books.google.com/books/about/On_Writing_Well_30th_Anniversary_Edition.html?id=mp16BDRDaYQC)
+
+Its very tempting to write a draft and ask an agent to cleanup awkward phrasing. This is a poor substitute for rereading a draft and tightening up phrasing myself. A poorly phrased sentence isn't just a mechanical mistake, it's a smell that some portion of an argument might need more thought. AI phrasing suggestions ate a backdoor to injecting bland AI-isms into my posts.
 
 i used to ask ai to evaluate post structure, and i find its analysis of writing strucutr to be quite insightful. but similar to titles, comingnup with a post structure is an integral piece of thenprocess, not a mechanical task o can delegate. if im struggling to come ip with a structure, is a smell that the argument im making is not ready to be wrotten yet.
 
