@@ -13,13 +13,15 @@ AI is a helpful writing[^1] tool for me. Without it, I probably wouldn't have go
 
 However, there's a very thin line between delegating tasks that _support_ writing to AI and _letting AI think and write_ for me. Over time, the scope of tasks I give to it has narrowed, and the boundaries have gotten stricter.
 
+{/* truncate */}
+
 [^1]: Here I'm primarily going to discuss writing for this blog and work-related technical docs. I'm not a creative writer and feel that AI has minimal utility for [creative work](/creativity/).
 
 ## What I do
 
 ### Firewall AI and human content
 
-I maintain a strict separation between content written by AI and what I write. Most agents default to writing content for you, so I have strict instructions in AGENTS.md to _not_ do that:
+I strictly separate content I write from what AI writes. Most agents default to writing content for you, so I have strict instructions in AGENTS.md to _not_ do that:
 
 <SourceExcerpt
   label="AGENTS.md"
@@ -42,7 +44,9 @@ When asked for feedback or content suggestions:
 
 I don't have principled moral objections to having AI write content for me. But writing content myself is the best way I have to reason through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
 
-I also just don't think AI writing is very good. Its editorial stance is watered down and overly cautious.
+I also just don't think AI writing is very good. Its editorial stance is generic[^2],watered down and overly cautious.
+
+[^2]: I think this generic impression is more about how _much_ AI generated writing I have to sift through with the same style, rather than the quality of the writing itself. If we went back in time and gave produced just _one_ AI writer, would we still be so annoyed by it? I don't think so.
 
 {/* example of transcript where it suggested something */}
 
@@ -133,6 +137,6 @@ It's very tempting to write a draft and ask an agent to clean up awkward phrasin
 
 I used to ask AI to evaluate post structure, and I find its analysis of writing structure quite insightful. But, as with titles, coming up with a post structure is an integral part of the process, not a mechanical task I can delegate. If I'm struggling to come up with a structure, it's a smell that the argument I'm making is not ready to be written yet.
 
-## Don't let it think for me {* better heading /*}
+## Doing the thinking myself
 
 The boundary I've landed on is to keep tasks for myself that present opportunities to _think_ through the writing. What's left to AI is mechanical presentation work and fact-based research. That's still a major benefit!
