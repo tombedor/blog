@@ -33,19 +33,18 @@
   container-type: inline-size;
 }
 
-/* Keep the "Recent posts" list in view instead of scrolling out and leaving
-   the rest of the column empty on long posts / the paginated list. */
+/* Docusaurus makes the desktop blog sidebar sticky and independently
+   scrollable by default. Keep it in normal document flow instead, so the page
+   has a single scrollbar and the sidebar scrolls away with the post feed. */
 nav[aria-label='Blog recent posts navigation'] {
-  position: sticky;
-  top: calc(var(--ifm-navbar-height) + 2rem);
-  max-height: calc(100vh - var(--ifm-navbar-height) - 4rem);
-  overflow-y: auto;
+  position: static;
+  max-height: none;
+  overflow-y: visible;
 }
 
 /* The "Recent posts" sidebar uses Infima's 3/12-column grid, sized for a
    docs-style layout. That's more width than a list of post titles needs,
-   especially now that it's sticky and stays on screen the whole time.
-   Narrow it and give the freed width to the article/feed column. Scoped
+   so narrow it and give the freed width to the article/feed column. Scoped
    via :has() to rows containing the blog sidebar specifically, so this
    doesn't affect the generic .col--N grid classes used elsewhere.
    Media-queried to match Docusaurus's sidebar breakpoint so these overrides
