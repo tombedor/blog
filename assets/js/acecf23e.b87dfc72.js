@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkblog_temp=self.webpackChunkblog_temp||[]).push([["3220"],{1912(e){e.exports=JSON.parse('{"blogBasePath":"/","blogTitle":"Tom Bedor\'s Blog","authorsListPath":"/authors"}')}}]);
