@@ -53,12 +53,13 @@ nav[aria-label='Blog recent posts navigation'] {
   .row:has(nav[aria-label='Blog recent posts navigation']) > aside.col--3 {
     flex: 0 0 18%;
     max-width: 18%;
+    margin-right: 1rem;
   }
 
   /* Post pages: sidebar + article + page TOC (3 columns) */
   .row:has(nav[aria-label='Blog recent posts navigation']):has(> .col--2) > main.col--7 {
-    flex: 0 0 65%;
-    max-width: 65%;
+    flex: 0 0 calc(65% - 1rem);
+    max-width: calc(65% - 1rem);
   }
   .row:has(nav[aria-label='Blog recent posts navigation']) > .col--2 {
     flex: 0 0 17%;
@@ -69,8 +70,8 @@ nav[aria-label='Blog recent posts navigation'] {
      fill the rest instead of leaving a quarter of the row empty. */
   .row:has(nav[aria-label='Blog recent posts navigation']):not(:has(> .col--2))
     > main.col--7 {
-    flex: 0 0 82%;
-    max-width: 82%;
+    flex: 0 0 calc(82% - 1rem);
+    max-width: calc(82% - 1rem);
   }
 }
 
