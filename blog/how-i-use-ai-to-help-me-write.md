@@ -9,19 +9,19 @@ draft: true
 import SourceExcerpt from '@site/src/components/SourceExcerpt';
 import EditDiff from '@site/src/components/EditDiff';
 
-AI is a helpful writing[^1] tool for me. Without it, I probably wouldn't have gone through the trouble of setting up a blog.
+AI is a helpful writing tool for me. Without it, I probably wouldn't have gone through the trouble of setting up a blog.
 
 However, there's a very thin line between delegating tasks that _support_ writing to AI and _letting AI think and write_ for me. Over time, the scope of tasks I give to it has narrowed, and the boundaries have gotten stricter.
 
 {/* truncate */}
 
-[^1]: Here I'm primarily going to discuss writing for this blog and work-related technical docs. I'm not a creative writer and feel that AI has minimal utility for [creative work](/creativity/).
-
 ## What I do
 
 ### Firewall AI and human content
 
-I strictly separate content I write from what AI writes. Most agents default to writing content for you, so I have strict instructions in AGENTS.md to _not_ do that:
+I strictly separate content I write[^1] from what AI writes. Most agents default to writing content for you, so I have strict instructions in AGENTS.md to _not_ do that:
+
+[^1]: Here I'm primarily going to discuss writing for this blog and work-related technical docs. I'm not a creative writer and feel that AI has minimal utility for [creative work](/creativity/).
 
 <SourceExcerpt
   label="AGENTS.md"
@@ -111,6 +111,8 @@ For example, in my last post I originally had some inaccuracies about encryption
   before={<>Eventually, <mark>Zimmermann's release of PGP was ruled to be</mark> protected speech, and the U.S. government relaxed encryption export controls.</>}
   after={<>Eventually, <mark>courts ruled that releasing encryption source code is</mark> protected speech, and the U.S. government relaxed encryption export controls.</>}
 />
+
+Chasing down these types of subtle factual mistkaes myself is cumbersome and time consuming. Having this backstop lets me expand the scope of what I can confidently write about.
 
 ## What I used to do, but don't anymore
 
