@@ -44,11 +44,17 @@ When asked for feedback or content suggestions:
 
 I don't have principled moral objections to having AI write content for me. But writing content myself is the best way I have to reason through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
 
-I also just don't think AI writing is very good. Its editorial stance is generic[^2],watered down and overly cautious.
+I also just don't think AI writing is very good. Its editorial stance is generic[^2],watered down and overly cautious. For example:
 
 [^2]: I think this generic impression is more about how _much_ AI generated writing I have to sift through with the same style, rather than the quality of the writing itself. If we went back in time and gave produced just _one_ AI writer, would we still be so annoyed by it? I don't think so.
 
-{/* example of transcript where it suggested something */}
+<EditDiff
+  label="Rejected Codex suggestion"
+  beforeLabel="My version"
+  afterLabel="AI suggestion"
+  before={<>This is a more manual process than <mark>just spitballing about</mark> a project to an AI, but I prefer to <mark>have</mark> the AI's <mark>ground truth</mark> assumptions tightly controlled during coding.</>}
+  after={<>This is a more manual process than <mark>casually describing</mark> a project to an AI, but I prefer to <mark>keep</mark> the AI’s <mark>ground-truth</mark> assumptions tightly controlled during coding.</>}
+/>
 
 ### Create agent-generated research briefs
 
@@ -108,6 +114,8 @@ For example, in my last post I originally had some inaccuracies about encryption
 <EditDiff
   label="arguments-against-open-source-ai-are-very-bad.md"
   href="https://github.com/tombedor/blog/commit/fd3021bfdc77b88df5f202c1b87812bb9a705dc3"
+  beforeLabel="My version"
+  afterLabel="AI suggestion"
   before={<>Eventually, <mark>Zimmermann's release of PGP was ruled to be</mark> protected speech, and the U.S. government relaxed encryption export controls.</>}
   after={<>Eventually, <mark>courts ruled that releasing encryption source code is</mark> protected speech, and the U.S. government relaxed encryption export controls.</>}
 />

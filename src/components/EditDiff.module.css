@@ -47,6 +47,17 @@
   border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
+.content {
+  min-width: 0;
+}
+
+.lineLabel {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
 .removed {
   background: color-mix(in srgb, #d1242f 10%, transparent);
 }
