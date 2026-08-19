@@ -9,7 +9,7 @@ draft: true
 import SourceExcerpt from '@site/src/components/SourceExcerpt';
 import EditDiff from '@site/src/components/EditDiff';
 
-AI is a helpful writing tool for me. Without it, I probably wouldn't have gone through the trouble of setting up a blog.
+AI is a helpful writing tool for me. Without it, I probably wouldn't have gone to the trouble of setting up a blog.
 
 However, there's a very thin line between delegating tasks that _support_ writing to AI and _letting AI think and write_ for me. Over time, the scope of tasks I give to it has narrowed, and the boundaries have gotten stricter.
 
@@ -19,7 +19,7 @@ However, there's a very thin line between delegating tasks that _support_ writin
 
 ### Firewall AI and human content
 
-I strictly separate content I write[^1] from what AI writes. Most agents default to writing content for you, so I have strict instructions in AGENTS.md to _not_ do that:
+I strictly separate content I write[^1] from what AI writes. Most agents default to writing content for me, so I have strict instructions in AGENTS.md to _not_ do that:
 
 [^1]: Here I'm primarily going to discuss writing for this blog and work-related technical docs. I'm not a creative writer and feel that AI has minimal utility for [creative work](/creativity/).
 
@@ -42,11 +42,11 @@ When asked for feedback or content suggestions:
 - The author will review suggestions and incorporate them manually`}
 </SourceExcerpt>
 
-I don't have principled moral objections to having AI write content for me. But writing content myself is my best way to reason through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
+I don't have principled moral objections to having AI write content for me. But writing content myself is the best way I have to reason through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
 
-I also don't think AI writing is very good. Its editorial stance is generic[^2],watered down and overly cautious. For example:
+I also don't think AI writing is very good. Its editorial stance is generic[^2], watered down and overly cautious. For example:
 
-[^2]: I think this impression is more about how much AI generated writing I have to sift through, rather than the quality of the writing in a vacuum. If we went back in time and produced just _one_ AI writer, would we still be so annoyed by it? I don't think so.
+[^2]: I think this impression is more about how much AI-generated writing I have to sift through than about the quality of any individual piece. If we went back in time and encountered just one piece of AI-generated writing, would it still annoy us? I don't think so.
 
 <EditDiff
   label="Rejected Codex suggestion"
@@ -58,7 +58,7 @@ I also don't think AI writing is very good. Its editorial stance is generic[^2],
 
 ### Create agent-generated research briefs
 
-When my arguments rely on factual claims, I have the agent prepare a dedicated research brief on specific questions.
+When my arguments rely on factual claims, I have the agent prepare a dedicated research brief to answer specific questions.
 
 <SourceExcerpt
   label="AGENTS.md"
@@ -107,7 +107,7 @@ Agents sometimes insist on pulling in copy from my writing and proposing edits. 
 
 ### AI fact check
 
-When I'm done with a post, I ask an AI to run a fact check. Here, AI's general editorial cautiousness is useful, and I can draft a post with my best impression of the facts knowing I can clean up misstatements later.
+When I'm done with a post, I ask an AI to run a fact check. Here, AI's general editorial cautiousness is useful: I can draft a post with my best impression of the facts, knowing I can clean up misstatements later.
 
 For example, in my post on [open source models](/arguments-against-open-source-ai-are-very-bad/), I originally had some inaccuracies about encryption litigation. The agent proposed a useful edit:
 
@@ -120,7 +120,7 @@ For example, in my post on [open source models](/arguments-against-open-source-a
   after={<>Eventually, <mark>courts ruled that releasing encryption source code is</mark> protected speech, and the U.S. government relaxed encryption export controls.</>}
 />
 
-Chasing down these types of subtle factual mistakes myself is cumbersome and time consuming. Having AI as backstop lets me expand the scope of what I can confidently write about.
+Chasing down subtle factual mistakes like these is cumbersome and time-consuming. Having AI as a backstop lets me expand the scope of what I can confidently write about.
 
 ## What I used to do, but don't anymore
 
@@ -128,13 +128,13 @@ Chasing down these types of subtle factual mistakes myself is cumbersome and tim
 
 As an experiment, I built a [small tool](https://github.com/tombedor/hn_headlines) that generated embeddings for Hacker News posts and compared proposed titles for my posts with titles that did well there.
 
-I've stopped doing this, because I've come to view post titles as a core element of writing[^3], not a quick label slapped on a post. The posts I've struggled to put titles on are also those that didn't have a clear thesis. If I can't think of a good title, it's a signal that I don't have a well-scoped topic to write about.
+I've stopped doing this, because I've come to view post titles as a core element of writing[^3], not a quick label slapped on a post. The posts I've struggled to title are also the ones without a clear thesis. If I can't think of a good title, it's a signal that I don't have a well-scoped topic to write about.
 
 [^3]: And more importantly, it didn't actually work in getting me any more precious internet points!
 
 ### Ask for general feedback
 
-I don't get much mileage out of general "is this good?"-style prompts. When prompted this way, agents tend to give you critiques sandwiched between compliments. This can be helpful, but it doesn't help me decide whether a post is worth publishing to my taste.
+I don't get much mileage out of general "is this good?"-style prompts. When I prompt agents this way, they tend to give me critiques sandwiched between compliments. This can be helpful, but it doesn't help me decide whether a post is worth publishing to my taste.
 
 I do still ask AI for counterpoints against my posts, but I keep the questions very specific.
 
@@ -144,12 +144,12 @@ I do still ask AI for counterpoints against my posts, but I keep the questions v
 >
 > — William Zinsser, [*On Writing Well*](https://books.google.com/books/about/On_Writing_Well_30th_Anniversary_Edition.html?id=mp16BDRDaYQC)
 
-It's very tempting to write a draft, ask an agent to clean up awkward phrasing, and hit publish. But AI sentence cleanup is a poor substitute for rereading a draft and doing the editing myself. A poorly phrased sentence isn't just a mechanical mistake, it's a smell that some portion of an argument needs more thought. Agent phrasing suggestions are also a backdoor for injecting bland AI-isms into my writing.
+It's very tempting to write a draft, ask an agent to clean up awkward phrasing, and hit publish. But AI sentence cleanup is a poor substitute for rereading a draft and doing the editing myself. A poorly phrased sentence isn't just a mechanical mistake; it's a smell that some portion of an argument needs more thought. Agent phrasing suggestions are also a backdoor for injecting bland AI-isms into my writing.
 
-I used to ask AI to evaluate post structure, and I find its analysis of writing structure insightful. But, as with titles, coming up with a writing structure is an integral part of the process, not a mechanical task I can delegate. If I'm struggling to come up with writing structure, the argument I'm making is not ready to be written yet.
+I used to ask AI to evaluate post structure. But, as with titles, coming up with a writing structure is an integral part of the process, not a mechanical task I can delegate. If I'm struggling to come up with writing structure, the argument I'm making is not ready to be written yet.
 
 ## Doing the thinking myself
 
-AI presents tempting shortcuts which require dillegence to avoid. The boundary I strive for is to keep tasks that present opportunities to _think_ through the writing for myself. What's left to AI is mechanical presentation work and fact-based research.
+AI presents tempting shortcuts that require diligence to avoid. The boundary I strive for is to keep for myself the tasks that create opportunities to _think_ through the writing. What's left to AI is mechanical presentation work and fact-based research.
 
 All that said, it's still a helpful tool, and I'm glad I get to use it.
