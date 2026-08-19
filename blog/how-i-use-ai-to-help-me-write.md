@@ -9,9 +9,9 @@ draft: true
 import SourceExcerpt from '@site/src/components/SourceExcerpt';
 import EditDiff from '@site/src/components/EditDiff';
 
-AI is a helpful writing tool for me. Without it, I probably wouldn't have gone to the trouble of setting up a blog.
+AI is a helpful writing tool for me. Without it, I probably wouldn't have gone through the trouble of setting up a blog.
 
-However, there's a very thin line between delegating tasks that _support_ writing to AI and _letting AI think and write_ for me. Over time, the scope of tasks I give to it has narrowed, and the boundaries have gotten stricter.
+However, there's a very thin line between delegating tasks that _support_ writing to AI and _letting AI think and write_ for me. Over time, the scope of tasks I give it has narrowed, and the boundaries have gotten stricter.
 
 {/* truncate */}
 
@@ -46,7 +46,7 @@ I don't have principled moral objections to having AI write content for me. But 
 
 I also don't think AI writing is very good. Its editorial stance is generic[^2], watered down and overly cautious. For example:
 
-[^2]: I think this impression is more about how much AI-generated writing I have to sift through than about the quality of any individual piece. If we went back in time and encountered just one piece of AI-generated writing, would it still annoy us? I don't think so.
+[^2]: I think this impression is more about how much AI-generated writing I have to sift through than about the quality of any individual piece. If I went back in time and encountered just one piece of AI-generated writing, would it still annoy me? I don't think so.
 
 <EditDiff
   label="Rejected Codex suggestion"
@@ -107,7 +107,7 @@ Agents sometimes insist on pulling in copy from my writing and proposing edits. 
 
 ### AI fact check
 
-When I'm done with a post, I ask an AI to run a fact check. Here, AI's general editorial cautiousness is useful: I can draft a post with my best impression of the facts, knowing I can clean up misstatements later.
+When I'm done with a post, I ask an AI to run a fact check. Here, AI's editorial cautiousness is useful: I can draft a post with my best impression of the facts, knowing I can clean up misstatements later.
 
 For example, in my post on [open source models](/arguments-against-open-source-ai-are-very-bad/), I originally had some inaccuracies about encryption litigation. The agent proposed a useful edit:
 
@@ -126,7 +126,7 @@ Chasing down subtle factual mistakes like these is cumbersome and time-consuming
 
 ### Use AI to come up with titles
 
-As an experiment, I built a [small tool](https://github.com/tombedor/hn_headlines) that generated embeddings for Hacker News posts and compared proposed titles for my posts with titles that did well there.
+As an experiment, I built a [small tool](https://github.com/tombedor/hn_headlines) that generated embeddings for Hacker News posts and compared proposed titles with titles that did well there.
 
 I've stopped doing this, because I've come to view post titles as a core element of writing[^3], not a quick label slapped on a post. The posts I've struggled to title are also the ones without a clear thesis. If I can't think of a good title, it's a signal that I don't have a well-scoped topic to write about.
 
@@ -148,7 +148,7 @@ It's very tempting to write a draft, ask an agent to clean up awkward phrasing, 
 
 [^4]: I do still ask the AI to do a pass for spelling, puncuation, and grammar. It's a subtle boundry.
 
-I used to ask AI to evaluate post structure. But, as with titles, coming up with a writing structure is an integral part of the process, not a mechanical task I can delegate. If I'm struggling to come up with writing structure, the argument I'm making is not ready to be written yet.
+I used to ask AI to evaluate post structure. But, as with titles, coming up with a writing structure is an integral part of the process, not a mechanical task I can delegate. If I'm struggling to structure a post, the argument I'm making may not be ready to be written yet.
 
 ## Doing the thinking myself
 
