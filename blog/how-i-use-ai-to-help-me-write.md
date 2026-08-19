@@ -3,7 +3,6 @@ title: How I use AI to help me write
 date: 2026-08-05
 authors: [tom]
 image: /social-cards/how-i-use-ai-to-help-me-write.png
-draft: true
 ---
 
 import SourceExcerpt from '@site/src/components/SourceExcerpt';
