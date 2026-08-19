@@ -42,11 +42,11 @@ When asked for feedback or content suggestions:
 - The author will review suggestions and incorporate them manually`}
 </SourceExcerpt>
 
-I don't have principled moral objections to having AI write content for me. But writing content myself is the best way I have to reason through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
+I don't have principled moral objections to having AI write content for me. But writing content myself is my best way to reason through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).
 
-I also just don't think AI writing is very good. Its editorial stance is generic[^2],watered down and overly cautious. For example:
+I also don't think AI writing is very good. Its editorial stance is generic[^2],watered down and overly cautious. For example:
 
-[^2]: I think this generic impression is more about how _much_ AI generated writing I have to sift through with the same style, rather than the quality of the writing itself. If we went back in time and gave produced just _one_ AI writer, would we still be so annoyed by it? I don't think so.
+[^2]: I think this impression is more about how much AI generated writing I have to sift through, rather than the quality of the writing in a vacuum. If we went back in time and produced just _one_ AI writer, would we still be so annoyed by it? I don't think so.
 
 <EditDiff
   label="Rejected Codex suggestion"
@@ -58,7 +58,7 @@ I also just don't think AI writing is very good. Its editorial stance is generic
 
 ### Create agent-generated research briefs
 
-When my posts rely on factual claims, I have the agent prepare a dedicated research brief on specific questions.
+When my arguments rely on factual claims, I have the agent prepare a dedicated research brief on specific questions.
 
 <SourceExcerpt
   label="AGENTS.md"
