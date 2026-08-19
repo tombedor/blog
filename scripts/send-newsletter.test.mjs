@@ -50,7 +50,7 @@ test('newsletter sanitization renders SourceExcerpt as labeled fenced code', () 
   );
 });
 
-test('newsletter sanitization renders EditDiff as labeled blockquotes', () => {
+test('newsletter sanitization renders EditDiff with email-safe colors', () => {
   const markdown = [
     '<EditDiff',
     '  label="Rejected Codex suggestion"',
@@ -66,9 +66,15 @@ test('newsletter sanitization renders EditDiff as labeled blockquotes', () => {
     [
       '**Rejected Codex suggestion**',
       '',
-      '> **My version:** This is **my wording**.',
-      '>',
-      '> **AI suggestion:** This is **AI wording**.',
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border-spacing:0;">',
+      '  <tr>',
+      '    <td style="background:#ffebe9;border-left:4px solid #cf222e;border-radius:6px;padding:12px 14px;color:#24292f;"><strong style="color:#a40e26;">My version:</strong> This is <strong>my wording</strong>.</td>',
+      '  </tr>',
+      '  <tr><td height="8" style="font-size:0;line-height:0;">&nbsp;</td></tr>',
+      '  <tr>',
+      '    <td style="background:#dafbe1;border-left:4px solid #1a7f37;border-radius:6px;padding:12px 14px;color:#24292f;"><strong style="color:#116329;">AI suggestion:</strong> This is <strong>AI wording</strong>.</td>',
+      '  </tr>',
+      '</table>',
     ].join('\n'),
   );
 });

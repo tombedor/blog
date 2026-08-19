@@ -244,9 +244,15 @@ function normalizeEditDiffComponents(markdown) {
     return [
       formatComponentLabel(label, href),
       '',
-      `> **${beforeLabel}:** ${normalizeJsxFragment(before)}`,
-      '>',
-      `> **${afterLabel}:** ${normalizeJsxFragment(after)}`,
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border-spacing:0;">',
+      '  <tr>',
+      `    <td style="background:#ffebe9;border-left:4px solid #cf222e;border-radius:6px;padding:12px 14px;color:#24292f;"><strong style="color:#a40e26;">${escapeHtml(beforeLabel)}:</strong> ${normalizeJsxFragmentToHtml(before)}</td>`,
+      '  </tr>',
+      '  <tr><td height="8" style="font-size:0;line-height:0;">&nbsp;</td></tr>',
+      '  <tr>',
+      `    <td style="background:#dafbe1;border-left:4px solid #1a7f37;border-radius:6px;padding:12px 14px;color:#24292f;"><strong style="color:#116329;">${escapeHtml(afterLabel)}:</strong> ${normalizeJsxFragmentToHtml(after)}</td>`,
+      '  </tr>',
+      '</table>',
     ].join('\n');
   });
 }
@@ -263,13 +269,30 @@ function getJsxFragmentAttribute(attributes, name) {
   return match?.[1];
 }
 
-function normalizeJsxFragment(fragment) {
-  return fragment
-    .replace(/<mark>/g, '**')
-    .replace(/<\/mark>/g, '**')
-    .replace(/<br\s*\/?>/g, '\n> ')
+function normalizeJsxFragmentToHtml(fragment) {
+  const strongOpen = '__EDIT_DIFF_STRONG_OPEN__';
+  const strongClose = '__EDIT_DIFF_STRONG_CLOSE__';
+  const lineBreak = '__EDIT_DIFF_LINE_BREAK__';
+
+  const text = fragment
+    .replace(/<mark>/g, strongOpen)
+    .replace(/<\/mark>/g, strongClose)
+    .replace(/<br\s*\/?>/g, lineBreak)
     .replace(/<[^>]+>/g, '')
     .trim();
+
+  return escapeHtml(text)
+    .replaceAll(strongOpen, '<strong>')
+    .replaceAll(strongClose, '</strong>')
+    .replaceAll(lineBreak, '<br>');
+}
+
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 function formatComponentLabel(label, href) {
