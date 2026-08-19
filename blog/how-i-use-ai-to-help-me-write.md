@@ -62,16 +62,16 @@ When my arguments rely on factual claims, I have the agent prepare a dedicated r
 
 <SourceExcerpt
   label="AGENTS.md"
-  href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/AGENTS.md?plain=1#L110-L115">
-{`Research briefs should be ONE PAGE.
-Research briefs should be information-dense and scan-friendly: prefer claim/evidence/source bullets over narrative prose.
-Put nuance and extended caveats in source-note files, not in the brief.
-Research briefs should be dry research memos, not post outlines: organize by research topic or by claim being supported/refuted.
-In \`brief.md\`, put links directly under the relevant topic/claim heading instead of collecting advice about how to use the material in the post.
-When sources contain especially useful wording, capture short pull quotes in the brief where possible for later reuse.`}
+  href="https://github.com/tombedor/blog/blob/5523fb0d192f78af6c3db5b600a7fdf65ac2c4b8/AGENTS.md?plain=1#L107-L112">
+{`- Research briefs should be ONE PAGE.
+- Research briefs should be information-dense and scan-friendly: prefer claim/evidence/source bullets over narrative prose.
+- Put nuance and extended caveats in source-note files, not in the brief.
+- Research briefs should be dry research memos, not post outlines: organize by research topic or by claim being supported/refuted.
+- Put links directly under the relevant topic/claim heading instead of collecting advice about how to use the material in the post.
+- When sources contain especially useful wording or quotes from individuals, capture short pull quotes in the brief where possible for later reuse.`}
 </SourceExcerpt>
 
-Without careful prompting, agents tend to pull in copy from my writing and suggest watered down prose. To counter, I specify a narrow template:
+Without careful prompting, agents tend to pull in copy from my writing and suggest watered down prose. To counter, I also specify a narrow template:
 
 <SourceExcerpt
   label="research/TEMPLATE.md"
