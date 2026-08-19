@@ -144,7 +144,9 @@ I do still ask AI for counterpoints against my posts, but I keep the questions v
 >
 > — William Zinsser, [*On Writing Well*](https://books.google.com/books/about/On_Writing_Well_30th_Anniversary_Edition.html?id=mp16BDRDaYQC)
 
-It's very tempting to write a draft, ask an agent to clean up awkward phrasing, and hit publish. But AI sentence cleanup is a poor substitute for rereading a draft and doing the editing myself. A poorly phrased sentence isn't just a mechanical mistake; it's a smell that some portion of an argument needs more thought. Agent phrasing suggestions are also a backdoor for injecting bland AI-isms into my writing.
+It's very tempting to write a draft, ask an agent to clean up awkward phrasing, and hit publish. But AI sentence cleanup is a poor substitute for rereading a draft and doing the editing myself[^4]. A poorly phrased sentence isn't just a mechanical mistake; it's a smell that some portion of an argument needs more thought. Agent phrasing suggestions are also a backdoor for injecting bland AI-isms into my writing.
+
+[^4]: I do still ask the AI to do a pass for spelling, puncuation, and grammar. It's a subtle boundry.
 
 I used to ask AI to evaluate post structure. But, as with titles, coming up with a writing structure is an integral part of the process, not a mechanical task I can delegate. If I'm struggling to come up with writing structure, the argument I'm making is not ready to be written yet.
 
