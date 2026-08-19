@@ -185,7 +185,9 @@ export function getNewsletterMarkdown(markdown, newsletterMode) {
 
 export function sanitizePostBody(markdown, siteUrl, {newsletterMode = 'full'} = {}) {
   const newsletterMarkdown = getNewsletterMarkdown(markdown, newsletterMode);
-  const sanitized = normalizeMdxImageTags(newsletterMarkdown)
+  const sanitized = normalizeMdxImageTags(
+    normalizeEditDiffComponents(normalizeSourceExcerptComponents(newsletterMarkdown)),
+  )
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/\{\/\*[\s\S]*?\*\/\}/g, '')
     .split(/\r?\n/)
@@ -207,6 +209,71 @@ export function sanitizePostBody(markdown, siteUrl, {newsletterMode = 'full'} = 
     .trim();
 
   return normalizeFootnotes(sanitized);
+}
+
+function normalizeSourceExcerptComponents(markdown) {
+  return markdown.replace(
+    /<SourceExcerpt\b([\s\S]*?)>\s*\{`([\s\S]*?)`\}\s*<\/SourceExcerpt>/g,
+    (_match, attributes, excerpt) => {
+      const label = getStringAttribute(attributes, 'label') || 'Source excerpt';
+      const href = getStringAttribute(attributes, 'href');
+      const fenceLength = Math.max(
+        3,
+        ...Array.from(excerpt.matchAll(/`+/g), (match) => match[0].length + 1),
+      );
+      const fence = '`'.repeat(fenceLength);
+
+      return `${formatComponentLabel(label, href)}\n\n${fence}text\n${excerpt.trim()}\n${fence}`;
+    },
+  );
+}
+
+function normalizeEditDiffComponents(markdown) {
+  return markdown.replace(/<EditDiff\b([\s\S]*?)^\s*\/>/gm, (_match, attributes) => {
+    const label = getStringAttribute(attributes, 'label') || 'Suggested edit';
+    const href = getStringAttribute(attributes, 'href');
+    const beforeLabel = getStringAttribute(attributes, 'beforeLabel') || 'Before';
+    const afterLabel = getStringAttribute(attributes, 'afterLabel') || 'After';
+    const before = getJsxFragmentAttribute(attributes, 'before');
+    const after = getJsxFragmentAttribute(attributes, 'after');
+
+    if (!before || !after) {
+      return _match;
+    }
+
+    return [
+      formatComponentLabel(label, href),
+      '',
+      `> **${beforeLabel}:** ${normalizeJsxFragment(before)}`,
+      '>',
+      `> **${afterLabel}:** ${normalizeJsxFragment(after)}`,
+    ].join('\n');
+  });
+}
+
+function getStringAttribute(attributes, name) {
+  const match = attributes.match(new RegExp(`\\b${name}=(['"])([\\s\\S]*?)\\1`));
+  return match?.[2];
+}
+
+function getJsxFragmentAttribute(attributes, name) {
+  const match = attributes.match(
+    new RegExp(`\\b${name}=\\{<>([\\s\\S]*?)<\\/>\\}`),
+  );
+  return match?.[1];
+}
+
+function normalizeJsxFragment(fragment) {
+  return fragment
+    .replace(/<mark>/g, '**')
+    .replace(/<\/mark>/g, '**')
+    .replace(/<br\s*\/?>/g, '\n> ')
+    .replace(/<[^>]+>/g, '')
+    .trim();
+}
+
+function formatComponentLabel(label, href) {
+  return href ? `**[${label}](${href})**` : `**${label}**`;
 }
 
 function normalizeMdxImageTags(markdown) {
