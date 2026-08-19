@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkblog_temp||=[]).push([[4245],{2475(e){e.exports=JSON.parse('{"authors":[{"name":"Tom Bedor","title":"Software engineering leader","url":"https://tombedor.dev/about/","socials":{"github":"https://github.com/tombedor","x":"https://x.com/middleagedc0der"},"imageURL":"https://tombedor.dev/img/logo.svg","key":"tom","page":null,"count":18}]}')}}]);

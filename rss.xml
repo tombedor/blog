@@ -4,11 +4,116 @@
         <title>Tom Bedor's Blog</title>
         <link>https://tombedor.dev/</link>
         <description>Thoughts on software, AI, and building things</description>
-        <lastBuildDate>Thu, 23 Jul 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 05 Aug 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>Copyright © 2026 Tom Bedor</copyright>
+        <item>
+            <title><![CDATA[How I use AI to help me write]]></title>
+            <link>https://tombedor.dev/how-i-use-ai-to-help-me-write/</link>
+            <guid>https://tombedor.dev/how-i-use-ai-to-help-me-write/</guid>
+            <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[AI is a helpful writing tool for me. Without it, I probably wouldn't have gone through the trouble of setting up a blog.]]></description>
+            <content:encoded><![CDATA[<p>AI is a helpful writing tool for me. Without it, I probably wouldn't have gone through the trouble of setting up a blog.</p>
+<p>However, there's a very thin line between delegating tasks that <em>support</em> writing to AI and <em>letting AI think and write</em> for me. Over time, the scope of tasks I give it has narrowed, and the boundaries have gotten stricter.</p>
+<!-- -->
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-i-do">What I do<a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#what-i-do" class="hash-link" aria-label="Direct link to What I do" title="Direct link to What I do" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="firewall-ai-and-human-content">Firewall AI and human content<a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#firewall-ai-and-human-content" class="hash-link" aria-label="Direct link to Firewall AI and human content" title="Direct link to Firewall AI and human content" translate="no">​</a></h3>
+<p>I strictly separate content I write<sup><a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#user-content-fn-1-d4f220" id="user-content-fnref-1-d4f220" data-footnote-ref="true" aria-describedby="footnote-label" class="anchorTargetStickyNavbar_Vzrq">1</a></sup> from what AI writes. Most agents default to writing content for me, so I have strict instructions in AGENTS.md to <em>not</em> do that:</p>
+<figure class="excerpt_i1m8"><figcaption class="caption_Qzsc"><a href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/AGENTS.md?plain=1#L75-L88" target="_blank" rel="noreferrer"><code>AGENTS.md</code><span class="external_eAES" aria-hidden="true">↗</span></a></figcaption><div class="codeWrap_xtt8"><button type="button" class="copyButton_tJ2Z" aria-label="Copy code" title="Copy code"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1"></rect><path d="M3.5 10.5h-1v-8h8v1"></path></svg></button><pre class="code_RdCJ"><code>## Content Editing Policy
+
+**The writing must come from the author.** AI agents can help with suggestions but should not edit blog post files with content unless explicitly instructed.
+
+When creating new blog posts:
+- Create the file with frontmatter (title, date, draft: true)
+- Leave the body empty or with minimal placeholders (section headers only)
+- Do NOT write any actual content, paragraphs, or prose into the file
+
+When asked for feedback or content suggestions:
+- CAN write suggested content, paragraphs, or prose in the chat response
+- CAN propose specific edits and revisions
+- Do NOT edit the actual blog post file with content unless explicitly told to do so
+- The author will review suggestions and incorporate them manually</code></pre></div></figure>
+<p>I don't have principled moral objections to having AI write content for me. But writing content myself is the best way I have to reason through the topic (which makes the exercise valuable to me, regardless of whether anyone reads it).</p>
+<p>I also don't think AI writing is very good. Its editorial stance is generic<sup><a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#user-content-fn-2-d4f220" id="user-content-fnref-2-d4f220" data-footnote-ref="true" aria-describedby="footnote-label" class="anchorTargetStickyNavbar_Vzrq">2</a></sup>, watered down and overly cautious. For example:</p>
+<figure class="diff_E3X2"><figcaption class="caption_k3G7"><code>Rejected Codex suggestion</code></figcaption><div class="line_JLih removed_OdhG"><span class="marker_ul5A" aria-hidden="true">−</span><span class="content_wZE5"><span class="lineLabel_ve5K">My version</span><span>This is a more manual process than <mark>just spitballing about</mark> a project to an AI, but I prefer to <mark>have</mark> the AI's <mark>ground truth</mark> assumptions tightly controlled during coding.</span></span></div><div class="line_JLih added_ITMD"><span class="marker_ul5A" aria-hidden="true">+</span><span class="content_wZE5"><span class="lineLabel_ve5K">AI suggestion</span><span>This is a more manual process than <mark>casually describing</mark> a project to an AI, but I prefer to <mark>keep</mark> the AI’s <mark>ground-truth</mark> assumptions tightly controlled during coding.</span></span></div></figure>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-agent-generated-research-briefs">Create agent-generated research briefs<a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#create-agent-generated-research-briefs" class="hash-link" aria-label="Direct link to Create agent-generated research briefs" title="Direct link to Create agent-generated research briefs" translate="no">​</a></h3>
+<p>When my arguments rely on factual claims, I have the agent prepare a dedicated research brief to answer specific questions.</p>
+<figure class="excerpt_i1m8"><figcaption class="caption_Qzsc"><a href="https://github.com/tombedor/blog/blob/5523fb0d192f78af6c3db5b600a7fdf65ac2c4b8/AGENTS.md?plain=1#L107-L112" target="_blank" rel="noreferrer"><code>AGENTS.md</code><span class="external_eAES" aria-hidden="true">↗</span></a></figcaption><div class="codeWrap_xtt8"><button type="button" class="copyButton_tJ2Z" aria-label="Copy code" title="Copy code"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1"></rect><path d="M3.5 10.5h-1v-8h8v1"></path></svg></button><pre class="code_RdCJ"><code>- Research briefs should be ONE PAGE.
+- Research briefs should be information-dense and scan-friendly: prefer claim/evidence/source bullets over narrative prose.
+- Put nuance and extended caveats in source-note files, not in the brief.
+- Research briefs should be dry research memos, not post outlines: organize by research topic or by claim being supported/refuted.
+- Put links directly under the relevant topic/claim heading instead of collecting advice about how to use the material in the post.
+- When sources contain especially useful wording or quotes from individuals, capture short pull quotes in the brief where possible for later reuse.</code></pre></div></figure>
+<p>Agents sometimes insist on pulling in copy from my writing and proposing edits. To counter, I also specify a narrow template:</p>
+<figure class="excerpt_i1m8"><figcaption class="caption_Qzsc"><a href="https://github.com/tombedor/blog/blob/a650fa204769274b83861a579f4aa6adaff89f46/research/TEMPLATE.md?plain=1#L1-L29" target="_blank" rel="noreferrer"><code>research/TEMPLATE.md</code><span class="external_eAES" aria-hidden="true">↗</span></a></figcaption><div class="codeWrap_xtt8"><button type="button" class="copyButton_tJ2Z" aria-label="Copy code" title="Copy code"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1"></rect><path d="M3.5 10.5h-1v-8h8v1"></path></svg></button><pre class="code_RdCJ"><code># Research Brief: {Post Title or Research Question}
+
+**Scope:** {One sentence on what this brief is trying to verify, explain, or compare.}
+
+**Bottom line:** {1-3 bullets with the highest-confidence takeaway.}
+- {Takeaway}
+- {Takeaway}
+
+---
+
+## {Claim or Topic}
+
+**Claim / question:** {The specific claim being checked or topic being researched.}
+
+**Finding:** {Short answer. Prefer one sentence.}
+
+**Evidence:**
+- {Evidence point with relevant number/date/context.}
+
+**Sources:**
+- {URL or local source note link}
+
+**Pull quotes:**
+- "{Short useful quote}" ({Source name})
+
+**Caveats / counterpoints:**
+- {Nuance, uncertainty, conflicting evidence, or scope limitation.}</code></pre></div></figure>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ai-fact-check">AI fact check<a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#ai-fact-check" class="hash-link" aria-label="Direct link to AI fact check" title="Direct link to AI fact check" translate="no">​</a></h3>
+<p>When I'm done with a post, I ask an AI to run a fact check. Here, AI's editorial cautiousness is useful: I can draft a post with my best impression of the facts, knowing I can clean up misstatements later.</p>
+<p>For example, in my post on <a class="" href="https://tombedor.dev/arguments-against-open-source-ai-are-very-bad/">open source models</a>, I originally had some inaccuracies about encryption litigation. The agent proposed a useful edit:</p>
+<figure class="diff_E3X2"><figcaption class="caption_k3G7"><a href="https://github.com/tombedor/blog/commit/fd3021bfdc77b88df5f202c1b87812bb9a705dc3" target="_blank" rel="noreferrer"><code>arguments-against-open-source-ai-are-very-bad.md</code><span class="external_Bv3w" aria-hidden="true">↗</span></a></figcaption><div class="line_JLih removed_OdhG"><span class="marker_ul5A" aria-hidden="true">−</span><span class="content_wZE5"><span class="lineLabel_ve5K">My version</span><span>Eventually, <mark>Zimmermann's release of PGP was ruled to be</mark> protected speech, and the U.S. government relaxed encryption export controls.</span></span></div><div class="line_JLih added_ITMD"><span class="marker_ul5A" aria-hidden="true">+</span><span class="content_wZE5"><span class="lineLabel_ve5K">AI suggestion</span><span>Eventually, <mark>courts ruled that releasing encryption source code is</mark> protected speech, and the U.S. government relaxed encryption export controls.</span></span></div></figure>
+<p>Chasing down subtle factual mistakes like these is cumbersome and time-consuming. Having AI as a backstop lets me expand the scope of what I can confidently write about.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-i-used-to-do-but-dont-anymore">What I used to do, but don't anymore<a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#what-i-used-to-do-but-dont-anymore" class="hash-link" aria-label="Direct link to What I used to do, but don't anymore" title="Direct link to What I used to do, but don't anymore" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="use-ai-to-come-up-with-titles">Use AI to come up with titles<a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#use-ai-to-come-up-with-titles" class="hash-link" aria-label="Direct link to Use AI to come up with titles" title="Direct link to Use AI to come up with titles" translate="no">​</a></h3>
+<p>As an experiment, I built a <a href="https://github.com/tombedor/hn_headlines" target="_blank" rel="noopener noreferrer" class="">small tool</a> that generated embeddings for Hacker News posts and compared proposed titles with titles that did well there.</p>
+<p>I've stopped doing this, because I've come to view post titles as a core element of writing<sup><a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#user-content-fn-3-d4f220" id="user-content-fnref-3-d4f220" data-footnote-ref="true" aria-describedby="footnote-label" class="anchorTargetStickyNavbar_Vzrq">3</a></sup>, not a quick label slapped on a post. The posts I've struggled to title are also the ones without a clear thesis. If I can't think of a good title, it's a signal that I don't have a well-scoped topic to write about.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ask-for-general-feedback">Ask for general feedback<a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#ask-for-general-feedback" class="hash-link" aria-label="Direct link to Ask for general feedback" title="Direct link to Ask for general feedback" translate="no">​</a></h3>
+<p>I don't get much mileage out of general "is this good?"-style prompts. When I prompt agents this way, they tend to give me critiques sandwiched between compliments. This can be helpful, but it doesn't help me decide whether a post is worth publishing to my taste.</p>
+<p>I do still ask AI for counterpoints against my posts, but I keep the questions very specific.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="clean-up-phrasing-or-structure">Clean up phrasing or structure<a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#clean-up-phrasing-or-structure" class="hash-link" aria-label="Direct link to Clean up phrasing or structure" title="Direct link to Clean up phrasing or structure" translate="no">​</a></h3>
+<blockquote>
+<p>“Rewriting is the essence of writing well: it’s where the game is won or lost.”</p>
+<p>— William Zinsser, <a href="https://books.google.com/books/about/On_Writing_Well_30th_Anniversary_Edition.html?id=mp16BDRDaYQC" target="_blank" rel="noopener noreferrer" class=""><em>On Writing Well</em></a></p>
+</blockquote>
+<p>It's very tempting to write a draft, ask an agent to clean up awkward phrasing, and hit publish. But AI sentence cleanup is a poor substitute for rereading a draft and doing the editing myself<sup><a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#user-content-fn-4-d4f220" id="user-content-fnref-4-d4f220" data-footnote-ref="true" aria-describedby="footnote-label" class="anchorTargetStickyNavbar_Vzrq">4</a></sup>. A poorly phrased sentence isn't just a mechanical mistake; it's a smell that some portion of an argument needs more thought. Agent phrasing suggestions are also a backdoor for injecting bland AI-isms into my writing.</p>
+<p>I used to ask AI to evaluate post structure. But, as with titles, coming up with a writing structure is an integral part of the process, not a mechanical task I can delegate. If I'm struggling to structure a post, the argument I'm making may not be ready to be written yet.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="doing-the-thinking-myself">Doing the thinking myself<a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#doing-the-thinking-myself" class="hash-link" aria-label="Direct link to Doing the thinking myself" title="Direct link to Doing the thinking myself" translate="no">​</a></h2>
+<p>AI presents tempting shortcuts that require diligence to avoid. The boundary I strive for is to keep for myself the tasks that create opportunities to <em>think</em> through the writing. What's left to AI is mechanical presentation work and fact-based research.</p>
+<p>All that said, it's still a helpful tool, and I'm glad I get to use it.</p>
+<!-- -->
+<section data-footnotes="true" class="footnotes"><h2 class="anchor anchorTargetStickyNavbar_Vzrq sr-only" id="footnote-label">Footnotes<a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes" translate="no">​</a></h2>
+<ol>
+<li class="anchorTargetStickyNavbar_Vzrq" id="user-content-fn-1-d4f220">
+<p>Here I'm primarily going to discuss writing for this blog and work-related technical docs. I'm not a creative writer and feel that AI has minimal utility for <a class="" href="https://tombedor.dev/creativity/">creative work</a>. <a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#user-content-fnref-1-d4f220" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li class="anchorTargetStickyNavbar_Vzrq" id="user-content-fn-2-d4f220">
+<p>I think this impression is more about how much AI-generated writing I have to sift through than about the quality of any individual piece. If I went back in time and encountered just one piece of AI-generated writing, would it still annoy me? I don't think so. <a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#user-content-fnref-2-d4f220" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+</li>
+<li class="anchorTargetStickyNavbar_Vzrq" id="user-content-fn-3-d4f220">
+<p>And more importantly, it didn't actually work in getting me any more precious internet points! <a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#user-content-fnref-3-d4f220" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a></p>
+</li>
+<li class="anchorTargetStickyNavbar_Vzrq" id="user-content-fn-4-d4f220">
+<p>I do still ask the AI to do a pass for spelling, puncuation, and grammar. It's a subtle boundry. <a href="https://tombedor.dev/how-i-use-ai-to-help-me-write/#user-content-fnref-4-d4f220" data-footnote-backref="" aria-label="Back to reference 4" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[The Arguments Against Open Source AI are Very Bad]]></title>
             <link>https://tombedor.dev/arguments-against-open-source-ai-are-very-bad/</link>
