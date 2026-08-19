@@ -1,3 +1,3 @@
-dont overuse state why im writing about something, just start the topic
+Don't state why I'm writing about something, Just state the topic or thesis.
 
-limit use of intensifiers like _very_, _quite_, _extremely_.
+Limit use of intensifiers like _very_, _quite_, _extremely_.
