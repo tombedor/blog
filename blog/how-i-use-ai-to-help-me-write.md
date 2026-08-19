@@ -71,7 +71,7 @@ When my arguments rely on factual claims, I have the agent prepare a dedicated r
 - When sources contain especially useful wording or quotes from individuals, capture short pull quotes in the brief where possible for later reuse.`}
 </SourceExcerpt>
 
-Without careful prompting, agents tend to pull in copy from my writing and suggest watered down prose. To counter, I also specify a narrow template:
+Agents sometimes insist on pulling in copy from my writing and proposing edits. To counter, I also specify a narrow template:
 
 <SourceExcerpt
   label="research/TEMPLATE.md"
@@ -109,7 +109,7 @@ Without careful prompting, agents tend to pull in copy from my writing and sugge
 
 When I'm done with a post, I ask an AI to run a fact check. Here, AI's general editorial cautiousness is useful, and I can draft a post with my best impression of the facts knowing I can clean up misstatements later.
 
-For example, in my last post I originally had some inaccuracies about encryption litigation, and the agent proposed a useful edit:
+For example, in my post on [open source models](/arguments-against-open-source-ai-are-very-bad/), I originally had some inaccuracies about encryption litigation. The agent proposed a useful edit:
 
 <EditDiff
   label="arguments-against-open-source-ai-are-very-bad.md"
@@ -120,17 +120,17 @@ For example, in my last post I originally had some inaccuracies about encryption
   after={<>Eventually, <mark>courts ruled that releasing encryption source code is</mark> protected speech, and the U.S. government relaxed encryption export controls.</>}
 />
 
-Chasing down these types of subtle factual mistakes myself is cumbersome and time consuming. Having this backstop lets me expand the scope of what I can confidently write about.
+Chasing down these types of subtle factual mistakes myself is cumbersome and time consuming. Having AI as backstop lets me expand the scope of what I can confidently write about.
 
 ## What I used to do, but don't anymore
 
 ### Use AI to come up with titles
 
-As an experiment, I built a [small tool](https://github.com/tombedor/hn_headlines) that generated embeddings for HN posts and compared proposed titles for my posts with titles that did well on HN.
+As an experiment, I built a [small tool](https://github.com/tombedor/hn_headlines) that generated embeddings for Hacker News posts and compared proposed titles for my posts with titles that did well there.
 
-I've stopped doing this, because I've come to view post titles as a core element of writing[^3], not a quick label slapped on a post. The posts I've struggled to put titles on are also those that don't have a clear thesis. If I can't think of a good title, it's a strong signal that I don't have a well-scoped topic to write about.
+I've stopped doing this, because I've come to view post titles as a core element of writing[^3], not a quick label slapped on a post. The posts I've struggled to put titles on are also those that didn't have a clear thesis. If I can't think of a good title, it's a signal that I don't have a well-scoped topic to write about.
 
-[^3]: And more importantly, it didn't actually work in getting me any more precious internet points.
+[^3]: And more importantly, it didn't actually work in getting me any more precious internet points!
 
 ### Ask for general feedback
 
@@ -144,12 +144,12 @@ I do still ask AI for counterpoints against my posts, but I keep the questions v
 >
 > — William Zinsser, [*On Writing Well*](https://books.google.com/books/about/On_Writing_Well_30th_Anniversary_Edition.html?id=mp16BDRDaYQC)
 
-It's very tempting to write a draft, ask an agent to clean up awkward phrasing, and hit publish. But AI sentence cleanup is a poor substitute for rereading a draft and doing the editing myself. A poorly phrased sentence isn't just a mechanical mistake; it's a smell that some portion of an argument might need more thought. AI phrasing suggestions are also a backdoor for injecting bland AI-isms into my writing.
+It's very tempting to write a draft, ask an agent to clean up awkward phrasing, and hit publish. But AI sentence cleanup is a poor substitute for rereading a draft and doing the editing myself. A poorly phrased sentence isn't just a mechanical mistake, it's a smell that some portion of an argument needs more thought. Agent phrasing suggestions are also a backdoor for injecting bland AI-isms into my writing.
 
-I used to ask AI to evaluate post structure, and I find its analysis of writing structure insightful. But, as with titles, coming up with a writing structure is an integral part of the process, not a mechanical task I can delegate. If I'm struggling to come up with writing structure, it's a smell that the argument I'm making is not ready to be written yet.
+I used to ask AI to evaluate post structure, and I find its analysis of writing structure insightful. But, as with titles, coming up with a writing structure is an integral part of the process, not a mechanical task I can delegate. If I'm struggling to come up with writing structure, the argument I'm making is not ready to be written yet.
 
 ## Doing the thinking myself
 
-The boundary I've landed on is to keep tasks for myself that present opportunities to _think_ through the writing. What's left to AI is mechanical presentation work and fact-based research. AI presents tempting shortcuts which require dillegence to avoid.
+AI presents tempting shortcuts which require dillegence to avoid. The boundary I strive for is to keep tasks that present opportunities to _think_ through the writing for myself. What's left to AI is mechanical presentation work and fact-based research.
 
 All that said, it's still a helpful tool, and I'm glad I get to use it.
