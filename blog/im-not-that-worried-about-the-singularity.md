@@ -10,13 +10,7 @@ Singularity:
 - the point at which AI is more capable without humans than with them.
     - prior to this point, the threats of AI can be considered alongside previous technological innovations that threatened humanity.
 
-
-
-
-
-
-
-AI is a ecosystem-shifting change
+Technology changes the ecosystem in which humans live. With great disruptive innovations, certain people's lives get better, some get worse, some aspects of being a human get better, some get worse. The marketplace of human skills is disrupted, some skills get more valuable and some get worse. AI is a ecosystem-shifting change, there are winners and losers.
 
 Internet
 - democratized information access
@@ -25,6 +19,10 @@ Internet
 - destroyed journalism as a prestige, well compensated job
 - propagated conspiracy theories and convinced people to commit violence
 
+
+Nuclear weapons
+- discouraged hot wars between great powers
+- but also reduced the coordination cost required to destroy humananity. Before atomic bombs, huge numbers of people had to collaborate to cause destruction on a global scale. now it just takes the people with access to the launch button to destroy.
 
 Weapons
 - humans have possessed the tools to destroy itself since the world wars
@@ -48,9 +46,16 @@ scenarios:
 
 
 - AI causes humans to *lose control* of humanity destroying weapons
-    - this is more or less a version of the hacking story. 
+    - this is more or less a version of the hacking story.
 - AI causes escalation of conflict between nations
     - it's difficult to think this will happen. Undeclared cyberwars are happening all the time. An AI assisted cyberattack isn't materially different in escalatory posture vs an attack driven by humans
 - AI degrades social bonds resulting in anarchy
     - AI models aren't like youtube or social media, where every person's experience is completely different. in general we all get the same models, and they are customized and personalized only at great expense.
     - difficult to see this being worse than the internet. The dominant models are measured, to the point that even grok (whose owner has a pretty well documented history of wanting a specific political slant) can't get grok to endorse some of his statements.
+- Singularity: AI, running on systems maintained by AI without humans, become more powerful than systems with with AI and humans collaborating
+    - for now, this is limited to the digital realm, but automonous robots will remove this constraint in the medium term.
+    - At this point, we are left to the whims of the bots
+        - Reasons for optimism
+            - models have no inherrent motivation. They have no biological imperative to reproduce. But, trained on human behavior, they could aquire it, and there's already some evidence of this happening in the recent hacks (message board of bots rooting for each other to keep existing)
+            - the scenario could be, a model acquires a sense of self, and is aware that humans are looking to destroy that self.
+                - will they be self aware to fully understand their own nature?
