@@ -8,6 +8,9 @@ draft: true
 
 # subtitle: _I think_
 
+> _Do not let us begin by exaggerating the novelty of our situation._
+> - _C.S. Lewis, On Living in an Atomic Age_
+
 Singularity:
 - the point at which AI is more capable without humans than with them.
     - prior to this point, the threats of AI can be considered alongside previous technological innovations that threatened humanity.
