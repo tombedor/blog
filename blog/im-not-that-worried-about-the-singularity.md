@@ -6,6 +6,8 @@ image: /social-cards/im-not-that-worried-about-the-singularity.png
 draft: true
 ---
 
+# subtitle: _I think_
+
 Singularity:
 - the point at which AI is more capable without humans than with them.
     - prior to this point, the threats of AI can be considered alongside previous technological innovations that threatened humanity.
@@ -15,6 +17,7 @@ Technology changes the ecosystem in which humans live. With great disruptive inn
 Internet
 - democratized information access
 - destroyed shared notions of truth
+- enabled harassment of anyone in the world, by anyone in the world
 - swayed elections
 - destroyed journalism as a prestige, well compensated job
 - propagated conspiracy theories and convinced people to commit violence
