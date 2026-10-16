@@ -87,11 +87,15 @@ This is not a campaign quote. Long conversations repeatedly resend history, and 
 - LLMs reduce the **response labor** that previously prevented bulk outreach from being genuinely conversational. The relevant comparison is not LLM versus template copy; it is LLM versus a paid caller or volunteer who listens and adapts.
 - As marginal cost falls, the sender can tolerate lower response rates. More of the cost is externalized as recipient attention, carrier filtering, and social distrust—exactly the dynamic that turns outreach into spam.
 
-## What Share of Campaign Budgets Went to Outreach?
+## What Share Went to Direct-to-Voter Contact?
 
-There is **no continuous, apples-to-apples series**. Before modern disclosure law, parties, printers, newspapers, clubs, and patrons often paid separately; there may be no candidate “campaign budget” denominator. Since the FEC era, filings use inconsistent descriptions, outside groups spend alongside candidates, and “outreach” can include ads, mail, phones, field staff, data, events, and travel. A 2019 review found 76% of congressional and 97% of presidential expenditures unclassified in the available FEC category data for 2006–2016.
+There is **no defensible continuous series for calls + email + SMS + conversational AI as a share of campaign budgets**. Before modern disclosure law, parties, clubs, patrons, and candidates often paid separately. Since the FEC era, filings use inconsistent descriptions; outside groups spend alongside candidates; and a vendor bill can combine voter data, software, email, SMS, fundraising, and staff. A 2019 review found 76% of congressional and 97% of presidential expenditures unclassified in the available FEC category data for 2006–2016.
 
-The defensible series is therefore **paid broadcast/media as a share of a defined budget**, not all outreach:
+The 1986 Republican program is a useful scale marker, not a share: a reported **$10 million integrated effort** combined computer data, mail, roughly 11 million targeted calls, two million automated calls, field offices, and staff. Neither the phone portion nor a comparable whole-campaign denominator is available. Direct-response channels further complicate the accounting because fundraising mail, email, and SMS can generate revenue while consuming budget.
+
+### Contrast Only: Paid Broadcast/Media Share
+
+The figures below answer the older question, “How dominant was paid media?” They **do not measure direct-to-voter contact** and should not be mixed into the phone/email/SMS cost series.
 
 | Election / scope | Measured media share / anchor | Comparability note |
 |---|---:|---|
