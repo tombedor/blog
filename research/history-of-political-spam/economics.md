@@ -16,6 +16,8 @@ An email “send,” a postcard delivery, a robocall dial, and a live conversati
 
 | Medium | Date / evidence | Nominal cost | Per 1,000 attempts | What is excluded |
 |---|---|---:|---:|---|
+| Four-and-a-half-sheet pamphlet | 1764 Maryland invoice: 500 copies for £17 6s. 6d. all-in | about 8.3d/copy | **Do not extrapolate linearly** | Includes printing, paper, folding/stitching, and box; composition was a fixed cost, and this predates the Revolution by 12 years |
+| *Common Sense* retail price | 1776 first edition: 1,000 copies at 2s.; later edition 1s. | 1–2s./copy | **£50–£100 at list price** for 1,000 | This is reader price/gross receipts, not Paine’s production or distribution cost |
 | Newspaper postage | 1792 federal rate: 1 cent up to 100 miles; 1.5 cents beyond | $0.01–$0.015/paper | **$10–$15** | Type, paper, printing, editorial labor, transport beyond postage assumptions |
 | Newspaper postage, purchasing-power illustration | $1 in 1792 ≈ $34.78 in 2026 using a reconstructed pre-BLS CPI series | — | **≈$348–$522 (2026 dollars)** | This is a rough purchasing-power comparison, not a labor-value or share-of-income comparison |
 | Live campaign calling | 1986 GOP program paid callers $5–$6/hour; calls normally no more than one minute | $5–$6/labor hour | **Not safely derivable** | Dialing/no-answer time, supervision, data, phone service; completed calls per hour unknown |
@@ -30,6 +32,13 @@ An email “send,” a postcard delivery, a robocall dial, and a live conversati
 
 ### Print and Postage
 
+- A 1764 Maryland printing account is the best concrete pre-Revolution production benchmark located. Five hundred copies of a four-and-a-half-sheet political pamphlet cost £11 5s. for printing, £3 14s. for paper, £2 for folding/stitching, and 7s. 6d. for a box: **£17 6s. 6d. total, or about 8.3 pence per copy**. The accompanying analysis estimates roughly a 35% net margin for the printer. Franklin’s 1754 Philadelphia schedule also quoted printing-only prices of 2 pence each for runs of 300+ broadsides; paper was added separately.
+  - https://research.colonialwilliamsburg.org/DigitalLibrary/view/index.cfm?doc=ResearchReports%5CRR0024.xml&highlight=
+- *Common Sense* offers a retail-price benchmark rather than a production-cost benchmark. Bell’s first 1,000-copy run sold at two shillings each; a later printer charged one shilling. The Library of Congress copy is itself inscribed “cost 1/.” At full list price, 1,000 sales therefore represented £50–£100 in gross receipts, but the actual print bill, reseller discounts, complimentary copies, and transport are unknown.
+  - https://clements.umich.edu/exhibit/revolutionary-paine/going-viral-in-1776/
+  - https://www.loc.gov/item/18023774/
+- Currency varied by colony and wartime inflation makes dollar conversion misleading. A better intuition is wages: Pennsylvania building trades in 1750–1775 commonly earned roughly 5s. 6d.–6s. per day. A one-to-two-shilling pamphlet was therefore around one-sixth to one-third of a skilled worker’s day—not a disposable free handbill.
+  - https://fraser.stlouisfed.org/files/docs/publications/bls/bls_0604_1934.pdf
 - USPS: 1792 newspaper postage was one cent for up to 100 miles and 1.5 cents beyond; printers could exchange newspapers free.
   - https://about.usps.com/who/profile/history/periodicals-postage-history.htm
 - Inflation illustration uses the CPI-style historical series at OfficialData: $1 in 1792 ≈ $34.78 in 2026. U.S. BLS CPI begins in 1913, so the earlier portion is reconstructed and should be labeled approximate.
@@ -77,3 +86,38 @@ This is not a campaign quote. Long conversations repeatedly resend history, and 
 - Robocalls and P2P texting restore attention by entering a more personal channel, at tens of dollars per thousand rather than hundreds for physical mail.
 - LLMs reduce the **response labor** that previously prevented bulk outreach from being genuinely conversational. The relevant comparison is not LLM versus template copy; it is LLM versus a paid caller or volunteer who listens and adapts.
 - As marginal cost falls, the sender can tolerate lower response rates. More of the cost is externalized as recipient attention, carrier filtering, and social distrust—exactly the dynamic that turns outreach into spam.
+
+## What Share of Campaign Budgets Went to Outreach?
+
+There is **no continuous, apples-to-apples series**. Before modern disclosure law, parties, printers, newspapers, clubs, and patrons often paid separately; there may be no candidate “campaign budget” denominator. Since the FEC era, filings use inconsistent descriptions, outside groups spend alongside candidates, and “outreach” can include ads, mail, phones, field staff, data, events, and travel. A 2019 review found 76% of congressional and 97% of presidential expenditures unclassified in the available FEC category data for 2006–2016.
+
+The defensible series is therefore **paid broadcast/media as a share of a defined budget**, not all outreach:
+
+| Election / scope | Measured media share / anchor | Comparability note |
+|---|---:|---|
+| Revolutionary era | **Unknown / denominator absent** | Printers sold pamphlets commercially or were retained by governments/patrons; political organizing was not a disclosed candidate budget. |
+| Hoover, 1928 | Radio was **21% of the campaign’s publicity/advertising budget** | Not 21% of total campaign spending. |
+| Citizens for Eisenhower-Nixon, 1952 | TV was **$634k of $1.45m = 44%** | One independent national committee, not the whole Eisenhower/party campaign; Eisenhower’s overall TV spending was nearly $2m. |
+| Nixon, 1968 plan | **About 70%** of a planned $10m budget for TV | Contemporary campaign plan; budget later rose to $12m. |
+| Bush, 1988 plan | **More than 60%** of the $54m candidate budget for TV | Parties separately financed mail, registration, and GOTV with soft money. |
+| Federal campaigns, early–mid 1990s | Broadcast: **27% House; 40–45% Senate; at least 50% president** | CRS aggregate; competitive Senate races could exceed 60%. All advertising was 30% of House and 43% of Senate spending in a cited 1990 study. |
+| Clinton/Dole general election, 1996 | Electronic media **over 60%** | Candidates plus national parties; mostly television. |
+| Competitive congressional races, 2000–2014 | TV alone **about 35%** of candidate expenditures | Academic estimate; TV was about 90% of measured ad expenditure in the study. |
+| Federal elections, 2024 | TV/radio buying **30.6%** of federal spending | Does not include digital ads, mail, texts, field, or unpaid/earned media; comparable figure was 38% in 2020. |
+
+Sources:
+
+- 1928 radio: https://libres.uncg.edu/ir/uncg/f/sanghvi_uncg_0154d_11498.pdf
+- 1952 committee spending: https://www.govinfo.gov/content/pkg/SERIALSET-11578_00_00-228-2517-0000/pdf/SERIALSET-11578_00_00-228-2517-0000.pdf
+- 1968 Nixon plan: https://content.time.com/time/subscriber/article/0,33009,723848-4,00.html
+- 1988 Bush plan: https://www.washingtonpost.com/archive/politics/1988/09/22/bush-to-spend-at-least-32-million-on-tv-ads/455ba854-0fb2-4bba-b28f-a02dd6cb0bcd/
+- 1990s aggregate and 1996 presidential: https://www.everycrsreport.com/reports/97-680.html
+- 2000–2014 congressional races: https://academic.oup.com/jeea/article/22/6/2782/7595784
+- FEC categorization warning: https://bipartisanpolicy.org/download/?file=/wp-content/uploads/2019/05/Trends-in-Campaign-Financing-1980-2016.-Zachary-Albert..pdf
+- 2020/2024 TV and radio share: https://doi.org/10.1515/for-2025-2002
+
+### Interpretation
+
+- The media share did not rise monotonically. It surged when television became the scarce route to mass attention, then fragmented as digital, direct response, data, and outside spending grew.
+- A lower television share today does **not** mean less outreach. It means outreach is split across more channels, and some digital activity is cheap enough to disappear inside vendor, staff, or fundraising categories.
+- Fundraising communication complicates the numerator: direct mail, email, and SMS can simultaneously raise money and persuade or mobilize voters. Gross spending overstates net cost when an appeal pays for itself.
