@@ -25,6 +25,7 @@ Names are illustrative, not endorsements or a complete market map. Firms change 
 
 - FullPAC's 2025 SEC offering circular calls campaign services “highly competitive and fragmented,” says more than 5,000 campaigns had used its RoboCent tools, and reports roughly 30 contract agents individually initiating P2P messages. These are company representations in an offering document, not independent market totals.
   - https://www.sec.gov/Archives/edgar/data/2076148/000149315225026771/form253g2.htm
+- The same filing is unusually candid about the revenue logic: it says persuadable-voter contact does not produce most RoboCent revenue, then points to base-politics messages designed to elicit emotional reactions and drive turnout, donations, awareness, and narrative control. Treat this as management's investor thesis, not an independently measured causal result.
 - Targeted Victory currently advertises **12 billion texts delivered** and **$2.3 billion raised** across its work. Again, those are cumulative vendor claims, useful for scale rather than audited market share.
   - https://targetedvictory.com/political/
 - Contemporary vendor comparisons routinely list numerous P2P platforms, and several agencies bundle texting with email, data, digital advertising, and fundraising. There is therefore no clean count of “SMS firms.”
