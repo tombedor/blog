@@ -77,6 +77,7 @@ Pamphlets, partisan newspapers, and subsidized newspaper postage remain useful e
 ## 4. P2P Political SMS
 
 - SMS moved political outreach into a less saturated, notification-driven, and socially intimate channel.
+- Campaigns match or append mobile numbers to voter files, then segment recipients using geography, registration and turnout history, modeled partisanship, demographics, donations, and prior contacts. Replies can update the voter record, making SMS both an outbound channel and a data-collection loop.
 - By 2018, TIME observed roughly a dozen volunteers send 10,000 messages in under an hour.
   - https://time.com/5432309/politician-campaigns-midterm-election-text-messages/
 - One major progressive vendor reported 475 million texts in 2020. Treat industry-wide billion-message estimates cautiously because methodologies are rarely auditable.
@@ -86,8 +87,10 @@ Pamphlets, partisan newspapers, and subsidized newspaper postage remain useful e
 
 **New affordance:** email-like scale in a channel that still felt like person-to-person communication. A nominal human click and volunteer reply workflow helped campaigns claim P2P systems were not traditional autodialers.
 
-**Legal hinge:** *Facebook v. Duguid* held that a TCPA autodialer must use a random or sequential number generator. Campaign systems usually dial known voter/contact lists. This is an equipment-definition issue, not blanket permission for political texts.
+**Legal hinge:** *Facebook v. Duguid* held that a TCPA autodialer must use a random or sequential number generator. Campaign systems usually dial known voter/contact lists. This is an equipment-definition issue, not blanket permission for political texts or a general requirement that a human click send. The FCC's 2020 P2P ruling treated active manual dialing as evidence that a platform was not an autodialer; a pending 2026 petition asks the agency to treat a merely perfunctory click differently.
   - https://www.supremecourt.gov/opinions/20pdf/19-511_p86b.pdf
+  - https://docs.fcc.gov/public/attachments/DA-20-670A1_Rcd.pdf
+  - https://docs.fcc.gov/public/attachments/DA-26-940A1.pdf
 
 ## 5. AI-Powered SMS
 

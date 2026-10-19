@@ -64,14 +64,29 @@ For the fuller hypothesis test—including postal subsidies, broadcast access/lo
 - FCC treats covered robotexts as calls.
 - In *Facebook v. Duguid* (2021), the Supreme Court held that an ATDS must use a random or sequential number generator to store or produce numbers. Systems dialing a preexisting list often do not qualify.
   - https://www.supremecourt.gov/opinions/20pdf/19-511_p86b.pdf
-- “Peer-to-peer” systems also historically relied on a person clicking send for each message. That is not a freestanding political exemption; it is an argument that the chosen equipment/workflow does not trigger the ATDS provision.
+- Political SMS commonly begins with voter-file telephone numbers enriched by commercial data and segmented by geography, registration/turnout history, modeled affiliation, demographics, donations, or previous responses. Supplying a number for voter registration does **not** itself express consent to receive robocalls or robotexts.
+  - https://docs.fcc.gov/public/attachments/FCC-20-163A1.pdf
+- In 2020, the FCC Bureau said high volume alone is not determinative and that a platform incapable of dialing without a person “actively and affirmatively manually dialing each” number is not an ATDS. “Peer-to-peer” systems therefore relied on a human action for each message as evidence that their equipment/workflow did not trigger the ATDS provision—not as a freestanding political exemption.
+  - https://docs.fcc.gov/public/attachments/DA-20-670A1_Rcd.pdf
+- *Duguid* subsequently made random/sequential number generation the central statutory test; a system that automatically texts selected numbers from a voter list may fall outside the ATDS definition even without a meaningful human send step. Conversely, a “P2P” label or ceremonial click does not establish what the equipment is capable of doing.
+- **Live issue (Oct. 19, 2026):** the FCC has sought comment on a petition asking it to declare that a nominal human clicking send to transmit thousands of messages per hour is an ATDS. Reply comments close Oct. 19; the public notice is not a ruling and has not changed the existing rule.
+  - https://docs.fcc.gov/public/attachments/DA-26-940A1.pdf
 - Artificial/prerecorded **voice** restrictions remain separate: avoiding ATDS status does not authorize an AI-voice call to a cellphone without consent.
+
+### Political versus commercial SMS
+
+- The TCPA does not contain a blanket political-text exemption. If a political text is sent to a wireless number using covered ATDS equipment, the sender generally needs **prior express consent**. A commercial advertising/telemarketing robotext generally requires the heightened **prior express written consent**.
+- The National Do Not Call rules concern telephone solicitations/telemarketing, so pure political advocacy generally falls outside them. This is commerce-based noncoverage, not affirmative permission under every other law.
+- A manually sent or non-ATDS political text may fall outside the TCPA's ATDS consent rule. The same workflow carrying a commercial solicitation can still encounter separate telemarketing and DNC restrictions.
+- Carrier/industry rules are broader than the federal minimum. CTIA recommends opt-in consent, sender identification, and honored STOP requests for political as well as commercial traffic; 10DLC registration and carrier filtering can block or throttle traffic that might not violate the TCPA.
+  - https://www.ctia.org/news/political-text-messaging-engaging-and-organizing-voters-while-protecting-consumers
+  - https://www.campaignregistry.com/
 
 ### Live 2026 proceeding
 
-- On Sept. 4, 2026, the FCC Consumer and Governmental Affairs Bureau sought comment on Club for Growth’s expedited request for a waiver/exemption permitting some noncommercial political artificial/prerecorded voice calls, including AI-generated voices, to wireless numbers without prior consent.
-- As of Oct. 16, 2026, this is a pending petition, not law.
-  - FCC Public Notice DA-26-940 mirror: https://www.publicnow.com/view/30DB9526FA4D29646D051E134C0A51434783B474
+- On Sept. 4, 2026, the FCC Consumer and Governmental Affairs Bureau sought comment on two separate petitions: Club for Growth's request to permit some noncommercial political artificial/prerecorded voice calls, including AI-generated voices, to wireless numbers without prior consent; and Joe Shields's request to treat high-throughput P2P texting with a perfunctory human click as autodialing.
+- As of Oct. 19, 2026, both are pending petitions, not law.
+  - FCC Public Notice DA-26-940: https://docs.fcc.gov/public/attachments/DA-26-940A1.pdf
   - Petition docket/document: https://www.fcc.gov/ecfs/document/26110073991/1
   - AP report: https://apnews.com/article/b97fb6e8d06704dc043556dba25de548
 
