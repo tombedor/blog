@@ -34,6 +34,8 @@ The sequence is: **human conversation → automated playback → near-free templ
 
 See [preferential-treatment.md](./preferential-treatment.md) and [law-and-foreign-influence.md](./law-and-foreign-influence.md).
 
+**U.S.–Europe comparison (current to Oct. 19, 2026):** U.S. law mostly regulates delivery equipment, commercial purpose, and sponsor attribution; EU law also regulates the voter-data pipeline and now sharply limits personal-data targeting for online political ads. The EU AI Act additionally requires chatbots to disclose that they are AI. National ePrivacy implementation still varies, so “Europe requires consent for every political message” is too broad. See [us-europe-comparison.md](./us-europe-comparison.md).
+
 ## Foreign Actors
 
 - Foreign nationals cannot spend or direct activity connected to U.S. elections but may conduct genuine issue advocacy; agents of foreign principals may separately owe FARA registration and conspicuous labeling. ([FEC](https://www.fec.gov/updates/foreign-nationals/); [DOJ](https://www.justice.gov/nsd-fara/frequently-asked-questions))

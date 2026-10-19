@@ -1,6 +1,6 @@
 # Source Note: Law, Political/Commercial Differences, and Foreign Influence
 
-**Status date:** October 16, 2026. **Not legal advice.** Federal rules are summarized at a reporting level; state law can be stricter and changes quickly.
+**Status date:** October 19, 2026. **Not legal advice.** Federal rules are summarized at a reporting level; state law can be stricter and changes quickly. For the present-day EU/European contrast, see [us-europe-comparison.md](./us-europe-comparison.md).
 
 ## Why Political and Commercial Messages Are Treated Differently
 
