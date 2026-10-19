@@ -16,7 +16,15 @@ This includes calls, robocalls, bulk email, P2P texts, and chatbot texts. It exc
 
 Addressed political mail is genuinely direct-to-voter and supplies much of the later business model. It is treated as prehistory here only to keep the main story about electronic private-channel intrusion.
 
-- The National Postal Museum has campaign-mail examples at least as early as an 1864 Lincoln envelope.
+- Revolutionary-era committees and political leaders used correspondence to coordinate across distance, but this was primarily an organizer-to-organizer network rather than standardized bulk delivery to voter lists.
+- In 1800, the Federalist Party of Virginia printed a circular letter explicitly addressed to voters to support electors pledged to John Adams. The surviving imprint proves the direct appeal, though not the size or mailing method of its circulation.
+  - https://www.lva.virginia.gov/collections/virginia-print/imprints/1800.029
+- The National Postal Museum calls the American Anti-Slavery Society’s 1835 operation America’s first direct-mail campaign. It mailed abolitionist newspapers and printed material to named religious and civic leaders in the South. Contemporary scholarship estimates roughly 175,000 pieces sent south in one summer; it was issue advocacy, not a candidate campaign. Southern postmasters suppressed delivery, and Andrew Jackson asked Congress to prohibit such mail.
+  - https://postalmuseum.si.edu/america%E2%80%99s-first-direct-mail-campaign
+  - https://postalmuseum.si.edu/exhibition/freedom-just-around-the-corner-abolition/abolition-and-the-mail
+- Congress gave unsealed circulars a lower postal rate in 1845. A surviving 1848 Free Soil Party circular asked its recipient to read a ten-minute political letter and help the state committee, making it an especially close ancestor of addressed campaign appeals.
+  - https://about.usps.com/who/profile/history/pdf/advertising-mail-history.pdf
+- Campaign envelopes and correspondence were routine enough to survive from Lincoln’s 1864 reelection effort.
   - https://postalmuseum.si.edu/what-is-election-mail-and-its-history-in-the-us
 - Presidential direct mail expanded in the 1950s–1970s. Dennis Johnson identifies Eisenhower, Goldwater, and McGovern and the work of Richard Viguerie, Morris Dees, and Roger Craver.
   - https://academic.oup.com/book/27768/chapter-abstract/198005508
@@ -29,6 +37,8 @@ Pamphlets, partisan newspapers, and subsidized newspaper postage remain useful e
 
 ## 1. Live Telephone Banks
 
+- The earliest political telephone outreach located is from 1908. The trade journal *Telephony* described election-day telephone help/Get Out the Vote activity and “campaign speeches by telephone,” including recorded speeches played for prospective voters. This establishes use, not yet a national phone-bank industry.
+  - https://earlyradiohistory.us/sec003.htm
 - Live calls combined a voter record with synchronous access inside the home. Operators could identify support, answer questions, update voter files, recruit volunteers, solicit donations, or turn out a supporter.
 - Computerized voter files made phone work increasingly selective. A 1984 Republican effort used a national computer-assisted program to locate and register likely supporters.
   - https://www.washingtonpost.com/archive/politics/1984/04/22/high-tech-impersonal-computer-net-is-snaring-prospective-republicans/8e57155c-4224-4661-97d5-25cef8c582b9/
