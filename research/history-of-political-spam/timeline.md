@@ -24,6 +24,7 @@ Addressed political mail is genuinely direct-to-voter and supplies much of the l
   - https://postalmuseum.si.edu/exhibition/freedom-just-around-the-corner-abolition/abolition-and-the-mail
 - Congress gave unsealed circulars a lower postal rate in 1845. A surviving 1848 Free Soil Party circular asked its recipient to read a ten-minute political letter and help the state committee, making it an especially close ancestor of addressed campaign appeals.
   - https://about.usps.com/who/profile/history/pdf/advertising-mail-history.pdf
+- The 1845 rate did not appear from nowhere: Barnabas Bates and Joshua Leavitt organized a cheap-postage movement, while James Hale and Lysander Spooner demonstrated low-cost private carriage. Congress cut letter rates but simultaneously strengthened the federal monopoly; after unclaimed/refused circulars created losses, it required prepayment and adjusted the rate in 1847. See [postal-reform-1835-1845.md](./postal-reform-1835-1845.md).
 - Campaign envelopes and correspondence were routine enough to survive from Lincoln’s 1864 reelection effort.
   - https://postalmuseum.si.edu/what-is-election-mail-and-its-history-in-the-us
 - Presidential direct mail expanded in the 1950s–1970s. Dennis Johnson identifies Eisenhower, Goldwater, and McGovern and the work of Richard Viguerie, Morris Dees, and Roger Craver.
