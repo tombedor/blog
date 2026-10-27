@@ -29,6 +29,8 @@ It's difficult for me to believe that frontier agents are sophisticated enough t
 
 # Frontier valuations will (eventually) come back to earth.
 
+# AI driven software layoffs will deepen
+
 
 
 
