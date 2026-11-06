@@ -6,13 +6,6 @@ image: /social-cards/multi-agent-orchestration.png
 draft: true
 ---
 
-
-
-
-I've reluctantly embraced multiagent development. When I've been skeptical of the early token maxers, like gas town. I've embraced multiagent development. I got there somewhat reluctantly. I was skeptical of token, maxing techniques or services like Gastown, which seemed mostly to be in service of building themselves, which even as its inventor admits was mainly used to build itself. But its models have improved. They are increasingly able to complete tasks autonomously and the my task is mostly to manage them and keep them on track. Multiagent development is has created a lot of has created tension between there's tension between developers who use multiagent and those who do not. The job of them human running an agent swarm is more, it's much more similar to a people as a pre-AI engineering manager than it is to a pre-AI software engineer. This wasn't so much a barrier to me as I just, as I was previously an engineering manager. I try to follow. I follow the principle of minimum viable multiagent. I split out roles only once one of the agents in my swarm are too overwhelmed with messages to keep up. Here's how I got there. Stage one. Sea of tabs. Embracing multi-agent has changed how I think about agent memory and context management. Initially, I thought that agents should all more or less be, should be cattle, not sheep, or cattle, not pets, and they should all build, they should, and memories and relevant context bits should be captured from agent sessions to be recalled at appropriate time. But, Recall step is too unreliable and too expensive. In my multiagent setup, I instead keep a context graph. An agent graph, which really represents a context graph. Um... Contacts on agents is. Preserved through long-running sessions. The dispatcher. The root node of the graph is the most important, and the one I interact with the most. It receives status updates from all workers and managers. has the best sense of the overall picture of what I'm working on. As it gets overwhelmed. It splits tests into managers. Importantly, one of those managers is the manager of my multi-agent of Tombot itself. Feedback from me about a pattern or a habit that I don't like, that it's emerging. Uh, becomes either an agents dot MD update or a code change. This is crucial and something the agents don't natively do. What else would they ever talk about here? Multiagent development breaks the code review process. The human driven code viewer processed. There's the volume of code is simply too great for any human to keep up with. This naturally upsets people who are still either writing code by hand or driving each individual session themselves. They are, indeed, incompatible ways of working. But there's no law of the universe that says human code review is a prerequisite for good code. Rather than trying to salvage human code review. I think the path to reliability is agent bureaucracy, burdensome, predeploy, validations, checks, and tests. Catch real bugs. The good news is. Other tools are available. Agents, which I bundle under a category of agent bureaucracy. pre-deployed checks, staging workflow tests. Any combination of an agent will happily churn through a laundry list of pre-deployed checklists, strict code linters, and pre-praud validations without complaint. autonomously, these catch real bugs, no to an extent that no human would ever put up with. This plus agent driven code review is the path reliability with agents. Scheduled checks. Challenge of multi-agent development is keeping it coherent view on what work is happening. This is the role of chief of staff, dispatcher, route agent. And ultimately, the rate limiter on how big an agent's form can be well effectively, still effectively shipping code.
-
-
-
 I have, after a period of resistance, adopted a multi-agent setup for my work, and it's difficult to see going back. I've been skeptical of token maxing tools like Gas Town, whose created admits was mostly used to build itself[^1]. But models are now good enough to do autonomously and productively work for long periods of time. My effort goes towards keeping the fleet on track, and increasing the number of agents doing high quality work.
 
 Rather than pitch yet another agent orchestrator[^1] to you, I'll go through how I landed here, what components of multi agent orchestration are important, and what capabilities I'm reaching for next.
@@ -56,7 +49,7 @@ One of the more helpful features I converged to was scheduled prompts. After a c
 
 My previous mental model of self-improving agents was _memory_. In this model, agents are cattle not pets. They boot up, load necessary context from a pool of memory, do work, and contribute back to the memory pool:
 
-<!-- diagram: memory pool -->
+<!-- diagram: memories -->
 
 But managing context via memories is _hard_. It's difficult for an agent working on a narrow task to determine what broader context that task informs. The most useful context from a task session is what the status of the task is, but that information is useful for a very short amount of time, and quickly gets stale.
 
@@ -65,6 +58,8 @@ Even given a set of ideal memories, it's also difficult to build an effective re
 An agent fleet structured as a graph solves this problem much better. A central dispatcher node maintains high level awareness of what work is happening, and maintains a sense of what context a worker needs. Status updates are delivered to the dispatcher, which then reacts and discards them.
 
 <!-- diagram dispatcher -->
+
+This gets the human out of the business of mundane agent-nudging, and provides a system in which only the important decisions flow to the manager. This model also provides a natural path to fleet self improvement: One of the managers handles development of the fleet itself.
 
 # Tension, human code review, and agentic beauracacy
 
@@ -84,7 +79,7 @@ Not so for bots. Your pre-merge, pre-deploy checklists can no be unbounded, and 
 
 Changing development processes to accomodate multi-agent fleets doesn't make it mesh better with human development. It makes it worse. Ultimately organizations will have to pick an approach. This is, obviously the biggest change to software engineering of my career.
 
-But becoming a software engineer meant signing up for rapid change, whether we acknowledge it or not. 
+But becoming a software engineer meant signing up for rapid change, whether we acknowledge it or not.
 
 
 
