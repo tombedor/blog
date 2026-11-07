@@ -10,7 +10,7 @@
 #   excalidraw-export -r <folder>              # Export recursively
 #   excalidraw-export -f <folder>              # Force export (ignore cache)
 
-set -e
+set -euo pipefail
 
 # Colors for output
 RED='\033[0;31m'
@@ -22,12 +22,40 @@ NC='\033[0m' # No Color
 # Hash cache directory
 HASH_DIR="static/diagrams/.diagram_hashes"
 
-# Check if excalidraw-brute-export-cli is installed
-if ! command -v excalidraw-brute-export-cli &> /dev/null; then
-    echo -e "${RED}Error: excalidraw-brute-export-cli is not installed${NC}"
-    echo "Install it with: npm install -g excalidraw-brute-export-cli"
-    exit 1
-fi
+# Keep the export toolchain local, pinned, and independent of the project's
+# active Node version. excalidraw-brute-export-cli 0.4.0 supports Node 22 but
+# not newer Node releases.
+EXPORT_RUNTIME_DIR="${EXCALIDRAW_EXPORT_RUNTIME_DIR:-node_modules/.cache/excalidraw-export}"
+EXPORTER_VERSION="0.4.0"
+NODE_VERSION="22"
+PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-$EXPORT_RUNTIME_DIR/ms-playwright}"
+NODE_BIN="$EXPORT_RUNTIME_DIR/node_modules/.bin/node"
+EXPORTER_JS="$EXPORT_RUNTIME_DIR/node_modules/excalidraw-brute-export-cli/src/main.js"
+PLAYWRIGHT_JS="$EXPORT_RUNTIME_DIR/node_modules/playwright/cli.js"
+
+ensure_dependencies() {
+    if [ ! -x "$NODE_BIN" ] || [ ! -f "$EXPORTER_JS" ] || [ ! -f "$PLAYWRIGHT_JS" ]; then
+        if ! command -v npm &> /dev/null; then
+            echo -e "${RED}Error: npm is required to install the diagram exporter${NC}"
+            exit 1
+        fi
+
+        echo -e "${BLUE}Installing local diagram export dependencies...${NC}"
+        mkdir -p "$EXPORT_RUNTIME_DIR"
+        npm install \
+            --prefix "$EXPORT_RUNTIME_DIR" \
+            --no-save \
+            --no-package-lock \
+            "node@$NODE_VERSION" \
+            "excalidraw-brute-export-cli@$EXPORTER_VERSION"
+    fi
+
+    if ! find "$PLAYWRIGHT_BROWSERS_PATH" -maxdepth 1 -type d -name 'firefox-*' -print -quit 2>/dev/null | grep -q .; then
+        echo -e "${BLUE}Installing the local Playwright Firefox runtime...${NC}"
+        PLAYWRIGHT_BROWSERS_PATH="$PLAYWRIGHT_BROWSERS_PATH" \
+            "$NODE_BIN" "$PLAYWRIGHT_JS" install firefox
+    fi
+}
 
 # Show usage if no arguments
 if [ $# -eq 0 ]; then
@@ -126,9 +154,16 @@ get_hash_file() {
 needs_export() {
     local input_file="$1"
     local hash_file=$(get_hash_file "$input_file")
+    local output_file="${input_file%.excalidraw}.png"
 
     # Force export if -f flag is set
     if [ "$FORCE" = true ]; then
+        return 0
+    fi
+
+    # A matching hash is not sufficient if a previous failed export never
+    # produced an image (or if the image was later removed).
+    if [ ! -s "$output_file" ]; then
         return 0
     fi
 
@@ -176,16 +211,23 @@ update_markdown_links() {
 
         # Create the image markdown
         local image_link="![${diagram_name}](/diagrams/${post_slug}/${diagram_name}.png)"
-        local comment_pattern="{/* ${diagram_name} */}"
+        local jsx_comment_pattern="{/* ${diagram_name} */}"
+        local html_comment_pattern="<!-- diagram: ${diagram_name} -->"
 
-        # Check if comment exists in the file
-        if grep -Fq "$comment_pattern" "$blog_file"; then
-            # Replace comment with image link
+        # Support both the original JSX placeholder and the HTML placeholder
+        # used by current drafts.
+        if grep -Fq "$jsx_comment_pattern" "$blog_file"; then
             sed -i '' "s|{/\* ${diagram_name} \*/}|${image_link}|g" "$blog_file"
+            echo -e "${GREEN}  ↳ Updated link in $blog_file${NC}"
+        fi
+        if grep -Fq "$html_comment_pattern" "$blog_file"; then
+            sed -i '' "s|<!-- diagram: ${diagram_name} -->|${image_link}|g" "$blog_file"
             echo -e "${GREEN}  ↳ Updated link in $blog_file${NC}"
         fi
     fi
 }
+
+ensure_dependencies
 
 # Export each file
 SUCCESS_COUNT=0
@@ -199,28 +241,47 @@ for INPUT_FILE in "${FILES[@]}"; do
     # Check if export is needed
     if ! needs_export "$INPUT_FILE"; then
         echo -e "${YELLOW}⊘ Skipped (unchanged): $INPUT_FILE${NC}"
-        ((SKIP_COUNT++))
+        SKIP_COUNT=$((SKIP_COUNT + 1))
         continue
     fi
 
     echo -e "${BLUE}Exporting: $INPUT_FILE -> $OUTPUT_FILE${NC}"
 
-    # Call excalidraw-brute-export-cli
-    if excalidraw-brute-export-cli \
+    # Export to a temporary file so a failed attempt cannot destroy or be
+    # mistaken for an existing valid PNG.
+    TEMP_OUTPUT="${OUTPUT_FILE%.png}.tmp-$$.png"
+    EXPORT_LOG=$(mktemp "${TMPDIR:-/tmp}/excalidraw-export.XXXXXX")
+
+    if PLAYWRIGHT_BROWSERS_PATH="$PLAYWRIGHT_BROWSERS_PATH" \
+        "$NODE_BIN" "$EXPORTER_JS" \
         --input "$INPUT_FILE" \
-        --output "$OUTPUT_FILE" \
+        --output "$TEMP_OUTPUT" \
         --format png \
         --scale 2 \
         --background true \
-        2>&1 | grep -v "Warning:" | grep -v "deprecated"; then
+        >"$EXPORT_LOG" 2>&1; then
+        grep -v "Warning:" "$EXPORT_LOG" | grep -v "deprecated" || true
+
+        if [ ! -s "$TEMP_OUTPUT" ]; then
+            echo -e "${RED}✗ Exporter exited successfully but produced no PNG: $INPUT_FILE${NC}"
+            rm -f "$TEMP_OUTPUT" "$EXPORT_LOG"
+            FAIL_COUNT=$((FAIL_COUNT + 1))
+            echo ""
+            continue
+        fi
+
+        mv "$TEMP_OUTPUT" "$OUTPUT_FILE"
         echo -e "${GREEN}✓ Exported: $OUTPUT_FILE${NC}"
         save_hash "$INPUT_FILE"
         update_markdown_links "$INPUT_FILE"
-        ((SUCCESS_COUNT++))
+        SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
     else
+        grep -v "Warning:" "$EXPORT_LOG" | grep -v "deprecated" || true
+        rm -f "$TEMP_OUTPUT"
         echo -e "${RED}✗ Failed to export: $INPUT_FILE${NC}"
-        ((FAIL_COUNT++))
+        FAIL_COUNT=$((FAIL_COUNT + 1))
     fi
+    rm -f "$EXPORT_LOG"
     echo ""
 done
 
@@ -234,4 +295,5 @@ if [ $FAIL_COUNT -eq 0 ]; then
     fi
 else
     echo -e "Exported: ${GREEN}${SUCCESS_COUNT}${NC} | ${YELLOW}Skipped: ${SKIP_COUNT}${NC} | Failed: ${RED}${FAIL_COUNT}${NC}"
+    exit 1
 fi
