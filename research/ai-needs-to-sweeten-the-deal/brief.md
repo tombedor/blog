@@ -55,6 +55,23 @@
 
 ---
 
+## Recent Synthesis / Prior Art
+
+**Closest overlaps:**
+- [Yale Insights, “How Communities Can Get a Better Deal from Data Centers” (Sept. 1, 2026)](https://insights.som.yale.edu/insights/how-communities-can-get-better-deal-from-data-centers) — Closest thesis match: costs concentrate locally while benefits disperse; recommends enforceable ratepayer protection, community-benefit agreements, transparency, and stronger local negotiating capacity.
+- [Axios, “Data centers’ economic benefits messaging isn’t breaking through” (Nov. 5, 2026)](https://www.axios.com/2026/11/05/data-centers-economic-benefits-messaging) — Jobs and national-competitiveness claims lose to household-bill concerns; concludes that residents need tangible benefits and credible protections.
+- [Axios, “The tricky economics of welcoming data centers” (Nov. 2, 2026)](https://www.axios.com/2026/10/31/data-centers-economy-ohio) — New Albany shows the distribution problem: substantial municipal and school revenue can coexist with opposition when residents feel they personally bear the costs.
+
+**Adjacent framing:**
+- [AP, “Tech giants are promising hosts more money and fewer secrets” (Oct. 22, 2026)](https://www.washingtonpost.com/politics/2026/10/22/data-centers-artificial-intelligence-nimby-tech/6f2fbce8-cde6-11f1-ac04-9f58578a68b4_story.html) — Documents the industry response: community funds, fewer NDAs, property-tax promises, and ratepayer pledges.
+- [Brookings, “The pledge to protect ratepayers … needs enforcement” (2026)](https://www.brookings.edu/articles/the-pledge-to-protect-ratepayers-from-ai-data-center-costs-needs-enforcement/) — Synthesizes the Virginia and Wisconsin trend polling; argues that electricity protections alone cannot answer resource, quality-of-life, and anti-AI objections.
+- [World Economic Forum, “AI and data-centre growth risks stalling without a social licence” (Mar. 30, 2026)](https://www.weforum.org/stories/artificial-intelligence/ai-community-social-licence) — Corporate version of the thesis: infrastructure, job pathways, and community participation are now prerequisites for continued construction.
+- [The Atlantic, “Silicon Valley’s Very Bad Night” (Nov. 4, 2026)](https://www.theatlantic.com/technology/2026/11/americans-really-dont-like-data-centers-elections/689284/) — Strong counterframe: ballot results may express a broader revolt against Silicon Valley’s wealth and political power, not a local bargain that compensation alone can repair.
+
+**Remaining angle:** “Communities need a better deal” is established. The less-developed synthesis is that repeated polling separates fast-growing data-center opposition from relatively stable AI sentiment, while experiments identify which household-visible, enforceable benefits actually move support. The sharper claim is that this is a product-pricing and benefit-distribution problem, not merely a communications problem.
+
+---
+
 ## Pataskala Precinct Map
 
 **Finding:** Pataskala can show that opposition was universal but uneven; it cannot establish that proximity caused the difference.
