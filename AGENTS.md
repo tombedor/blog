@@ -123,6 +123,10 @@ Diagrams are exported to PNG using `scripts/excalidraw-export.sh`, which uses ha
 3. Skips export if the file hash hasn't changed
 4. Supports `-f` flag to force re-export all files
 
+Diagrams must stay legible on mobile, where the post column is ~358px wide. Keep scenes narrow (~600 or less) and check new or edited diagrams with `just lint-diagrams` (or `node scripts/lint-diagrams.mjs <file.excalidraw>`).
+
+Diagrams must stay legible on mobile, where the post column is ~358px wide. Keep scenes narrow (~600 or less) and check new or edited diagrams with `just lint-diagrams` (or `node scripts/lint-diagrams.mjs <file.excalidraw>`).
+
 ## Available Commands
 
 See the `Justfile` for common development and deployment commands:
@@ -132,6 +136,8 @@ See the `Justfile` for common development and deployment commands:
 - `just deploy` - Verify social cards, run the test suite, then deploy to GitHub Pages
 - `just dual-publish` - Sync blog posts to Elroy project
 - `just export-diagrams` - Export all excalidraw diagrams to PNG (with caching)
+- `just lint-diagrams` - Flag diagrams whose text renders below 12px on a phone (error) or whose scene is wider than 600 (warning). Not yet part of `just deploy`; existing diagrams fail.
+- `just lint-diagrams` - Flag diagrams whose text renders below 12px on a phone (error) or whose scene is wider than 600 (warning). Not yet part of `just deploy`; existing diagrams fail.
 - `just screenshots` - Build, serve, and screenshot every page (desktop + mobile) to `screenshots/` for design review
 - `just test` - Build and run the Playwright test suite (`tests/`)
 

@@ -139,6 +139,10 @@ dual-publish:
 export-diagrams:
 	./scripts/excalidraw-export.sh -r static/diagrams
 
+# Lint diagrams for text too small or scenes too wide on mobile
+lint-diagrams *args:
+	node scripts/lint-diagrams.mjs {{args}}
+
 # Build, serve, and screenshot every page (desktop + mobile) to screenshots/ for design review
 screenshots:
 	node scripts/screenshot-pages.mjs

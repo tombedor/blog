@@ -6,6 +6,7 @@
     "postinstall": "playwright install chromium",
     "docusaurus": "docusaurus",
     "check:social-cards": "node scripts/generate-social-cards.mjs --check",
+    "lint:diagrams": "node scripts/lint-diagrams.mjs",
     "generate:social-cards": "node scripts/generate-social-cards.mjs",
     "prestart": "npm run generate:social-cards",
     "start": "docusaurus start",
