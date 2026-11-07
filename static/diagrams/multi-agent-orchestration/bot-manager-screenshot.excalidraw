@@ -6,10 +6,10 @@
     {
       "id": "p2_yB9myj2ydk3GKGpExV",
       "type": "image",
-      "x": 184.5863597972973,
+      "x": 202.94444752298682,
       "y": 265,
-      "width": 1322.2843116554054,
-      "height": 421,
+      "width": 1113.3431764015006,
+      "height": 339.3129018102678,
       "angle": 0,
       "strokeColor": "transparent",
       "backgroundColor": "transparent",
@@ -23,8 +23,8 @@
       "index": "a0",
       "roundness": null,
       "seed": 1526556132,
-      "version": 75,
-      "versionNonce": 1975402460,
+      "version": 261,
+      "versionNonce": 1819613788,
       "isDeleted": false,
       "boundElements": [
         {
@@ -32,7 +32,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1794076588566,
+      "updated": 1794084268198,
       "link": null,
       "locked": false,
       "status": "pending",
@@ -44,8 +44,8 @@
       "crop": {
         "x": 0,
         "y": 0,
-        "width": 1394.5231220308785,
-        "height": 444,
+        "width": 1212.8891976785717,
+        "height": 369.65148029993253,
         "naturalWidth": 1440,
         "naturalHeight": 444
       }
@@ -125,10 +125,10 @@
     {
       "id": "tah9JDvm0ckjkFH0-BIH6",
       "type": "arrow",
-      "x": 106.45321099156264,
-      "y": 371.3120893304525,
-      "width": 71.30039483618303,
-      "height": 1.176704925836873,
+      "x": 238.35292157611315,
+      "y": 176.6293474237518,
+      "width": 66.10064426748886,
+      "height": 310.5726051328362,
       "angle": 0,
       "strokeColor": "#2f9e44",
       "backgroundColor": "transparent",
@@ -144,11 +144,11 @@
         "type": 2
       },
       "seed": 840299356,
-      "version": 264,
-      "versionNonce": 1977936476,
+      "version": 726,
+      "versionNonce": 1780275292,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1794076646296,
+      "updated": 1794084274788,
       "link": null,
       "locked": false,
       "points": [
@@ -157,20 +157,24 @@
           0
         ],
         [
-          71.30039483618303,
-          1.176704925836873
+          -66.10064426748886,
+          77.37032867274371
+        ],
+        [
+          -44.175719828533204,
+          310.5726051328362
         ]
       ],
       "lastCommittedPoint": null,
       "startBinding": {
         "elementId": "TEYqztjhizGiv8CSnA6E-",
-        "focus": -0.13873834151790215,
-        "gap": 5.816226777899487
+        "focus": 0.6662702654986926,
+        "gap": 4.809762846658259
       },
       "endBinding": {
         "elementId": "p2_yB9myj2ydk3GKGpExV",
-        "focus": 0.4152191377753884,
-        "gap": 6.832753969551618
+        "focus": -0.996082674639274,
+        "gap": 8.767245775406877
       },
       "startArrowhead": null,
       "endArrowhead": "arrow",
@@ -179,8 +183,8 @@
     {
       "id": "TEYqztjhizGiv8CSnA6E-",
       "type": "rectangle",
-      "x": -97.1496831755644,
-      "y": 322.6353345756646,
+      "x": 243.1626844227714,
+      "y": 113.86114207778965,
       "width": 198.56872488274644,
       "height": 110,
       "angle": 0,
@@ -198,8 +202,8 @@
         "type": 3
       },
       "seed": 195507932,
-      "version": 101,
-      "versionNonce": 1558840796,
+      "version": 186,
+      "versionNonce": 1015574364,
       "isDeleted": false,
       "boundElements": [
         {
@@ -211,15 +215,15 @@
           "type": "arrow"
         }
       ],
-      "updated": 1794076646296,
+      "updated": 1794084271831,
       "link": null,
       "locked": false
     },
     {
       "id": "PewxfqV0UBNGP39WcQgYz",
       "type": "text",
-      "x": -86.72526793878103,
-      "y": 340.1353345756646,
+      "x": 253.58709965955478,
+      "y": 131.36114207778965,
       "width": 177.7198944091797,
       "height": 75,
       "angle": 0,
@@ -235,11 +239,11 @@
       "index": "a7",
       "roundness": null,
       "seed": 1295576292,
-      "version": 181,
-      "versionNonce": 1729052380,
+      "version": 266,
+      "versionNonce": 2029659100,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1794076646296,
+      "updated": 1794084271831,
       "link": null,
       "locked": false,
       "text": "Scrollable live\nsession list, enter\njoins them in tmux",
