@@ -6,88 +6,73 @@ image: /social-cards/multi-agent-orchestration.png
 draft: true
 ---
 
-I have, after a period of resistance, adopted a multi-agent setup for my work, and it's difficult to see going back. I've been skeptical of token maxing tools like Gas Town, whose created admits was mostly used to build itself[^1]. But models are now good enough to do autonomously and productively work for long periods of time. My effort goes towards keeping the fleet on track, and increasing the number of agents doing high quality work.
+I have, after a period of resistance, adopted a multi-agent setup for my work, and it's difficult to see going back. I've been skeptical of token maxing tools like Gas Town, whose created admits was mostly used to build itself[^1]. But models are now good enough to autonomously and productively work for long periods of time. My effort goes towards keeping the fleet on track, and increasing the number of agents doing high quality work.
 
-Rather than pitch yet another agent orchestrator[^1] to you, I'll go through how I landed here, what components of multi agent orchestration are important, and what capabilities I'm reaching for next.
+My work now is more similar to a pre-AI engineering manager than a pre-AI software engineer. There's less technical growth, less in depth understanding of the code. But the scope and volume of what I'm able to build is dramatically greater than it was before.
+
+Rather than pitch yet another agent orchestrator[^1] to you, I'll go through how I landed here, what components of multi agent orchestration are important, broader implications for the practice of software engineering.
 
 # The journey to multi-agent
 
 ## Stage 1: Sea of iTerm tabs
 
-AI allows me to make progress on several tasks at once, which I started by managing a sea of iTerm windows. This quickly got difficult to manage. For one, some tasks are long running, and I didn't really need see them rather than the primary window I was working in. It was also lossy: accidentally closing a tab means resuming by fishing the session out of Codex, or was it Claude Code?
+AI allows me to make progress on several tasks at once, which I started by managing a sea of iTerm windows. This quickly got difficult to manage. Some tasks are fire and forget, others I need to drive myself, but managing tabs by hand didn't give me a way to distinguish them. It was also lossy: accidentally closing a tab means resuming by fishing the session out of Codex, (or was it Claude Code?).
 
 Even when keeping tabs running, it was not alwatys trivial to remember what each tab was working on.
 
 ## Stage 2: Tmux navigation, tracking session state, naming sessions
 
-Enter the first iteration of Bot Manager. During some (mostly failed) memory experiments, I landed on an architecture I liked: running a background daemon to snoop on local harness logs and do useful stuff with them. I used this technique to track which sessions were active, run sessions in the background, and assign session names.
+My first iteration was a central Tmux directory, which snooped on local harness logs to sessions names, track basic progress, and determine which sessions were active.
 
 <!-- diagram: bot-manager -->
 
-I stayed with this for several months, but eventually started to feel like a human bot nudger. Sessions would do some useful work, ask for a decision, and wait until I paged back to it. This dramatically improved my ability to find past sessions and maintain long running context.
+I eventually got frustrated. Sessions would do some useful work, ask for a decision, and wait until I paged back to it. I was spending way to much time tabbing through sessions (which I could now easily find, at least), and giving agents some variation of "keep working". It also become very difficult to keep track of the higher level goals I was working towards and understand how the different sessions in play fit together..
 
-## Stage 3: Auto-routing fixup prompts
+## Stage 4: Multi agent
 
-My work began to feel like flipping through tabs providing individual nudges. I also had to issue lots of repetitive instructions around workflows for when to file tickets, when to mark a PR ready for review, and what kinds of checks I wanted run on different projects. I found myself in menial loops checking GitHub PR's, finding comments, and issuing requests to respond to feedback. I added a mechanical dispatch layer to detect PR comments or CI failures, then route them to the session that authored the PR.
+I solved the problem by throwing AI at it. I arranged sessions in a hierarchal graph, with the root node handling dispatch, receiving progress reports, and nudging inactive agents. Manager nodes keep tickets up to date, handle decisions not worth escalating to root, and ensure worker nodes are following a consistent development process I specify. The root node makes decisions based on my previous guidance where it cans, and curates an inbox of decisions that need me.
 
-<!-- diagram: bot-manager-2 -->
+This also provides a natural on ramp to self improvement. When an agent does something wrong, it persists a correction to it's process, either through changes to node-specific `AGENTS.md` files or by changes to the routing system.
 
+This enabled quick development of a lot of nice to have features:
+- *Scheduled checks*: I can simply say to root, "check xyz metric twice a day for two weeks", and the check happens without fiddling with crontab entries.
+- *Subscription hooks*: I can automatically subscribe to incoming information, whether it be PR reviews, CI builds, or even meeting notes. I now have the experience of meeting with a colleague, making decisions, and when I get back to development my fleet has already ingested AI generated notes and started work.
 
-## Stage 4: An agent graph
+Since the dispatcher works by snooping on local transcript logs, I don't _need_ to go through it to investigate something or start a new task. I can simply fire up a standalone pi session, and the dispatcher will recognize a new session has started, assign a manager, and track progress.
 
-Auto routing _helped_, but I began to find it difficult to enforce conventions for how a changes should be managed acros projects: how to create tickets, what checks to do in PR's, etc. I could add these by manually editing AGENTS.md, but I found this cumbersome.
+<!-- starting sessions outside of tombot -->
 
-I solved the problem by throwing AI at it. One single root node handles dispatch, receives progress reports, nudges inactive agents. Manager nodes keep tickets up to date and handle decisions not worth escalating to root.
+# Long lived agents > memory
 
-This has increased the number of concurrent sessions I feel confident in running to ~20. It also lent itself well to self improvement - as I encountered pain points or performance bottlenecks, I could simply dispatch feature requests through the root node.
-
-Developing the TUI as a pi extension let me pretty easily add a scrollable sidebar to see what was being worked on at a glance.
-
-One of the more helpful features I converged to was scheduled prompts. After a change is deployed, I'm able to say things like "monitor xyz metric 3 times a day for two weeks, escalate to me if there are any problems".
-
-# Out with memory, in with agent graph
-
-My previous mental model of self-improving agents was _memory_. In this model, agents are cattle not pets. They boot up, load necessary context from a pool of memory, do work, and contribute back to the memory pool:
+I used to think the key to self-improving agents was _memory_. In this model, agents are cattle not pets. They boot up, load necessary context from a pool of memory, do work, and contribute back to the memory pool:
 
 <!-- diagram: memories -->
 
-But managing context via memories is _hard_. It's difficult for an agent working on a narrow task to determine what broader context that task informs. The most useful context from a task session is what the status of the task is, but that information is useful for a very short amount of time, and quickly gets stale.
+But managing context via memories is _hard_. It's difficult for an agent working on a narrow task to determine what broader context that task informs. The most useful context from a task session is often what the status of the task is, but that information quickly goes stale.
 
-Even given a set of ideal memories, it's also difficult to build an effective recall system. Some tasks are one offs with very little outside context required, others interact with other ongoing work.
+Even given a set of ideal memories, it's difficult to build an effective recall system. Some tasks are one offs. They require little outside context and don't have much to contribute to a central memory pool. Others interact with other ongoing work or reflect impactful decisions. It's difficult for a recall system to really know which category a session belongs to.
 
-An agent fleet structured as a graph solves this problem much better. A central dispatcher node maintains high level awareness of what work is happening, and maintains a sense of what context a worker needs. Status updates are delivered to the dispatcher, which then reacts and discards them.
+An agent fleet structured as a graph solves this problem much better. A central dispatcher node maintains high level awareness of what work is happening. I ask for a piece of work, the dispatcher augments with relevant context, and the work happens in the background. The dispatcher receies progress updates, reacts accordingly, and discards them.
 
 <!-- diagram dispatcher -->
 
-This gets the human out of the business of mundane agent-nudging, and provides a system in which only the important decisions flow to the manager. This model also provides a natural path to fleet self improvement: One of the managers handles development of the fleet itself.
-
 # Tension, human code review, and agentic beauracacy
 
-Working in this way is more similar to a pre-AI engineering manager than a pre-AI software engineer. There's less technical growth, less in depth understanding of the code.
+Working in this way breaks fundamental norms of pre-AI software engineering. The scale of code being produced is too much to ask human collaborators to review. It's natural for someone who reviews PR's themselves to feel resentment at being asked to review a firehose of AI generated code the author didn't read closely.
 
-It also breaks traditional code review. The scale of code being produced is too much to ask human collaborators to review. It's natural for someone who reviews PR's themselves to feel resentment at being asked to review a firehose of AI generated code the author didn't read closely.
+I don't disagree. Human code review of multi-agent produced code is untenable. But I don't think human code review is always _necessary_.
 
-I don't disagree. Human code review of multi-agent produced code is untenable. I also don't think it's _necessary_.
+For one, AI code review (to my surprise) is _really good_. It does a much better job of catching edge cases and contract changes than a human, especially one that might not be in the weeds of the code they are reviewing.
 
-The solution is twofold, AI code review (which to my surprise is _really good_), and what I call _agentic beauracracy_: a laundry list of pre-merge and/or pre-deploy verifications that an agent is forced to do.
+But we can do better than just AI code review. We can _force the agent to prove the code works_, via an unbounded set of pre-merge, pre-deploy, and post-deploy verification steps.
 
-In an ideal world, we'd all abide by strict linters, pre-deploy staging tests, careful canary deploys, and careful rollout metric inspection. But these tax velocity and annoy humans. There's a limit to how much mundane verification work a human will put up with before getting a change into prod.
-
-Not so for bots. Your pre-merge, pre-deploy checklists can no be unbounded, and an agent will churn through it without complaint.
+We had this option before, of course, but there's a limit to how much box checking a human will put up with. An agent, though, will put up with work through nitpicking linters, patiently wait for long canary bake times, and dilligently check however long a list of performance and correctness metrics you want to through at it.
 
 # Change
 
-Changing development processes to accomodate multi-agent fleets doesn't make it mesh better with human development. It makes it worse. Ultimately organizations will have to pick an approach. This is, obviously the biggest change to software engineering of my career.
+We're in a time of dramatic change, and while I'm convinced working this way is more _productive_, I don't expect everyone to _like it_. The agent swarm approach to development does not play nice with human-driven development. Organizations will have to choose one, and I think the swarms are simply too productive to beat.
 
-But becoming a software engineer meant signing up for rapid change, whether we acknowledge it or not.
-
-
-
-
-
-This approach does not coexist easily with teammates who write code by hand or drive each worker session themselves. The code output is
-
-
+But becoming a software engineer meant signing up for rapid change, whether we acknowledged it or not. We're in the automation business.
 
 
 [^1]: I'm a bit skeptical Yegge's recent assertions that his new, unreleased token maxing tool is actually *very good*/
