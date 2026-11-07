@@ -18,19 +18,21 @@ Rather than pitch yet another agent orchestrator[^1] to you, I'll go through how
 
 AI allows me to make progress on several tasks at once, which I started by managing a sea of iTerm windows. This quickly got difficult to manage. Some tasks are fire and forget, others I need to drive myself, but managing tabs by hand didn't give me a way to distinguish them. It was also lossy: accidentally closing a tab means resuming by fishing the session out of Codex, (or was it Claude Code?).
 
-Even when keeping tabs running, it was not alwatys trivial to remember what each tab was working on.
+Even when keeping tabs running, it was not alwaty trivial to remember what each tab was working on.
 
 ## Stage 2: Tmux navigation, tracking session state, naming sessions
 
 My first iteration was a central Tmux directory, which snooped on local harness logs to sessions names, track basic progress, and determine which sessions were active.
 
-<!-- diagram: bot-manager -->
+<!-- diagram: bot-manager-screenshot -->
 
 I eventually got frustrated. Sessions would do some useful work, ask for a decision, and wait until I paged back to it. I was spending way to much time tabbing through sessions (which I could now easily find, at least), and giving agents some variation of "keep working". It also become very difficult to keep track of the higher level goals I was working towards and understand how the different sessions in play fit together..
 
 ## Stage 4: Multi agent
 
 I solved the problem by throwing AI at it. I arranged sessions in a hierarchal graph, with the root node handling dispatch, receiving progress reports, and nudging inactive agents. Manager nodes keep tickets up to date, handle decisions not worth escalating to root, and ensure worker nodes are following a consistent development process I specify. The root node makes decisions based on my previous guidance where it cans, and curates an inbox of decisions that need me.
+
+<!-- diagram: tombot -->
 
 This also provides a natural on ramp to self improvement. When an agent does something wrong, it persists a correction to it's process, either through changes to node-specific `AGENTS.md` files or by changes to the routing system.
 
@@ -72,7 +74,9 @@ We had this option before, of course, but there's a limit to how much box checki
 
 We're in a time of dramatic change, and while I'm convinced working this way is more _productive_, I don't expect everyone to _like it_. The agent swarm approach to development does not play nice with human-driven development. Organizations will have to choose one, and I think the swarms are simply too productive to beat.
 
-But becoming a software engineer meant signing up for rapid change, whether we acknowledged it or not. We're in the automation business.
+I do have some worry for the practice overall. Increasingly when I talk to my dispatcher session, I get a response that's both satisfying and scary: _nothing needs you right now_.
+
+But becoming a software engineer meant signing up for rapid change, whether we acknowledged it or not. We're in the automation business. I still have confidence that software will remain an interesting and rewarding field. What it looks like, though, is anyone's guess.
 
 
 [^1]: I'm a bit skeptical Yegge's recent assertions that his new, unreleased token maxing tool is actually *very good*/
