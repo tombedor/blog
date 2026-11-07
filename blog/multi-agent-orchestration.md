@@ -24,7 +24,7 @@ Even when keeping tabs running, it was not alwaty trivial to remember what each 
 
 My first iteration was a central Tmux directory, which snooped on local harness logs to sessions names, track basic progress, and determine which sessions were active.
 
-<!-- diagram: bot-manager-screenshot -->
+![bot-manager-screenshot](/diagrams/multi-agent-orchestration/bot-manager-screenshot.png)
 
 I eventually got frustrated. Sessions would do some useful work, ask for a decision, and wait until I paged back to it. I was spending way to much time tabbing through sessions (which I could now easily find, at least), and giving agents some variation of "keep working". It also become very difficult to keep track of the higher level goals I was working towards and understand how the different sessions in play fit together..
 
@@ -32,7 +32,7 @@ I eventually got frustrated. Sessions would do some useful work, ask for a decis
 
 I solved the problem by throwing AI at it. I arranged sessions in a hierarchal graph, with the root node handling dispatch, receiving progress reports, and nudging inactive agents. Manager nodes keep tickets up to date, handle decisions not worth escalating to root, and ensure worker nodes are following a consistent development process I specify. The root node makes decisions based on my previous guidance where it cans, and curates an inbox of decisions that need me.
 
-<!-- diagram: tombot -->
+![tombot](/diagrams/multi-agent-orchestration/tombot.png)
 
 This also provides a natural on ramp to self improvement. When an agent does something wrong, it persists a correction to it's process, either through changes to node-specific `AGENTS.md` files or by changes to the routing system.
 
@@ -46,7 +46,7 @@ Since the dispatcher works by snooping on local transcript logs, I don't _need_ 
 
 I used to think the key to self-improving agents was _memory_. In this model, agents are cattle not pets. They boot up, load necessary context from a pool of memory, do work, and contribute back to the memory pool:
 
-<!-- diagram: memories -->
+![memories](/diagrams/multi-agent-orchestration/memories.png)
 
 But managing context via memories is _hard_. It's difficult for an agent working on a narrow task to determine what broader context that task informs. The most useful context from a task session is often what the status of the task is, but that information quickly goes stale.
 
@@ -54,7 +54,7 @@ Even given a set of ideal memories, it's difficult to build an effective recall 
 
 An agent fleet structured as a graph solves this problem much better. A central dispatcher node maintains high level awareness of what work is happening. I ask for a piece of work, the dispatcher augments with relevant context, and the work happens in the background. The dispatcher receies progress updates, reacts accordingly, and discards them.
 
-<!-- diagram: dispatcher -->
+![dispatcher](/diagrams/multi-agent-orchestration/dispatcher.png)
 
 # Tension, human code review, and agentic beauracacy
 

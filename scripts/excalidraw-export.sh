@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Excalidraw Export Wrapper
-# Exports .excalidraw files to PNG using excalidraw-brute-export-cli
+# Exports .excalidraw files to PNG using the official Excalidraw CLI
 # Uses hash-based caching to skip exports when files haven't changed
 #
 # Usage:
@@ -23,18 +23,15 @@ NC='\033[0m' # No Color
 HASH_DIR="static/diagrams/.diagram_hashes"
 
 # Keep the export toolchain local, pinned, and independent of the project's
-# active Node version. excalidraw-brute-export-cli 0.4.0 supports Node 22 but
-# not newer Node releases.
+# active Node version.
 EXPORT_RUNTIME_DIR="${EXCALIDRAW_EXPORT_RUNTIME_DIR:-node_modules/.cache/excalidraw-export}"
-EXPORTER_VERSION="0.4.0"
+EXPORTER_VERSION="0.3.0"
 NODE_VERSION="22"
-PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-$EXPORT_RUNTIME_DIR/ms-playwright}"
 NODE_BIN="$EXPORT_RUNTIME_DIR/node_modules/.bin/node"
-EXPORTER_JS="$EXPORT_RUNTIME_DIR/node_modules/excalidraw-brute-export-cli/src/main.js"
-PLAYWRIGHT_JS="$EXPORT_RUNTIME_DIR/node_modules/playwright/cli.js"
+EXPORTER_JS="$EXPORT_RUNTIME_DIR/node_modules/@excalidraw/cli/dist/main.js"
 
 ensure_dependencies() {
-    if [ ! -x "$NODE_BIN" ] || [ ! -f "$EXPORTER_JS" ] || [ ! -f "$PLAYWRIGHT_JS" ]; then
+    if [ ! -x "$NODE_BIN" ] || [ ! -f "$EXPORTER_JS" ]; then
         if ! command -v npm &> /dev/null; then
             echo -e "${RED}Error: npm is required to install the diagram exporter${NC}"
             exit 1
@@ -47,13 +44,7 @@ ensure_dependencies() {
             --no-save \
             --no-package-lock \
             "node@$NODE_VERSION" \
-            "excalidraw-brute-export-cli@$EXPORTER_VERSION"
-    fi
-
-    if ! find "$PLAYWRIGHT_BROWSERS_PATH" -maxdepth 1 -type d -name 'firefox-*' -print -quit 2>/dev/null | grep -q .; then
-        echo -e "${BLUE}Installing the local Playwright Firefox runtime...${NC}"
-        PLAYWRIGHT_BROWSERS_PATH="$PLAYWRIGHT_BROWSERS_PATH" \
-            "$NODE_BIN" "$PLAYWRIGHT_JS" install firefox
+            "@excalidraw/cli@$EXPORTER_VERSION"
     fi
 }
 
@@ -252,13 +243,10 @@ for INPUT_FILE in "${FILES[@]}"; do
     TEMP_OUTPUT="${OUTPUT_FILE%.png}.tmp-$$.png"
     EXPORT_LOG=$(mktemp "${TMPDIR:-/tmp}/excalidraw-export.XXXXXX")
 
-    if PLAYWRIGHT_BROWSERS_PATH="$PLAYWRIGHT_BROWSERS_PATH" \
-        "$NODE_BIN" "$EXPORTER_JS" \
-        --input "$INPUT_FILE" \
-        --output "$TEMP_OUTPUT" \
-        --format png \
+    if "$NODE_BIN" "$EXPORTER_JS" render "$INPUT_FILE" \
+        --out "$TEMP_OUTPUT" \
         --scale 2 \
-        --background true \
+        --timeout 30000 \
         >"$EXPORT_LOG" 2>&1; then
         grep -v "Warning:" "$EXPORT_LOG" | grep -v "deprecated" || true
 

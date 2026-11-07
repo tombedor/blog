@@ -6,3 +6,6 @@ image: /social-cards/ai-needs-to-sweeten-the-deal.png
 draft: true
 ---
 
+
+
+https://schar.gmu.edu/news/2026-10/washington-post-schar-school-poll-shows-virginia-support-data-centers-has-fallen
