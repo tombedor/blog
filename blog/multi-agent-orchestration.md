@@ -42,8 +42,6 @@ This enabled quick development of a lot of nice to have features:
 
 Since the dispatcher works by snooping on local transcript logs, I don't _need_ to go through it to investigate something or start a new task. I can simply fire up a standalone pi session, and the dispatcher will recognize a new session has started, assign a manager, and track progress.
 
-<!-- starting sessions outside of tombot -->
-
 # Long lived agents > memory
 
 I used to think the key to self-improving agents was _memory_. In this model, agents are cattle not pets. They boot up, load necessary context from a pool of memory, do work, and contribute back to the memory pool:
@@ -56,7 +54,7 @@ Even given a set of ideal memories, it's difficult to build an effective recall 
 
 An agent fleet structured as a graph solves this problem much better. A central dispatcher node maintains high level awareness of what work is happening. I ask for a piece of work, the dispatcher augments with relevant context, and the work happens in the background. The dispatcher receies progress updates, reacts accordingly, and discards them.
 
-<!-- diagram dispatcher -->
+<!-- diagram: dispatcher -->
 
 # Tension, human code review, and agentic beauracacy
 
