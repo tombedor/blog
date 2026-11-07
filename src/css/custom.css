@@ -174,6 +174,65 @@ article.margin-bottom--xl {
   padding: 0;
 }
 
+.diagram-lightbox-trigger {
+  cursor: zoom-in;
+}
+
+.diagram-lightbox-trigger:focus-visible {
+  outline: 3px solid var(--ifm-color-primary);
+  outline-offset: 4px;
+}
+
+.diagram-lightbox {
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgb(0 0 0 / 88%);
+  cursor: zoom-out;
+}
+
+.diagram-lightbox__image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(100vh - clamp(2rem, 8vw, 6rem));
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 16px 48px rgb(0 0 0 / 45%);
+  cursor: zoom-out;
+  object-fit: contain;
+}
+
+.diagram-lightbox__close {
+  position: fixed;
+  top: max(0.75rem, env(safe-area-inset-top));
+  right: max(0.75rem, env(safe-area-inset-right));
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 35%);
+  border-radius: 999px;
+  background: rgb(0 0 0 / 65%);
+  color: #fff;
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.diagram-lightbox__close:hover,
+.diagram-lightbox__close:focus-visible {
+  background: rgb(255 255 255 / 20%);
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
 @media (min-width: 997px) {
   #__blog-post-container img[src*='/assets/images/chart-'] {
     display: block;

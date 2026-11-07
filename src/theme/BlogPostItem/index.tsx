@@ -4,6 +4,7 @@ import type BlogPostItemType from '@theme/BlogPostItem';
 import type {WrapperProps} from '@docusaurus/types';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
 import {initFootnotePopovers} from './footnotePopovers';
+import {initDiagramLightbox} from './diagramLightbox';
 import {track} from '@site/src/analytics';
 
 type Props = WrapperProps<typeof BlogPostItemType>;
@@ -78,9 +79,23 @@ function useFootnotePopovers(enabled: boolean, slug: string | undefined) {
   }, [enabled, slug]);
 }
 
+function useDiagramLightbox(enabled: boolean, slug: string | undefined) {
+  useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+    const article = document.querySelector<HTMLElement>('.markdown');
+    if (!article) {
+      return;
+    }
+    return initDiagramLightbox(article);
+  }, [enabled, slug]);
+}
+
 export default function BlogPostItemWrapper(props: Props): React.JSX.Element {
   const {isBlogPostPage, metadata} = useBlogPost();
   useReadDepthTracking(isBlogPostPage, metadata.permalink);
   useFootnotePopovers(isBlogPostPage, metadata.permalink);
+  useDiagramLightbox(isBlogPostPage, metadata.permalink);
   return <OriginalBlogPostItem {...props} />;
 }
