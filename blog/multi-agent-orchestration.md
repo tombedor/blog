@@ -38,7 +38,8 @@ This also provides a natural on ramp to self improvement. When an agent does som
 
 This enabled quick development of a lot of nice to have features:
 - *Scheduled checks*: I can say to root, "check xyz metric twice a day for two weeks", and the check happens without fiddling with crontab entries.
-- *Subscription hooks*: I can automatically subscribe to incoming information, whether it be PR reviews, CI builds, or even meeting notes. I now have the experience of meeting with a colleague, making decisions, and when I get back to development my fleet has already ingested AI generated notes and started work.
+- *Subscription hooks*: I can automatically subscribe to incoming information, whether it be PR reviews, CI builds.
+- *Meeting notes ingestion*: I now have the experience of meeting with a colleague, making decisions, and when I get back to development my fleet has already ingested AI generated notes and started work.
 
 Since the dispatcher works by snooping on local transcript logs, I don't _need_ to go through it to investigate something or start a new task. I can simply fire up a standalone pi session, and the dispatcher will recognize a new session has started, assign a manager, and track progress.
 
