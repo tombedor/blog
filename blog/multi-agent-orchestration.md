@@ -16,7 +16,7 @@ Rather than pitch yet another agent orchestrator[^1] to you, I'll go through how
 
 ## Stage 1: Sea of iTerm tabs
 
-AI allows me to make progress on several tasks at once, which I started by managing a sea of iTerm windows. This quickly got difficult to manage. Some tasks are fire and forget, others I need to drive myself, but managing tabs by hand didn't give me a way to distinguish them. It was also lossy: accidentally closing a tab means resuming by fishing the session out of Codex, (or was it Claude Code?).
+AI allows me to make progress on several tasks at once, which I started managing with a sea of iTerm windows. This quickly got difficult to manage. Some tasks are fire and forget, others I need to drive myself, but managing tabs by hand didn't give me a way to distinguish them. It was also lossy: accidentally closing a tab means resuming by fishing the session out of Codex, (or was it Claude Code?).
 
 Even when keeping tabs running, it was not alwaty trivial to remember what each tab was working on.
 
