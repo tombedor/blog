@@ -30,7 +30,7 @@ I eventually got frustrated. Sessions would do some useful work, ask for a decis
 
 ## Stage 4: Multi agent
 
-I solved the problem by throwing AI at it. I arranged sessions in a hierarchal graph, with the root node handling dispatch, receiving progress reports, and nudging inactive agents. Manager nodes keep tickets up to date, handle decisions not worth escalating to root, and ensure worker nodes are following a consistent development process I specify. The root node makes decisions based on my previous guidance where it cans, and curates an inbox of decisions that need me.
+I solved the problem by throwing AI at it. I arranged sessions in a hierarchal graph, with the root node handling dispatch, receiving progress reports, and nudging inactive agents. Manager nodes keep tickets up to date, handle decisions not worth escalating to root, and ensure worker nodes are following a consistent development process. The root node makes decisions based on my previous guidance where it cans, and curates an inbox of decisions that need me.
 
 ![tombot](/diagrams/multi-agent-orchestration/tombot.png)
 
