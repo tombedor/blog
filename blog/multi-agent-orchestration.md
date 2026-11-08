@@ -22,7 +22,7 @@ Even when keeping tabs running, it was not alwaty trivial to remember what each 
 
 ## Stage 2: Tmux navigation, tracking session state, naming sessions
 
-I built a central Tmux dashboard that snooped on local harness logs to name sessions, track basic progress, and determine which sessions were active.
+I built a central Tmux dashboard that snooped on local harness logs to name sessions, track basic progress, and determine which sessions were active. With a dash of search functionailty, the problem of losing track of sessions was solved.
 
 ![bot-manager-screenshot](/diagrams/multi-agent-orchestration/bot-manager-screenshot.png)
 
