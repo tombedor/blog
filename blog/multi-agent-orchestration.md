@@ -6,7 +6,7 @@ image: /social-cards/multi-agent-orchestration.png
 draft: true
 ---
 
-I have, after a period of resistance, adopted a multi-agent setup for my work, and it's difficult to see going back. I've been skeptical of token maxing tools like Gas Town, whose created admits was mostly used to build itself[^1]. But models are now good enough to autonomously and productively work for long periods of time. My effort goes towards keeping the fleet on track, and increasing the number of agents doing high quality work.
+I've adopted a multi-agent setup for my work, and it's difficult to see going back. I've been skeptical of token maxing tools like Gas Town, whose creator admits was mostly used to build itself[^1]. But models are now good enough to autonomously and productively work for long periods of time. My effort now goes towards keeping the fleet on track, and increasing the number of agents doing high quality work.
 
 My work now is more similar to a pre-AI engineering manager than a pre-AI software engineer. There's less technical growth, less in depth understanding of the code. But the scope and volume of what I'm able to build is dramatically greater than it was before.
 
