@@ -20,7 +20,7 @@ AI allows me to make progress on several tasks at once, which I started managing
 
 Even when keeping tabs running, it was not alwaty trivial to remember what each tab was working on.
 
-## Stage 2: Tmux navigation, tracking session state, naming sessions
+## Stage 2: Tmux dashboard
 
 I built a central Tmux dashboard that snooped on local harness logs to name sessions, track basic progress, and determine which sessions were active. With a dash of search functionailty, the problem of losing track of sessions was solved.
 
