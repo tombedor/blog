@@ -1,105 +1,88 @@
-# Research Brief: AI Needs to Sweeten the Deal
+# Research Brief: AI Needs to Sweeten the Deal (Why People Don't Like Data Centers)
 
-**Scope:** Test whether opposition to AI data centers is mainly anti-AI sentiment or resistance to uncompensated local costs, and identify a defensible precinct-level map.
+**Scope:** Test whether data-center opposition is anti-AI sentiment or resistance to uncompensated costs; catalog the cost-of-living and quality-of-life harms of living with the build-out; identify which protections move opinion.
 
 **Bottom line:**
-- Local costs appear to be the larger component: voters most often cite water, power, bills, land use, noise, and quality of life; support falls when a project is nearby.
-- AI adds a distinct penalty. Identical infrastructure is more acceptable when described as supporting banking or government data than when it trains AI models.
-- The most persuasive “sweeteners” directly neutralize local costs. A randomized experiment found that a binding ratepayer guarantee or home-energy benefits raised project favorability by 14 points; generic economic-benefit messaging is weaker.
-- Pataskala, Ohio is the best map case found: eight precincts, official vote data, current GIS boundaries, and an exact proposed parcel. The pattern is suggestive, not causal.
+- Data centers lost almost everywhere on Nov 3, 2026: ~38 of 41 local measures went against them (Ballotpedia count; uncertified).
+- Opposition is not a tidy proximity map. Harms land on three geographies: neighbors (noise, air, wells), the whole grid region (bills), the whole state (tax breaks). Bills — the cost-of-living harm voters cite most — are socialized across regions, so people far from any facility pay.
+- AI adds a distinct penalty on top of local costs.
+- Binding, household-visible protections move support (+14 pts); generic benefit messaging doesn't. Existing policy (large-load tariffs) covers only bills.
 
 ---
 
-## Is Opposition Mainly Local or Anti-AI?
+## The Election
 
-**Finding:** Both matter, but the strongest evidence points to local burdens as the larger driver.
+- ~38 of 41 data-center ballot measures went against development; 13–14 Ohio municipalities passed bans/restrictions on >25 MW facilities. Monterey Park, CA: 86.8% for ban (early vote). Festus, MO: four council members who backed a $6B project lost.
+- https://news.ballotpedia.org/?p=52125 · https://www.venable.com/insights/publications/2026/11/voters-approve-data-center-restrictions · https://lailluminator.com/2026/11/04/repub/vote-data-centers/
+- Counterframe: [The Atlantic, "Silicon Valley's Very Bad Night"](https://www.theatlantic.com/technology/2026/11/americans-really-dont-like-data-centers-elections/689284/) — a revolt against tech wealth/power, not a bargain compensation can fix.
 
-**Evidence:**
-- Gallup found **71% opposed** an AI data center in their area versus **53% opposed** a local nuclear plant. Among opponents, half mentioned excessive resource use; roughly one-fifth cited quality-of-life effects and another fifth negative economic effects such as utility bills.
-- UMass found **65% opposed** and 11% supported a local AI data center. Open-ended reasons were environmental/resource use (28%), land use/local disruption (15%), bills/economic burden (10%), and general distrust of AI or the industry (13%).
-- Reuters/Ipsos found opposition increased from **44% nationally** to **57% within the respondent’s community**.
-- AI still carries its own stigma: Public First/ITIF found support of 42% for data centers serving banking/streaming/storage but 31% for AI-training facilities; data centers ranked last among ten kinds of local development.
+## Is It Proximity?
 
-**Sources:**
-- https://news.gallup.com/poll/709772/americans-oppose-local-ai-data-centers.aspx
-- https://www.umass.edu/news/article/just-1-9-americans-support-ai-data-center-construction-their-local-communities
-- https://www.ipsos.com/sites/default/files/ct/news/documents/2026-06/Reuters%20Ipsos%20Large%20Issue%20Topline%20June%202026%206.12%20release.pdf
-- https://itif.org/publications/2026/08/26/data-centers-are-americans-least-favored-form-of-development/
+**Finding:** Hypothetical proximity raises opposition; actual exposure doesn't clearly predict it.
+- Reuters/Ipsos: 45–16 oppose overall → 59–10 within 10 miles. CNBC: 63% oppose within 10 miles, 13% support.
+- VoteHub: ~zero correlation between state data-center capacity and net opposition across ten polled states *(unverified; page not fetchable)*.
+- Virginia, the most-exposed state, shows collapse, not acclimation: nearby-construction support **69% (2023) → 35% (2026)**; 57% say data centers hurt home energy bills vs. 14% help (WaPo–Schar).
+- Pataskala precinct map (below): every precinct backed the ban; host precinct was third-lowest.
+- https://www.cnbc.com/2026/10/24/trump-ai-data-centers-voter-backlash-midterms.html · https://schar.gmu.edu/news/2026-10/washington-post-schar-school-poll-shows-virginia-support-data-centers-has-fallen
 
-**Pull quote:**
-- “Americans may agree that AI represents the future, but they appear far less certain about who should pay the price for building it.” (UMass Poll)
+## Is It AI?
 
-**Caveats / counterpoints:**
-- Poll wording varies materially: “AI data center,” generic “data center,” national construction, and a project “in your community” are not interchangeable treatments.
-- Attitudes toward AI can be the strongest individual-level predictor even when respondents describe local costs. GoodPower found AI outlook predicted project support better than party, place, or cost strain.
+**Finding:** Local costs are the larger stated driver, but AI carries its own stigma.
+- Gallup: 71% oppose a local AI data center vs. 53% a local nuclear plant; half of opponents cite resource use, ~1/5 quality of life, ~1/5 bills/economics.
+- UMass: open-ended reasons — environment/resources 28%, land use/disruption 15%, general AI/industry distrust 13%, bills 10%.
+- Heatmap Pro: No. 1 stated reason is power or water bills; bill argument +46 net convincing vs. water +34.
+- Public First/ITIF: 42% support for banking/streaming data centers vs. 31% for AI training; data centers last of ten development types. GoodPower: AI outlook is the strongest individual predictor.
+- https://news.gallup.com/poll/709772/americans-oppose-local-ai-data-centers.aspx · https://www.umass.edu/news/article/just-1-9-americans-support-ai-data-center-construction-their-local-communities · https://itif.org/publications/2026/08/26/data-centers-are-americans-least-favored-form-of-development/
+- "Americans may agree that AI represents the future, but they appear far less certain about who should pay the price for building it." (UMass Poll)
 
----
+## Cost of Living
 
-## What Would Actually Sweeten the Deal?
+**Electricity (region-wide).** Details: [living-with-data-centers.md](living-with-data-centers.md#electricity-bills)
+- PJM market monitor: data centers drove **63%** of the 2025/26 capacity price jump — **$9.3B** billed to customers across 13 states + D.C.; ~$6.5B of $16.4B in the latest auction.
+- Dallas Fed: +6.9% wholesale nationally, +15% in northern regions by 2025. Bloomberg's "267%" is a peak wholesale node, not bills (PolitiFact).
+- Mechanism: confidential special contracts priced below cost of service (Harvard ELI, ~50 proceedings).
+- Counter: 2015–2024 retrospectives find modestly *lower* retail rates where load grew; Virginia JLARC says data centers pay cost of service there. Pre-AI-surge period.
+- **Caveat for the post:** evidence that rates rise *next to* a facility is weak; the strong claim is regional.
 
-**Finding:** Benefits are persuasive when they are binding, local, and matched to the feared cost.
+**Taxes (state-wide).**
+- Virginia sales-tax exemption: **$1.6B** FY2025, ~16× projections; Georgia $625M (from $10M in 2020). Subsidy per permanent job ~$1.4M–$2.7M (Good Jobs First). 67% of Virginians want the exemption ended.
 
-**Evidence:**
-- GoodPower/Data for Progress randomized 2,610 registered voters across project descriptions. A binding commitment to pay for grid upgrades and prevent household rate increases raised the favorable share by **14 points**.
-- A community-benefit agreement funding home efficiency upgrades and rooftop solar produced the same increase in project favorability as the rate guarantee.
-- Merely describing the project as solar-powered rather than gas-powered had no statistically detectable effect. The protections, not the energy branding, moved opinion.
-- Only **22%** trusted data center developers not to raise rates, explaining why vague promises are unlikely to substitute for enforceable agreements.
+**Water (county-wide).**
+- Newton County, GA (Meta): county water rates projected +33%; deficit projected by 2030.
 
-**Sources:**
-- https://goodpower.org/research/data-center-acceptability-experiment/
-- https://www.umass.edu/poll/about/reports/2026-09-national-public-opinion-poll-2
+## Quality of Life (Fence-Line)
 
-**Caveats / counterpoints:**
-- The GoodPower study was conducted by an advocacy organization and tested hypothetical projects, but its randomized design is stronger causal evidence than ordinary message polling.
-- “Sweeteners” cannot resolve objections rooted in AI risk, land use, distrust, or a preference for no development.
+- **Noise:** Dowagiac, MI class action (≤1 mile; 50–62 dB, 24/7; fined; operator offered to buy homes). Microsoft Mount Pleasant, WI class action (≤1.5 miles). Loudoun complaints about hum and generator fumes. "It sounds like someone set up a vacuum like in your living room."
+- **Air:** xAI Memphis ran 35 turbines with permits sought for 15; SELC estimates $30–44M/yr health damage (advocacy); U. Memphis finds slight effect; no permanent monitors nearby.
+- **Wells:** Meta Georgia — neighbors' wells failed/muddied after construction; four families sued (Sept 2026); Meta's study finds no impact; private wells are unregulated.
+- **Land/transmission:** Prince William Digital Gateway (27M sq ft, up to 27k daily trips); Maryland MPRP 67-mile line, survey access to 300+ properties under eminent domain.
+- **Property values:** mixed — no effect (GMU, Integra, Realtor.com) vs. ~2.8% discount within 0.5 mi (GWU) and larger declines near hyperscale sites (Berkeley). Not a reliable claim.
 
----
+## What Would Sweeten the Deal?
 
-## Recent Synthesis / Prior Art
-
-**Closest overlaps:**
-- [Yale Insights, “How Communities Can Get a Better Deal from Data Centers” (Sept. 1, 2026)](https://insights.som.yale.edu/insights/how-communities-can-get-better-deal-from-data-centers) — Closest thesis match: costs concentrate locally while benefits disperse; recommends enforceable ratepayer protection, community-benefit agreements, transparency, and stronger local negotiating capacity.
-- [Axios, “Data centers’ economic benefits messaging isn’t breaking through” (Nov. 5, 2026)](https://www.axios.com/2026/11/05/data-centers-economic-benefits-messaging) — Jobs and national-competitiveness claims lose to household-bill concerns; concludes that residents need tangible benefits and credible protections.
-- [Axios, “The tricky economics of welcoming data centers” (Nov. 2, 2026)](https://www.axios.com/2026/10/31/data-centers-economy-ohio) — New Albany shows the distribution problem: substantial municipal and school revenue can coexist with opposition when residents feel they personally bear the costs.
-
-**Adjacent framing:**
-- [AP, “Tech giants are promising hosts more money and fewer secrets” (Oct. 22, 2026)](https://www.washingtonpost.com/politics/2026/10/22/data-centers-artificial-intelligence-nimby-tech/6f2fbce8-cde6-11f1-ac04-9f58578a68b4_story.html) — Documents the industry response: community funds, fewer NDAs, property-tax promises, and ratepayer pledges.
-- [Brookings, “The pledge to protect ratepayers … needs enforcement” (2026)](https://www.brookings.edu/articles/the-pledge-to-protect-ratepayers-from-ai-data-center-costs-needs-enforcement/) — Synthesizes the Virginia and Wisconsin trend polling; argues that electricity protections alone cannot answer resource, quality-of-life, and anti-AI objections.
-- [World Economic Forum, “AI and data-centre growth risks stalling without a social licence” (Mar. 30, 2026)](https://www.weforum.org/stories/artificial-intelligence/ai-community-social-licence) — Corporate version of the thesis: infrastructure, job pathways, and community participation are now prerequisites for continued construction.
-- [The Atlantic, “Silicon Valley’s Very Bad Night” (Nov. 4, 2026)](https://www.theatlantic.com/technology/2026/11/americans-really-dont-like-data-centers-elections/689284/) — Strong counterframe: ballot results may express a broader revolt against Silicon Valley’s wealth and political power, not a local bargain that compensation alone can repair.
-
-**Remaining angle:** “Communities need a better deal” is established. The less-developed synthesis is that repeated polling separates fast-growing data-center opposition from relatively stable AI sentiment, while experiments identify which household-visible, enforceable benefits actually move support. The sharper claim is that this is a product-pricing and benefit-distribution problem, not merely a communications problem.
-
----
+**Finding:** Protections that are binding, local, and matched to the feared cost.
+- GoodPower/Data for Progress (randomized, n=2,610): binding no-rate-increase commitment **+14 pts** favorability; CBA funding home efficiency/rooftop solar **+14**; solar vs. gas branding: no detectable effect. Only 22% trust developers not to raise rates.
+- Already working: AEP Ohio tariff — >25 MW pay ≥85% of contracted capacity up to 12 years, exit fee = 3 years. AEP's large-load forecast fell 30 GW → 13 GW (speculative load vanished). 23–25 states have a large-load tariff; House passed Ratepayer Protection Act 417–3.
+- Gaps: no comparable standard instruments for noise limits, well-water guarantees, generator emissions, or tax-break clawbacks.
+- https://goodpower.org/research/data-center-acceptability-experiment/ · https://www.powermag.com/regulator-approves-aep-ohios-landmark-data-center-tariff/ · https://www.utilitydive.com/news/large-load-tariffs-proliferate-as-states-take-more-active-role-in-data-cent/816184/
+- Prior art: [Yale Insights](https://insights.som.yale.edu/insights/how-communities-can-get-better-deal-from-data-centers) (costs local, benefits diffuse); [Brookings](https://www.brookings.edu/articles/the-pledge-to-protect-ratepayers-from-ai-data-center-costs-needs-enforcement/) (pledges need enforcement); [Axios](https://www.axios.com/2026/11/05/data-centers-economic-benefits-messaging) (jobs messaging loses to bills).
 
 ## Pataskala Precinct Map
 
-**Finding:** Pataskala can show that opposition was universal but uneven; it cannot establish that proximity caused the difference.
-
-**Evidence:**
-- On November 3, 2026, every Pataskala precinct supported an immediate ban on data centers over 25 MW. Support ranged from **70.08% to 78.63%**, versus **73.62% citywide**.
-- The rejected Aligned project is an exact **89.7-acre parcel at 6771 Mink Street**, at Broad and Mink. The parcel lies inside precinct 1-B, where support for the ban was **71.82%**—below the citywide result.
-- Using precinct centroids as a rough distance measure, the two farthest precincts were the two least supportive, but the host precinct was only the third-lowest. This is a mixed, eight-observation pattern.
-
-**Sources:**
-- [Pataskala map data and methodology](pataskala-map-data.md)
-- https://www.boe.ohio.gov/licking/c/elecres/20261103precinct.pdf
-- https://gis.lickingcounty.gov/server/rest/services/Auditor/Boundaries/FeatureServer
-- https://gis.lickingcounty.gov/server/rest/services/Auditor/Parcels/FeatureServer
-
-**Recommended map claim:** “Every precinct backed the ban; support was somewhat stronger in several precincts nearer the proposed site.”
-
-**Do not claim:** “The closer voters lived to the site, the more likely they were to oppose it.” Precinct centroids are not voter addresses, the site precinct is not the most opposed, and eight precincts cannot isolate distance from demographics or campaign activity.
+- Every precinct backed the >25 MW ban: **70.08–78.63%**, citywide 73.62%. Aligned's 89.7-acre parcel (6771 Mink St) sits in precinct 1-B at 71.82%, below citywide. Two farthest precincts were least supportive; mixed, n=8.
+- Defensible claim: "Every precinct backed the ban; support was somewhat stronger in several precincts nearer the proposed site." Do not claim a distance gradient.
+- [pataskala-map-data.md](pataskala-map-data.md)
 
 ---
 
 ## Source Notes
 
-- [pataskala-map-data.md](pataskala-map-data.md) — Official precinct results, parcel identification, distance calculation, and map-production guidance.
+- [living-with-data-centers.md](living-with-data-centers.md) — Harm-by-harm notes (bills, noise, air, water, property, land, taxes, distance, existing policy) with links and caveats.
+- [pataskala-map-data.md](pataskala-map-data.md) — Official precinct results, parcel, distance method.
 
 ## Open Questions
 
-- Do certified November 24 results materially change any Pataskala precinct percentages?
-- Can voter-population-weighted centroids or block-level population improve the distance measure?
-- Which binding protections would survive bankruptcy, project resale, or a change in operator?
-- Are there completed community-benefit agreements with measured effects on household bills, water use, noise, or local tax burdens?
+- Primary-source check of VoteHub capacity/opposition correlation and Dowagiac buyout terms.
+- Is there any utility-territory-level evidence that residential rates rose faster where data centers connected (vs. across PJM)?
+- Has any jurisdiction adopted enforceable noise, water, or tax-clawback terms with measured results?
+- Do certified Nov 24 Pataskala results change precinct percentages?
