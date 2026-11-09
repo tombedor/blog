@@ -6,9 +6,9 @@ image: /social-cards/multi-agent-orchestration.png
 draft: true
 ---
 
-I've adopted a multi-agent setup for my work, and it's difficult to see going back. I've been skeptical of token maxing tools like Gas Town, whose creator admits was mostly used to build itself[^1]. But models are now good enough to autonomously and productively work for long periods of time. My effort now goes towards keeping the fleet on track, and increasing the number of agents doing high quality work.
+I've adopted a multi-agent setup for my work, and I can't see going back. I've been skeptical of token maxing tools like Gas Town, whose creator admits was mostly used to build itself. On the other hand, models are now good enough to autonomously and productively work for long periods of time. My effort now goes towards keeping the fleet on track, and increasing the number of agents doing high quality work.
 
-My work now is more similar to a pre-AI engineering manager than a pre-AI software engineer. There's less technical growth, less in depth understanding of the code. But the scope and volume of what I'm able to build is dramatically greater than it was before.
+Working this way is more similar to a pre-AI engineering manager than a pre-AI software engineer. There's less technical growth, less in depth understanding of the code. But the scope and volume of what I'm able to build is dramatically greater than it was before.
 
 Rather than pitch yet another agent orchestrator[^1] to you, I'll go through how I landed here, what components of multi agent orchestration are important, broader implications for the practice of software engineering.
 
@@ -26,7 +26,7 @@ I built a central Tmux dashboard that snooped on local harness logs to name sess
 
 ![bot-manager-screenshot](/diagrams/multi-agent-orchestration/bot-manager-screenshot.png)
 
-I eventually got frustrated. Sessions would do some useful work, ask for a decision, and wait until I paged back to it. I was spending way to much time tabbing through sessions (which I could now easily find, at least), and giving agents some variation of "keep working". It also become very difficult to keep track of the higher level goals I was working towards and understand how the different sessions in play fit together..
+I eventually got frustrated. Sessions would do some useful work, ask for a decision, and wait until I paged back to it. I was spending way too much time tabbing through sessions (which I could now easily find, at least), and giving agents some variation of "keep working". It also become very difficult to keep track of the higher level goals I was working towards and understand how the different sessions in play fit together..
 
 ## Stage 4: Multi agent
 
@@ -49,9 +49,9 @@ I used to think the key to self-improving agents was _memory_. In this model, ag
 
 ![memories](/diagrams/multi-agent-orchestration/memories.png)
 
-But managing context via memories is _hard_. It's difficult for an agent working on a narrow task to determine what broader context that task informs. The most useful context from a task session is often what the status of the task is, but that information quickly goes stale.
+But managing context via memories is _hard_. It's agent working on a narrow task to lacks the necessary information to determine what broader context that task informs. The most useful context from a task session is often what the status of the task is, but that information quickly goes stale.
 
-Even given a set of ideal memories, it's difficult to build an effective recall system. Some tasks are one offs. They require little outside context and don't have much to contribute to a central memory pool. Others interact with other ongoing work or reflect impactful decisions. It's difficult for a recall system to really know which category a session belongs to.
+Building a recall system requires a delicate balancing act.  Some tasks are one offs. They require little outside context and don't have much to contribute to a central memory pool. Recall for these sessions is slows the agent down and bloats context. Other sessions interact with other ongoing work or reflect impactful decisions. Too little recall for these means duplicating or clashing with work from other agents.
 
 An agent fleet structured as a graph solves this problem much better. A central dispatcher node maintains high level awareness of what work is happening. I ask for a piece of work, the dispatcher augments with relevant context, and the work happens in the background. The dispatcher receies progress updates, reacts accordingly, and discards them.
 
@@ -77,9 +77,4 @@ I do have some worry for the practice overall. Increasingly when I talk to my di
 
 But becoming a software engineer meant signing up for rapid change, whether we acknowledged it or not. We're in the automation business. I still have confidence that software will remain an interesting and rewarding field. What it looks like, though, is anyone's guess.
 
-
-[^1]: I'm a bit skeptical Yegge's recent assertions that his new, unreleased token maxing tool is actually *very good*/
-
-[^1]: The code for this tool belongs to my company, but can be easily open sources. If you're interested email me at tombedor.dev and I'll follow up with a release.
-
-[^2]: Bot Manager 2 never really got off the ground. It's essentially the same as Bot Manager 3, with a web UI I never ended up using.
+[^1]: The code for this tool belongs to my company, but can be easily open sourced. If you're interested email me at hello@tombedor.dev and I'll follow up with a release.
