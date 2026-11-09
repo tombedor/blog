@@ -183,6 +183,13 @@ article.margin-bottom--xl {
   outline-offset: 4px;
 }
 
+.markdown img.responsive-diagram {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+}
+
 .diagram-lightbox {
   position: fixed;
   z-index: 2000;
