@@ -13,7 +13,8 @@
 //   node scripts/lint-diagrams.mjs                 # diagrams referenced by posts
 //   node scripts/lint-diagrams.mjs --all           # also unreferenced diagrams
 //   node scripts/lint-diagrams.mjs a.excalidraw    # specific files
-//   node scripts/lint-diagrams.mjs path/to/diagrams # directories (recursive)
+//   node scripts/lint-diagrams.mjs path/to/diagrams # referenced diagrams in directory
+//   node scripts/lint-diagrams.mjs --all path/to/diagrams # every diagram in directory
 //   options: --min-text-px N --max-scene-width N --column-width N --strict
 //
 // Exits 1 on errors (or on warnings with --strict). Text inside embedded
@@ -182,18 +183,11 @@ export function findExcalidrawFiles(inputPath) {
 
 function collectTargets(opts) {
   // Map of .excalidraw path -> list of {post, widthPercent, maxWidthPx}
-  const targets = new Map();
+  const referenced = new Map();
   const add = (file, usage) => {
-    if (!targets.has(file)) targets.set(file, []);
-    if (usage) targets.get(file).push(usage);
+    if (!referenced.has(file)) referenced.set(file, []);
+    if (usage) referenced.get(file).push(usage);
   };
-
-  if (opts.files.length > 0) {
-    for (const inputPath of opts.files) {
-      for (const file of findExcalidrawFiles(inputPath)) add(file, null);
-    }
-    return targets;
-  }
 
   const blogDir = path.join(ROOT, 'blog');
   for (const name of fs.readdirSync(blogDir).sort()) {
@@ -204,6 +198,21 @@ function collectTargets(opts) {
       if (fs.existsSync(file)) add(file, {post: name, ...ref});
     }
   }
+
+  if (opts.files.length > 0) {
+    const selected = new Set();
+    for (const inputPath of opts.files) {
+      const isDirectory = fs.existsSync(inputPath) && fs.statSync(inputPath).isDirectory();
+      for (const file of findExcalidrawFiles(inputPath)) {
+        // Explicit files are always checked. Directories default to only the
+        // diagrams actually referenced by posts unless --all is supplied.
+        if (!isDirectory || opts.all || referenced.has(file)) selected.add(file);
+      }
+    }
+    return new Map([...selected].map((file) => [file, referenced.get(file) ?? []]));
+  }
+
+  const targets = new Map(referenced);
 
   if (opts.all) {
     const walk = (dir) => {
