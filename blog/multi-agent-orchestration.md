@@ -59,15 +59,15 @@ An agent fleet structured as a graph solves this problem much better. A central 
 
 # Tension, human code review, and agentic beauracacy
 
-Working in this way breaks fundamental norms of pre-AI software engineering. The scale of code being produced is too much to ask human collaborators to review. It's natural for someone who reviews PR's themselves to feel resentment at being asked to review a firehose of AI generated code the author didn't read closely.
+Working via an agent fleet breaks fundamental norms of pre-AI software engineering. The scale of code being produced is too much to ask human collaborators to review. Teammates who reviews PR's without AI can naturally feel resentment at being asked to review a firehose of AI generated code the author didn't read closely.
 
 I don't disagree. Human code review of multi-agent produced code is untenable. But I don't think human code review is always _necessary_.
 
-For one, AI code review (to my surprise) is _really good_. It does a much better job of catching edge cases and contract changes than a human, especially one that might not be in the weeds of the code they are reviewing.
+For one, AI code review (to my surprise) is _really good_. It does a much better job of catching edge cases and contract changes than a human, especially when the human reviewer is busy on other projects and is not in the weeds of the code they are reviewing[^2].
 
-But we can do better than just AI code review. We can _force the agent to prove the code works_, via an unbounded set of pre-merge, pre-deploy, and post-deploy verification steps.
+But we can do better than just AI code review. We can _force the agent to prove the code works_, via what I call _agentic beauracrcy_: via an unbounded set of pre-merge, pre-deploy, and post-deploy verification steps.
 
-We had this option before, of course, but there's a limit to how much box checking a human will put up with. An agent, though, will put up with work through nitpicking linters, patiently wait for long canary bake times, and dilligently check however long a list of performance and correctness metrics you want to through at it.
+We've always had quality assurance processes outside of code review. But while there's a limit to how much box checking a human will put up with, an agent will put up with nitpicking linters, patiently wait for long canary bake times, and dilligently check however long a list of performance and correctness metrics you want. 
 
 # Change
 
@@ -78,3 +78,4 @@ I do have some worry for the practice overall. Increasingly when I talk to my di
 But becoming a software engineer meant signing up for rapid change, whether we acknowledged it or not. We're in the automation business. I still have confidence that software will remain an interesting and rewarding field. What it looks like, though, is anyone's guess.
 
 [^1]: The code for this tool belongs to my company, but can be easily open sourced. If you're interested email me at hello@tombedor.dev and I'll follow up with a release.
+[^2]: The platonic ideal is for at least one or two teammates to have in depth, fresh context on code I was changing. I actually experienced this very rarely!
