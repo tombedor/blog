@@ -90,8 +90,9 @@ preview-elroy-docs HOST="" REQUEST_PATH="/" SHOW_HEADERS="false":
 		curl -k -L --resolve "elroy.bot:443:$host" "https://elroy.bot$path"
 	fi
 
-# Build and deploy a preview of the blog to preview.tombedor.dev
-preview HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/blog-preview":
+# Build and deploy a preview of the blog to preview.tombedor.dev. Set DRAFT to
+# include one draft post without changing its frontmatter or exposing all drafts.
+preview DRAFT="" HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/blog-preview":
 	#!/usr/bin/env bash
 	set -euo pipefail
 
@@ -108,8 +109,17 @@ preview HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/blog-preview":
 		exit 1
 	fi
 
-	echo "Building preview site..."
-	npm run build
+	if [ -n "{{DRAFT}}" ] && [ ! -f "blog/{{DRAFT}}.md" ] && [ ! -f "blog/{{DRAFT}}.mdx" ]; then
+		echo "Draft post not found: {{DRAFT}}"
+		exit 1
+	fi
+
+	if [ -n "{{DRAFT}}" ]; then
+		echo "Building preview site with draft {{DRAFT}}..."
+	else
+		echo "Building preview site..."
+	fi
+	PREVIEW_DRAFT_SLUG="{{DRAFT}}" npm run build
 
 	echo "Uploading to $host:{{DEST_PATH}}..."
 	tar -C build -czf - . | ssh -p "{{PORT}}" "{{USER}}@$host" "
@@ -130,6 +140,10 @@ preview HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/blog-preview":
 	ssh -p "{{PORT}}" "{{USER}}@$host" "cd /opt/analytics && docker compose up -d --no-deps caddy && docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile"
 
 	echo "Preview deployed → https://preview.tombedor.dev"
+
+# Deploy exactly one draft post alongside the published site.
+preview-draft slug HOST="" PORT="22" USER="root" DEST_PATH="/opt/analytics/blog-preview":
+	just preview "{{slug}}" "{{HOST}}" "{{PORT}}" "{{USER}}" "{{DEST_PATH}}"
 
 # Dual publish blog posts to elroy project
 dual-publish:

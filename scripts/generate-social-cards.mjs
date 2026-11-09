@@ -14,6 +14,11 @@ const TEXT_X = 520;
 const TEXT_WIDTH = 620;
 const TITLE_TOP = 100;
 const TITLE_HEIGHT = 330;
+const PREVIEW_DRAFT_SLUG = process.env.PREVIEW_DRAFT_SLUG;
+
+if (PREVIEW_DRAFT_SLUG && !/^[a-z0-9-]+$/.test(PREVIEW_DRAFT_SLUG)) {
+  throw new Error(`Invalid PREVIEW_DRAFT_SLUG: ${PREVIEW_DRAFT_SLUG}`);
+}
 
 function characterWidth(character) {
   if (character === ' ') return 0.28;
@@ -124,12 +129,12 @@ export async function generateSocialCards({check = false} = {}) {
   for (const file of files) {
     const sourcePath = path.join(BLOG_DIR, file);
     const {data} = matter.read(sourcePath);
-    if (data.draft === true) continue;
+    const slug = path.basename(file, path.extname(file));
+    if (data.draft === true && slug !== PREVIEW_DRAFT_SLUG) continue;
     if (typeof data.title !== 'string' || !data.title.trim()) {
       throw new Error(`Published post is missing a title: ${file}`);
     }
 
-    const slug = path.basename(file, path.extname(file));
     const expectedImage = `/social-cards/${slug}.png`;
     if (data.image !== expectedImage) {
       throw new Error(`${file} must set image: ${expectedImage}`);

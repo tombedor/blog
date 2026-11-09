@@ -4,6 +4,11 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const previewDraftSlug = process.env.PREVIEW_DRAFT_SLUG;
+if (previewDraftSlug && !/^[a-z0-9-]+$/.test(previewDraftSlug)) {
+  throw new Error(`Invalid PREVIEW_DRAFT_SLUG: ${previewDraftSlug}`);
+}
+
 const config: Config = {
   scripts: [
     {
@@ -23,6 +28,27 @@ const config: Config = {
     faster: {
       rspackBundler: false,
       rspackPersistentCache: false,
+    },
+  },
+
+  markdown: {
+    parseFrontMatter: async (params) => {
+      const result = await params.defaultParseFrontMatter(params);
+      if (!previewDraftSlug) {
+        return result;
+      }
+
+      const filePath = params.filePath.replaceAll('\\', '/');
+      const isPreviewDraft =
+        filePath.endsWith(`/blog/${previewDraftSlug}.md`) ||
+        filePath.endsWith(`/blog/${previewDraftSlug}.mdx`);
+
+      return isPreviewDraft
+        ? {
+            ...result,
+            frontMatter: {...result.frontMatter, draft: false},
+          }
+        : result;
     },
   },
 
