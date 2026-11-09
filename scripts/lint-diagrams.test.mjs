@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {findDiagramRefs, lintScene, renderedPx, sceneBounds} from './lint-diagrams.mjs';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {findDiagramRefs, findExcalidrawFiles, lintScene, renderedPx, sceneBounds} from './lint-diagrams.mjs';
 
 const opts = {columnWidth: 358, minTextPx: 12, maxSceneWidth: 600};
 
@@ -60,4 +63,22 @@ test('diagram refs parse markdown and img tags and skip comments', () => {
     {url: '/diagrams/post/c.png', widthPercent: 80, maxWidthPx: null},
     {url: '/diagrams/post/d.png', widthPercent: 100, maxWidthPx: 420},
   ]);
+});
+
+test('diagram paths accept files and recursively expand directories', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'lint-diagrams-'));
+  t.after(() => fs.rmSync(root, {recursive: true, force: true}));
+  const nested = path.join(root, 'nested');
+  const hidden = path.join(root, '.hidden');
+  fs.mkdirSync(nested);
+  fs.mkdirSync(hidden);
+  const first = path.join(root, 'a.excalidraw');
+  const second = path.join(nested, 'b.excalidraw');
+  fs.writeFileSync(first, '{}');
+  fs.writeFileSync(second, '{}');
+  fs.writeFileSync(path.join(root, 'notes.txt'), 'ignored');
+  fs.writeFileSync(path.join(hidden, 'hidden.excalidraw'), '{}');
+
+  assert.deepEqual(findExcalidrawFiles(first), [first]);
+  assert.deepEqual(findExcalidrawFiles(root), [first, second]);
 });

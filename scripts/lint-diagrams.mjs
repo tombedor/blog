@@ -13,6 +13,7 @@
 //   node scripts/lint-diagrams.mjs                 # diagrams referenced by posts
 //   node scripts/lint-diagrams.mjs --all           # also unreferenced diagrams
 //   node scripts/lint-diagrams.mjs a.excalidraw    # specific files
+//   node scripts/lint-diagrams.mjs path/to/diagrams # directories (recursive)
 //   options: --min-text-px N --max-scene-width N --column-width N --strict
 //
 // Exits 1 on errors (or on warnings with --strict). Text inside embedded
@@ -150,6 +151,35 @@ function parseArgs(argv) {
   return opts;
 }
 
+export function findExcalidrawFiles(inputPath) {
+  if (!fs.existsSync(inputPath)) {
+    throw new Error(`Path does not exist: ${inputPath}`);
+  }
+
+  const stat = fs.statSync(inputPath);
+  if (stat.isFile()) {
+    if (!inputPath.endsWith('.excalidraw')) {
+      throw new Error(`Expected an .excalidraw file or directory: ${inputPath}`);
+    }
+    return [inputPath];
+  }
+  if (!stat.isDirectory()) {
+    throw new Error(`Expected an .excalidraw file or directory: ${inputPath}`);
+  }
+
+  const files = [];
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(dir, {withFileTypes: true}).sort((a, b) => a.name.localeCompare(b.name))) {
+      if (entry.name.startsWith('.')) continue;
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.isFile() && entry.name.endsWith('.excalidraw')) files.push(full);
+    }
+  };
+  walk(inputPath);
+  return files;
+}
+
 function collectTargets(opts) {
   // Map of .excalidraw path -> list of {post, widthPercent, maxWidthPx}
   const targets = new Map();
@@ -159,7 +189,9 @@ function collectTargets(opts) {
   };
 
   if (opts.files.length > 0) {
-    for (const file of opts.files) add(file, null);
+    for (const inputPath of opts.files) {
+      for (const file of findExcalidrawFiles(inputPath)) add(file, null);
+    }
     return targets;
   }
 
