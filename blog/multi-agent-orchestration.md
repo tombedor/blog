@@ -18,6 +18,8 @@ Rather than pitch yet another agent orchestrator[^1] to you, I'll go through how
 
 AI allows me to make progress on several tasks at once, which I started managing with a sea of iTerm windows. This quickly got difficult to manage. Some tasks are fire and forget, others I need to drive myself, but managing tabs by hand didn't give me a way to distinguish them. It was also lossy: accidentally closing a tab means resuming by fishing the session out of Codex, (or was it Claude Code?).
 
+![sea-of-iterm](/diagrams/multi-agent-orchestration/sea-of-iterm.png)
+
 Even when keeping tabs running, it was not alwaty trivial to remember what each tab was working on.
 
 ## Stage 2: Tmux dashboard
