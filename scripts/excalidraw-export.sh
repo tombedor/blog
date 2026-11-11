@@ -29,6 +29,7 @@ EXPORTER_VERSION="0.3.0"
 NODE_VERSION="22"
 NODE_BIN="$EXPORT_RUNTIME_DIR/node_modules/.bin/node"
 EXPORTER_JS="$EXPORT_RUNTIME_DIR/node_modules/@excalidraw/cli/dist/main.js"
+EXPORT_CACHE_KEY="exporter=$EXPORTER_VERSION;scale=2;padding=0"
 
 ensure_dependencies() {
     if [ ! -x "$NODE_BIN" ] || [ ! -f "$EXPORTER_JS" ]; then
@@ -130,7 +131,9 @@ mkdir -p "$HASH_DIR"
 
 # Function to compute file hash
 compute_hash() {
-    shasum -a 256 "$1" | awk '{print $1}'
+    local file_hash
+    file_hash=$(shasum -a 256 "$1" | awk '{print $1}')
+    printf '%s\n%s\n' "$file_hash" "$EXPORT_CACHE_KEY" | shasum -a 256 | awk '{print $1}'
 }
 
 # Function to get hash file path for an excalidraw file
@@ -245,6 +248,7 @@ for INPUT_FILE in "${FILES[@]}"; do
 
     if "$NODE_BIN" "$EXPORTER_JS" render "$INPUT_FILE" \
         --out "$TEMP_OUTPUT" \
+        --padding 0 \
         --scale 2 \
         --timeout 30000 \
         >"$EXPORT_LOG" 2>&1; then
