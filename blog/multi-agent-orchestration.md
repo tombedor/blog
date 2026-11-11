@@ -28,6 +28,8 @@ I built a central Tmux dashboard that snooped on local harness logs to name sess
 
 ![bot-manager-screenshot](/diagrams/multi-agent-orchestration/bot-manager-screenshot.png)
 
+![bot-manager](/diagrams/multi-agent-orchestration/bot-manager.png)
+
 I eventually got frustrated. Sessions would do some useful work, ask for a decision, and wait until I paged back to it. I was spending way too much time tabbing through sessions (which I could now easily find, at least), and giving agents some variation of "keep working". It also become very difficult to keep track of the higher level goals I was working towards and understand how the different sessions in play fit together..
 
 ## Stage 4: Multi agent
