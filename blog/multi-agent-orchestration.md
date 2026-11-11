@@ -1,16 +1,16 @@
 ---
-title: Multi Agent Orchestration
+title: Embracing Multi Agent Development
 date: 2026-10-14
 authors: [tom]
 image: /social-cards/multi-agent-orchestration.png
 draft: true
 ---
 
-I've adopted a multi-agent setup for my work, and I can't see going back. I've been skeptical of token maxing tools like Gas Town, whose creator admits was mostly used to build itself. On the other hand, models are now good enough to autonomously and productively work for long periods of time. My effort now goes towards keeping the fleet on track, and increasing the number of agents doing high quality work.
+I've adopted a multi-agent setup for my work, and I can't see going back. I've been skeptical of token maxing tools like Gas Town, whose running cost felt inordinate, and whose creator admits was mostly used to build itself. On the other hand, models are now good enough to autonomously and productively work for long periods of time. My effort now goes towards keeping the fleet on track, and increasing the number of agents doing high quality work.
 
 Working this way is more similar to a pre-AI engineering manager than a pre-AI software engineer. There's less technical growth, less in depth understanding of the code. But the scope and volume of what I'm able to build is dramatically greater than it was before.
 
-Rather than pitch yet another agent orchestrator[^1] to you, I'll go through how I landed here, what components of multi agent orchestration are important, broader implications for the practice of software engineering.
+Rather than pitch yet another agent orchestrator[^1] to you, I'll go through how I landed here, what components of multi agent orchestration are important, and broader implications for the practice of software engineering.
 
 # The journey to multi-agent
 
@@ -24,21 +24,25 @@ Even when keeping tabs running, it was not alwaty trivial to remember what each 
 
 ## Stage 2: Tmux dashboard
 
-I built a central Tmux dashboard that snooped on local harness logs to name sessions, track basic progress, and determine which sessions were active. With a dash of search functionailty, the problem of losing track of sessions was solved.
+I built a central Tmux dashboard for agent sessions. With a dash of search functionailty, the problem of losing track of sessions was solved.
 
 ![bot-manager-screenshot](/diagrams/multi-agent-orchestration/bot-manager-screenshot.png)
 
+The architecture is simple: a daemon snoops on local transcript logs to track which sessions are active and assign names.
+
 ![bot-manager](/diagrams/multi-agent-orchestration/bot-manager.png)
 
-I eventually got frustrated. Sessions would do some useful work, ask for a decision, and wait until I paged back to it. I was spending way too much time tabbing through sessions (which I could now easily find, at least), and giving agents some variation of "keep working". It also become very difficult to keep track of the higher level goals I was working towards and understand how the different sessions in play fit together..
+I eventually got frustrated. Sessions would do some useful work, ask for a decision, and wait until I paged back to it. I was spending way too much time tabbing through sessions (which I could now easily find, at least), and giving agents some variation of "keep working". It also become very difficult to keep track of the higher level goals I was working towards and understand how the different sessions in play fit together.
 
-## Stage 4: Multi agent
+## Stage 4: Agent fleet
 
-I solved the problem by throwing AI at it. I arranged sessions in a hierarchal graph, with the root node handling dispatch, receiving progress reports, and nudging inactive agents. Manager nodes keep tickets up to date, handle decisions not worth escalating to root, and ensure worker nodes are following a consistent development process. The root node makes decisions based on my previous guidance where it cans, and curates an inbox of decisions that need me.
+It was time for manager agents. I arranged sessions in a hierarchal graph, with the root node handling dispatch, receiving progress reports, and nudging inactive agents. Manager nodes keep tickets up to date, handle decisions not worth escalating to root, and ensure worker nodes are following a consistent development process. The root node makes decisions based on my previous guidance where it cans, and curates an inbox of decisions that need me.
 
 ![tombot](/diagrams/multi-agent-orchestration/tombot.png)
 
 This also provides a natural on ramp to self improvement. When an agent does something wrong, it persists a correction to it's process, either through changes to node-specific `AGENTS.md` files or by changes to the routing system.
+
+![bot-manager-3](/diagrams/multi-agent-orchestration/bot-manager-3.png)
 
 This enabled quick development of a lot of nice to have features:
 - *Scheduled checks*: I can say to root, "check xyz metric twice a day for two weeks", and the check happens without fiddling with crontab entries.
@@ -55,7 +59,7 @@ I used to think the key to self-improving agents was _memory_. In this model, ag
 
 But managing context via memories is _hard_. It's agent working on a narrow task to lacks the necessary information to determine what broader context that task informs. The most useful context from a task session is often what the status of the task is, but that information quickly goes stale.
 
-Building a recall system requires a delicate balancing act.  Some tasks are one offs. They require little outside context and don't have much to contribute to a central memory pool. Recall for these sessions is slows the agent down and bloats context. Other sessions interact with other ongoing work or reflect impactful decisions. Too little recall for these means duplicating or clashing with work from other agents.
+Building a recall system requires a delicate balancing act.  Some tasks are one offs. They require little outside context and don't have much to contribute to a central memory pool. Recall for these sessions slows the agent down and bloats context. Other sessions interact with ongoing work or reflect impactful decisions. Too little recall for these leads duplication and clashes with work from other agents, and dropped decisions.
 
 An agent fleet structured as a graph solves this problem much better. A central dispatcher node maintains high level awareness of what work is happening. I ask for a piece of work, the dispatcher augments with relevant context, and the work happens in the background. The dispatcher receies progress updates, reacts accordingly, and discards them.
 
@@ -71,7 +75,7 @@ For one, AI code review (to my surprise) is _really good_. It does a much better
 
 But we can do better than just AI code review. We can _force the agent to prove the code works_, via what I call _agentic beauracrcy_: via an unbounded set of pre-merge, pre-deploy, and post-deploy verification steps.
 
-We've always had quality assurance processes outside of code review. But while there's a limit to how much box checking a human will put up with, an agent will put up with nitpicking linters, patiently wait for long canary bake times, and dilligently check however long a list of performance and correctness metrics you want. 
+We've always had quality assurance processes outside of code review. But while there's a limit to how much box checking a human will put up with, an agent will put up with nitpicking linters, patiently wait for long canary bake times, and dilligently check however long a list of performance and correctness metrics you want.
 
 # Change
 
