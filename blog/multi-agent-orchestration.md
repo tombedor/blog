@@ -32,7 +32,7 @@ The architecture is simple: a daemon snoops on local transcript logs to track wh
 
 ![bot-manager](/diagrams/multi-agent-orchestration/bot-manager.png)
 
-I eventually got frustrated. Sessions would do some useful work, ask for a decision, and wait until I tabbed back to them. I was spending way too much time cycling through sessions (which I could now easily find, at least), and giving agents some variation of "keep working." It also became very difficult to keep track of the higher-level goals I was working towards and understand how the different sessions in play fit together.
+I eventually got frustrated. Sessions would do some useful work, ask for a decision, and wait until I tabbed back to them. I was spending way too much time cycling through sessions (which I could now easily find, at least), and giving agents some variation of "keep working." It also became difficult to keep track of the higher-level goals I was working towards and understand how the different sessions in play fit together.
 
 ## Stage 3: Agent fleet
 
@@ -44,7 +44,7 @@ This also provides a natural on-ramp to self-improvement. When an agent does som
 
 ![bot-manager-3](/diagrams/multi-agent-orchestration/bot-manager-3.png)
 
-This enabled quick development of a lot of nice-to-have features:
+This enabled quick development of nice-to-have features:
 - *Scheduled checks*: I can say to root, "check xyz metric twice a day for two weeks," and the check happens without fiddling with crontab entries.
 - *Subscription hooks*: I can automatically subscribe to incoming information, whether from PR reviews or CI builds.
 - *Meeting notes ingestion*: After I meet with a colleague, my fleet automatically ingests Gemini notes. When I get back to development, my fleet has already ingested AI-generated notes and started work.
