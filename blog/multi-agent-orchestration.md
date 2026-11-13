@@ -3,7 +3,6 @@ title: Embracing Multi-Agent Development
 date: 2026-10-14
 authors: [tom]
 image: /social-cards/multi-agent-orchestration.png
-draft: true
 ---
 
 I've adopted a multi-agent setup, and I can't see going back. I've been skeptical of token maxing tools like Gas Town, whose running cost felt inordinate and whose creator admits was mostly used to build itself. On the other hand, models are now good enough to autonomously and productively work for long periods of time. My effort now goes towards keeping the fleet on track, maintaining progress towards high-level goals, and increasing the number of agents doing high-quality work.
