@@ -18,7 +18,11 @@ test('responsive diagram width targets readable desktop text', () => {
 });
 
 test('screenshots retain a useful minimum width', () => {
-  assert.equal(recommendedDiagramWidth(scene(617, 28, true)), 560);
+  assert.equal(recommendedDiagramWidth(scene(617, 28, true, 640)), 560);
+});
+
+test('wide screenshots can fill the desktop column without becoming tall', () => {
+  assert.equal(recommendedDiagramWidth(scene(735, 28, true, 421)), 720);
 });
 
 test('tall diagrams do not dominate the desktop viewport', () => {

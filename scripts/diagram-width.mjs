@@ -1,6 +1,7 @@
 const MOBILE_COLUMN_WIDTH = 358;
 const MIN_DESKTOP_WIDTH = 420;
 const MAX_DESKTOP_WIDTH = 560;
+const MAX_WIDE_SCREENSHOT_WIDTH = 720;
 const MAX_DESKTOP_HEIGHT = 640;
 const SCREENSHOT_MIN_WIDTH = 560;
 const TARGET_DESKTOP_TEXT_PX = 20;
@@ -49,16 +50,21 @@ export function recommendedDiagramWidth(scene) {
   const textBasedWidth = representativeFont
     ? (TARGET_DESKTOP_TEXT_PX * (width + 2 * EXPORT_PADDING)) / representativeFont
     : MIN_DESKTOP_WIDTH;
-  const screenshotFloor = elements.some((element) => element.type === 'image')
-    ? SCREENSHOT_MIN_WIDTH
+  const isScreenshot = elements.some((element) => element.type === 'image');
+  const isWideScreenshot = isScreenshot && height > 0 && width / height >= 1.5;
+  const screenshotFloor = isScreenshot
+    ? isWideScreenshot ? MAX_WIDE_SCREENSHOT_WIDTH : SCREENSHOT_MIN_WIDTH
     : MIN_DESKTOP_WIDTH;
+  const maxDesktopWidth = isWideScreenshot
+    ? MAX_WIDE_SCREENSHOT_WIDTH
+    : MAX_DESKTOP_WIDTH;
   const preferred = Math.max(screenshotFloor, textBasedWidth, MOBILE_COLUMN_WIDTH);
   const heightBasedWidth = height > 0
     ? (MAX_DESKTOP_HEIGHT * width) / height
-    : MAX_DESKTOP_WIDTH;
+    : maxDesktopWidth;
   const clamped = Math.max(
     MIN_DESKTOP_WIDTH,
-    Math.min(MAX_DESKTOP_WIDTH, heightBasedWidth, preferred),
+    Math.min(maxDesktopWidth, heightBasedWidth, preferred),
   );
   return Math.round(clamped / 20) * 20;
 }
