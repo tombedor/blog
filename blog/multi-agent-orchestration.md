@@ -11,6 +11,8 @@ Working this way is more similar to a pre-AI engineering manager than a pre-AI s
 
 Rather than pitch yet another agent orchestrator[^1] to you, I'll explain how I landed here, which components of multi-agent orchestration matter, and what this shift means for the practice of software engineering.
 
+{/* truncate */}
+
 # The journey to multi-agent
 
 ## Stage 1: Sea of iTerm tabs
